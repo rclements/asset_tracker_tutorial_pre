@@ -38,6 +38,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'thin'
 
 group :test do
+  #gem 'ruby-debug19', :require => 'ruby-debug'
   gem "webrat"
   gem 'rspec-rails', ">=2.0.0.beta.19"
   gem 'cucumber'
@@ -47,4 +48,3 @@ group :test do
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
 end
-

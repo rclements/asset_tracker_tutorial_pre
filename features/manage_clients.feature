@@ -17,6 +17,7 @@ Feature: Manage clients
       |name 2|status 2|
       |name 3|status 3|
       |name 4|status 4|
+    Then show me the page
 
   Scenario: Register new client
     Given I am on the new client page
