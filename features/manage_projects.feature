@@ -12,12 +12,13 @@ Feature: Manage projects
       |Name|
       |test project|
 
-#  Scenario: Register new project
-#    Given I visit the new project page for a given client
-#    When I fill in "Name" with "name 1"
-#    And I press "Create"
-#    Then I should see "name 1"
-#
+  Scenario: Register new project
+    Given a client "test client" exists
+    Given I am on the client's new project page
+    When I fill in "Name" with "name 1"
+    And I press "Create"
+    Then I should see "name 1"
+
 #  Scenario: Delete project
 #    Given the following projects:
 #      |name|
