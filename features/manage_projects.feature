@@ -6,7 +6,7 @@ Feature: Manage projects
   Scenario: List projects
     Given a client "test client" exists
     And a project exists with name: "test project", client: client "test client"
-    When I am on the first client's projects page
+    When I am on the client's projects page
     Then show me the page
     Then I should see the following projects:
       |Name|

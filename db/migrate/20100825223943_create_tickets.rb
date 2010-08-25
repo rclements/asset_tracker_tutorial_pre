@@ -3,6 +3,7 @@ class CreateTickets < ActiveRecord::Migration
     create_table :tickets do |t|
       t.integer :project_id
       t.string :priority
+      t.string :name
       t.text :description
 
       t.timestamps

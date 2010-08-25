@@ -14,6 +14,7 @@ end
 
 Ticket.blueprint do
   project { Project.make }
+  name { 'some name' }
   priority 'high'
-  description { Faker::Lipsum.paragraph }
+  description { Faker::Company.name + "'s ticket" }
 end

@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20100825223943) do
   create_table "tickets", :force => true do |t|
     t.integer  "project_id"
     t.string   "priority"
+    t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
