@@ -4,3 +4,4 @@ log/*.log
 tmp/**/*
 capybara*
 *.sw*
+.rvmrc
