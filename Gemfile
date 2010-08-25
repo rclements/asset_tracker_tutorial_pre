@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.beta4'
+gem 'rails', '3.0.0.rc'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -27,3 +27,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # group :test do
 #   gem 'webrat'
 # end
+
+gem 'rspec', ">=2.0.0.beta.19", :group => :test
+group :test, :development do
+  gem 'rspec-rails', '>=2.0.0.beta.19'
+end
