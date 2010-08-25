@@ -166,3 +166,38 @@ NOTES:
 To get ruby-debug working in ruby1.9, do this:
 http://dirk.net/2010/04/17/ruby-debug-with-ruby-19x-and-rails-3-on-rvm/
 
+-------------------------------------------------------------------------------
+Making the Views not suck
+-------------------------------------------------------------------------------
+first i add the compass-susy pro into the gem file then install it
+
+  gem 'compass-susy-plugin'
+  $ bundle install
+  
+then i generate compass inside the project, with susy
+
+ $ compass init rails . -r susy --using susy/project
+
+it asks questions:
+
+  Compass recommends that you keep your stylesheets in app/stylesheets
+    instead of the Sass default location of public/stylesheets/sass.
+    Is this OK? (Y/n) Y
+
+  Compass recommends that you keep your compiled css in public/stylesheets/compiled/
+    instead the Sass default of public/stylesheets/.
+    However, if you're exclusively using Sass, then public/stylesheets/ is recommended.
+    Emit compiled stylesheets to public/stylesheets/compiled/? (Y/n) Y
+
+answer yes.
+
+now we create/import the layout, and a couple of shared partials
+
+  (see code)
+
+and make sure we add in the required parts of compass:
+
+%head
+  = stylesheet_link_tag 'compiled/screen.scss', :media => 'screen, projection'
+  = stylesheet_link_tag 'compiled/print.scss', :media => 'print'
+  = stylesheet_link_tag 'compiled/ie.scss', :media => 'screen, projection'
