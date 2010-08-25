@@ -2,18 +2,18 @@
 
 // Imports --------------------------------------------------------------
 
-@import "defaults";
+/*@import "defaults";*/
 
 /* Layout -------------------------------------------------------------- */
 
-@include susy;
+/*@include susy;*/
 
 // change '.container' to match your HTML container element
 // or @extend it to apply multiple containers on your site.
-.container {
+/*.container {
   @include container;
   @include show-grid("grid.png"); }
-
+*/
 // show-grid loads a 64+16x24 grid image by default
 // For other grid settings, run `compass grid-img 30+10x20`
 // Where 30 is the column width, 10 is the gutter width,
