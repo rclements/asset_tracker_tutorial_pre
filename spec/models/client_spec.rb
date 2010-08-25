@@ -9,8 +9,13 @@ describe Client do
     Client.new.should have(1).errors_on(:status)
   end
 
-  it "requires unique names" do
-    client = Client.create(:name => 'test', :status => 'test')
-    Client.new(:name => 'test', :status => 'test').should have(1).errors_on(:name)
+  context "with an existing client with the same name" do
+    before(:each) do
+      client = Client.create(:name => 'test', :status => 'test')
+    end
+
+    it "fails validation with error on name" do
+      Client.new(:name => 'test', :status => 'test').should have(1).errors_on(:name)
+    end
   end
 end

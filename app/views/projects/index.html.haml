@@ -7,7 +7,7 @@
   %tbody
     - @projects.each do |project|
       %tr
-        %td= link_to project
+        %td= link_to project, project
         %td= link_to 'Edit', edit_project_path(project)
         %td= link_to 'Destroy', project_path(project), :method => :delete
 

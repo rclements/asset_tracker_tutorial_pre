@@ -8,7 +8,7 @@
   %tbody
     - @clients.each do |client|
       %tr
-        %td= link_to client
+        %td= link_to client, client
         %td= client.status
         %td= link_to 'Edit', edit_client_path(client)
         %td= link_to 'Destroy', client_path(client), :method => :delete

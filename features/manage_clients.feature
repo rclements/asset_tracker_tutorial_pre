@@ -1,7 +1,7 @@
 Feature: Manage clients
-  In order to [goal]
-  [stakeholder]
-  wants [behaviour]
+  In order to manage client
+  Visitor
+  wants to be given a manageable listing
 
   Scenario: List clients
     Given the following clients:
@@ -11,13 +11,13 @@ Feature: Manage clients
       |name 3|status 3|
       |name 4|status 4|
     When I visit the clients index page
+    Then show me the page
     Then I should see the following clients:
       |Name|Status|
       |name 1|status 1|
       |name 2|status 2|
       |name 3|status 3|
       |name 4|status 4|
-    Then show me the page
 
   Scenario: Register new client
     Given I am on the new client page

@@ -37,7 +37,10 @@ gem 'lemonade', '>= 0.3.4'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'thin'
 
+gem 'mysql'
+
 group :test do
+  gem "pickle"
   #gem 'ruby-debug19', :require => 'ruby-debug'
   gem "webrat"
   gem 'rspec-rails', ">=2.0.0.beta.19"
@@ -47,4 +50,8 @@ group :test do
   gem 'cucumber-rails'
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
+  gem 'machinist'
+  gem 'faker'
+  gem 'forgery'
+  gem 'yajl-ruby'
 end

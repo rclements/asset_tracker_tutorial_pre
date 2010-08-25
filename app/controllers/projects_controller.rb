@@ -1,10 +1,16 @@
 class ProjectsController < ApplicationController
+  before_filter :load_client
   before_filter :load_new_project, :only => [:new, :create]
   before_filter :load_project, :only => [:show, :edit, :update, :destroy]
 
   protected
+  def load_client
+    @client = Client.find(params[:client_id])
+  end
+
   def load_new_project
     @project = Project.new(params[:project])
+    @project.client = @client
   end
 
   def load_project
@@ -25,7 +31,7 @@ class ProjectsController < ApplicationController
   def create
     if @project.save
       flash[:notice] = "Project created successfully."
-      redirect_to @project
+      redirect_to [@client, @project]
     else
       flash.now[:error] = "There was a problem saving the new project."
       render :action => 'new'
@@ -38,6 +44,6 @@ class ProjectsController < ApplicationController
     else
       flash[:error] = "There was a problem destroying that project."
     end
-    redirect_to projects_path
+    redirect_to client_projects_path(@client)
   end
 end
