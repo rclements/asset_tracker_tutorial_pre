@@ -4,13 +4,13 @@ Feature: Manage projects
   wants a nice management interface
 
   Scenario: List projects
-    Given a client exists
-    And a project exists with client: the first client and name: test project
-    When I visit the projects index page for the first client
+    Given a client "test client" exists
+    And a project exists with name: "test project", client: client "test client"
+    When I am on the first client's projects page
+    Then show me the page
     Then I should see the following projects:
       |Name|
       |test project|
-    Then show me the page
 
 #  Scenario: Register new project
 #    Given I visit the new project page for a given client

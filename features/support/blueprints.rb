@@ -6,3 +6,8 @@ Client.blueprint do
   name { Faker::Company.name }
   status 'test'
 end
+
+Project.blueprint do
+  client { Client.make }
+  name { Faker::Company.name }
+end
