@@ -2,7 +2,22 @@ Feature: Manage clients
   In order to [goal]
   [stakeholder]
   wants [behaviour]
-  
+
+  Scenario: List clients
+    Given the following clients:
+      |name|status|
+      |name 1|status 1|
+      |name 2|status 2|
+      |name 3|status 3|
+      |name 4|status 4|
+    When I visit the clients index page
+    Then I should see the following clients:
+      |Name|Status|
+      |name 1|status 1|
+      |name 2|status 2|
+      |name 3|status 3|
+      |name 4|status 4|
+
   Scenario: Register new client
     Given I am on the new client page
     When I fill in "Name" with "name 1"

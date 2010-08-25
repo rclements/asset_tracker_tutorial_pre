@@ -30,6 +30,13 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # For cucumber-rails
 gem 'rspec', ">=2.0.0.beta.19", :group => :test
+
+gem 'haml-edge', '3.1.66', :require => 'haml'
+gem 'compass', '>= 0.10.4'
+gem 'lemonade', '>= 0.3.4'
+gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'thin'
+
 group :test do
   gem "webrat"
   gem 'rspec-rails', ">=2.0.0.beta.19"
