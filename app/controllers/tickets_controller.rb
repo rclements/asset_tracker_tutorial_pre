@@ -24,7 +24,6 @@ class TicketsController < ApplicationController
 
   public
   def index
-    # TODO: Pagination
     @tickets = @project.tickets
   end
 

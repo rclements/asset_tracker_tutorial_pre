@@ -1,6 +1,8 @@
 AssetTrackerTutorial::Application.routes.draw do |map|
   resources :clients do
-    resources :projects
+    resources :projects do
+      resources :tickets
+    end
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
