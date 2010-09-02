@@ -1,4 +1,4 @@
-AssetTrackerTutorial::Application.routes.draw do |map|
+AssetTrackerTutorial::Application.routes.draw do
   resources :clients do
     resources :projects do
       resources :tickets
