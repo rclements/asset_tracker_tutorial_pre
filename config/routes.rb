@@ -1,7 +1,9 @@
 AssetTrackerTutorial::Application.routes.draw do
   resources :clients do
     resources :projects do
-      resources :tickets
+      resources :tickets do
+        resources :work_units
+      end
     end
   end
   # The priority is based upon order of creation:

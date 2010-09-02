@@ -18,3 +18,8 @@ Ticket.blueprint do
   priority 'high'
   description { Faker::Company.name + "'s ticket" }
 end
+
+WorkUnit.blueprint do
+  ticket { Ticket.make }
+  description { Faker::Company.name + "'s work unit" }
+end

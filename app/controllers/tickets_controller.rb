@@ -10,7 +10,7 @@ class TicketsController < ApplicationController
   end
 
   def load_client
-    @client = @project.client
+    @client = Client.find(params[:client_id])
   end
 
   def load_new_ticket
