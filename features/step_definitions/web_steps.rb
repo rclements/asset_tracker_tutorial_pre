@@ -201,6 +201,16 @@ Then /^(?:|I )should be on (.+)$/ do |page_name|
   end
 end
 
+Then /^I should see a link with text "([^\"]*)"$/ do |text|
+  page.should have_link(text)
+end
+
+Then /^I should see a link with text "([^\"]*)" within "([^"]*)"?$/ do |text, selector|
+  with_scope(selector) do
+    page.should have_link(text)
+  end
+end
+
 Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   query = URI.parse(current_url).query
   actual_params = query ? CGI.parse(query) : {}

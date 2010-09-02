@@ -12,6 +12,13 @@ Feature: Manage tickets
       |Name|
       |test ticket|
 
+  Scenario: View a ticket
+    Given a client "test client" exists
+    And a project "test project" exists with name: "test project", client: client "test client"
+    And a ticket exists with project: project "test project", name: "test ticket"
+    When I am on the client's project's ticket's page
+    Then I should see a link with text "Work Units" within "#ticket"
+
   Scenario: Register new ticket
     Given a client "test client" exists
     And a project exists with name: "test project", client: client "test client"

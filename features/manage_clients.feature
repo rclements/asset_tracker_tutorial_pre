@@ -17,6 +17,11 @@ Feature: Client Management
       |name 3|status 3|
       |name 4|status 4|
 
+  Scenario: View a client
+    Given a client "test client" exists
+    When I am on the client's page
+    Then I should see a link with text "Projects" within "#client"
+
   Scenario: Register new client
     Given I am on the new client page
     When I fill in "Name" with "name 1"

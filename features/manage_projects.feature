@@ -11,6 +11,12 @@ Feature: Manage projects
       |Name|
       |test project|
 
+  Scenario: View a project
+    Given a client "test client" exists
+    And a project exists with name: "test project", client: client "test client"
+    When I am on the client's project's page
+    Then I should see a link with text "Tickets" within "#project"
+
   Scenario: Register new project
     Given a client "test client" exists
     Given I am on the client's new project page

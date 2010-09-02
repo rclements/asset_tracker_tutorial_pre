@@ -1,1 +1,5 @@
-%h2= @ticket.to_s
+#ticket
+  %h2= @ticket.to_s
+
+  .links
+    = link_to "Work Units", client_project_ticket_work_units_path(@client, @project, @ticket)

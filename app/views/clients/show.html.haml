@@ -1,4 +1,8 @@
-%h2= @client.to_s
+#client
+  %h2= @client.to_s
 
-Status:
-= @client.status
+  Status:
+  = @client.status
+
+  .links
+    = link_to "Projects", client_projects_path(@client)
