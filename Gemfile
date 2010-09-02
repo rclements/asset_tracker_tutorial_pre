@@ -30,6 +30,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # For cucumber-rails
 gem 'rspec', ">=2.0.0.beta.19", :group => :test
+gem 'escape_utils'
 
 gem 'haml', '3.0.18', :require => 'haml'
 gem 'compass', '>= 0.10.4'
