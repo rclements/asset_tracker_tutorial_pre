@@ -21,6 +21,7 @@ class WorkUnitsController < ApplicationController
   def load_new_work_unit
     @work_unit = WorkUnit.new(params[:work_unit])
     @work_unit.ticket = @ticket
+    @work_unit.scheduled_at ||= Time.zone.now
   end
 
   def load_work_unit

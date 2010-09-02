@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100902174920) do
+ActiveRecord::Schema.define(:version => 20100902190129) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(:version => 20100902174920) do
     t.integer  "ticket_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "hours",        :precision => 10, :scale => 2
+    t.boolean  "overtime"
+    t.datetime "scheduled_at"
   end
 
 end
