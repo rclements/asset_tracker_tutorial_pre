@@ -8,7 +8,6 @@ Feature: Manage tickets
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket exists with project: project "test project", name: "test ticket"
     When I am on the client's project's tickets page
-    Then show me the page
     Then I should see the following tickets:
       |Name|
       |test ticket|

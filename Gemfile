@@ -1,9 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.rc2'
-gem 'rspec', ">=2.0.0.beta.19", :group => :test
+gem 'rails', '3.0.0'
 
-gem 'haml-edge', '3.1.66', :require => 'haml'
+gem 'sqlite3-ruby', :require => 'sqlite3'
+
+gem 'rspec', ">=2.0.0.beta.19", :group => :test
+gem 'escape_utils'
+
+gem 'haml', '3.0.18', :require => 'haml'
 gem 'compass', '>= 0.10.4'
 gem 'compass-susy-plugin'
 gem 'lemonade', '>= 0.3.4'
