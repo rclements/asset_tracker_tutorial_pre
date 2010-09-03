@@ -159,12 +159,12 @@ DEPENDENCIES
   haml (= 3.0.18)
   launchy
   lemonade (>= 0.3.4)
-  machinist
+  machinist (= 1.0.6)
   mysql
   pickle
   rails (= 3.0.0)
-  rspec (>= 2.0.0.beta.19)
-  rspec-rails (>= 2.0.0.beta.19)
+  rspec (>= 2.0.0.beta.20)
+  rspec-rails (>= 2.0.0.beta.20)
   spork
   sqlite3-ruby
   thin

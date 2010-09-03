@@ -29,7 +29,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # end
 
 # For cucumber-rails
-gem 'rspec', ">=2.0.0.beta.19", :group => :test
+gem 'rspec', ">=2.0.0.beta.20", :group => :test
 gem 'escape_utils'
 
 gem 'haml', '3.0.18', :require => 'haml'
@@ -45,14 +45,14 @@ group :test do
   gem "pickle"
   #gem 'ruby-debug19', :require => 'ruby-debug'
   gem "webrat"
-  gem 'rspec-rails', ">=2.0.0.beta.19"
+  gem 'rspec-rails', ">=2.0.0.beta.20"
   gem 'cucumber'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'machinist'
+  gem 'machinist', '1.0.6'
   gem 'faker'
   gem 'forgery'
   gem 'yajl-ruby'
