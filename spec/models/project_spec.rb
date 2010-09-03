@@ -7,7 +7,7 @@ describe Project do
 
   context "with an existing project with the same name on a given client" do
     before(:each) do
-      @client = Client.create(:name => 'testee', :status => 'testee')
+      @client = Client.create(:name => 'testee', :status => 'Good')
       @project = Project.create(:name => 'test', :client => @client)
     end
 

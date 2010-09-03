@@ -11,7 +11,7 @@ describe Client do
 
   context "with an existing client with the same name" do
     before(:each) do
-      client = Client.create(:name => 'test', :status => 'test')
+      client = Client.create(:name => 'test', :status => 'Good')
     end
 
     it "fails validation with error on name" do
