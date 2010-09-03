@@ -16,7 +16,7 @@
   .field
     = f.label :status
     %br
-    = f.text_field :status
+    = f.select :status, client_status_select(@client.status)
   .actions
     = f.submit
     or

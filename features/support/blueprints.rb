@@ -4,7 +4,7 @@ require 'faker'
 
 Client.blueprint do
   name { Faker::Company.name }
-  status 'test'
+  status 'Good'
 end
 
 Project.blueprint do

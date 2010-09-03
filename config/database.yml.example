@@ -1,0 +1,14 @@
+development:
+  adapter: mysql
+  database: asset_tracker_tutorial_development
+  login: root
+  password: 
+
+test: &test
+  adapter: mysql
+  database: asset_tracker_tutorial_test
+  login: root
+  password: 
+
+cucumber:
+  <<: *test
