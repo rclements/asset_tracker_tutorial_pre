@@ -4,7 +4,13 @@ class Dashboard::WorkUnitsController < Dashboard::BaseController
 
   protected
   def load_work_units
-    @work_units = WorkUnit.all
+    bucket = WorkUnit
+    if params[:start_date] && params[:end_date]
+      start_date = Time.zone.parse(params[:start_date])
+      end_date = Time.zone.parse(params[:end_date]).end_of_day
+      bucket = bucket.scheduled_between(start_date, end_date)
+    end
+    @work_units = bucket.all
   end
 
   def load_new_work_unit
