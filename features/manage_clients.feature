@@ -30,6 +30,10 @@ Feature: Client Management
     Then I should see "name 1"
     And I should see "status 1"
 
+  Scenario: Register new client - the form
+    Given I am on the new client page
+    Then I should see a link with text "Cancel" within ".actions"
+
   Scenario: Delete client
     Given the following clients:
       |name|status|

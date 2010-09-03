@@ -3,3 +3,4 @@
 
   .links
     = link_to "Tickets", client_project_tickets_path(@client, @project)
+    = link_to "Back to client: #{@client}", client_path(@client)
