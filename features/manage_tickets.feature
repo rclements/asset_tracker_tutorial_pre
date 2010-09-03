@@ -29,6 +29,12 @@ Feature: Manage tickets
     And I press "Create"
     Then I should see "name 1"
 
+  Scenario: Register new ticket - the form
+    Given a client "test client" exists
+    And a project exists with name: "test project", client: client "test client"
+    Given I am on the client's project's new ticket page
+    Then I should see a link with text "Cancel" within ".actions"
+
 #  Scenario: Delete ticket
 #    Given the following tickets:
 #      |name|

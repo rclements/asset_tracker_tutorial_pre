@@ -25,6 +25,11 @@ Feature: Manage projects
     And I press "Create"
     Then I should see "name 1"
 
+  Scenario: Register new project - the form
+    Given a client "test client" exists
+    Given I am on the client's new project page
+    Then I should see a link with text "Cancel" within ".actions"
+
 #  Scenario: Delete project
 #    Given the following projects:
 #      |name|

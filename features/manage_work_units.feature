@@ -23,6 +23,13 @@ Feature: Manage Work Units
     And I press "Create"
     Then I should see "test description"
 
+  Scenario: Register new work unit - the form
+    Given a client "test client" exists
+    And a project "test project" exists with name: "test project", client: client "test client"
+    And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
+    Given I am on the client's project's ticket's new work_unit page
+    Then I should see a link with text "Cancel" within ".actions"
+
   Scenario: View a work unit
     Given a client "test client" exists with name: "test client"
     And a project "test project" exists with name: "test project", client: client "test client"
