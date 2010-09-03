@@ -17,6 +17,15 @@ Feature: Manage projects
     When I am on the client's project's page
     Then I should see a link with text "Tickets" within "#project .links"
     Then I should see a link with text "Back to client: test client" within "#project .links"
+    Then I should see a link with text "Edit" within "#project .links"
+
+  Scenario: Edit a project
+    Given a client "test client2" exists
+    And a project exists with name: "test project", client: client "test client2"
+    When I am on the client's project's edit page
+    And I fill in "Name" with "project 2"
+    And I press "Update"
+    Then I should see "project 2"
 
   Scenario: Register new project
     Given a client "test client" exists

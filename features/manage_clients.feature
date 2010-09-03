@@ -20,8 +20,8 @@ Feature: Client Management
   Scenario: View a client
     Given a client "test client" exists
     When I am on the client's page
-    Then I should see a link with text "Projects" within "#client"
-    Then I should see a link with text "Edit" within ".links"
+    Then I should see a link with text "Projects" within "#client .links"
+    Then I should see a link with text "Edit" within "#client .links"
 
   Scenario: Edit a client
     Given a client "test client2" exists with name: "test client2", status: "Good"
