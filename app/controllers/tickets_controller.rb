@@ -30,6 +30,22 @@ class TicketsController < ApplicationController
   def new
   end
 
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @ticket.update_attributes(params[:ticket])
+      flash[:notice] = "Ticket updated successfully."
+      redirect_to client_project_ticket_path(@client, @project, @ticket)
+    else
+      flash.now[:error] = "There was a problem saving the ticket."
+      render :action => 'edit'
+    end
+  end
+
   def create
     if @ticket.save
       flash[:notice] = "Ticket created successfully."
@@ -38,9 +54,6 @@ class TicketsController < ApplicationController
       flash.now[:error] = "There was a problem saving the ticket."
       render :action => 'new'
     end
-  end
-
-  def show
   end
 
   def destroy
@@ -54,8 +67,5 @@ class TicketsController < ApplicationController
   end
 
   def edit
-  end
-
-  def update
   end
 end

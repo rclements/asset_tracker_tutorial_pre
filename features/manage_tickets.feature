@@ -18,6 +18,16 @@ Feature: Manage tickets
     And a ticket exists with project: project "test project", name: "test ticket"
     When I am on the client's project's ticket's page
     Then I should see a link with text "Work Units" within "#ticket"
+    Then I should see a link with text "Edit" within "#ticket"
+
+  Scenario: Edit a ticket
+    Given a client "test client" exists
+    And a project "test project" exists with name: "test project", client: client "test client"
+    And a ticket exists with project: project "test project", name: "test ticket"
+    When I am on the client's project's ticket's edit page
+    When I fill in "Name" with "test ticket2"
+    And I press "Update"
+    Then I should see "test ticket2"
 
   Scenario: Register new ticket
     Given a client "test client" exists
