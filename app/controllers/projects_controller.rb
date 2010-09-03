@@ -28,6 +28,19 @@ class ProjectsController < ApplicationController
   def new
   end
 
+  def edit
+  end
+
+  def update
+    if @project.update_attributes(params[:project])
+      flash[:notice] = "Project updated successfully."
+      redirect_to [@client, @project]
+    else
+      flash.now[:error] = "There was a problem saving the project."
+      render :action => 'edit'
+    end
+  end
+
   def create
     if @project.save
       flash[:notice] = "Project created successfully."

@@ -2,4 +2,6 @@
   %h2= @project.to_s
 
   .links
+    = link_to "Edit", edit_client_project_path(@client, @project)
+    |
     = link_to "Tickets", client_project_tickets_path(@client, @project)
