@@ -21,6 +21,17 @@ Feature: Client Management
     Given a client "test client" exists
     When I am on the client's page
     Then I should see a link with text "Projects" within "#client"
+    Then I should see a link with text "Edit" within ".links"
+
+  Scenario: Edit a client
+    Given a client "test client2" exists with name: "test client2", status: "Good"
+    When I am on the client's edit page
+    Then the "client_name" field within "body" should contain "test client2"
+    Then the "client_status" field within "body" should contain "Good"
+    And I select "Bad" from "Status"
+    And I press "Update"
+    Then I should see "test client2"
+    And I should see "Bad"
 
   Scenario: Register new client
     Given I am on the new client page
