@@ -1,0 +1,16 @@
+%table.work_units
+  %thead
+    %tr
+      %th Description
+      %th Hours
+      %th
+      %th
+  %tbody
+    - @work_units.each do |work_unit|
+      %tr
+        %td= link_to work_unit.description, client_project_ticket_work_unit_path(@client, @project, @ticket, work_unit)
+        %td= work_unit.hours
+        %td= link_to 'Edit', edit_client_project_ticket_work_unit_path(@client, @project, @ticket, work_unit)
+        %td= link_to 'Destroy', client_project_ticket_work_unit_path(@client, @project, @ticket, work_unit), :method => :delete
+
+= link_to "New Work Unit", new_client_project_ticket_work_unit_path(@client, @project, @ticket)
