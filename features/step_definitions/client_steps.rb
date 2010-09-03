@@ -16,3 +16,4 @@ end
 Then /^I should see the following clients:$/ do |expected_clients_table|
   expected_clients_table.diff!(tableish('table tr', 'td,th'))
 end
+

@@ -5,4 +5,6 @@
   = @client.status
 
   .links
+    = link_to "Edit", edit_client_path(@client)
+    | 
     = link_to "Projects", client_projects_path(@client)

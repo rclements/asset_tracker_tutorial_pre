@@ -19,6 +19,9 @@ class ClientsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
   def new
   end
 
@@ -29,6 +32,16 @@ class ClientsController < ApplicationController
     else
       flash.now[:error] = "There was a problem saving the new client."
       render :action => 'new'
+    end
+  end
+
+  def update
+    if @client.update_attributes(params[:client])
+      flash[:notice] = "Client updated successfully."
+      redirect_to @client
+    else
+      flash.now[:error] = "There was a problem saving the client."
+      render :action => 'edit'
     end
   end
 
