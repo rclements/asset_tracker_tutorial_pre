@@ -12,10 +12,11 @@ Feature: Manage projects
       |test project|
 
   Scenario: View a project
-    Given a client "test client" exists
+    Given a client "test client" exists with name: "test client"
     And a project exists with name: "test project", client: client "test client"
     When I am on the client's project's page
-    Then I should see a link with text "Tickets" within "#project"
+    Then I should see a link with text "Tickets" within "#project .links"
+    Then I should see a link with text "Back to client: test client" within "#project .links"
 
   Scenario: Register new project
     Given a client "test client" exists
