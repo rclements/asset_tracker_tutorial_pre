@@ -11,6 +11,7 @@ gem 'compass', '>= 0.10.4'
 gem 'compass-susy-plugin'
 gem 'lemonade', '>= 0.3.4'
 gem 'thin'
+gem 'uuid'
 
 gem 'mysql'
 

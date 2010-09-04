@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+  include GuidReferenced
   belongs_to :project
   has_many :work_units
 

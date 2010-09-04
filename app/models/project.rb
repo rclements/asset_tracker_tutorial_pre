@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  include GuidReferenced
   belongs_to :client
   has_many :tickets
 

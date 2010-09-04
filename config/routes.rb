@@ -10,6 +10,12 @@ AssetTrackerTutorial::Application.routes.draw do
   namespace :dashboard do
     resources :work_units
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :clients
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

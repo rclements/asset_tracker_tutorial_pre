@@ -99,8 +99,8 @@ end
 
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
-  expected = JSON.pretty_generate(JSON.parse(expected_json))
-  actual   = JSON.pretty_generate(JSON.parse(response.body))
+  expected = JSON.parse(expected_json)
+  actual   = JSON.parse(page.body)
   expected.should == actual
 end
 
