@@ -35,3 +35,20 @@ Feature: API - V1 - Client Management
         }}
       ]
       """
+
+  Scenario: Show client
+    Given the following clients:
+      |name  |status|guid|
+      |name 1|Good  |1a  |
+      |name 2|Bad   |2a  |
+      |name 3|Ugly  |3a  |
+      |name 4|ANGRY |4a  |
+    When I go to path "/api/v1/clients/3a.json":
+    Then I should see JSON:
+      """
+      {"client": {
+        "name": "name 3",
+        "status": "Ugly",
+        "guid": "3a"
+      }}
+      """
