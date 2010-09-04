@@ -16,6 +16,9 @@ module NavigationHelpers
 
     # the following are examples using path_to_pickle
 
+    when /^the dashboard #{capture_model}(?:'s)? page$/                           # eg. the forum's page
+      path_to_pickle 'dashboard', $1
+
     when /^#{capture_model}(?:'s)? page$/                           # eg. the forum's page
       path_to_pickle $1
 

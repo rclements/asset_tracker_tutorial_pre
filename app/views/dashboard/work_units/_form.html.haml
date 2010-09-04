@@ -1,5 +1,9 @@
 = form_for([:dashboard, work_unit]) do |f|
   %p
+    = f.label :ticket_id
+  %p
+    = f.select :ticket_id, Ticket.all.map{|t| [t.name, t.id]}
+  %p
     = f.label :description
   %p
     = f.text_area :description
@@ -7,9 +11,5 @@
     = f.label :hours
   %p
     = f.text_field :hours
-  %p
-    = f.label :ticket_id
-  %p
-    = f.select :ticket_id, Ticket.all.map{|t| [t.name, t.id]}
   .actions
     = submit_tag 'Create'
