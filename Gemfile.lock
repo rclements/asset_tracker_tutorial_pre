@@ -80,6 +80,7 @@ GEM
       haml (>= 3.0.0)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
+    macaddr (1.0.0)
     machinist (1.0.6)
     mail (2.2.5)
       activesupport (>= 2.3.6)
@@ -149,6 +150,8 @@ GEM
       polyglot (>= 0.3.1)
     trollop (1.16.2)
     tzinfo (0.3.23)
+    uuid (2.3.1)
+      macaddr (~> 1.0)
     webrat (0.7.1)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
@@ -181,5 +184,6 @@ DEPENDENCIES
   ruby-debug19
   spork
   thin
+  uuid
   webrat
   yajl-ruby
