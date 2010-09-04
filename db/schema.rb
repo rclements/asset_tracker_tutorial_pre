@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100902190129) do
+ActiveRecord::Schema.define(:version => 20100904173839) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "guid"
   end
 
   create_table "projects", :force => true do |t|
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20100902190129) do
     t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "guid"
   end
 
   create_table "tickets", :force => true do |t|
@@ -33,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20100902190129) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "guid"
   end
 
   create_table "work_units", :force => true do |t|
@@ -43,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20100902190129) do
     t.decimal  "hours",        :precision => 10, :scale => 2
     t.boolean  "overtime"
     t.datetime "scheduled_at"
+    t.string   "guid"
   end
 
 end
