@@ -10,13 +10,17 @@
     = csrf_meta_tag
     = yield :head
   %body
-    #page
+    %header
       %h1{:role => "banner"}
-        %a{:href => "/"} Isotope Eleven
-      %nav= render :partial => "shared/menu"
+        .container
+          %a{:href => "/"}
+            %span Isotope Eleven
+      %nav
+        .container= render :partial => "shared/menu"
+    .container
       %section
         %article= yield
         %aside= (content_column_right = yield :content_column_right).empty? ? render(:partial => 'shared/sidebar') : content_column_right
       %footer
         %p &copy; Isotope11 2010
-    = render :partial => "shared/javascripts"
+    .container= render :partial => "shared/javascripts"
