@@ -1,0 +1,8 @@
+staging:
+  domain: "root@208.75.85.57"
+  deploy_to: "/var/www/dividend-reporter"
+  repository: "git://github.com/altrux/dividend-reporter.git"
+  branch: "master"
+  rake_env:
+    RAILS_ENV: 'production'
+
