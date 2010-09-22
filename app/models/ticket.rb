@@ -1,4 +1,5 @@
 class Ticket < ActiveRecord::Base
+  acts_as_commentable
   belongs_to :project
   has_many :work_units
 

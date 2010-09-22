@@ -1,4 +1,5 @@
 class WorkUnit < ActiveRecord::Base
+  acts_as_commentable
   belongs_to :ticket
   validates_presence_of :ticket_id
   validates_presence_of :description

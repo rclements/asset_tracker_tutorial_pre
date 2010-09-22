@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  acts_as_commentable
   belongs_to :client
   has_many :tickets
 

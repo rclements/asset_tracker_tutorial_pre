@@ -1,11 +1,17 @@
 AssetTrackerTutorial::Application.routes.draw do
   resources :clients do
+    resources :comments
     resources :projects do
+      resources :comments
       resources :tickets do
-        resources :work_units
+        resources :comments
+        resources :work_units do
+          resources :comments
+        end
       end
     end
   end
+  resources :comments
 
   namespace :dashboard do
     resources :work_units
