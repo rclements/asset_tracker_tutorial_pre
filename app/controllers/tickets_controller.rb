@@ -1,16 +1,11 @@
 class TicketsController < ApplicationController
   before_filter :load_project
-  before_filter :load_client
   before_filter :load_new_ticket
   before_filter :load_ticket, :only => [:show, :edit, :update, :destroy]
 
   protected
   def load_project
-    @project = Project.find(params[:project_id], :include => [:client])
-  end
-
-  def load_client
-    @client = Client.find(params[:client_id])
+    @project = Project.find_by_id(params[:project_id], :include => [:client])
   end
 
   def load_new_ticket
@@ -39,7 +34,7 @@ class TicketsController < ApplicationController
   def update
     if @ticket.update_attributes(params[:ticket])
       flash[:notice] = "Ticket updated successfully."
-      redirect_to client_project_ticket_path(@client, @project, @ticket)
+      redirect_to project_ticket_path(@project, @ticket)
     else
       flash.now[:error] = "There was a problem saving the ticket."
       render :action => 'edit'
@@ -49,7 +44,7 @@ class TicketsController < ApplicationController
   def create
     if @ticket.save
       flash[:notice] = "Ticket created successfully."
-      redirect_to client_project_ticket_path(@client, @project, @ticket)
+      redirect_to project_ticket_path(@project, @ticket)
     else
       flash.now[:error] = "There was a problem saving the ticket."
       render :action => 'new'
@@ -59,10 +54,10 @@ class TicketsController < ApplicationController
   def destroy
     if @ticket.destroy
       flash[:notice] = "Ticket destroyed successfully."
-      redirect_to client_project_tickets_path(@client, @project)
+      redirect_to project_tickets_path(@project)
     else
       flash.now[:error] = "There was a problem destroying the ticket."
-      redirect_to client_project_ticket_path(@client, @project, @ticket)
+      redirect_to project_ticket_path(@project, @ticket)
     end
   end
 

@@ -4,8 +4,8 @@
   .links
     = link_to "Edit", edit_client_project_path(@client, @project)
     |
-    = link_to "Tickets", client_project_tickets_path(@client, @project)
+    = link_to "Tickets", project_tickets_path(@project)
     |
-    = link_to "Comments", client_project_comments_path(@client, @project)
+    = link_to "Comments", project_comments_path(@project)
     |
     = link_to "Back to client: #{@client}", client_path(@client)
