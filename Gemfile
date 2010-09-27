@@ -15,6 +15,8 @@ gem 'uuid'
 
 gem 'mysql'
 
+gem 'devise'
+
 group :test do
   gem "pickle"
   gem 'ruby-debug19', :require => 'ruby-debug'
