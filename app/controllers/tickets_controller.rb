@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :load_project
   before_filter :load_client
   before_filter :load_new_ticket

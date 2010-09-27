@@ -1,4 +1,5 @@
 class WorkUnitsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :load_ticket
   before_filter :load_project
   before_filter :load_client
@@ -21,6 +22,7 @@ class WorkUnitsController < ApplicationController
   def load_new_work_unit
     @work_unit = WorkUnit.new(params[:work_unit])
     @work_unit.ticket = @ticket
+    @work_unit.user = current_user
     @work_unit.scheduled_at ||= Time.zone.now
   end
 
