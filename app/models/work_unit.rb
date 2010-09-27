@@ -4,4 +4,8 @@ class WorkUnit < ActiveRecord::Base
   validates_presence_of :description
   validates_presence_of :hours
   validates_presence_of :scheduled_at
+
+  def to_s
+    description
+  end
 end

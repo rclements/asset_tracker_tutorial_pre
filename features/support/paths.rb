@@ -25,7 +25,7 @@ module NavigationHelpers
     when /^#{capture_model}(?:'s)? #{capture_model}(?:'s)? #{capture_model}(?:'s)? #{capture_model}(?:'s)? page$/   # eg. the forum's category's post's comment's page
       path_to_pickle $1, $2, $3, $4
 
-    when /^#{capture_model}(?:'s)? #{capture_model}'s #{capture_model}(?:'s)? #{capture_model}(?:'s)? (.+?)  page$/  # eg. the forum's category's post's comment's moderations page
+    when /^#{capture_model}(?:'s)? #{capture_model}'s #{capture_model}(?:'s)? #{capture_model}(?:'s)? (.+?) page$/  # eg. the forum's category's post's comment's moderations page
       path_to_pickle $1, $2, $3, $4, :extra => $5                           #  or the forum's post's comment's moderation's edit page
 
     when /^#{capture_model}(?:'s)? #{capture_model}'s #{capture_model}(?:'s)? (.+?) page$/  # eg. the forum's category's post's comments page

@@ -1,0 +1,5 @@
+%h1= "Edit Work Unit #'#{@work_unit.id}'"
+
+= render 'form'
+
+= link_to 'Back', client_project_ticket_work_units_path(@client, @project, @ticket)
