@@ -1,4 +1,5 @@
 AssetTrackerTutorial::Application.routes.draw do
+  root :to => "clients#index"
   devise_for :users
 
   resources :clients do

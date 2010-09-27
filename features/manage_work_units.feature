@@ -4,6 +4,7 @@ Feature: Manage Work Units
   wants a nice management interface
 
   Scenario: List work units
+    Given I am an authenticated user
     Given a client "test client" exists
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
@@ -14,6 +15,7 @@ Feature: Manage Work Units
       |test work unit |2.0   |
 
   Scenario: Register new work unit
+    Given I am an authenticated user
     Given a client "test client" exists
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
@@ -24,6 +26,7 @@ Feature: Manage Work Units
     Then I should see "test description"
 
   Scenario: Register new work unit - the form
+    Given I am an authenticated user
     Given a client "test client" exists
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
@@ -31,6 +34,7 @@ Feature: Manage Work Units
     Then I should see a link with text "Cancel" within ".actions"
 
   Scenario: View a work unit
+    Given I am an authenticated user
     Given a client "test client" exists with name: "test client"
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket "test ticket" exists with project: project "test project", name: "test ticket"

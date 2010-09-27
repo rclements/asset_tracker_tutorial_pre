@@ -4,6 +4,7 @@ Feature: Manage work units in the dashboard
   wants a nice dashboard management interface
 
   Scenario: List work units
+    Given I am an authenticated user
     Given a client "test client" exists with name: "test client"
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
@@ -14,6 +15,7 @@ Feature: Manage work units in the dashboard
     And I should see a link with text "[test client] - 2.0 hours - test work_unit" within "#recent_work ul.work_units"
 
   Scenario: List work units in a specific date range
+    Given I am an authenticated user
     Given a client "test client" exists with name: "test client"
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
@@ -26,6 +28,7 @@ Feature: Manage work units in the dashboard
     And I should not see a link with text "[test client] - 2.0 hours - test work_unit earlier" within "#recent_work ul.work_units"
 
   Scenario: Create work unit
+    Given I am an authenticated user
     Given a client "test client" exists
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
@@ -37,6 +40,7 @@ Feature: Manage work units in the dashboard
     Then I should see "test description" within "#recent_work ul.work_units"
 
   Scenario: View work unit
+    Given I am an authenticated user
     Given a client "test client" exists with name: "test client"
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
