@@ -16,6 +16,7 @@ gem 'uuid'
 gem 'mysql'
 
 gem 'devise'
+gem 'acl9'
 
 group :test do
   gem "pickle"
