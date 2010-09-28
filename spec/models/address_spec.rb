@@ -5,11 +5,11 @@ describe Address do
 
   subject{ address }
   
-  it "fails validation with no address1" do
+  it 'fails validation with no address1' do
     should have(1).errors_on(:address1)
   end
 
-  it "does not care about nil address2" do
+  it 'does not care about nil address2' do
     should_not have(1).errors_on(:address2)
   end
 
