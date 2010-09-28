@@ -3,12 +3,25 @@ AssetTrackerTutorial::Application.routes.draw do
   devise_for :users
 
   resources :clients do
-    resources :projects do
-      resources :tickets do
-        resources :work_units
-      end
-    end
+    resources :comments
+    resources :projects
   end
+
+  resources :projects do
+    resources :comments
+    resources :tickets
+  end
+
+  resources :tickets do
+    resources :comments
+    resources :work_units
+  end
+
+  resources :work_units do
+    resources :comments
+  end
+
+  resources :comments
 
   namespace :dashboard do
     resources :work_units

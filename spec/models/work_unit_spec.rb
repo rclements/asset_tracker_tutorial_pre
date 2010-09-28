@@ -19,6 +19,10 @@ describe WorkUnit do
   it 'fails validation with no scheduled_at' do
     should have(1).errors_on(:scheduled_at)
   end
+  
+  it "should allow comments" do
+    subject.respond_to?(:comments).should be true
+  end
 
   it 'fails validation with no hours' do
     should have(1).errors_on(:hours)

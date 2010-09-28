@@ -4,6 +4,10 @@ describe Client do
   let(:client) { Client.new }
   subject{ client }
 
+  it "should allow comments" do
+    subject.respond_to?(:comments).should be true
+  end
+
   it "fails validation with no name" do
     should have(1).errors_on(:name)
   end

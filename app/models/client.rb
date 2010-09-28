@@ -1,5 +1,6 @@
 class Client < ActiveRecord::Base
   include GuidReferenced
+  acts_as_commentable
   has_many :projects
   has_many :tickets, :through => :projects
 

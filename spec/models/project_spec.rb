@@ -1,7 +1,12 @@
 require 'spec_helper'
 
 describe Project do
-  let(:bad_project){ Project.new }
+  let(:project){ Project.new }
+  subject{ project }
+
+  it "should allow comments" do
+    subject.respond_to?(:comments).should be true
+  end
 
   it "fails validation with no name" do
     should have(1).errors_on(:name)
