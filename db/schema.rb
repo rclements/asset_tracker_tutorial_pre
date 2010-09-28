@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100927191329) do
+ActiveRecord::Schema.define(:version => 20100928163356) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -40,6 +40,21 @@ ActiveRecord::Schema.define(:version => 20100927191329) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "guid"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name",              :limit => 40
+    t.string   "authorizable_type", :limit => 40
+    t.integer  "authorizable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tickets", :force => true do |t|
