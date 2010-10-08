@@ -1,4 +1,6 @@
 AssetTrackerTutorial::Application.routes.draw do
+  get "admin_base/index"
+
   root :to => "clients#index"
   devise_for :users
 
