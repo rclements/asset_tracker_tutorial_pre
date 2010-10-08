@@ -1,5 +1,4 @@
 class ClientsController < ApplicationController
-  before_filter :authenticate_user!
   before_filter :load_new_client, :only => [:new, :create]
   before_filter :load_client, :only => [:show, :edit, :update, :destroy]
 
