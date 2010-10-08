@@ -3,15 +3,15 @@ require 'spec_helper'
 describe User do
   let(:user) { User.new }
   subject{ user }
-  
+
   it 'fails validation with no first name' do
     should have(1).errors_on(:first_name)
   end
-  
+
   it 'fails validation with no last name' do
     should have(1).errors_on(:last_name)
   end
-  
+
   it 'fails validation with no middle initial' do
     should have(1).errors_on(:middle_initial)
   end

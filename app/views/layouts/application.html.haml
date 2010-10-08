@@ -18,6 +18,8 @@
       %nav
         .container= render :partial => "shared/menu"
     .container
+      - if flash[:error]
+        %p= flash[:error]
       %section
         %article= yield
         %aside= (content_column_right = yield :content_column_right).empty? ? render(:partial => 'shared/sidebar') : content_column_right
