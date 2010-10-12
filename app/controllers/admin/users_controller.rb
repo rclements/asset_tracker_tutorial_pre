@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   before_filter :load_user_accounts, :only => [:index]
   before_filter :load_user_account, :only => [:show, :update, :edit]
   before_filter :load_new_user_account, :only => [:new, :create]

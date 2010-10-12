@@ -1,19 +1,12 @@
 AssetTrackerTutorial::Application.routes.draw do
-  get "admin_base/index"
-
   root :to => "clients#index"
   devise_for :users
-
-  resources :admin_base# do
-    # resources :users
-  #  resources :projects
-  #end
-  #
 
   namespace :admin do
     resources :users
     resources :projects
   end
+  get '/admin', :controller => "admin/base", :action => "index"
 
   resources :clients do
     resources :comments
