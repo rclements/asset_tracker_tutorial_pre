@@ -1,5 +1,6 @@
 class AdminBaseController < ApplicationController
-  before_filter :require_admin
+#  before_filter :require_admin
+  before_filter :authenticate_user!
 
   def index
   end
