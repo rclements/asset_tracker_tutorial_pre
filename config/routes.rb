@@ -4,6 +4,17 @@ AssetTrackerTutorial::Application.routes.draw do
   root :to => "clients#index"
   devise_for :users
 
+  resources :admin_base# do
+    # resources :users
+  #  resources :projects
+  #end
+  #
+
+  namespace :admin do
+    resources :users
+    resources :projects
+  end
+
   resources :clients do
     resources :comments
     resources :projects
