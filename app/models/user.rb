@@ -21,6 +21,4 @@ class User < ActiveRecord::Base
   def admin?
     has_role?(:admin)
   end
-
 end
-

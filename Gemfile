@@ -20,7 +20,7 @@ gem 'acl9'
 
 group :test do
   gem "pickle"
-  #gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19', :require => 'ruby-debug'
   gem "webrat"
   gem 'rspec-rails', ">=2.0.0.beta.20"
   gem 'cucumber'

@@ -21,3 +21,23 @@ Given /^I am an authenticated user$/ do
   And %{I fill in "user_password" with "#{password}"}
   And %{I press "Sign in"}
 end
+
+Given /^I am an authenticated user with an+ "([^\"]*)" role$/ do |role|
+  email = 'testing@man.net'
+  login = 'Testing man'
+  password = 'secretpass'
+
+  Given %{I have one user "#{email}" with password "#{password}" and login "#{login}"}
+  u = User.find_by_email(email)
+  u.has_role!(role)
+
+  visit('/users/sign_in')
+#  And %{I go to login}
+  And %{I fill in "user_email" with "#{email}"}
+  And %{I fill in "user_password" with "#{password}"}
+  And %{I press "Sign in"}
+end
+
+Then /^I should see the following users:$/ do |expected_users_table|
+   expected_users_table.diff!(tableish('table tr', 'td,th'))
+end

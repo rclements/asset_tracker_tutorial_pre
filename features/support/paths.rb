@@ -11,11 +11,16 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
 
+    when /^the login page$/
+      '/users/sign_in'
+
     when /path "(.+)"/  
       $1  
 
-    # the following are examples using path_to_pickle
+    when /^the admin users index page$/
+      '/admin/users'
 
+    # the following are examples using path_to_pickle
     when /^the dashboard #{capture_model}(?:'s)? page$/                           # eg. the forum's page
       path_to_pickle 'dashboard', $1
 
