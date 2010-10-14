@@ -25,6 +25,7 @@ Feature: User Administration
       | first_name | last_name | middle_initial | email            | password | role |
       | Test       | Man       | T              | test@example.com | secret   | user |
     When I go to user's edit page
+    Then show me the page
     Then I should see the user's name
     And I should see the user's email
     And I should see a link with text "Edit" within "#user .links"
@@ -40,7 +41,6 @@ Feature: User Administration
   Scenario: Register new user
     Given I am an authenticated user with an "admin" role
     Given I am on the admin users new page
-    Then show me the page
     When I fill in "First name" with "name 1"
     And I fill in "Last name" with "man"
     And I fill in "Middle initial" with "m"
