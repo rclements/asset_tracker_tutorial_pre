@@ -13,6 +13,13 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
+    if @user.save
+      flash[:notice] = "Created successfully"
+      redirect_to admin_users_path
+    else
+      flash[:error] = "Didn't create."
+      redirect_to new_admin_user_path
+    end
   end
 
   def update

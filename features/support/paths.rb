@@ -20,6 +20,12 @@ module NavigationHelpers
     when /^the admin users index page$/
       '/admin/users'
 
+    when /^the admin users edit page$/
+      '/admin/users/1/edit'
+
+    when /^the admin users new page$/
+      '/admin/users/new'
+
     # the following are examples using path_to_pickle
     when /^the dashboard #{capture_model}(?:'s)? page$/                           # eg. the forum's page
       path_to_pickle 'dashboard', $1
