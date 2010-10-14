@@ -7,7 +7,7 @@ Feature: User Administration
     Given the following user records:
       | first_name | last_name | middle_initial | email             | password  | role  |
       | admin      | mcadmin   | a              | admin@example.com | secret    | admin |
-    When I am on the admin users index page
+    When I go to the admin users page
     Then I should see the following users:
       | Name          | Email             |
       | Nick Fine     | testing@man.net   |
@@ -15,28 +15,29 @@ Feature: User Administration
 
   Scenario: List users (non-admin role)
     Given I am an authenticated user
-    When I go to the admin users index page
+    When I go to the admin users page
     Then I should be on the home page
     And I should see "You must be an admin to do that." within "#flash_error"
 
   Scenario: View a user
     Given I am an authenticated user with an "admin" role
-    Given the following user records:
-      | first_name | last_name | middle_initial | email            | password | role |
-      | Test       | Man       | T              | test@example.com | secret   | user |
-    When I go to user's page
-    Then show me the page
-    Then I should see the user's name
-    And I should see the user's email
+    Given a user exists with first_name: "Tits", last_name: "McGee", middle_initial: "T", email: "test@example.com", password: "secret", password_confirmation: "secret"
+    When I go to the admin user's page
+    Then I should see "Tits McGee"
+    And I should see "test@example.com"
     And I should see a link with text "Edit" within "#user .links"
     And I should see a link with text "Clients" within "#user .links"
 
   Scenario: Edit a user
+    Given I am an authenticated user with an "admin" role
+    Given the following user records:
+    When I go to the user's edit page
     Then I should see the text field with label "First name"
-    And I should see the text field with label "Last name"
-    And I should see the text field with label "Middle initial"
-    And I should see the text field with label ""
-    And I should see the text field with label ""
+    And I should see the text field "Last name"
+    And I should see the text field "Middle initial"
+    And I should see the text field "Email"
+    And I should see the text field "Password"
+    And I should see the checkmark box "Lock user"
 
   Scenario: Register new user
     Given I am an authenticated user with an "admin" role

@@ -17,14 +17,17 @@ module NavigationHelpers
     when /path "(.+)"/  
       $1  
 
-    when /^the admin users index page$/
-      '/admin/users'
+#  when /^the admin\'s user\'s index page$/
+#    '/admin/users'
 
-    when /^the admin users edit page$/
-      '/admin/users/1/edit'
+#   when /^the admin users edit page$/
+#     '/admin/users/1/edit'
 
-    when /^the admin users new page$/
-      '/admin/users/new'
+#   when /^the admin users new page$/
+#     '/admin/users/new'
+
+    when /^the admin #{capture_model}(?:'s)? page$/                           # eg. the forum's page
+      path_to_pickle 'admin', $1
 
     # the following are examples using path_to_pickle
     when /^the dashboard #{capture_model}(?:'s)? page$/                           # eg. the forum's page
