@@ -24,7 +24,7 @@ Feature: User Administration
     Given the following user records:
       | first_name | last_name | middle_initial | email            | password | role |
       | Test       | Man       | T              | test@example.com | secret   | user |
-    When I go to user's edit page
+    When I go to user's page
     Then show me the page
     Then I should see the user's name
     And I should see the user's email

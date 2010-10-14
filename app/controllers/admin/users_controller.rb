@@ -13,6 +13,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
+    @user.update_attributes(params[:user])
     if @user.save
       flash[:notice] = "Created successfully"
       redirect_to admin_users_path
