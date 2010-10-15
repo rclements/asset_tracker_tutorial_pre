@@ -40,7 +40,6 @@ html {
 /* Body -------------------------------------------------------------- */
 
 body {
-  @extend .serif;
 }
 
 /* Selected Text -------------------------------------------------------------- */
@@ -65,8 +64,6 @@ body {
 /* Links -------------------------------------------------------------- */
 
 a {
-  &:link, &:visited {
-    color: $alt; }
   &:link, &:visited, &:hover, &:active {
     outline: none; }
   &:focus, &:hover, &:active {
@@ -165,10 +162,6 @@ img {
   -ms-interpolation-mode: bicubic; }
 
 /* Lists -------------------------------------------------------------- */
-
-ol, ul, dl {
-  @include trailer;
-  margin-left: $base-rhythm-unit; }
 
 ol {
   list-style: decimal; }

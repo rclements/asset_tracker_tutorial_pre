@@ -1,26 +1,30 @@
 html {
   height:100%;
+  @include sans-family; 
 }
 
 body {
   @include linear-gradient(color-stops(#405466, #304659 20%, #0a1824));
+  article {
+  padding: 10px 20px 20px 20px;
+  background:#ccc;
+  }
 }
 
 header {
+  width:100%;
+  @include linear-gradient(color-stops(#d5d5d5, #e4e4e4 90%, #d7d7d7 100%));
   h1 {
     height:116px;
     width:100%;
-    @include linear-gradient(color-stops(#d5d5d5, #e4e4e4 90%, #d7d7d7 100%));
     margin-bottom:0px;
-    .container {
-      a {
-        display:inline-block;
-        background: transparent url('../../images/logo.png') no-repeat left top;
-        height: 116px;
-        width: 262px;
-        span {
-          display:none;
-        }
+    a {
+      display:inline-block;
+      background: transparent url('../../images/logo.png') no-repeat left top;
+      height: 116px;
+      width: 262px;
+      span {
+        display:none;
       }
     }
   }
@@ -50,4 +54,12 @@ header {
       }
     }
   }
+}
+footer {
+  border:1px top #4b6378;
+  p {
+    color:#e1e1e1;
+    float:right;
+    font-size:1em;
+ } 
 }
