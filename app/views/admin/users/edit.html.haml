@@ -1,0 +1,14 @@
+%h1
+  Edit Page for User
+
+= form_for @user, :url => admin_user_path(@user) do |f|
+  = f.label :first_name
+  = f.text_field :first_name
+  %br/
+  = f.label :last_name
+  = f.text_field :last_name
+  %br/
+  = f.submit 'Update'
+
+%br/
+%br/

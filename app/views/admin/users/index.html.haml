@@ -1,0 +1,8 @@
+%h1
+  All Users
+
+%h3
+  Users
+- @users.each do |user|
+  = link_to (user.first_name+ " " + user.last_name), admin_user_path(user)
+  %br
