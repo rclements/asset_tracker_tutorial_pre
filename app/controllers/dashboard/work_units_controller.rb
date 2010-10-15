@@ -1,4 +1,5 @@
 class Dashboard::WorkUnitsController < Dashboard::BaseController
+  before_filter :authenticate_user!
   before_filter :load_work_units,    :only => [:index, :create]
   before_filter :load_new_work_unit, :only => [:index, :create]
   before_filter :load_work_unit, :only => [:show]
@@ -16,6 +17,7 @@ class Dashboard::WorkUnitsController < Dashboard::BaseController
 
   def load_new_work_unit
     @work_unit = WorkUnit.new(params[:work_unit])
+    @work_unit.user = current_user
     @work_unit.scheduled_at ||= Time.zone.now
   end
 

@@ -1,0 +1,13 @@
+%table.subdued
+  %thead
+    %tr
+      %th Comment
+  %tbody
+  - @comments.each do |comment|
+    %tr
+      %td= comment.comment
+
+%p
+  = link_to "New", new_comment_path(comment_params)
+  |
+  = link_to "Back", :back

@@ -1,11 +1,12 @@
 class Client < ActiveRecord::Base
   include GuidReferenced
+  acts_as_commentable
   has_many :projects
   has_many :tickets, :through => :projects
 
   validates_presence_of :name
   validates_presence_of :status
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :allow_nil => false
 
   def to_s
     name
