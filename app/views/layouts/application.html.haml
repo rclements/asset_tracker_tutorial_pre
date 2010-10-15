@@ -11,12 +11,13 @@
     = yield :head
   %body
     %header
-      %h1{:role => "banner"}
-        .container
+      .container
+        %h1{:role => "banner"}
           %a{:href => "/"}
             %span Isotope Eleven
       %nav
-        .container= render :partial => "shared/menu"
+        .container
+          = render :partial => "shared/menu"
     .container
       - if flash[:error]
         %p= flash[:error]
