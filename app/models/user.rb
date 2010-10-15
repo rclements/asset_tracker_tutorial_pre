@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     "#{first_name[0]}#{middle_initial}#{last_name[0]}".upcase
   end
 
+  def to_s
+    "#{first_name} #{middle_initial} #{last_name}"
+  end
+
   def admin?
     has_role?(:admin)
   end
