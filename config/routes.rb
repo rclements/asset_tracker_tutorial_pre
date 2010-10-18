@@ -1,6 +1,11 @@
 AssetTrackerTutorial::Application.routes.draw do
   root :to => "clients#index"
-  devise_for :users
+
+  devise_for :users do
+    get 'login', :to => 'devise/sessions#new'
+    post 'login', :to => 'devise/sessions#create'
+    delete 'logout', :to => 'devise/sessions#destroy'
+  end
 
   namespace :admin do
     resources :users
