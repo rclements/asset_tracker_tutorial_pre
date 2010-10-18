@@ -53,7 +53,6 @@ Feature: User Administration
   Scenario: Register new user - the form
     Given I am an authenticated user with an "admin" role
     When I am on the admin user's new page
-    Then show me the page
     Then I should see a link with text "Cancel"
 
   Scenario: Delete user
