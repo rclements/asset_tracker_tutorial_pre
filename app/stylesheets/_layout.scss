@@ -1,26 +1,33 @@
 html {
   height:100%;
+  @include sans-family; 
 }
 
 body {
   @include linear-gradient(color-stops(#405466, #304659 20%, #0a1824));
+  article {
+    @include columns(10);
+    @include alpha;
+  }
+  aside {
+    @include columns(2);
+    @include omega;
+  }
 }
 
 header {
+  @include linear-gradient(color-stops(#d5d5d5, #e4e4e4 90%, #d7d7d7 100%));
+  margin-bottom: 10px;
   h1 {
     height:116px;
-    width:100%;
-    @include linear-gradient(color-stops(#d5d5d5, #e4e4e4 90%, #d7d7d7 100%));
     margin-bottom:0px;
-    .container {
-      a {
-        display:inline-block;
-        background: transparent url('../../images/logo.png') no-repeat left top;
-        height: 116px;
-        width: 262px;
-        span {
-          display:none;
-        }
+    a {
+      display:inline-block;
+      background: transparent url('../../images/logo.png') no-repeat left top;
+      height: 116px;
+      width: 262px;
+      span {
+        display:none;
       }
     }
   }
@@ -49,5 +56,35 @@ header {
         }
       }
     }
+  }
+}
+footer {
+  margin-top: 10px;
+  .container {
+    border-top: 1px solid #4b6378;
+    p {
+     color:#4b6378;
+     float:right;
+     font-size:1em;
+    }
+  }
+}
+
+.module-wrap {
+  @include full(10);
+  .module-gradient-container {
+    @include columns(5, 10);
+  }
+  .omega {
+    @include omega(10);
+  }
+}
+
+.module-gradient-container {
+  @include linear-gradient(color-stops(#ccc, #999));
+  .module {
+    margin: 5px;
+    padding: 5px;
+    background: #e1e1e1;
   }
 }
