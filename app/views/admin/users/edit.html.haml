@@ -8,6 +8,21 @@
   = f.label :last_name
   = f.text_field :last_name
   %br/
+  = f.label :middle_initial
+  = f.text_field :middle_initial
+  %br/
+  = f.label :email
+  = f.text_field :email
+  %br/
+  = f.label :password
+  = f.password_field :password
+  %br/
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation
+  %br/
+  = f.label :locked
+  = f.check_box :locked
+  %br/
   = f.submit 'Update'
 
 %br/

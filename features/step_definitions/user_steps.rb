@@ -10,6 +10,6 @@ end
 When /^I delete the (\d+)(?:st|nd|rd|th) user$/ do |pos|
   visit admin_users_path
   within("table tbody tr:nth-child(#{pos.to_i})") do
-    click_link "Destroy"
+    click_button "Destroy"
   end
 end

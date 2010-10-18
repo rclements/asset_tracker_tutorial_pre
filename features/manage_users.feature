@@ -31,12 +31,12 @@ Feature: User Administration
     Given I am an authenticated user with an "admin" role
     Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test@example.com", password: "secret", password_confirmation: "secret"
     When I go to the admin user's edit page
-    Then I should see the text field "First name"
-    And I should see the text field "Last name"
-    And I should see the text field "Middle initial"
-    And I should see the text field "Email"
-    And I should see the text field "Password"
-    And I should see the checkmark box "Lock user"
+    Then I should see "First name"
+    And I should see "Last name"
+    And I should see "Middle initial"
+    And I should see "Email"
+    And I should see "Password"
+    And I should see "Locked"
 
   Scenario: Register new user
     Given I am an authenticated user with an "admin" role
@@ -51,21 +51,28 @@ Feature: User Administration
     Then I should see "name 1"
 
   Scenario: Register new user - the form
-    Given I am an authenticated user
-    Given I am on the admin user's new page
-    Then I should see a link with text "Cancel" within ".actions"
+    Given I am an authenticated user with an "admin" role
+    When I am on the admin user's new page
+    Then show me the page
+    Then I should see a link with text "Cancel"
 
   Scenario: Delete user
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
+    #Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test1@example.com", password: "secret", password_confirmation: "secret"
+    #Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test2@example.com", password: "secret", password_confirmation: "secret"
+    #Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test3@example.com", password: "secret", password_confirmation: "secret"
+    #Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test4@example.com", password: "secret", password_confirmation: "secret"
     Given the following user records:
-      | first_name | last_name | middle_initial | email             | password | role |
-      | Test 1     | Man       | T              | test1@example.com | secret   | user |
-      | Test 2     | Man       | T              | test2@example.com | secret   | user |
-      | Test 3     | Man       | T              | test3@example.com | secret   | user |
-      | Test 4     | Man       | T              | test4@example.com | secret   | user |
+     | first_name | last_name | middle_initial | email             | password | role |
+     | Test 1     | Man       | T              | test1@example.com | secret   | user |
+     | Test 2     | Man       | T              | test2@example.com | secret   | user |
+     | Test 3     | Man       | T              | test3@example.com | secret   | user |
+     | Test 4     | Man       | T              | test4@example.com | secret   | user |
+    When I go to the admin users page
     When I delete the 3rd user
     Then I should see the following users:
-      | first_name | last_name | middle_initial | email             | password | role |
-      | Test 1     | Man       | T              | test1@example.com | secret   | user |
-      | Test 2     | Man       | T              | test2@example.com | secret   | user |
-      | Test 4     | Man       | T              | test4@example.com | secret   | user |
+      | Name       | Email             |
+      | Nick Fine  | testing@man.net   |
+      | Test 1 Man | test1@example.com |
+      | Test 3 Man | test3@example.com |
+      | Test 4 Man | test4@example.com |

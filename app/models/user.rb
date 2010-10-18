@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
   def admin?
     has_role?(:admin)
   end
+
+  def locked
+    locked_at?
+  end
 end
