@@ -14,8 +14,8 @@ Feature: Admin Authorization
       | admin mcadmin | admin@example.com |
 
   Scenario: Create users (admin role)
-    # Given I am an authenticated user with an "admin" role
-    # Given I am on the "New User" page
+    Given I am an authenticated user with an "admin" role
+    Given I am on the "New User" page
     # ...
     # When I fill in these fields: ...
     # And I click "Create"
