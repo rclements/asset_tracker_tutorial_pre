@@ -224,22 +224,6 @@ label {
   font-weight: bold; }
 
 // box-sizing helps us control the width of inputs
-// which are otherwise very hard to manage in the grid.
-.textinput {
-  @include sans-family;
-  @include adjust-font-size-to(14px, 1, 16px);
-  @include rhythm-borders(1px, 0.25, 14px);
-  @include trailer(0.5);
-  @include box-sizing(border-box);
-  width: 100%;
-  margin-top: 0;
-  border-color: $base;
-  height: $base-line-height / 14px * 1.5; }
-
-textarea {
-  @extend .textinput;
-  height: $base-line-height / 14px * 6.5;
-  vertical-align: text-bottom; }
 
 input {
   &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],

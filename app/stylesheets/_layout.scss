@@ -85,7 +85,6 @@ footer {
     }
   }
 }
-
 .module-wrap {
   @include full(10);
   .module-gradient-container {
@@ -98,7 +97,6 @@ footer {
     @include omega(10);
   }
 }
-
 .module-gradient-container {
   @include linear-gradient(color-stops(#ccc, #999));
   .module {
@@ -125,11 +123,15 @@ footer {
   }
 .work-unit-form {
   p {
-    width:80px;
+    width:120px;
     float:left;
   input {
     width:100px;
     float:right;  
+  }
+  textarea {
+    width:180px;
+    float:right;
   }
   }
 }
