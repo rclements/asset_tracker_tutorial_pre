@@ -198,9 +198,6 @@ th, td, caption {
   text-align: left;
   font-weight: normal; }
 
-table, th {
-  @include trailing-border(1px, 0.5); }
-
 tfoot {
   @include adjust-font-size-to(14px); }
 

@@ -1,10 +1,11 @@
 html {
   height:100%;
-  @include sans-family; 
+  @include sans-family;
+  @include linear-gradient(color-stops(#1a3247, #3f5365));
 }
-
 body {
-  @include linear-gradient(color-stops(#405466, #304659 20%, #0a1824));
+  height:100%;
+  background:none;
   article {
     @include columns(10);
     @include alpha;
@@ -12,9 +13,23 @@ body {
   aside {
     @include columns(2);
     @include omega;
+    .module-gradient-container {
+      @include linear-gradient(color-stops(#ccc, #999));
+      @include columns (12);
+      margin:5px 0 0 0;
+      p {
+        font-size:.9em;
+      }  
+      .module {
+        margin:5px;
+        background: #e1e1e1;
+      }
+    }
   }
 }
-
+.clear {
+  clear:both;
+}
 header {
   @include linear-gradient(color-stops(#d5d5d5, #e4e4e4 90%, #d7d7d7 100%));
   margin-bottom: 10px;
@@ -62,6 +77,7 @@ footer {
   margin-top: 10px;
   .container {
     border-top: 1px solid #4b6378;
+    width:59em;
     p {
      color:#4b6378;
      float:right;
@@ -74,6 +90,9 @@ footer {
   @include full(10);
   .module-gradient-container {
     @include columns(5, 10);
+    p {
+      font-size:.9em; 
+    }
   }
   .omega {
     @include omega(10);
@@ -86,5 +105,90 @@ footer {
     margin: 5px;
     padding: 5px;
     background: #e1e1e1;
+      h3 {
+        font-size:1.3em;
+        color:#6c6c6c;
+        font-weight:lighter;
+        margin: 0 0 9px 0;
+      }
+      ul {
+        padding: 0 0 0 20px;
+        color:#555;
+        ul {
+          list-style:none;
+          margin:0;
+          padding:0 0 6px 10px;
+          font-size:.9em;
+        }
+      }
+    }
   }
+.work-unit-form {
+  p {
+    width:80px;
+    float:left;
+  input {
+    width:100px;
+    float:right;  
+  }
+  }
+}
+.module-calendar {
+  @include full (10);
+  background:#fff;
+  margin: 5px 0 0 0;
+  .calendar {
+    height:auto;
+    p {
+      margin: 0 0 6px 0;
+    }
+    table {
+      background:#fff;
+      tr.date {
+        @include linear-gradient(color-stops(#9da6a8, #acbabd));
+        td {
+          border-right:1px solid #e2e2e2;
+          color:#f2f1f1;
+          padding:5px 0 3px 10px;
+        }
+      }
+      tr.client-list { 
+        @include linear-gradient(color-stops(#fff, #f7f7f7));
+        td.outstanding {
+          font-size:.9em;
+        }
+        td {
+          border-right:1px solid #e2e2e2;
+          border-bottom:1px solid #e2e2e2;
+          color:#707070;
+          padding: 5px 5px 5px 10px;
+            ul {
+              list-style:none;
+          }
+        }
+      }
+      tr.total {
+        color:#707070;
+        padding: 0 0 0 10px;
+        font-size:.9em;
+        td {
+          border-right:1px solid #e2e2e2;
+          border-bottom:1px solid #e2e2e2;
+          }
+        }
+      }
+    }
+  }
+  .calendar-switch {
+    @include linear-gradient (color-stops(#c9d0d2, #afbabe));
+    height:25px;
+    margin: 0 0 15px 0;
+    a.previous {
+      float:left;
+      color:#fff;
+    }
+    a.later {
+      float:right;
+      color:#fff;    
+  }   
 }
