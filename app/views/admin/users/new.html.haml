@@ -1,7 +1,6 @@
-%h1
-  Edit Page for User
+%h1 New user
 
-= form_for @user, :url => admin_user_path(@user) do |f|
+= form_for @user, :url => admin_users_path do |f|
   = f.label :first_name
   = f.text_field :first_name
   %br/
@@ -20,10 +19,9 @@
   = f.label :password_confirmation
   = f.password_field :password_confirmation
   %br/
-  = f.label :locked
-  = f.check_box :locked
-  %br/
-  = f.submit 'Update'
+  = f.submit 'Create'
+
+= link_to 'Cancel', admin_users_path
 
 %br/
 %br/

@@ -1,0 +1,25 @@
+%h2
+  = "#{@user.last_name}, #{@user.first_name}"
+
+
+/ Each company loops here
+
+%table{:bgcolor => "#FFFFFF", :border => "1"}
+  %thead
+    %tr
+      %th Description
+      %th Work Date
+      %th Hours
+      %th
+  %tbody
+    / Each work order for that company loops here
+    %tr
+      %td test description
+      %td 10/14/2010
+      %td 3.0
+      %td <input type="text" />
+  %tfoot
+    %tr
+      %td{:colspan => 2} Total
+      %td 3.0
+      %td
