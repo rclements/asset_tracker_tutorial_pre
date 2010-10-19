@@ -10,4 +10,9 @@ class WorkUnit < ActiveRecord::Base
   validates_presence_of :scheduled_at
 
   scope :scheduled_between, lambda{|start_date, end_date| where('scheduled_at BETWEEN ? AND ?', start_date, end_date) }
+# scope :not_paid, lambda{ where('')
+
+  def client
+    ticket.project.client
+  end
 end
