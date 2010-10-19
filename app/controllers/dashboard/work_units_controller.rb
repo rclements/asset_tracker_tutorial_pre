@@ -1,5 +1,4 @@
 class Dashboard::WorkUnitsController < Dashboard::BaseController
-  before_filter :authenticate_user!
   before_filter :load_work_units,    :only => [:index, :create]
   before_filter :load_new_work_unit, :only => [:index, :create]
   before_filter :load_work_unit, :only => [:show]

@@ -2,6 +2,12 @@ AssetTrackerTutorial::Application.routes.draw do
   root :to => "clients#index"
   devise_for :users
 
+  namespace :admin do
+    resources :users
+    resources :projects
+  end
+  get '/admin', :controller => "admin/base", :action => "index"
+
   resources :clients do
     resources :comments
     resources :projects
@@ -26,6 +32,7 @@ AssetTrackerTutorial::Application.routes.draw do
   namespace :dashboard do
     resources :work_units
   end
+  get '/dashboard', :controller => "dashboard/base", :action => "index"
 
   namespace :api do
     namespace :v1 do

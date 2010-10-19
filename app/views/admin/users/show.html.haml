@@ -1,0 +1,9 @@
+%h1
+  User Show Page
+
+%h3
+  Name:
+  = @user.first_name
+  = @user.last_name
+
+= link_to 'Edit', edit_admin_user_path(@user)
