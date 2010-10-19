@@ -16,6 +16,7 @@ Feature: Non-admin Authorization
 
   Scenario: Edit a user (non-admin)
     Given I am an authenticated user
+    Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test@example.com", password: "secret", password_confirmation: "secret"
     When I go to the admin user's edit page
     Then I should be on the home page
     And I should see "You must be an admin to do that." within "#flash_error"
