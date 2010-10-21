@@ -11,6 +11,7 @@ gem 'devise', '~> 1.1.3'
 gem 'acl9', '~> 0.12.0'
 
 group :test do
+  gem 'shoulda', '~> 2.11.3'
   gem 'rspec', '= 2.0.0'
   gem 'rspec-rails', '= 2.0.1'
   gem 'escape_utils', '~> 0.1.9'
