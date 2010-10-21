@@ -10,7 +10,6 @@ Feature: Payroll report
     Given a ticket "Test Ticket" exist with name: "Test Ticket", project: project "Test Project"
     Given a work_unit exist with description: "Test Work Unit", ticket: ticket "Test Ticket", hours: 1, scheduled_at: "2010-10-01 00:00:00", created_at: "2010-10-01 00:00:00"
     When I go to the admin payroll index page
-    Then show me the page
     Then I should see a link with text "price, bradley"
 
   Scenario: A user does not have any unpaid work units
@@ -21,6 +20,5 @@ Feature: Payroll report
     Given a ticket "Test Ticket" exist with name: "Test Ticket", project: project "Test Project"
     Given a work_unit exist with description: "Test Work Unit", ticket: ticket "Test Ticket", hours: 1, scheduled_at: "2010-10-01 00:00:00", created_at: "2010-10-01 00:00:00", paid_at: "2010-11-01 00:00:00", check_number: 1234
     When I go to the admin payroll index page
-    Then show me the page
     Then I should not see a link with text "price, bradley"
 
