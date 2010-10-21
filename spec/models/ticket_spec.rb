@@ -8,11 +8,24 @@ describe Ticket do
     subject.respond_to?(:comments).should be true
   end
 
-  it "fails validation with no project_id" do
-    should have(1).errors_on(:project_id)
+  context 'validations' do
+    it "fails validation with no project_id" do
+      should have(1).errors_on(:project_id)
+    end
+
+    it "fails validation with no name" do
+      should have(1).errors_on(:name)
+    end
   end
 
-  it "fails validation with no name" do
-    should have(1).errors_on(:name)
+  context 'when dealing with associations' do
+    it "should belong to a project" do
+      should belong_to(:project)
+    end
+
+    it "should have many work units" do
+      should have_many(:work_units)
+    end
   end
+
 end

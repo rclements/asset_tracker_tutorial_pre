@@ -1,8 +1,8 @@
 class Admin::UsersController < Admin::BaseController
   before_filter :load_user_accounts, :only => [:index]
-  before_filter :load_user_account, :only => [:show, :update, :edit]
+  before_filter :load_user_account, :only => [:show, :update, :edit, :destroy]
   before_filter :load_new_user_account, :only => [:new, :create]
-  
+
   def index
   end
 
@@ -13,9 +13,27 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
+    @user.update_attributes(params[:user])
+    if @user.save
+      flash[:notice] = "Created successfully"
+      redirect_to admin_users_path
+    else
+      flash[:error] = "Didn't create."
+      redirect_to new_admin_user_path
+    end
+  end
+
+  def edit
   end
 
   def update
+
+    if params[:user]["locked"] == "1" && !@user.locked_at?
+      @user.lock_access!
+    elsif params[:user]["locked"] == "0" && @user.locked_at?
+      @user.unlock_access!
+    end
+
     @user.update_attributes(params[:user])
     if @user.save
       flash[:notice] = "Updated successfully"
@@ -26,10 +44,14 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  def edit
-  end
-
   def destroy
+    if @user.destroy
+      flash[:notice] = "User deleted."
+      redirect_to admin_users_path
+    else
+      flash[:error] = "Couldn't delete the user"
+      redirect_to admin_user_path(@user)
+    end
   end
 
 private

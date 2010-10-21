@@ -3,6 +3,7 @@ Feature: API - V1 - Client Management
   I should be able to manage clients through an API
 
   Scenario: List clients
+    Given I am an authenticated user
     Given the following clients:
       |name  |status|guid|
       |name 1|Good  |1   |
@@ -37,6 +38,7 @@ Feature: API - V1 - Client Management
       """
 
   Scenario: Show client
+    Given I am an authenticated user
     Given the following clients:
       |name  |status|guid|
       |name 1|Good  |1a  |

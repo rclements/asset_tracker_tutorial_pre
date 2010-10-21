@@ -5,5 +5,8 @@
   Name:
   = @user.first_name
   = @user.last_name
+%h3
+  Email:
+  = @user.email
 
 = link_to 'Edit', edit_admin_user_path(@user)

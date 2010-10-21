@@ -1,0 +1,60 @@
+%h2
+  = @client.name
+
+%div{:style => "float: right;"}
+  %input{:type => "text"}
+
+%div{:style => "clear: both;"}
+  -form_tag(admin_invoice_path, :method => 'put', :multipart => true) do
+    = submit_tag 'Submit'
+    - @tickets.each do |ticket|
+      %table{:bgcolor => "#FFFFFF", :style => "border-width: 1px; border-style: inset"}
+        %thead
+          %tr
+            %td{:colspan => "3"}
+              = ticket.long_name
+            %td
+            %td
+              <input type="text" />
+          %tr
+            %th Description
+            %th Assigned To
+            %th Scheduled On
+            %th Hours
+            %th Invoice
+        %tbody
+          - @work_units.each do |wu|
+            - if wu.ticket == ticket
+              %tr
+                %td
+                  = wu.description
+                %td
+                  = wu.user.first_name
+                %td
+                  = wu.scheduled_at.strftime("%Y/%m/%d")
+                %td
+                  = wu.hours
+                %td
+                  = text_field_tag "work_unit[#{wu.id}]" 
+        %tfoot
+          %tr
+            %td Totals
+            %td
+            %td
+            %td 
+              = ticket.sum_of_hours_not_invoiced
+            %td
+          %tr
+            %td{:colspan => "5"}
+              - find_and_preserve do
+                %textarea{:cols => "100%", :rows => "10"}
+                  = "#{ticket.long_name}"
+                  = "=========================="
+                  - @work_units.each do |wu|
+                    - if wu.ticket == ticket
+                      = "#{wu.description} - #{wu.user.first_name} - #{wu.scheduled_at.strftime("%Y/%m/%d")} - #{wu.hours}"
+                      = ""
+                      - if ticket.work_units.last == wu
+                        = "=========================="
+                        = "Total Hours: #{ticket.sum_of_hours_not_invoiced}"
+    = submit_tag 'Submit'
