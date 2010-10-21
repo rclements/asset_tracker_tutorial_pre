@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
 
   public
   def index
-    @projects = Project.all
+    @projects = @client.projects
   end
 
   def show
