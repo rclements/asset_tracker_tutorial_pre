@@ -85,7 +85,6 @@ footer {
     }
   }
 }
-
 .module-wrap {
   @include full(10);
   .module-gradient-container {
@@ -98,7 +97,6 @@ footer {
     @include omega(10);
   }
 }
-
 .module-gradient-container {
   @include linear-gradient(color-stops(#ccc, #999));
   .module {
@@ -113,7 +111,7 @@ footer {
       }
       ul {
         padding: 0 0 0 20px;
-        color:#555;
+        color:#373737;
         ul {
           list-style:none;
           margin:0;
@@ -125,11 +123,16 @@ footer {
   }
 .work-unit-form {
   p {
-    width:80px;
+    width:120px;
     float:left;
+    color:#373737;
   input {
     width:100px;
     float:right;  
+  }
+  textarea {
+    width:180px;
+    float:right;
   }
   }
 }
