@@ -27,4 +27,13 @@ describe WorkUnit do
   it 'fails validation with no hours' do
     should have(1).errors_on(:hours)
   end
+
+  describe 'while being created' do    
+    it 'should create a new work unit from the blueprint' do
+      lambda do
+        WorkUnit.make
+      end.should change(WorkUnit, :count).by(1)    
+    end
+  end
+
 end
