@@ -8,9 +8,9 @@ AssetTrackerTutorial::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :invoices, :as => 'invoice'
+    resources :invoices, :as => :invoice
+    resources :payrolls, :as => :payroll
     resources :users
-    resources :payroll
     resources :projects
   end
   get '/admin', :controller => "admin/base", :action => "index"
