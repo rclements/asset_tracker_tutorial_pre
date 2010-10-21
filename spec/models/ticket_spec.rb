@@ -28,4 +28,12 @@ describe Ticket do
     end
   end
 
+  describe 'while being created' do    
+    it 'should create a new ticket from the blueprint' do
+      lambda do
+        Ticket.make
+      end.should change(Ticket, :count).by(1)    
+    end
+  end
+
 end
