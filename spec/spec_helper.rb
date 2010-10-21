@@ -1,6 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
+require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require 'rspec/rails'
 require 'devise/test_helpers'
 
@@ -19,6 +20,10 @@ RSpec.configure do |config|
   config.mock_with :rspec
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+  # Reset the shams and such before all/each run
+  config.before(:all)    { Sham.reset(:before_all)  }
+  config.before(:each)   { Sham.reset(:before_each) }
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, comment the following line or assign false
