@@ -29,7 +29,6 @@ GEM
       activemodel (= 3.0.0)
       activesupport (= 3.0.0)
     activesupport (3.0.0)
-    archive-tar-minitar (0.5.2)
     arel (1.0.1)
       activesupport (~> 3.0.0)
     bcrypt-ruby (2.1.2)
@@ -86,8 +85,6 @@ GEM
       chunky_png (>= 0.8.0)
       compass (>= 0.10.0)
       haml (>= 3.0.0)
-    linecache19 (0.5.11)
-      ruby_core_source (>= 0.1.4)
     macaddr (1.0.0)
     machinist (1.0.6)
     mail (2.2.7)
@@ -140,6 +137,7 @@ GEM
       ffi (~> 0.6.3)
       json_pure
       rubyzip
+    shoulda (2.11.3)
     spork (0.8.4)
     term-ansicolor (1.0.5)
     thin (1.2.7)
@@ -185,6 +183,7 @@ DEPENDENCIES
   rails (= 3.0.0)
   rspec (= 2.0.0)
   rspec-rails (= 2.0.1)
+  shoulda (~> 2.11.3)
   spork
   thin
   uuid

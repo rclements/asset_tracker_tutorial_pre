@@ -14,6 +14,7 @@ gem 'devise'
 gem 'acl9'
 
 group :test do
+  gem 'shoulda', '~> 2.11.3'
   gem 'rspec', '= 2.0.0'
   gem 'rspec-rails', '= 2.0.1'
   # gem 'ruby-debug19', :require => 'ruby-debug'
