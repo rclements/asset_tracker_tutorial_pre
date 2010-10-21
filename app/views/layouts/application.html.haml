@@ -24,6 +24,7 @@
       %section
         %article= yield
       = (content_column_right = yield :content_column_right).empty? ? render(:partial => 'shared/sidebar') : content_column_right
+      .clear
     %footer
       .container
         %p &copy; Isotope11 2010
