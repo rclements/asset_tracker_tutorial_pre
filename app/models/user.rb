@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     "#{first_name[0]}#{middle_initial}#{last_name[0]}".upcase
   end
 
+  def self.with_unpaid_work_units
+    work_units.any? { |wu| wu.unpaid? }
+  end
+
   def to_s
     "#{first_name} #{middle_initial} #{last_name}"
   end

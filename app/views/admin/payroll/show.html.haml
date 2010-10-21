@@ -2,24 +2,34 @@
   = "#{@user.last_name}, #{@user.first_name}"
 
 
-/ Each company loops here
-
-%table{:bgcolor => "#FFFFFF", :border => "1"}
-  %thead
-    %tr
-      %th Description
-      %th Work Date
-      %th Hours
-      %th
-  %tbody
-    / Each work order for that company loops here
-    %tr
-      %td test description
-      %td 10/14/2010
-      %td 3.0
-      %td <input type="text" />
-  %tfoot
-    %tr
-      %td{:colspan => 2} Total
-      %td 3.0
-      %td
+- form_tag(admin_payroll_path, :method => 'put', :multipart => true) do
+  - @clients.each do |client|
+    - sum = 0
+    %table{:bgcolor => "#FFFFFF", :border => "1"}
+      %thead
+        %tr
+          %th Description
+          %th Work Date
+          %th Hours
+          %th
+      %tbody
+        - @work_units.each do |wu|
+          - if wu.ticket.project.client == client
+            - sum += wu.hours
+            %tr
+              %td 
+                = wu.description
+              %td 
+                = wu.created_at.strftime("%Y/%m/%d")
+              %td 
+                = wu.hours
+              %td 
+                = text_field_tag "work_unit[#{wu.id}]"
+      %tfoot
+        %tr
+          %td{:colspan => 2} Total
+          %td
+            = sum
+          %td
+  %span{:style => "float: right"}
+    = submit_tag 'Submit'
