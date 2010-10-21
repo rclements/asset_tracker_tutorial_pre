@@ -47,4 +47,14 @@ describe Client do
       should have(1).errors_on(:name)
     end
   end
+  
+  describe 'while being created' do    
+    it 'should create a new client from the blueprint' do
+      lambda do
+        Client.make
+      end.should change(Client, :count).by(1)    
+    end
+  end
+  
+  
 end
