@@ -1,7 +1,7 @@
 html {
   height:100%;
   @include sans-family;
-  @include linear-gradient(color-stops(#1a3247, #3f5365));
+  @include linear-gradient(color-stops(#3f5365, #1a3247));
 }
 body {
   height:100%;
@@ -85,7 +85,7 @@ footer {
     }
   }
 }
-.module-wrap {
+.module-wrap.half {
   @include full(10);
   .module-gradient-container {
     @include columns(5, 10);
@@ -194,4 +194,11 @@ footer {
       float:right;
       color:#fff;    
   }   
+}
+
+table {
+  border: 1px solid #000;
+  td, th {
+    border: 1px solid #000;
+  }
 }
