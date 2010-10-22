@@ -1,0 +1,19 @@
+%h2 Recent Work
+
+- content_for :head do
+  = stylesheet_link_tag 'jquery-ui-1.8.5.custom.css'
+
+%dl.accordion
+  - @days.each do |day|
+    %dt= day
+    %div
+      - @work_units.each do |wu|
+        - if wu.scheduled_at.strftime("%A, %B %d, %Y") == day
+          %dd= "- [#{wu.client.name}] - #{wu.hours} - #{wu.description}"
+
+- content_for :javascripts do
+  = javascript_include_tag 'jquery-ui-1.8.5.custom.min'
+  :javascript
+    $(function(){
+      $(".accordion").accordion({ header: 'dt' });
+    });
