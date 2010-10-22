@@ -1,27 +1,39 @@
 %h2 Add Work Unit
-%span{:style => "display: inline-block; width: 150px;"} Scheduled On:
-= text_field_tag :scheduled_on
-%br
 
-%span{:style => "display: inline-block; width: 150px;"} Client:
-= text_field_tag :client
-%br
+- form_for WorkUnit.new do |f|
 
-%span{:style => "display: inline-block; width: 150px;"} Ticket:
-= text_field_tag :ticket
-%br
+  %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
+  = f.text_field :scheduled_at
+  %br
 
-%span{:style => "display: inline-block; width: 150px;"} Hours:
-= text_field_tag :hours, nil, :size => 10
-%br
+  %span{:style => "display: inline-block; width: 120px;"} Client:
+  = text_field_tag :term
+  %br
 
-%span{:style => "display: inline-block; width: 150px;"} Description:
-= text_area_tag :description, nil, :rows => 10
-%br
+  %span{:style => "display: inline-block; width: 120px;"} Ticket:
+  = f.text_field :ticket
+  %br
 
-%span{:style => "display: inline-block; width: 150px;"}
-= check_box_tag "overtime"
-= label_tag "overtime"
-%br
+  %span{:style => "display: inline-block; width: 120px;"} Hours:
+  = f.text_field :hours, { :size => 10 }
+  %br
 
-= button_to "Add New", "#"
+  %span{:style => "display: inline-block; width: 120px;"} Description:
+  = f.text_area :description, { :rows => 10, :style => "resize: none;"}
+  %br
+
+  %span{:style => "display: inline-block; width: 110px;"}
+  = f.check_box "overtime"
+  = f.label "overtime"
+  %br
+
+  = f.submit "Add New"
+
+- content_for :javascripts do
+  :javascript
+    $(document).ready(function(){
+      $("#work_unit_scheduled_at").datepicker()
+    });
+    $(document).ready(function(){
+      $("#term").autocomplete({ source: "/clients.js", minLength: 2 });
+    });
