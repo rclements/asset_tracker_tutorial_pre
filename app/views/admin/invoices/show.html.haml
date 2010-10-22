@@ -1,6 +1,14 @@
 - content_for :head do
-  = javascript_include_tag 'jquery-1.4.2.min.js'
-  = javascript_include_tag 'jquery-ui-1.8.5.custom.min.js'
+  = stylesheet_link_tag 'jquery-ui-1.8.5.custom'
+
+- content_for :javascripts do
+  = javascript_include_tag 'jquery-ui-1.8.5.custom.min'
+  :javascript
+    $(document).ready(function() {
+      $(".datepicker").datepicker();
+    });
+
+
 
 %h2
   = @client.name
@@ -41,7 +49,7 @@
                 %td
                   = text_field_tag "work_unit[#{wu.id}]" 
                   %br
-                  = text_field_tag "datepicker"
+                  = text_field_tag "#datepicker_{wu.id}", nil, :class => "datepicker"
         %tfoot
           %tr
             %td Totals
@@ -64,9 +72,3 @@
                         = "=========================="
                         = "Total Hours: #{ticket.sum_of_hours_not_invoiced}"
     = submit_tag 'Submit'
-
-:javascript
-  jQuery(function() {
-    jQuery("#datepicker").datepicker({ minDate: -20, maxDate: "+1M +10D" });
-  });
-
