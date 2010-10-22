@@ -12,6 +12,14 @@ describe Project do
     should have(1).errors_on(:name)
   end
 
+  it "should have many tickets" do
+    should have_many(:tickets)
+  end
+
+  it "should belong to a client" do
+    should belong_to(:client)
+  end
+
   context "with an existing project with the same name on a given client" do
     let(:client)          { Client.create( :name => 'testee', :status => 'Good')}
 

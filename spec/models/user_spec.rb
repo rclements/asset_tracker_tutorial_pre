@@ -16,6 +16,10 @@ describe User do
     should have(1).errors_on(:middle_initial)
   end
 
+  it 'should have many work units' do
+    should have_many(:work_units)
+  end
+
   describe 'that has a name' do
     let(:user) { User.new(:first_name => 'Nick', :middle_initial => 'D', :last_name => 'Fine') }
     subject{ user.initials }
