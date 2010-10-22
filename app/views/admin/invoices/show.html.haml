@@ -1,3 +1,15 @@
+- content_for :head do
+  = stylesheet_link_tag 'jquery-ui-1.8.5.custom'
+
+- content_for :javascripts do
+  = javascript_include_tag 'jquery-ui-1.8.5.custom.min'
+  :javascript
+    $(document).ready(function() {
+      $(".datepicker").datepicker();
+    });
+
+
+
 %h2
   = @client.name
 
@@ -36,6 +48,8 @@
                   = wu.hours
                 %td
                   = text_field_tag "work_unit[#{wu.id}]" 
+                  %br
+                  = text_field_tag "#datepicker_{wu.id}", nil, :class => "datepicker"
         %tfoot
           %tr
             %td Totals

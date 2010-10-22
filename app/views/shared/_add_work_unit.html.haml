@@ -1,0 +1,27 @@
+%h2 Add Work Unit
+%span{:style => "display: inline-block; width: 150px;"} Scheduled On:
+= text_field_tag :scheduled_on
+%br
+
+%span{:style => "display: inline-block; width: 150px;"} Client:
+= text_field_tag :client
+%br
+
+%span{:style => "display: inline-block; width: 150px;"} Ticket:
+= text_field_tag :ticket
+%br
+
+%span{:style => "display: inline-block; width: 150px;"} Hours:
+= text_field_tag :hours, nil, :size => 10
+%br
+
+%span{:style => "display: inline-block; width: 150px;"} Description:
+= text_area_tag :description, nil, :rows => 10
+%br
+
+%span{:style => "display: inline-block; width: 150px;"}
+= check_box_tag "overtime"
+= label_tag "overtime"
+%br
+
+= button_to "Add New", "#"
