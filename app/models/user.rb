@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     "#{first_name[0]}#{middle_initial}#{last_name[0]}".upcase
   end
 
+  def time_for(time)
+    work_units.scheduled_between(time.beginning_of_day, time.end_of_day)
+  end
+
   def to_s
     "#{first_name} #{middle_initial} #{last_name}"
   end

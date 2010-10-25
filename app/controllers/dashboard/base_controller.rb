@@ -2,7 +2,7 @@ class Dashboard::BaseController < ApplicationController
 
   def index
 
-    if current_user.has_no_time_for(1.day.ago)
+    unless current_user.time_for(1.day.ago)
       @no_time = "true"
     end
 
