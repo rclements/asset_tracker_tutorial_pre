@@ -14,11 +14,13 @@ class Admin::InvoicesController < ApplicationController
   end
 
   def update
-    params[:work_unit].each do |key, value|
-      if key =~ /\d+/ && !value.empty?
+    params[:work_units].each do |key, value|
+      if key =~ /\d+/
         work_unit = WorkUnit.find(key.to_i)
         if work_unit
-          work_unit.update_attributes(:invoiced => value)
+          value.each do |k, v|
+            work_unit.update_attributes(k.to_sym => v)
+          end
         end
       end
     end
