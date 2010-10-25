@@ -49,7 +49,7 @@
                 %td
                   = text_field_tag "work_unit[#{wu.id}]" 
                   %br
-                  = text_field_tag "#datepicker_{wu.id}", nil, :class => "datepicker"
+                  = text_field_tag "#datepicker_#{wu.id}", nil, :class => "datepicker"
         %tfoot
           %tr
             %td Totals
