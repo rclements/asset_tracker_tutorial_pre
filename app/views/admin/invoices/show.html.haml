@@ -47,9 +47,9 @@
                 %td
                   = wu.hours
                 %td
-                  = text_field_tag "work_unit[#{wu.id}]" 
+                  = text_field_tag "work_units[#{wu.id}][invoiced]" 
                   %br
-                  = text_field_tag "#datepicker_{wu.id}", nil, :class => "datepicker"
+                  = text_field_tag "work_units[#{wu.id}][invoiced_at]", nil, :class => "datepicker"
         %tfoot
           %tr
             %td Totals
