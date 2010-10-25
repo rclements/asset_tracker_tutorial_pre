@@ -103,4 +103,16 @@ describe User do
       user.locked.should == true
     end
   end
+
+  describe '.work_units_for_day' do
+    it 'lists work units that are scheduled for a specified day' do
+      user = User.make
+      work_unit_1 = WorkUnit.make(:user => user)
+      work_unit_2 = WorkUnit.make(:user => user)
+      work_unit_3 = WorkUnit.make(:user => user, :scheduled_at => 3.days.ago)
+      user.work_units_for_day(Time.zone.now).should == [work_unit_1, work_unit_2]
+    end
+  end
+
+  it 'methods should still work with other time zones'
 end
