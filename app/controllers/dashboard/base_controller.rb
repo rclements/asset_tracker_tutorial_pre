@@ -6,7 +6,7 @@ class Dashboard::BaseController < ApplicationController
       @no_time = "true"
     end
 
-    @work_units = WorkUnit.joins(:user).where('user_id = ? AND scheduled_at > ?', current_user, 8.days.ago)
+    @work_units = WorkUnit.joins(:user).where('user_id = ? AND scheduled_at > ?', current_user, 8.days.ago).reverse
     @days = @work_units.map{ |wu| wu.scheduled_at.strftime("%A, %B %d, %Y") }.uniq
 
   end
