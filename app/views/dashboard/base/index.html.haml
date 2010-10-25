@@ -15,9 +15,9 @@
       = render :partial => 'shared/add_work_unit'
 
 - if @no_time == "true"
-  #message{:title => "Laird says...", :style => "display: none;"}
+  #message{:title => @title, :style => "display: none;"}
     %p
-      You have not entered any time for yesterday. You're fired.
+      =@message
   - content_for :javascripts do
     :javascript
       $(document).ready(function(){
