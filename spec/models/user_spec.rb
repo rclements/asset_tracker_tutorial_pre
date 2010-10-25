@@ -29,15 +29,15 @@ describe User do
     end
   end
 
-  describe 'while being created' do    
+  describe 'while being created' do
     it 'should create a new user from the blueprint' do
       lambda do
         User.make
       end.should change(User, :count).by(1)
-    
+
     end
   end
-  
+
 
   context 'when dealing with scopes' do
     context 'and using the with_unpaid_work_units method' do
@@ -63,13 +63,44 @@ describe User do
         @work_unit.update_attribute(:paid, 'Check 1001')
         User.with_unpaid_work_units.include?(@user).should be false
       end
-      
+
       it 'should only list a given user one time, regardless of how many unpaid work units they have' do
         WorkUnit.make(:user => @user)
         User.with_unpaid_work_units.to_a.count(@user).should == 1
       end
-      
+
     end
   end
 
+  describe '.initials' do
+    it "returns the user's initials" do
+      user = User.make(:first_name => 'John', :middle_initial => 'W', :last_name => 'Smith')
+      initials = 'JWS'
+      user.initials.should == initials
+    end
+  end
+
+  describe '.to_s' do
+    it "returns the user's full name" do
+      user = User.make(:first_name => 'John', :middle_initial => 'W', :last_name => 'Smith')
+      full_name = 'John W Smith'
+      user.to_s.should == full_name
+    end
+  end
+
+  describe '.admin?' do
+    it 'returns true if the user is an admin' do
+      user = User.make
+      user.has_role!(:admin)
+      user.admin?.should == true
+    end
+  end
+
+  describe '.locked' do
+    it 'returns true if the user is locked' do
+      user = User.make
+      user.lock_access!
+      user.locked.should == true
+    end
+  end
 end

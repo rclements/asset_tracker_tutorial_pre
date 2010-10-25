@@ -47,14 +47,19 @@ describe Client do
       should have(1).errors_on(:name)
     end
   end
-  
-  describe 'while being created' do    
+
+  describe 'while being created' do
     it 'should create a new client from the blueprint' do
       lambda do
         Client.make
-      end.should change(Client, :count).by(1)    
+      end.should change(Client, :count).by(1)
     end
   end
-  
-  
+
+  describe '.to_s' do
+    it 'returns the client name as a string' do
+      client = Client.make(:name => 'Testclient')
+      client.to_s.should == 'Testclient'
+    end
+  end
 end

@@ -44,4 +44,42 @@ describe WorkUnit do
     end
   end
 
+  describe '.client' do
+    it 'returns the parent client of that work unit' do
+      workunit = WorkUnit.make
+      workunit.client.should == workunit.ticket.project.client
+    end
+  end
+
+  describe '.paid?' do
+    it 'returns true if the work unit has been paid' do
+      workunit = WorkUnit.new
+      workunit.paid = 'Check 1000'
+      workunit.paid?.should == true
+    end
+  end
+
+  describe '.unpaid?' do
+    it 'returns true if the work unit has NOT been paid' do
+      workunit = WorkUnit.new
+      workunit.paid = ''
+      workunit.unpaid?.should == true
+    end
+  end
+
+  describe '.invoiced?' do
+    it 'returns true if the work unit has been invoiced' do
+      workunit = WorkUnit.new
+      workunit.invoiced = 'Invoice 1000'
+      workunit.invoiced?.should == true
+    end
+  end
+
+  describe '.not_invoiced?' do
+    it 'returns true if the work unit has NOT been invoiced' do
+      workunit = WorkUnit.new
+      workunit.invoiced = ''
+      workunit.not_invoiced?.should == true
+    end
+  end
 end

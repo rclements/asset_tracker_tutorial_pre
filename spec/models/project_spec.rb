@@ -43,4 +43,10 @@ describe Project do
     end
   end
 
+  describe '.to_s' do
+    it 'returns the name of the project as a string' do
+      project = Project.make(:name => 'Testproject')
+      project.to_s.should == 'Testproject'
+    end
+  end
 end
