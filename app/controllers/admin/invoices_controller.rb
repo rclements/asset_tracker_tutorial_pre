@@ -17,7 +17,7 @@ class Admin::InvoicesController < ApplicationController
     params[:work_units].each do |key, value|
       if key =~ /\d+/
         work_unit = WorkUnit.find(key.to_i)
-        if work_unit
+        if work_unit && !value["invoiced"].empty? && !value["invoiced_at"].empty?
           value.each do |k, v|
             work_unit.update_attributes(k.to_sym => v)
           end
