@@ -10,7 +10,7 @@
     %div
       - @work_units.each do |wu|
         - if wu.scheduled_at.strftime("%A, %B %d, %Y") == day
-          %div{:style => "font-size: 12px"}= "- [#{wu.client}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"
+          %div{:style => "font-size: 12px"}= "- [#{wu.client.initials}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"
 
 - content_for :javascripts do
   = javascript_include_tag 'jquery-ui-1.8.5.custom.min'
