@@ -14,7 +14,7 @@
     .module
       = render :partial => 'shared/add_work_unit'
 
-- if @no_time == "true"
+- if @show_message == "true"
   #message{:title => @title, :style => "display: none;"}
     %p
       =@message
