@@ -1,23 +1,23 @@
 %h2 Add Work Unit
 
-- form_for WorkUnit.new do |f|
+- form_for [:dashboard, WorkUnit.new(params[:work_unit])] do |f|
 
   %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
   = f.text_field :scheduled_at
   %br
 
   %span{:style => "display: inline-block; width: 120px;"} Client:
-  = collection_select("work_unit", "client", @clients, "id", "name", { :prompt => "Select a client" })
+  = collection_select("client", "client", @clients, "id", "name", { :prompt => "Select a client" })
   %br
 
   - if @projects
     %span{:style => "display: inline-block; width: 120px;"} Project:
-    = collection_select("work_unit", "project", @projects, "id", "name", { :prompt => "Select a project" })
+    = collection_select("project", "project", @projects, "id", "name", { :prompt => "Select a project" })
     %br
 
   - if @tickets
     %span{:style => "display: inline-block; width: 120px;"} Ticket:
-    = collection_select("work_unit", "ticket", @tickets, "id", "name", { :prompt => "Select a ticket" })
+    = collection_select("work_unit", "ticket_id", @tickets, "id", "name", { :prompt => "Select a ticket" })
     %br
 
   %span{:style => "display: inline-block; width: 120px;"} Hours:
@@ -41,12 +41,12 @@
       $("#work_unit_scheduled_at").datepicker()
     });
     $(document).ready(function(){
-      $("#work_unit_client").change(function(){
-        var me = $("#work_unit_project");
+      $("#client_client").change(function(){
+        var me = $("#project_project");
         me.children().remove();
         me.append( new Option("Select a project","") )
-        $("#work_unit_ticket").children().remove();
-        $("#work_unit_ticket").append( new Option("Select a ticket",""))
+        $("#work_unit_ticket_id").children().remove();
+        $("#work_unit_ticket_id").append( new Option("Select a ticket",""))
         if(this.value != ""){
           $.get("/dashboard/client", { id: this.value }, function(data){
             $.each(data, function(){
@@ -59,8 +59,8 @@
       });
     });
     $(document).ready(function(){
-      $("#work_unit_project").change(function(){
-        var me = $("#work_unit_ticket")
+      $("#project_project").change(function(){
+        var me = $("#work_unit_ticket_id")
         me.children().remove();
         me.append( new Option("Select a ticket","") )
         if(this.value != ""){
