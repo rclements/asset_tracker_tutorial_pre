@@ -3,13 +3,14 @@
     .module
       %h2 Users with no time entered:
       - @weekdays.each do |day|
-        %h3= day.strftime("%A, %B %d, %Y")
-        - if day.future?
-          %p (This day is in the future.)
-        - else
-          %ul
-            - @users.each do |user|
-              - if user.work_units_for_day(day).empty? # && user.not_on_vacation?
-                %li= link_to "#{user.last_name}, #{user.first_name}", admin_user_path(user)
+        %div{:id => day.strftime("%A")}
+          %h3= day.strftime("%A, %B %d, %Y")
+          - if day.future?
+            %p (This day is in the future.)
+          - else
+            %ul
+              - @users.each do |user|
+                - if user.work_units_for_day(day).empty? # && user.not_on_vacation?
+                  %li= link_to "#{user.last_name}, #{user.first_name}", admin_user_path(user)
       %h3= link_to "Previous", admin_weekly_time_report_path(@previous_week)
       %h3= link_to "Next", admin_weekly_time_report_path(@next_week)
