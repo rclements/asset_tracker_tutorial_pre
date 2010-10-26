@@ -2,6 +2,7 @@
   %thead
     %tr
       %th Name
+      %th Initials
       %th Status
       %th
       %th
@@ -9,6 +10,7 @@
     - @clients.each do |client|
       %tr
         %td= link_to client, client
+        %td= client.initials
         %td= client.status
         %td= link_to 'Edit', edit_client_path(client)
         %td= link_to 'Destroy', client_path(client), :method => :delete
