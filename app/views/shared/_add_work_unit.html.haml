@@ -7,12 +7,18 @@
   %br
 
   %span{:style => "display: inline-block; width: 120px;"} Client:
-  = text_field_tag :term
+  = collection_select("work_unit", "client", @clients, "id", "name", { :prompt => "Select a client" })
   %br
 
-  %span{:style => "display: inline-block; width: 120px;"} Ticket:
-  = f.text_field :ticket
-  %br
+  - if @projects
+    %span{:style => "display: inline-block; width: 120px;"} Project:
+    = collection_select("work_unit", "project", @projects, "id", "name", { :prompt => "Select a project" })
+    %br
+
+  - if @tickets
+    %span{:style => "display: inline-block; width: 120px;"} Ticket:
+    = collection_select("work_unit", "ticket", @tickets, "id", "name", { :prompt => "Select a ticket" })
+    %br
 
   %span{:style => "display: inline-block; width: 120px;"} Hours:
   = f.text_field :hours, { :size => 10 }
@@ -35,5 +41,36 @@
       $("#work_unit_scheduled_at").datepicker()
     });
     $(document).ready(function(){
-      $("#term").autocomplete({ source: "/clients.js", minLength: 2 });
+      $("#work_unit_client").change(function(){
+        if(this.value != ""){
+          $.get("/dashboard/client", { id: this.value }, function(data){
+            var me = $("#work_unit_project");
+            me.children().remove();
+            $("#work_unit_ticket").children().remove();
+            $("#work_unit_ticket").append( new Option("Select a ticket",""))
+            me.append( new Option("Select a project","") )
+            $.each(data, function(){
+              $.each(this, function(k, v){
+                me.append( new Option(v.name, v.id) )
+              });
+            });
+          }, "json");
+        }
+      });
+    });
+    $(document).ready(function(){
+      $("#work_unit_project").change(function(){
+        if(this.value != ""){
+          $.get("/dashboard/project", { id: this.value }, function(data){
+            var me = $("#work_unit_ticket")
+            me.children().remove();
+            me.append( new Option("Select a ticket","") )
+            $.each(data, function(){
+              $.each(this, function(k, v){
+                me.append( new Option(v.name, v.id) )
+              });
+            });
+          }, "json");
+        }
+      });
     });
