@@ -42,13 +42,13 @@
     });
     $(document).ready(function(){
       $("#work_unit_client").change(function(){
+        var me = $("#work_unit_project");
+        me.children().remove();
+        me.append( new Option("Select a project","") )
+        $("#work_unit_ticket").children().remove();
+        $("#work_unit_ticket").append( new Option("Select a ticket",""))
         if(this.value != ""){
           $.get("/dashboard/client", { id: this.value }, function(data){
-            var me = $("#work_unit_project");
-            me.children().remove();
-            $("#work_unit_ticket").children().remove();
-            $("#work_unit_ticket").append( new Option("Select a ticket",""))
-            me.append( new Option("Select a project","") )
             $.each(data, function(){
               $.each(this, function(k, v){
                 me.append( new Option(v.name, v.id) )
@@ -60,11 +60,11 @@
     });
     $(document).ready(function(){
       $("#work_unit_project").change(function(){
+        var me = $("#work_unit_ticket")
+        me.children().remove();
+        me.append( new Option("Select a ticket","") )
         if(this.value != ""){
           $.get("/dashboard/project", { id: this.value }, function(data){
-            var me = $("#work_unit_ticket")
-            me.children().remove();
-            me.append( new Option("Select a ticket","") )
             $.each(data, function(){
               $.each(this, function(k, v){
                 me.append( new Option(v.name, v.id) )
