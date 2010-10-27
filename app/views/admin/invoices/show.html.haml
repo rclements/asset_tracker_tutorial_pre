@@ -5,7 +5,23 @@
   = javascript_include_tag 'jquery-ui-1.8.5.custom.min'
   :javascript
     $(document).ready(function() {
+
       $(".datepicker").datepicker();
+
+      $("#global_invoiced").keyup(function() {
+        value = $("#global_invoiced").val();
+        $(".global").each(function() {
+          this.value = value;
+        });
+      });
+
+      $(".ticket_invoiced").keyup(function() {
+        value = this.value
+        $("." + this.id).each(function() {
+          this.value = value;
+        });
+      });
+
     });
 
 
@@ -14,7 +30,7 @@
   = @client.name
 
 %div{:style => "float: right;"}
-  %input{:type => "text"}
+  %input{:type => "text", :id => "global_invoiced"}
 
 %div{:style => "clear: both;"}
   -form_tag(admin_invoice_path, :method => 'put', :multipart => true) do
@@ -27,7 +43,7 @@
               = ticket.long_name
             %td
             %td
-              <input type="text" />
+              %input{:type => "text", :id => "ticket_invoiced_#{ticket.id}", :class => "ticket_invoiced"}
           %tr
             %th Description
             %th Assigned To
@@ -47,7 +63,7 @@
                 %td
                   = wu.hours
                 %td
-                  = text_field_tag "work_units[#{wu.id}][invoiced]" 
+                  = text_field_tag "work_units[#{wu.id}][invoiced]",nil, :class => "global ticket_invoiced_#{ticket.id}"
                   %br
                   = text_field_tag "work_units[#{wu.id}][invoiced_at]", nil, :class => "datepicker"
         %tfoot
