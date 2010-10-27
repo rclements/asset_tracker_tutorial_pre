@@ -1,6 +1,6 @@
 class WorkUnitsController < ApplicationController
   before_filter :load_ticket
-  before_filter :load_new_work_unit
+  before_filter :load_new_work_unit, :only => [:new, :create]
   before_filter :load_work_unit, :only => [:show, :edit, :update, :destroy]
 
   protected

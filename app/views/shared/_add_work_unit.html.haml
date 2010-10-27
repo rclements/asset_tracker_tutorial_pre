@@ -3,7 +3,15 @@
 - form_for [:dashboard, WorkUnit.new(params[:work_unit])] do |f|
 
   %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
-  = f.text_field :scheduled_at
+  = link_to Time.current.strftime("%m/%d/%Y"), "#", :id => "schedule_modal_link"
+
+  #schedule_modal
+    %p It is best to enter work units on days you completed the work, please use this wisely.
+    %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
+    = f.text_field :scheduled_at, :value => Time.current.strftime("%m/%d/%Y")
+    %br
+    = link_to "Set Date", '#', :class => 'close_schedule_modal'
+
   %br
 
   %span{:style => "display: inline-block; width: 120px;"} Client:
@@ -37,40 +45,54 @@
 
 - content_for :javascripts do
   :javascript
-    $(document).ready(function(){
-      $("#work_unit_scheduled_at").datepicker()
+    $( "#schedule_modal" ).dialog({ 
+      modal: true,
+      autoOpen: false,
+      width: 500,
+      height: 500
     });
-    $(document).ready(function(){
-      $("#client_client").change(function(){
-        var me = $("#project_project");
-        me.children().remove();
-        me.append( new Option("Select a project","") )
-        $("#work_unit_ticket_id").children().remove();
-        $("#work_unit_ticket_id").append( new Option("Select a ticket",""))
-        if(this.value != ""){
-          $.get("/dashboard/client", { id: this.value }, function(data){
-            $.each(data, function(){
-              $.each(this, function(k, v){
-                me.append( new Option(v.name, v.id) )
-              });
-            });
-          }, "json");
-        }
-      });
+
+    $('#schedule_modal_link').click(function() {
+      $("#schedule_modal").dialog('open');
+      return false;
     });
-    $(document).ready(function(){
-      $("#project_project").change(function(){
-        var me = $("#work_unit_ticket_id")
-        me.children().remove();
-        me.append( new Option("Select a ticket","") )
-        if(this.value != ""){
-          $.get("/dashboard/project", { id: this.value }, function(data){
-            $.each(data, function(){
-              $.each(this, function(k, v){
-                me.append( new Option(v.name, v.id) )
-              });
+
+    $('.close_schedule_modal').click(function() {
+      $("#schedule_modal").dialog('close');
+      $('#schedule_modal_link').text($('#work_unit_scheduled_at').val());
+      return false;
+    });
+
+    $("#work_unit_scheduled_at").datepicker();
+
+    $("#client_client").change(function(){
+      var me = $("#project_project");
+      me.children().remove();
+      me.append( new Option("Select a project","") )
+      $("#work_unit_ticket_id").children().remove();
+      $("#work_unit_ticket_id").append( new Option("Select a ticket",""))
+      if(this.value != ""){
+        $.get("/dashboard/client", { id: this.value }, function(data){
+          $.each(data, function(){
+            $.each(this, function(k, v){
+              me.append( new Option(v.name, v.id) )
             });
-          }, "json");
-        }
-      });
+          });
+        }, "json");
+      }
+    });
+
+    $("#project_project").change(function(){
+      var me = $("#work_unit_ticket_id")
+      me.children().remove();
+      me.append( new Option("Select a ticket","") )
+      if(this.value != ""){
+        $.get("/dashboard/project", { id: this.value }, function(data){
+          $.each(data, function(){
+            $.each(this, function(k, v){
+              me.append( new Option(v.name, v.id) )
+            });
+          });
+        }, "json");
+      }
     });
