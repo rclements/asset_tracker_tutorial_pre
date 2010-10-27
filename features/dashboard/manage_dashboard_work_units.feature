@@ -39,6 +39,15 @@ Feature: Manage work units in the dashboard
     And I press "Create"
     Then I should see "test description" within "#recent_work ul.work_units"
 
+  Scenario: Failed creation of work unit
+    Given I am an authenticated user
+    Given a client "test client" exists
+    And a project "test project" exists with name: "test project", client: client "test client"
+    And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
+    When I am on the dashboard work_units page
+    And I press "Create"
+    Then I should see "There was a problem" within "#flash_error"
+
   Scenario: View work unit
     Given I am an authenticated user
     Given a client "test client" exists with name: "test client"
