@@ -1,7 +1,7 @@
 class Admin::WeeklyTimeReportController < ApplicationController
 
   def index
-    monday = Time.now.beginning_of_week.strftime("%Y-%m-%d")
+    monday = Time.now.beginning_of_week.strftime("%F")
     redirect_to('/admin/weekly_time_report/' + monday)
   end
 
@@ -9,7 +9,7 @@ class Admin::WeeklyTimeReportController < ApplicationController
     @day = Time.parse(params[:id])
 
     if !@day.monday?
-      monday = @day.beginning_of_week.strftime("%Y-%m-%d")
+      monday = @day.beginning_of_week.strftime("%F")
       redirect_to('/admin/weekly_time_report/' + monday)
     end
 
@@ -21,8 +21,8 @@ class Admin::WeeklyTimeReportController < ApplicationController
       @weekdays << @day.beginning_of_week + day.days
     end
 
-    @previous_week = (@day.beginning_of_week - 1.week).strftime("%Y-%m-%d")
-    @next_week = (@day.next_week).strftime("%Y-%m-%d")
+    @previous_week = (@day.beginning_of_week - 1.week).strftime("%F")
+    @next_week = (@day.next_week).strftime("%F")
   end
 
 end

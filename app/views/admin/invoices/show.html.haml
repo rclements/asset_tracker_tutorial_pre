@@ -43,13 +43,13 @@
                 %td
                   = wu.user.first_name
                 %td
-                  = wu.scheduled_at.strftime("%Y/%m/%d")
+                  = wu.scheduled_at.strftime("%F")
                 %td
                   = wu.hours
                 %td
                   = text_field_tag "work_units[#{wu.id}][invoiced]" 
                   %br
-                  = text_field_tag "work_units[#{wu.id}][invoiced_at]", nil, :class => "datepicker"
+                  = text_field_tag "work_units[#{wu.id}][invoiced_at]", Time.now.strftime("%F"), :class => "datepicker"
         %tfoot
           %tr
             %td Totals
