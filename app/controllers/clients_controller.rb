@@ -13,11 +13,7 @@ class ClientsController < ApplicationController
 
   public
   def index
-    if params[:term]
-      @clients = Client.find(:all, :conditions => ["name like ?", '%' + params[:term] + '%'])
-    else
-      @clients = Client.all
-    end
+    @clients = Client.all
   end
 
   def show
