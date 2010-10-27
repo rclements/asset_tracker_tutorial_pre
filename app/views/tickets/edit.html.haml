@@ -1,6 +1,8 @@
+.module-wrap
+  .module-gradient-container
+    .module
+      %h1="Edit ticket #{@ticket}"
 
-%h1="Edit ticket #{@ticket}"
+      = render 'form'
 
-= render 'form'
-
-= link_to 'Back', project_ticket_path(@project, @ticket)
+      = link_to 'Back', project_ticket_path(@project, @ticket)

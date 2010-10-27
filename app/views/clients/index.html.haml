@@ -1,18 +1,22 @@
-%table.clients
-  %thead
-    %tr
-      %th Name
-      %th Initials
-      %th Status
-      %th
-      %th
-  %tbody
-    - @clients.each do |client|
-      %tr
-        %td= link_to client, client
-        %td= client.initials
-        %td= client.status
-        %td= link_to 'Edit', edit_client_path(client)
-        %td= link_to 'Destroy', client_path(client), :method => :delete
+.module-wrap
+  .module-gradient-container
+    .module
+      %h2 Clients
+      %table.clients
+        %thead
+          %tr
+            %th Name
+            %th Initials
+            %th Status
+            %th
+            %th
+        %tbody
+          - @clients.each do |client|
+            %tr
+              %td= link_to client, client
+              %td= client.initials
+              %td= client.status
+              %td= link_to 'Edit', edit_client_path(client)
+              %td= link_to 'Destroy', client_path(client), :method => :delete
 
-= link_to "New Client", new_client_path
+      = link_to "New Client", new_client_path

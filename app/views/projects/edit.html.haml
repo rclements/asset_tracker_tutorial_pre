@@ -1,5 +1,8 @@
-%h1= "Edit Project #{@project}"
+.module-wrap
+  .module-gradient-container
+    .module
+      %h1= "Edit Project #{@project}"
 
-= render 'form'
+      = render 'form'
 
-= link_to 'Back', client_project_path(@client, @project)
+      = link_to 'Back', client_project_path(@client, @project)

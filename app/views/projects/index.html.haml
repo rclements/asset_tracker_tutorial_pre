@@ -1,14 +1,18 @@
-%table.projects
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-  %tbody
-    - @projects.each do |project|
-      %tr
-        %td= link_to project, client_project_path(@client, project)
-        %td= link_to 'Edit', edit_client_project_path(@client, project)
-        %td= link_to 'Destroy', client_project_path(@client, project), :method => :delete
+.module-wrap
+  .module-gradient-container
+    .module
+      %h2 Projects
+      %table.projects
+        %thead
+          %tr
+            %th Name
+            %th
+            %th
+        %tbody
+          - @projects.each do |project|
+            %tr
+              %td= link_to project, client_project_path(@client, project)
+              %td= link_to 'Edit', edit_client_project_path(@client, project)
+              %td= link_to 'Destroy', client_project_path(@client, project), :method => :delete
 
-= link_to "New Project", new_client_project_path(@client)
+      = link_to "New Project", new_client_project_path(@client)

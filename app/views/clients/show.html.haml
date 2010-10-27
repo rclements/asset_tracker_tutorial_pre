@@ -1,12 +1,15 @@
-#client
-  %h2= @client.to_s
+.module-wrap
+  .module-gradient-container
+    .module
+      #client
+        %h2= @client.to_s
 
-  Status:
-  = @client.status
+        Status:
+        = @client.status
 
-  .links
-    = link_to "Edit", edit_client_path(@client)
-    |
-    = link_to "Projects", client_projects_path(@client)
-    |
-    = link_to "Comments", client_comments_path(@client)
+        .links
+          = link_to "Edit", edit_client_path(@client)
+          |
+          = link_to "Projects", client_projects_path(@client)
+          |
+          = link_to "Comments", client_comments_path(@client)
