@@ -12,6 +12,7 @@ AssetTrackerTutorial::Application.routes.draw do
     resources :payrolls, :as => :payroll
     resources :users
     resources :projects
+    resources :weekly_time_report
   end
   get '/admin', :controller => "admin/base", :action => "index"
 
