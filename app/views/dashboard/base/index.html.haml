@@ -5,7 +5,7 @@
         %p ASIDE Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 .module-wrap
-  = render :partial => 'shared/calendar'
+  = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => current_user }
 .module-wrap.half
   .module-gradient-container
     .module
@@ -16,8 +16,7 @@
 
 - if @show_message == "true"
   #message{:title => @title, :style => "display: none;"}
-    %p
-      =@message
+    %p= @message
   - content_for :javascripts do
     :javascript
       $(document).ready(function(){
