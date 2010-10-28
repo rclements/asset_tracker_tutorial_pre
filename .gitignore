@@ -7,3 +7,4 @@ capybara*
 *.sw*
 .rvmrc
 public/stylesheets/compiled/*
+coverage/

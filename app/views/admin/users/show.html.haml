@@ -1,12 +1,18 @@
-%h1
-  User Show Page
+.module-wrap
+  .module-gradient-container
+    .module
+      %h2
+        User Show Page
 
-%h3
-  Name:
-  = @user.first_name
-  = @user.last_name
-%h3
-  Email:
-  = @user.email
+      %h3
+        Name:
+        = @user.first_name
+        = @user.last_name
+      %h3
+        Email:
+        = @user.email
+      %h3
+        - if @user.locked_at?
+          User is locked.
 
-= link_to 'Edit', edit_admin_user_path(@user)
+      = link_to 'Edit', edit_admin_user_path(@user)

@@ -88,3 +88,21 @@
         %textarea
       .clear     
   .clear    
+.module-wrap.half
+  .module-gradient-container
+    .module
+      = render :partial => 'shared/recent_work'
+  .module-gradient-container.omega
+    .module
+      = render :partial => 'shared/add_work_unit'
+
+- if @show_message == "true"
+  #message{:title => @title, :style => "display: none;"}
+    %p
+      =@message
+  - content_for :javascripts do
+    :javascript
+      $(document).ready(function(){
+        $("#message").dialog({modal: true});
+        return false;
+      });

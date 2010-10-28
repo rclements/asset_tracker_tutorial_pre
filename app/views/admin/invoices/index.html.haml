@@ -1,3 +1,7 @@
-- @clients.each do |client|
-  = link_to client.name, admin_invoice_path(client)
-  %br
+.module-wrap
+  .module-gradient-container
+    .module
+      %h2 Users with uninvoiced work units:
+      %ul
+        - @clients.each do |client|
+          %li= link_to client.name, admin_invoice_path(client)

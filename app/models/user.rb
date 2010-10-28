@@ -13,13 +13,17 @@ class User < ActiveRecord::Base
 
   has_many :work_units
 
+  # Scopes
+  scope :with_unpaid_work_units, joins(:work_units).where(' work_units.paid IS NULL OR work_units.paid = "" ').group('users.id')
+  scope :unlocked, where('locked_at IS NULL')
+
   # Return the initials of the User
   def initials
     "#{first_name[0]}#{middle_initial}#{last_name[0]}".upcase
   end
 
-  def self.with_unpaid_work_units
-    work_units.any? { |wu| wu.unpaid? }
+  def work_units_for_day(time)
+    work_units.scheduled_between(time.beginning_of_day, time.end_of_day)
   end
 
   def to_s
@@ -33,4 +37,5 @@ class User < ActiveRecord::Base
   def locked
     locked_at?
   end
+
 end

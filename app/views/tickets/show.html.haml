@@ -1,13 +1,16 @@
-#ticket
-  %h2= @ticket.to_s
+.module-wrap
+  .module-gradient-container
+    .module
+      #ticket
+        %h2= @ticket.to_s
 
-  .links
-    = link_to "Edit", edit_project_ticket_path(@project, @ticket)
-    |
-    = link_to "Work Units", ticket_work_units_path(@ticket)
-    |
-    = link_to "Comments", ticket_comments_path(@ticket)
-    |
-    = link_to "Back to project: #{@project}", client_project_path(@project.client, @project)
-    |
-    = link_to "Back to client: #{@project.client}", client_path(@project.client)
+        .links
+          = link_to "Edit", edit_project_ticket_path(@project, @ticket)
+          |
+          = link_to "Work Units", ticket_work_units_path(@ticket)
+          |
+          = link_to "Comments", ticket_comments_path(@ticket)
+          |
+          = link_to "Back to project: #{@project}", client_project_path(@project.client, @project)
+          |
+          = link_to "Back to client: #{@project.client}", client_path(@project.client)

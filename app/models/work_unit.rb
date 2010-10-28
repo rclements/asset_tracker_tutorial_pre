@@ -9,8 +9,8 @@ class WorkUnit < ActiveRecord::Base
   validates_presence_of :hours
   validates_presence_of :scheduled_at
 
-  scope :scheduled_between, lambda{|start_date, end_date| where('scheduled_at BETWEEN ? AND ?', start_date, end_date) }
-  scope :unpaid, lambda{ where('paid IS NULL') }
+  scope :scheduled_between, lambda{|start_time, end_time| where('scheduled_at BETWEEN ? AND ?', start_time, end_time) }
+  scope :unpaid, lambda{ where('paid IS NULL or paid = ""') }
   scope :not_invoiced, lambda{ where('invoiced IS NULL OR invoiced = ""') }
   scope :for_client, lambda{|client| joins({:ticket => {:project => [:client]}}).where("clients.id = ?", client.id) }
 

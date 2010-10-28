@@ -1,0 +1,63 @@
+.module-wrap
+  .module-gradient-container
+    .module
+      %h3= @user.to_s
+      %p= text_field_tag "autofill_all"
+      - form_tag(admin_payroll_path, :method => 'put', :multipart => true) do
+        - @clients.each do |client|
+          %table
+            %thead
+              %tr
+                %th{:colspan => 2}= 'Company: ' + client.to_s
+                %th{:colspan => 2}= text_field_tag "autofill_client_#{client.id}", nil, :class => "autofill_client"
+              %tr
+                %th Description
+                %th Work Date
+                %th Hours
+                %th Check Number
+            %tbody
+              - @work_units.each do |wu|
+                - if wu.ticket.project.client == client
+                  %tr
+                    %td 
+                      = wu.description
+                    %td 
+                      = wu.created_at.strftime("%Y/%m/%d")
+                    %td 
+                      = wu.hours
+                    %td 
+                      = text_field_tag "work_unit[#{wu.id}]", nil, :class => "global autofill_client_#{client.id}"
+            %tfoot
+              %tr
+                %td{:colspan => 2} Total
+                %td{:colspan => 2}
+                  = @work_units.select { |x| x.client == client }.sum(&:hours)
+        = submit_tag 'Submit'
+      %h4= 'Total For Pay Period: ' + @work_units.sum(:hours).to_s + ' hours'
+
+
+- content_for :head do
+  = stylesheet_link_tag 'jquery-ui-1.8.5.custom'
+
+- content_for :javascripts do
+  = javascript_include_tag 'jquery-ui-1.8.5.custom.min'
+  :javascript
+    $(document).ready(function() {
+
+      $("#autofill_all").keyup(function() {
+        value = $("#autofill_all").val();
+        $(".global").each(function() {
+          this.value = value;
+        });
+      });
+
+      $(".autofill_client").keyup(function() {
+        value = this.value
+        $("." + this.id).each(function() {
+          this.value = value;
+        });
+      });
+
+    });
+
+

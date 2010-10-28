@@ -1,11 +1,14 @@
-#project
-  %h2= @project.to_s
+.module-wrap
+  .module-gradient-container
+    .module
+      #project
+        %h2= @project.to_s
 
-  .links
-    = link_to "Edit", edit_client_project_path(@client, @project)
-    |
-    = link_to "Tickets", project_tickets_path(@project)
-    |
-    = link_to "Comments", project_comments_path(@project)
-    |
-    = link_to "Back to client: #{@client}", client_path(@client)
+        .links
+          = link_to "Edit", edit_client_project_path(@client, @project)
+          |
+          = link_to "Tickets", project_tickets_path(@project)
+          |
+          = link_to "Comments", project_comments_path(@project)
+          |
+          = link_to "Back to client: #{@client}", client_path(@client)

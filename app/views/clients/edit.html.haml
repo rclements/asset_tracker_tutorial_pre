@@ -1,5 +1,8 @@
-%h1="Edit client '#{@client}'"
+.module-wrap
+  .module-gradient-container
+    .module
+      %h1="Edit client '#{@client}'"
 
-= render 'form'
+      = render 'form'
 
-= link_to 'Back', client_path(@client)
+      = link_to 'Back', client_path(@client)

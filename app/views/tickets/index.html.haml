@@ -1,14 +1,17 @@
-%table.tickets
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-  %tbody
-    - @tickets.each do |ticket|
-      %tr
-        %td= link_to ticket, project_ticket_path(@project, ticket)
-        %td= link_to 'Edit', edit_project_ticket_path(@project, ticket)
-        %td= link_to 'Destroy', project_ticket_path(@project, ticket), :method => :delete
+.module-wrap
+  .module-gradient-container
+    .module
+      %table.tickets
+        %thead
+          %tr
+            %th Name
+            %th
+            %th
+        %tbody
+          - @tickets.each do |ticket|
+            %tr
+              %td= link_to ticket, project_ticket_path(@project, ticket)
+              %td= link_to 'Edit', edit_project_ticket_path(@project, ticket)
+              %td= link_to 'Destroy', project_ticket_path(@project, ticket), :method => :delete
 
-= link_to "New Ticket", new_project_ticket_path(@project)
+      = link_to "New Ticket", new_project_ticket_path(@project)

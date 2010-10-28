@@ -1,0 +1,98 @@
+%h2 Add Work Unit
+
+- form_for [:dashboard, WorkUnit.new(params[:work_unit])] do |f|
+
+  %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
+  = link_to Time.current.strftime("%m/%d/%Y"), "#", :id => "schedule_modal_link"
+
+  #schedule_modal
+    %p It is best to enter work units on days you completed the work, please use this wisely.
+    %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
+    = f.text_field :scheduled_at, :value => Time.current.strftime("%m/%d/%Y")
+    %br
+    = link_to "Set Date", '#', :class => 'close_schedule_modal'
+
+  %br
+
+  %span{:style => "display: inline-block; width: 120px;"} Client:
+  = collection_select("client", "client", @clients, "id", "name", { :prompt => "Select a client" })
+  %br
+
+  - if @projects
+    %span{:style => "display: inline-block; width: 120px;"} Project:
+    = collection_select("project", "project", @projects, "id", "name", { :prompt => "Select a project" })
+    %br
+
+  - if @tickets
+    %span{:style => "display: inline-block; width: 120px;"} Ticket:
+    = collection_select("work_unit", "ticket_id", @tickets, "id", "name", { :prompt => "Select a ticket" })
+    %br
+
+  %span{:style => "display: inline-block; width: 120px;"} Hours:
+  = f.text_field :hours, { :size => 10 }
+  %br
+
+  %span{:style => "display: inline-block; width: 120px;"} Description:
+  = f.text_area :description, { :rows => 10, :style => "resize: none;"}
+  %br
+
+  %span{:style => "display: inline-block; width: 110px;"}
+  = f.check_box "overtime"
+  = f.label "overtime"
+  %br
+
+  = f.submit "Add New"
+
+- content_for :javascripts do
+  :javascript
+    $( "#schedule_modal" ).dialog({ 
+      modal: true,
+      autoOpen: false,
+      width: 500,
+      height: 500
+    });
+
+    $('#schedule_modal_link').click(function() {
+      $("#schedule_modal").dialog('open');
+      return false;
+    });
+
+    $('.close_schedule_modal').click(function() {
+      $("#schedule_modal").dialog('close');
+      $('#schedule_modal_link').text($('#work_unit_scheduled_at').val());
+      return false;
+    });
+
+    $("#work_unit_scheduled_at").datepicker();
+
+    $("#client_client").change(function(){
+      var me = $("#project_project");
+      me.children().remove();
+      me.append( new Option("Select a project","") )
+      $("#work_unit_ticket_id").children().remove();
+      $("#work_unit_ticket_id").append( new Option("Select a ticket",""))
+      if(this.value != ""){
+        $.get("/dashboard/client", { id: this.value }, function(data){
+          $.each(data, function(){
+            $.each(this, function(k, v){
+              me.append( new Option(v.name, v.id) )
+            });
+          });
+        }, "json");
+      }
+    });
+
+    $("#project_project").change(function(){
+      var me = $("#work_unit_ticket_id")
+      me.children().remove();
+      me.append( new Option("Select a ticket","") )
+      if(this.value != ""){
+        $.get("/dashboard/project", { id: this.value }, function(data){
+          $.each(data, function(){
+            $.each(this, function(k, v){
+              me.append( new Option(v.name, v.id) )
+            });
+          });
+        }, "json");
+      }
+    });

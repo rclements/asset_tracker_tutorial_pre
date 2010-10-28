@@ -1,16 +1,19 @@
-%table.work_units
-  %thead
-    %tr
-      %th Description
-      %th Hours
-      %th
-      %th
-  %tbody
-    - @work_units.each do |work_unit|
-      %tr
-        %td= link_to work_unit.description, ticket_work_unit_path(@ticket, work_unit)
-        %td= work_unit.hours
-        %td= link_to 'Edit', edit_ticket_work_unit_path(@ticket, work_unit)
-        %td= link_to 'Destroy', ticket_work_unit_path(@ticket, work_unit), :method => :delete
+.module-wrap
+  .module-gradient-container
+    .module
+      %table.work_units
+        %thead
+          %tr
+            %th Description
+            %th Hours
+            %th
+            %th
+        %tbody
+          - @work_units.each do |work_unit|
+            %tr
+              %td= link_to work_unit.description, ticket_work_unit_path(@ticket, work_unit)
+              %td= work_unit.hours
+              %td= link_to 'Edit', edit_ticket_work_unit_path(@ticket, work_unit)
+              %td= link_to 'Destroy', ticket_work_unit_path(@ticket, work_unit), :method => :delete
 
-= link_to "New Work Unit", new_ticket_work_unit_path(@ticket)
+      = link_to "New Work Unit", new_ticket_work_unit_path(@ticket)
