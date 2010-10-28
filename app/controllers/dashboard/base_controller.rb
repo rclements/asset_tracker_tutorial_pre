@@ -2,7 +2,7 @@ class Dashboard::BaseController < ApplicationController
   respond_to :html, :json, :js
 
   def index
-    if current_user.work_units_for_day(1.day.ago).empty?
+    if current_user.work_units_for_day(Date.today.prev_working_day).empty?
       show_message("Laird says...", "You have not entered any time for yesterday. You're fired!")
     end
 
@@ -12,6 +12,8 @@ class Dashboard::BaseController < ApplicationController
 
     @projects ||= []
     @tickets ||= []
+    
+    @start_date = Date.today.beginning_of_week
   end
 
   def client
