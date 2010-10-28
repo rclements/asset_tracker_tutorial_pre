@@ -8,6 +8,14 @@ class Project < ActiveRecord::Base
   validates_presence_of :client_id
   validates_uniqueness_of :name, :scope => :client_id
 
+  def hours
+    tickets.inject(0) do |sum, ticket|
+      sum + ticket.work_units.inject(0) do |sum, work_unit|
+        sum + work_unit.hours
+      end
+    end
+  end
+
   def to_s
     name
   end
