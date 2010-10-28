@@ -1,2 +1,48 @@
-#calendar
-  
+.module-wrap
+  .module-gradient-container
+    .module
+      #calendar
+        %table
+          %thead
+            %tr
+              %td= "Mon-#{Time.now.monday.day}"
+              %td= "Tue-#{(Time.now.monday + 1.days).day}"
+              %td= "Wed-#{(Time.now.monday + 2.days).day}"
+              %td= "Thu-#{(Time.now.monday + 3.days).day}"
+              %td= "Fri-#{(Time.now.monday + 4.days).day}"
+              %td= "Sat-#{(Time.now.monday + 5.days).day}"
+              %td= "Sun-#{(Time.now.monday + 6.days).day}"
+              %td Totals:
+          %tbody
+            %tr
+              %td
+                - WorkUnit.scheduled_between(Time.now.monday, Time.now.monday + 1.days).each do |work_unit|
+                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
+              %td
+                - WorkUnit.scheduled_between(Time.now.monday + 1.days, Time.now.monday + 2.days).each do |work_unit|
+                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
+              %td
+                - WorkUnit.scheduled_between(Time.now.monday + 2.days, Time.now.monday + 3.days).each do |work_unit|
+                  %p= work_unit.client.initials << ': ' << work_unit.ticket.project.hours.to_s
+              %td
+                - WorkUnit.scheduled_between(Time.now.monday + 3.days, Time.now.monday + 4.days).each do |work_unit|
+                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
+              %td
+                - WorkUnit.scheduled_between(Time.now.monday + 4.days, Time.now.monday + 5.days).each do |work_unit|
+                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
+              %td
+                - WorkUnit.scheduled_between(Time.now.monday + 5.days, Time.now.monday + 6.days).each do |work_unit|
+                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
+              %td
+                - WorkUnit.scheduled_between(Time.now.monday + 6.days, Time.now.monday + 7.days).each do |work_unit|
+                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
+              %td Current: 98.0
+            %tr
+              %td Total:
+              %td Total:
+              %td Total:
+              %td Total:
+              %td Total:
+              %td Total:
+              %td Total:
+              %td Week: 48.0
