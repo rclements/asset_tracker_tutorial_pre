@@ -13,7 +13,7 @@
 // or @extend it to apply multiple containers on your site.
 .container {
   @include container;
-  // @include show-grid("../../images/grid.png");
+  @include show-grid("../../images/grid.png");
 }
 
 // show-grid loads a 64+16x24 grid image by default
