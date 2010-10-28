@@ -5,44 +5,21 @@
         %table
           %thead
             %tr
-              %td= "Mon-#{Time.now.monday.day}"
-              %td= "Tue-#{(Time.now.monday + 1.days).day}"
-              %td= "Wed-#{(Time.now.monday + 2.days).day}"
-              %td= "Thu-#{(Time.now.monday + 3.days).day}"
-              %td= "Fri-#{(Time.now.monday + 4.days).day}"
-              %td= "Sat-#{(Time.now.monday + 5.days).day}"
-              %td= "Sun-#{(Time.now.monday + 6.days).day}"
-              %td Totals:
+              - (0..6).map{|x| start_date + x.days }.each do |date|
+                %th= "#{date.asctime[0]} - #{date.day}"
+              %th Totals:
+          %tfoot
+            %tr
+              - (0..6).map{|x| start_date + x.days }.each do |date|
+                %td= "Total: #{user.work_units_for_day(date).sum(:hours)}"
+              %td= "Week: #{user.work_units_for_week(start_date).sum(:hours)}"
           %tbody
             %tr
-              %td
-                - WorkUnit.scheduled_between(Time.now.monday, Time.now.monday + 1.days).each do |work_unit|
-                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
-              %td
-                - WorkUnit.scheduled_between(Time.now.monday + 1.days, Time.now.monday + 2.days).each do |work_unit|
-                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
-              %td
-                - WorkUnit.scheduled_between(Time.now.monday + 2.days, Time.now.monday + 3.days).each do |work_unit|
-                  %p= work_unit.client.initials << ': ' << work_unit.ticket.project.hours.to_s
-              %td
-                - WorkUnit.scheduled_between(Time.now.monday + 3.days, Time.now.monday + 4.days).each do |work_unit|
-                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
-              %td
-                - WorkUnit.scheduled_between(Time.now.monday + 4.days, Time.now.monday + 5.days).each do |work_unit|
-                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
-              %td
-                - WorkUnit.scheduled_between(Time.now.monday + 5.days, Time.now.monday + 6.days).each do |work_unit|
-                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
-              %td
-                - WorkUnit.scheduled_between(Time.now.monday + 6.days, Time.now.monday + 7.days).each do |work_unit|
-                  %p= work_unit.client.initials << ': ' << work_unit.hours.to_s
-              %td Current: 98.0
-            %tr
-              %td Total:
-              %td Total:
-              %td Total:
-              %td Total:
-              %td Total:
-              %td Total:
-              %td Total:
-              %td Week: 48.0
+              - (start_date..(start_date + 6.days)).each do |date|
+                %td
+                  - user.clients_for_day(date).each do |client|
+                    .client= "#{client.initials}: #{user.work_units_for_day(date).for_client(client).sum(:hours)}"
+              %td= "Current: #{user.unpaid_work_units.sum(:hours)}"
+        %p
+          = link_to 'Previous', '#'
+          = link_to 'Next', '#'
