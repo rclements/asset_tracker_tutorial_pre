@@ -3,6 +3,20 @@
     .module
       #client
         %h2= @client.to_s
+      %table
+        %thead
+          %tr
+            %th Projects
+            %th Tickets
+            %th Hours
+            %th Budgeted Hours
+        %tbody
+          - @client.projects.each do |project|
+            %tr
+              %td= link_to project, client_project_path(@client, project)
+              %td= link_to project.tickets.count, client_project_path(@client, project)
+              %td= project.tickets.inject(0) {|sum, ticket| sum + ticket.work_units.inject(0) {|sum, work_unit| sum + work_unit.hours}}
+              %td
 
         Status:
         = @client.status
