@@ -34,7 +34,7 @@ class Dashboard::WorkUnitsController < Dashboard::BaseController
   def create
     if @work_unit.save
       flash[:notice] = "Work Unit was created successfully."
-      redirect_to dashboard_work_units_path
+      redirect_to dashboard_path
     else
       flash.now[:error] = "There was a problem creating the work unit"
       render :action => :index
