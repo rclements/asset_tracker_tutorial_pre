@@ -25,6 +25,6 @@ class Ticket < ActiveRecord::Base
   end
 
   def long_name
-    "Ticket: [#{id}] - #{project.name} Ticket for #{client.name}"
+    "Ticket: [#{id}] - #{project.name} - #{name} ticket for #{client.name}"
   end
 end

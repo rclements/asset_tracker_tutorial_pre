@@ -3,9 +3,18 @@ class Dashboard::BaseController < ApplicationController
   before_filter :load_work_units, :only => [:index, :recent_work]
 
   def index
-    if current_user.work_units_for_day(1.day.ago).empty?
+    if current_user.work_units_for_day(Date.today.prev_working_day).empty?
       show_message("Laird says...", "You have not entered any time for yesterday. You're fired!")
     end
+
+    @work_units = WorkUnit.joins(:user).where('user_id = ? AND scheduled_at > ?', current_user, 8.days.ago).reverse
+    @days = @work_units.map{ |wu| wu.scheduled_at.strftime("%A, %B %d, %Y") }.uniq
+    @clients = Client.all
+
+    @projects ||= []
+    @tickets ||= []
+    
+    @start_date = Date.today.beginning_of_week
   end
 
   def client
