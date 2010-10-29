@@ -110,6 +110,17 @@ footer {
     margin:5px;
     padding:5px;
     background: #e1e1e1;
+    h2 {
+      margin: 0 0 15px 0;
+    }
+    a {
+      color:#45676f;
+      &:hover {
+        text-decoration:none;
+        color:#6f8f98;
+    } 
+ 
+    }
   }
 }
 .module-gradient-container {
@@ -136,11 +147,14 @@ footer {
       }
     }
   }
-.work-unit-form {
-  p {
+#new_work_unit {
+  padding:10px 0 0 15px;
+  span {
     width:120px;
     float:left;
     color:#373737;
+    font-size:1em;
+    margin: 0 20px 0 0;
   input {
     width:100px;
     float:right;  
@@ -212,8 +226,24 @@ footer {
 }
 
 table {
-  border: 1px solid #000;
-  td, th {
-    border: 1px solid #000;
+  border: 1px solid #ccc;
+  td {
+    border: 1px solid #ccc;
+    padding: 5px 5px 5px 10px;
+  }
+  th {
+    border: 1px solid #ccc; 
+    padding: 5px 5px 5px 10px;
+    font-weight:normal;
+    font-size:1.2em;
+    color:#4b4b4b;
+  }
+  a {
+    color:#45676f;
+    &:hover {
+      text-decoration:none;
+      color:#6f8f98;
+    } 
   }
 }
+
