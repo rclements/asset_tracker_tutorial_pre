@@ -85,9 +85,7 @@ footer {
     }
   }
 }
-.module-wrap.half {}
-.module-wrap {
-  margin:5px 0 0 0;
+.module-wrap.half {
   @include full(10);
   .module-gradient-container {
     @include columns(5, 10);
@@ -97,17 +95,6 @@ footer {
   }
   .omega {
     @include omega(10);
-  }
-}
-.module-full-container {
-  @include full;
-  margin:0;
-  padding:1px 0 1px 0;
-  @include linear-gradient(color-stops(#ccc, #999));
-  .module {
-    margin:5px;
-    padding:5px;
-    background: #e1e1e1;
   }
 }
 .module-gradient-container {
