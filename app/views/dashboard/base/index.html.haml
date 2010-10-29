@@ -6,49 +6,7 @@
         .clear
 
 .module-wrap
-  .module-calendar 
-    .calendar
-      %table
-        %tr.date
-          %td M-19
-          %td M-19
-          %td M-19
-          %td M-19 
-          %td M-19
-          %td M-19 
-          %td M-19 
-          %td Totals: 
-        %tr.client-list
-          %td IXI: 1.0 
-          %td
-            %ul  
-              %li IXI: 1.0 
-              %li IXI: 1.0
-              %li IXI: 1.0 
-              %li IXI: 1.0 
-             
-          %td IXI: 1.0 
-          %td IXI: 1.0 
-          %td IXI: 1.0 
-          %td IXI: 1.0 
-          %td IXI: 1.0 
-          %td.outstanding Totals: 121.75 
-        %tr.total
-          %td Total: 18.25
-          %td Total: 8.0
-          %td Total: 8.0
-          %td Total: 8.0
-          %td Total: 8.0
-          %td Total: 78.75
-          %td Total: 8.0
-          %td Total: 8.0
-    .clear      
-    .calendar-switch
-      %a.previous
-        previous
-      %a.later
-        later
-      .clear  
+  = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => current_user }
 .module-wrap.half
   .module-gradient-container
     .module
@@ -59,8 +17,7 @@
 
 - if @show_message == "true"
   #message{:title => @title, :style => "display: none;"}
-    %p
-      =@message
+    %p= @message
   - content_for :javascripts do
     :javascript
       $(document).ready(function(){

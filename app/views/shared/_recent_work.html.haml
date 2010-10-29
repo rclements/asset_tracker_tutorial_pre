@@ -1,8 +1,4 @@
-%h2 Recent Work
-
-- content_for :head do
-  = stylesheet_link_tag 'jquery-ui-1.8.5.custom.css'
-
+%h2= "#{@range}"
 
 %div.accordion
   - @days.each do |day|
@@ -12,8 +8,16 @@
         - if wu.scheduled_at.strftime("%A, %B %d, %Y") == day
           %div{:style => "font-size: 12px"}= "- [#{wu.client.initials}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"
 
+%div
+  %span{:style => "float: left;"}
+    = link_to "<", dashboard_path(:date => @prev_date), :class => "prev-week recent-work", :date => @prev_date
+  %span{:style => "float: right;"}
+    = link_to ">", dashboard_path(:date => @next_date), :class => "next_week recent-work", :date => @next_date
+
+%div{:style => "clear: both;"}
+
+
 - content_for :javascripts do
-  = javascript_include_tag 'jquery-ui-1.8.5.custom.min'
   :javascript
     $(function(){
       $(".accordion").accordion({ header: 'h4', clearStyle: true, fillSpace: true });

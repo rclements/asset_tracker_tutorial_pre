@@ -1,7 +1,6 @@
 class Dashboard::WorkUnitsController < Dashboard::BaseController
   before_filter :load_work_units,    :only => [:index, :create]
   before_filter :load_new_work_unit, :only => [:index, :create]
-  before_filter :load_work_unit, :only => [:show]
 
   protected
   def load_work_units
@@ -20,21 +19,22 @@ class Dashboard::WorkUnitsController < Dashboard::BaseController
     @work_unit.scheduled_at ||= Time.zone.now
   end
 
-  def load_work_unit
+  public
+
+  def index
+  end
+
+  def show
     @work_unit = WorkUnit.find params[:id]
     @ticket = @work_unit.ticket
     @project = @ticket.project
     @client = @project.client
   end
 
-  public
-  def index
-  end
-
   def create
     if @work_unit.save
       flash[:notice] = "Work Unit was created successfully."
-      redirect_to dashboard_work_units_path
+      redirect_to dashboard_path
     else
       flash.now[:error] = "There was a problem creating the work unit"
       render :action => :index

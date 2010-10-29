@@ -49,4 +49,15 @@ describe Project do
       project.to_s.should == 'Testproject'
     end
   end
+
+  describe '.hours' do
+    it 'should return total number of hours from all tickets on the project' do
+      project = Project.make
+      ticket_1 = Ticket.make(:project => project)
+      ticket_2 = Ticket.make(:project => project)
+      WorkUnit.make(:ticket => ticket_1)
+      WorkUnit.make(:ticket => ticket_2)
+      project.hours.should == ticket_1.work_units.first.hours + ticket_2.work_units.first.hours
+    end
+  end
 end

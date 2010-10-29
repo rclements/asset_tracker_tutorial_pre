@@ -1,5 +1,5 @@
 AssetTrackerTutorial::Application.routes.draw do
-  root :to => "clients#index"
+  root :to => "dashboard/base#index"
 
   devise_for :users do
     get 'login', :to => 'devise/sessions#new'
@@ -38,6 +38,11 @@ AssetTrackerTutorial::Application.routes.draw do
   resources :comments
 
   namespace :dashboard do
+    resources :base do
+      collection do
+        get :recent_work
+      end
+    end
     resources :work_units
   end
   get '/dashboard', :controller => "dashboard/base", :action => "index"

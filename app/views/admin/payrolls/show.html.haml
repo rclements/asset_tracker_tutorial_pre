@@ -36,11 +36,7 @@
       %h4= 'Total For Pay Period: ' + @work_units.sum(:hours).to_s + ' hours'
 
 
-- content_for :head do
-  = stylesheet_link_tag 'jquery-ui-1.8.5.custom'
-
 - content_for :javascripts do
-  = javascript_include_tag 'jquery-ui-1.8.5.custom.min'
   :javascript
     $(document).ready(function() {
 
