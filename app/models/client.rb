@@ -4,6 +4,7 @@ class Client < ActiveRecord::Base
   has_many :projects
   has_many :tickets, :through => :projects
   has_many :comments, :as => :commentable
+  has_many :file_attachments
 
   validates_presence_of :name
   validates_presence_of :status

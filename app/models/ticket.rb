@@ -3,6 +3,7 @@ class Ticket < ActiveRecord::Base
   acts_as_commentable
   belongs_to :project
   has_many :work_units
+  has_many :file_attachments
 
   validates_presence_of :project_id
   validates_presence_of :name
