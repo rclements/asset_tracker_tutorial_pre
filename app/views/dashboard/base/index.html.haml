@@ -3,7 +3,6 @@
     .module-gradient-container
       .module
         %p ASIDE Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
 .module-wrap
   = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => current_user }
 .module-wrap.half
@@ -23,3 +22,4 @@
         $("#message").dialog({modal: true});
         return false;
       });
+  

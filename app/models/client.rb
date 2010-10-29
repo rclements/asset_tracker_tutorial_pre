@@ -3,6 +3,7 @@ class Client < ActiveRecord::Base
   acts_as_commentable
   has_many :projects
   has_many :tickets, :through => :projects
+  has_many :comments, :as => :commentable
 
   validates_presence_of :name
   validates_presence_of :status
