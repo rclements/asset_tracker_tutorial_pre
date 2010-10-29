@@ -11,5 +11,16 @@
           = link_to "Edit", edit_client_path(@client)
           |
           = link_to "Projects", client_projects_path(@client)
-          |
-          = link_to "Comments", client_comments_path(@client)
+        %br
+
+        %table
+          %thead
+            %tr
+              %th Comments
+          %tbody
+            - @client.comments.each do |c|
+              %tr
+                %td= c.comment
+        = render :partial => "clients/comment_form", :locals => { :commentable_id => @client.id, :commentable_field => "client_id", :commentable_type => "Client", :refurl => client_path(@client), :comment_num => @client.id }
+
+

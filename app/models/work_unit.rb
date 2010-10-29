@@ -1,6 +1,7 @@
 class WorkUnit < ActiveRecord::Base
   include GuidReferenced
   acts_as_commentable
+  has_many :comments, :as => :commentable
   belongs_to :ticket
   belongs_to :user
   validates_presence_of :ticket_id

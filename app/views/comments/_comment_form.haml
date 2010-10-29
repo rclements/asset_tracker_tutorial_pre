@@ -1,0 +1,23 @@
+- comment_num = 1 unless local_assigns.include?(:comment_num)
+- comment_num = comment_num.to_s
+.comment-section
+- form_for @comment do |f|
+  = f.text_area :comment
+  = f.hidden_field :commentable_id, :value => commentable_id
+  = f.hidden_field :commentable_type, :value => commentable_type
+  %p
+  = f.submit "Post Comment"
+
+= link_to "Add Comment", "#", :id => "link-to-show-comment-#{comment_num}"
+:javascript
+  jQuery(document).ready(function()
+  {
+    var comment_field = jQuery("#comment-form-#{comment_num}");
+    jQuery("#link-to-show-comment-#{comment_num}").click(function()
+    {
+      jQuery("#content").height( jQuery("#content").height() + jQuery("#comment-form-#{comment_num}").height() );
+      comment_field.show('slow');
+      jQuery(this).hide(); // hide the link that shows the comment form, as it's no longer needed
+      return false;
+    });
+  });

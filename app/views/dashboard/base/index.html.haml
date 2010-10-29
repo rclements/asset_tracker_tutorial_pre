@@ -3,51 +3,9 @@
     .module-gradient-container
       .module
         %p ASIDE Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        .clear
-  .module-calendar 
-    .calendar
-      %table
-        %tr.date
-          %td M-19
-          %td M-19
-          %td M-19
-          %td M-19 
-          %td M-19
-          %td M-19 
-          %td M-19 
-          %td Totals: 
-        %tr.client-list
-          %td IXI: 1.0 
-          %td
-            %ul  
-              %li IXI: 1.0 
-              %li IXI: 1.0
-              %li IXI: 1.0 
-              %li IXI: 1.0 
-             
-          %td IXI: 1.0 
-          %td IXI: 1.0 
-          %td IXI: 1.0 
-          %td IXI: 1.0 
-          %td IXI: 1.0 
-          %td.outstanding Totals: 121.75 
-        %tr.total
-          %td Total: 18.25
-          %td Total: 8.0
-          %td Total: 8.0
-          %td Total: 8.0
-          %td Total: 8.0
-          %td Total: 78.75
-          %td Total: 8.0
-          %td Total: 8.0
-    .clear      
-    .calendar-switch
-      %a.previous
-        previous
-      %a.later
-        later
-      .clear  
- .module-wrap.half
+.module-wrap
+  = render :partial => 'shared/calendar'
+.module-wrap.half
   .module-gradient-container
     .module
       = render :partial => 'shared/recent_work'
