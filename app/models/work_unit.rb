@@ -13,6 +13,7 @@ class WorkUnit < ActiveRecord::Base
   scope :unpaid, lambda{ where('paid IS NULL or paid = ""') }
   scope :not_invoiced, lambda{ where('invoiced IS NULL OR invoiced = ""') }
   scope :for_client, lambda{|client| joins({:ticket => {:project => [:client]}}).where("clients.id = ?", client.id) }
+  scope :for_user, lambda{ |user| where('user_id = ?', user.id)}
 
   def client
     ticket.project.client

@@ -26,6 +26,18 @@ class User < ActiveRecord::Base
     work_units.scheduled_between(time.beginning_of_day, time.end_of_day)
   end
 
+  def clients_for_day(time)
+    work_units_for_day(time).map{|x| x.client}.uniq
+  end
+
+  def work_units_for_week(time)
+    work_units.scheduled_between(time.beginning_of_week, time.end_of_week)
+  end
+
+  def unpaid_work_units
+    WorkUnit.for_user(self).unpaid
+  end
+
   def to_s
     "#{first_name} #{middle_initial} #{last_name}"
   end
