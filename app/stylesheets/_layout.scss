@@ -103,7 +103,7 @@ footer {
 }
 .module-full-container {
   @include full;
-  margin:0;
+  margin:0 0 15px 0;
   padding:1px 0 1px 0;
   @include linear-gradient(color-stops(#ccc, #999));
   .module {
