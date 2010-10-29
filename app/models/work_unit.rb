@@ -36,4 +36,8 @@ class WorkUnit < ActiveRecord::Base
     invoiced.empty?
   end
 
+  def to_s
+    description
+  end
+
 end

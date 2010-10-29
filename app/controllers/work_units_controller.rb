@@ -54,5 +54,12 @@ class WorkUnitsController < ApplicationController
   end
 
   def update
+    if @work_unit.update_attributes(params[:work_unit])
+      flash[:notice] = "WorkUnit updated."
+      redirect_to client_project_ticket_work_unit_path(@client, @project, @ticket, @work_unit)
+    else
+      flash.now[:error] = "There was a problem updating the work_unit."
+      redirect_to client_project_ticket_work_unit_path(@client, @project, @work_unit, @ticket)
+    end
   end
 end
