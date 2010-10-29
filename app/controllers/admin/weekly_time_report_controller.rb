@@ -22,6 +22,8 @@ class Admin::WeeklyTimeReportController < ApplicationController
     end
 
     @previous_week = (@day.beginning_of_week - 1.week).strftime("%F")
+    @beginning_of_week = @day.beginning_of_week
+    @end_of_week = @day.end_of_week
     @next_week = (@day.next_week).strftime("%F")
   end
 

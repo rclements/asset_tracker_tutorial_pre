@@ -36,6 +36,7 @@
             %td{:colspan => "3"}= ticket.long_name
             %td
             %td
+            %td
               %input{:type => "text", :id => "ticket_invoiced_#{ticket.id}", :class => "ticket_invoiced"}
           %tr
             %th Description
@@ -52,7 +53,9 @@
                 %td= wu.user.first_name
                 %td= wu.scheduled_at.strftime("%F")
                 %td= wu.hours
-                %td= wu.overtime?
+                %td
+                  - if wu.overtime?
+                    yes
                 %td
                   = text_field_tag "work_units[#{wu.id}][invoiced]",nil, :class => "global ticket_invoiced_#{ticket.id}"
                   = text_field_tag "work_units[#{wu.id}][invoiced_at]", Time.now.strftime("%F"), :class => "datepicker"
