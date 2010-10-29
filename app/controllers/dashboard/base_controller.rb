@@ -7,7 +7,7 @@ class Dashboard::BaseController < ApplicationController
       show_message("Laird says...", "You have not entered any time for yesterday. You're fired!")
     end
 
-    @work_units = WorkUnit.joins(:user).where('user_id = ? AND scheduled_at > ?', current_user, 8.days.ago).reverse
+    #@work_units = WorkUnit.joins(:user).where('user_id = ? AND scheduled_at > ?', current_user, 8.days.ago).reverse
     @days = @work_units.map{ |wu| wu.scheduled_at.strftime("%A, %B %d, %Y") }.uniq
     @clients = Client.all
 
@@ -25,6 +25,10 @@ class Dashboard::BaseController < ApplicationController
   def project
     @tickets = Ticket.find(:all, :conditions => ['project_id = ?', params[:id]])
     respond_with @tickets
+  end
+
+  def recent_work
+    render :partial => "shared/recent_work", :layout => false
   end
 
 private

@@ -1,24 +1,30 @@
-%h2= "#{@range}"
+#recent-work
+  %h2= "#{@range}"
 
-%div.accordion
-  - @days.each do |day|
-    %h4{:style => "padding-left: 30px"}= day
-    %div
-      - @work_units.each do |wu|
-        - if wu.scheduled_at.strftime("%A, %B %d, %Y") == day
-          %div{:style => "font-size: 12px"}= "- [#{wu.client.initials}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"
+  %div.accordion
+    - if @work_units.empty?
+      %strong Nothing to show
+    - @days.each do |day|
+      %h4{:style => "padding-left: 30px"}= day
+      %div
+        - @work_units.each do |wu|
+          - if wu.scheduled_at.strftime("%A, %B %d, %Y") == day
+            %div{:style => "font-size: 12px"}= "- [#{wu.client.initials}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"
 
-%div
-  %span{:style => "float: left;"}
-    = link_to "<", dashboard_path(:date => @prev_date), :class => "prev-week recent-work", :date => @prev_date
-  %span{:style => "float: right;"}
-    = link_to ">", dashboard_path(:date => @next_date), :class => "next_week recent-work", :date => @next_date
+  %div
+    %span{:style => "float: left;"}
+      = link_to "&larr;".html_safe, dashboard_path(:date => @prev_date), :class => "prev-week recent-work", :date => @prev_date
+    %span{:style => "float: right;"}
+      = link_to "&rarr;".html_safe, dashboard_path(:date => @next_date), :class => "next_week recent-work", :date => @next_date
 
-%div{:style => "clear: both;"}
+  %div{:style => "clear: both;"}
 
-
-- content_for :javascripts do
   :javascript
     $(function(){
       $(".accordion").accordion({ header: 'h4', clearStyle: true, fillSpace: true });
+      jQuery(".recent-work").click(function()
+      {
+        bind_recent_work_navigation(this)
+        return false;
+      });
     });
