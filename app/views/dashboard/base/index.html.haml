@@ -17,25 +17,5 @@
 - if @show_message == "true"
   #message{:title => @title, :style => "display: none;"}
     %p= @message
-  - content_for :javascripts do
-    :javascript
-      function bind_recent_work_navigation(el)
-      {
-        var me   = jQuery(el);
-        var date = me.attr("date");
-        jQuery.get("/dashboard/recent_work", {date: date}, function (data)
-        {
-          jQuery("#recent-work").html(data)
-        });
-        return true;
-      }
-      $(document).ready(function(){
-        $("#message").dialog({modal: true});
-        $(".accordion").accordion({ header: 'h4', clearStyle: true, fillSpace: true });
-        jQuery(".recent-work").click(function()
-        {
-          bind_recent_work_navigation(this);
-          return false;
-        });
-        return false;
-      });
+- content_for :javascripts do
+  = javascript_include_tag "dashboard"

@@ -8,7 +8,7 @@
   #schedule_modal
     %p It is best to enter work units on days you completed the work, please use this wisely.
     %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
-    = f.text_field :scheduled_at, :value => Time.current.strftime("%m/%d/%Y")
+    = text_field_tag :scheduled_at, Time.current.strftime("%m/%d/%Y")
     %br
     = link_to "Set Date", '#', :class => 'close_schedule_modal'
 
@@ -39,6 +39,7 @@
   %span{:style => "display: inline-block; width: 110px;"}
   = f.check_box "overtime"
   = f.label "overtime"
+  = f.hidden_field :scheduled_at
   %br
 
   = f.submit "Add New"
@@ -63,7 +64,14 @@
       return false;
     });
 
-    $("#work_unit_scheduled_at").datepicker();
+    $("#scheduled_at").datepicker(
+      {
+        onSelect: function(dateText, inst)
+        {
+          jQuery("#work_unit_scheduled_at").val(dateText);
+        },
+        dateFormat: 'yy-mm-dd'
+      });
 
     $("#client_client").change(function(){
       var me = $("#project_project");
