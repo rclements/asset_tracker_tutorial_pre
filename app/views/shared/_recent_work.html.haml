@@ -6,11 +6,11 @@
       - details = work_unit_sum_and_count_for(header_date)
       %h4{:style => "padding-left: 30px"}
         = "#{header_date} (<abbr title='# Work units'>#{details[0]}</abbr>, <abbr title='Sum of hours'>#{details[1]}</abbr>)".html_safe
-      %div
+      %ul.work_units
         - @work_units.group_by{|wu| wu.scheduled_at.utc.to_date}.each do |date, units|
           - if date == header_date
             - units.each do |wu|
-              %div{:style => "font-size: 12px"}= "- [#{wu.client.initials}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"
+              %li{:style => "font-size: 12px"}= "- [#{wu.client.initials}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"
 
   %div
     %span{:style => "float: left;"}

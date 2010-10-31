@@ -8,7 +8,7 @@ class Dashboard::BaseController < ApplicationController
   end
 
   def show_message(title, message)
-    @show_message = "true"
+    @show_message = "true" unless Rails.env.test?
     @title = title
     @message = message
   end
