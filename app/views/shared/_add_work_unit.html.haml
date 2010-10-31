@@ -1,7 +1,7 @@
 #add-work-unit
   %h2 Add Work Unit
 
-  - form_for [:dashboard, WorkUnit.new(params[:work_unit])] do |f|
+  = form_for [:dashboard, WorkUnit.new(params[:work_unit])] do |f|
 
     %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
     = link_to Time.current.strftime("%m/%d/%Y"), "#", :id => "schedule_modal_link"

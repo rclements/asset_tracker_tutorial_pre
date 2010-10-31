@@ -35,6 +35,12 @@ AssetTrackerTutorial::Application.routes.draw do
     resources :comments
   end
 
+  resources :users do
+    member do
+      put :change_password
+    end
+  end
+
   resources :comments
 
   namespace :dashboard do
