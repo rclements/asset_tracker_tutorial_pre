@@ -5,7 +5,7 @@
         = link_to '<< All Clients', clients_path
         %h1
           = @client.to_s
-          = button_to 'Edit'
+          = link_to 'Edit', edit_client_path(@client)
       %table
         %thead
           %tr

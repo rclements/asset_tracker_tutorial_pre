@@ -4,8 +4,9 @@
       #project
         = link_to "<< Back to client: #{@client}", client_path(@client)
         %h1= @client.to_s
-        %h2= @project.to_s
-        = link_to "Edit", edit_client_project_path(@client, @project)
+        %h2
+          = @project.to_s
+          = link_to "Edit", edit_client_project_path(@client, @project)
       %table.tickets
         %thead
           %tr
