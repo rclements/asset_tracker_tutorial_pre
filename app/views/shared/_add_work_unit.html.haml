@@ -1,98 +1,169 @@
-%h2 Add Work Unit
+#add-work-unit
+  %h2 Add Work Unit
 
-- form_for [:dashboard, WorkUnit.new(params[:work_unit])] do |f|
+  - form_for [:dashboard, WorkUnit.new(params[:work_unit])] do |f|
 
-  %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
-  = link_to Time.current.strftime("%m/%d/%Y"), "#", :id => "schedule_modal_link"
-
-  #schedule_modal
-    %p It is best to enter work units on days you completed the work, please use this wisely.
     %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
-    = f.text_field :scheduled_at, :value => Time.current.strftime("%m/%d/%Y")
-    %br
-    = link_to "Set Date", '#', :class => 'close_schedule_modal'
+    = link_to Time.current.strftime("%m/%d/%Y"), "#", :id => "schedule_modal_link"
 
-  %br
+    #schedule_modal
+      %p It is best to enter work units on days you completed the work, please use this wisely.
+      %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
+      = text_field_tag :scheduled_at, Time.current.strftime("%m/%d/%Y")
+      %br
+      = link_to "Set Date", '#', :class => 'close_schedule_modal'
 
-  %span{:style => "display: inline-block; width: 120px;"} Client:
-  = collection_select("client", "client", @clients, "id", "name", { :prompt => "Select a client" })
-  %br
-
-  - if @projects
-    %span{:style => "display: inline-block; width: 120px;"} Project:
-    = collection_select("project", "project", @projects, "id", "name", { :prompt => "Select a project" })
     %br
 
-  - if @tickets
-    %span{:style => "display: inline-block; width: 120px;"} Ticket:
-    = collection_select("work_unit", "ticket_id", @tickets, "id", "name", { :prompt => "Select a ticket" })
+    %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_client_id"} Client:
+    = collection_select("work_unit", "client_id", @clients, "id", "name", { :prompt => "Select a client" })
     %br
 
-  %span{:style => "display: inline-block; width: 120px;"} Hours:
-  = f.text_field :hours, { :size => 10 }
-  %br
+    - if @projects
+      %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_project_id"} Project:
+      = collection_select("work_unit", "project_id", @projects, "id", "name", { :prompt => "Select a project" })
+      %br
 
-  %span{:style => "display: inline-block; width: 120px;"} Description:
-  = f.text_area :description, { :rows => 10, :style => "resize: none;"}
-  %br
+    - if @tickets
+      %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_ticket_id"} Ticket:
+      = collection_select("work_unit", "ticket_id", @tickets, "id", "name", { :prompt => "Select a ticket" })
+      %br
 
-  %span{:style => "display: inline-block; width: 110px;"}
-  = f.label :overtime
-  = f.check_box :overtime
-  %br
+    %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_hours"} Hours:
+    = f.text_field :hours, { :size => 10 }
+    %br
 
-  = f.submit "Add New"
+    %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_description"} Description:
+    = f.text_area :description, { :rows => 10, :style => "resize: none;"}
+    %br
 
-- content_for :javascripts do
-  :javascript
-    $( "#schedule_modal" ).dialog({ 
-      modal: true,
-      autoOpen: false,
-      width: 500,
-      height: 500
-    });
+    %span{:style => "display: inline-block; width: 110px;"}
+    = f.check_box "overtime"
+    = f.label "overtime"
+    = f.hidden_field :scheduled_at
+    %br
 
-    $('#schedule_modal_link').click(function() {
-      $("#schedule_modal").dialog('open');
-      return false;
-    });
+    = f.submit "Add New"
+    #work-unit-errors
 
-    $('.close_schedule_modal').click(function() {
-      $("#schedule_modal").dialog('close');
-      $('#schedule_modal_link').text($('#work_unit_scheduled_at').val());
-      return false;
-    });
+  - content_for :javascripts do
+    :javascript
+      $( "#schedule_modal" ).dialog({ 
+        modal: true,
+        autoOpen: false,
+        width: 500,
+        height: 500
+      });
 
-    $("#work_unit_scheduled_at").datepicker();
+      $('#schedule_modal_link').click(function() {
+        $("#schedule_modal").dialog('open');
+        return false;
+      });
 
-    $("#client_client").change(function(){
-      var me = $("#project_project");
-      me.children().remove();
-      me.append( new Option("Select a project","") )
-      $("#work_unit_ticket_id").children().remove();
-      $("#work_unit_ticket_id").append( new Option("Select a ticket",""))
-      if(this.value != ""){
-        $.get("/dashboard/client", { id: this.value }, function(data){
-          $.each(data, function(){
-            $.each(this, function(k, v){
-              me.append( new Option(v.name, v.id) )
+      $('.close_schedule_modal').click(function() {
+        $("#schedule_modal").dialog('close');
+        $('#schedule_modal_link').text($('#work_unit_scheduled_at').val());
+        return false;
+      });
+
+      $("#scheduled_at").datepicker(
+        {
+          onSelect: function(dateText, inst)
+          {
+            jQuery("#work_unit_scheduled_at").val(dateText);
+          },
+          dateFormat: 'yy-mm-dd'
+        });
+
+      $("#work_unit_client_id").change(function(){
+        var me = $("#work_unit_project_id");
+        me.children().remove();
+        me.append( new Option("Select a project","") )
+        $("#work_unit_ticket_id").children().remove();
+        $("#work_unit_ticket_id").append( new Option("Select a ticket",""))
+        if(this.value != ""){
+          $.get("/dashboard/client", { id: this.value }, function(data){
+            $.each(data, function(){
+              $.each(this, function(k, v){
+                me.append( new Option(v.name, v.id) )
+              });
             });
-          });
-        }, "json");
-      }
-    });
+          }, "json");
+        }
+      });
 
-    $("#project_project").change(function(){
-      var me = $("#work_unit_ticket_id")
-      me.children().remove();
-      me.append( new Option("Select a ticket","") )
-      if(this.value != ""){
-        $.get("/dashboard/project", { id: this.value }, function(data){
-          $.each(data, function(){
-            $.each(this, function(k, v){
-              me.append( new Option(v.name, v.id) )
+      $("#work_unit_project_id").change(function(){
+        var me = $("#work_unit_ticket_id")
+        me.children().remove();
+        me.append( new Option("Select a ticket","") )
+        if(this.value != ""){
+          $.get("/dashboard/project", { id: this.value }, function(data){
+            $.each(data, function(){
+              $.each(this, function(k, v){
+                me.append( new Option(v.name, v.id) )
+              });
             });
-          });
-        }, "json");
-      }
-    });
+          }, "json");
+        }
+      });
+
+
+      jQuery("#new_work_unit").submit(function()
+      {
+        var me = jQuery(this);
+        jQuery.ajax(
+        {
+          async: true,
+          global: false,
+          url: me.attr("action"),
+          type: "POST",
+          dataType: "json",
+          data: {"work_unit[description]": me.find("#work_unit_description").val(),
+            "work_unit[scheduled_at]": me.find("#work_unit_scheduled_at").val(),
+            "work_unit[client_id]": me.find("#work_unit_client_id").val(),
+            "work_unit[project_id]": me.find("#work_unit_project_id").val(),
+            "work_unit[ticket_id]": me.find("#work_unit_ticket_id").val(),
+            "work_unit[hours]": me.find("#work_unit_hours").val(),
+            "work_unit[overtime]": me.find("#work_unit_overtime").val()
+             },
+          success: function(result)
+          {
+            var json = jQuery.parseJSON( result.responseText )
+            me.trigger("reset");
+            me.effect("highlight");
+          },
+          error: function(result)
+          {
+            var json = jQuery.parseJSON( result.responseText )
+            jQuery("#work-unit-errors").data('errors', json);
+            jQuery("#work-unit-errors").dialog('open');
+          }
+        });
+        return false;
+      });
+
+      jQuery(document).ready(function()
+      {
+        jQuery("#work-unit-errors").dialog(
+        {
+          autoOpen: false,
+          hide: true,
+          title: "Error",
+          modal: true,
+          draggable: false,
+          open: function()
+          {
+            var dialog = jQuery("#work-unit-errors")
+            dialog.html("")
+            jQuery.each( dialog.data('errors'), function()
+            {
+              dialog.append("<p>" + this + "</p>")
+            });
+          },
+          close: function()
+          {
+            var dialog = jQuery("#work-unit-errors")
+            dialog.html("");
+          }
+        });
+      });
