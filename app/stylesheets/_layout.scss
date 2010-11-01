@@ -85,10 +85,6 @@ footer {
     }
   }
 }
-.module-wrap {
-  margin:5px 0 0 0;
-}
-
 .module-wrap.half {
   @include full(10);
   .module-gradient-container {
@@ -295,5 +291,6 @@ table {
   }
   td {
     border:1px solid #ccc;
-  } 
-}
+    } 
+  }
+

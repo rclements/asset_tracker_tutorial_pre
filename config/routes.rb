@@ -37,6 +37,8 @@ AssetTrackerTutorial::Application.routes.draw do
 
   resources :comments
 
+  resources :file_attachments
+
   namespace :dashboard do
     resources :base do
       collection do

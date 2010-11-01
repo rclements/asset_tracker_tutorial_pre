@@ -9,6 +9,22 @@
           |
           = link_to "Tickets", project_tickets_path(@project)
           |
-          = link_to "Comments", project_comments_path(@project)
-          |
           = link_to "Back to client: #{@client}", client_path(@client)
+        %br
+
+        %table
+          %thead
+            %tr
+              %th Comments
+          %tbody
+            - @project.comments.each do |c|
+              %tr
+                %td= c.comment
+        = render :partial => "projects/comment_form", :locals => { :commentable_id => @project.id, :commentable_field => "project_id", :commentable_type => "Project", :refurl => client_project_path(@project), :comment_num => @project.id }
+        %br
+        %br
+        %h2 Files
+        - @project.file_attachments.each do |file_attachment|
+          = link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
+        = link_to "Add File Attachment", new_file_attachment_path( :client_id => @client.id )
+

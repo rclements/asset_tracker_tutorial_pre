@@ -6,8 +6,12 @@
   - @comments.each do |comment|
     %tr
       %td= comment.comment
-
-%p
-  = link_to "New", new_comment_path(comment_params)
+%br
+  - @comments.each do |c|
+    comment.comment
+    = render :partial => "comments/comment", :locals => {:comment => c}
+    
+  = render :partial => "comments/comment_form", :locals => { :commentable_id => @work_unit.id, :commentable_field => "work_unit_id", :commentable_type => "Work Unit", :comment_num => @work_unit.id }
+  /= link_to "New", new_comment_path(comment_params)
   |
   = link_to "Back", :back

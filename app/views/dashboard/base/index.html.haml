@@ -4,8 +4,8 @@
       .module
         %p ASIDE 
         .clear
-
-= render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => current_user }
+.module-wrap
+  = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => current_user }
 .module-wrap.half
   .module-gradient-container
     .module
