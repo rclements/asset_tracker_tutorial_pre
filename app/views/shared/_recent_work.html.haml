@@ -6,7 +6,8 @@
     %div
       - @work_units.each do |wu|
         - if wu.scheduled_at.strftime("%A, %B %d, %Y") == day
-          %div{:style => "font-size: 12px"}= "- [#{wu.client.initials}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"
+          %div{:style => "font-size: 12px"}= link_to ("- [#{wu.client.initials}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"), "/tickets/#{wu.ticket.id}/work_units/#{wu.id}"
+
 
 %div
   %span{:style => "float: left;"}
