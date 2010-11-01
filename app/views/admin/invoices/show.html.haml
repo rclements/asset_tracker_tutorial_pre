@@ -20,8 +20,6 @@
 
     });
 
-
-
 %h2
   = @client.name
 
@@ -35,8 +33,8 @@
       %table{:bgcolor => "#FFFFFF", :style => "border-width: 1px; border-style: inset"}
         %thead
           %tr
-            %td{:colspan => "3"}
-              = ticket.long_name
+            %td{:colspan => "3"}= ticket.long_name
+            %td
             %td
             %td
               %input{:type => "text", :id => "ticket_invoiced_#{ticket.id}", :class => "ticket_invoiced"}
@@ -45,30 +43,28 @@
             %th Assigned To
             %th Scheduled On
             %th Hours
+            %th Overtime?
             %th Invoice
         %tbody
           - @work_units.each do |wu|
             - if wu.ticket == ticket
               %tr
+                %td= wu.description
+                %td= wu.user.first_name
+                %td= wu.scheduled_at.strftime("%F")
+                %td= wu.hours
                 %td
-                  = wu.description
-                %td
-                  = wu.user.first_name
-                %td
-                  = wu.scheduled_at.strftime("%F")
-                %td
-                  = wu.hours
+                  - if wu.overtime?
+                    yes
                 %td
                   = text_field_tag "work_units[#{wu.id}][invoiced]",nil, :class => "global ticket_invoiced_#{ticket.id}"
-                  %br
                   = text_field_tag "work_units[#{wu.id}][invoiced_at]", Time.now.strftime("%F"), :class => "datepicker"
         %tfoot
           %tr
             %td Totals
             %td
             %td
-            %td 
-              = ticket.sum_of_hours_not_invoiced
+            %td= ticket.sum_of_hours_not_invoiced
             %td
           %tr
             %td{:colspan => "5"}

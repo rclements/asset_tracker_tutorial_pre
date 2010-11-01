@@ -1,7 +1,7 @@
 .module-wrap
   .module-gradient-container
     .module
-      %h2 Users with no time entered:
+      %h2= "Users with no time entered for #{@beginning_of_week.strftime('%B %d, %Y')} - #{@end_of_week.strftime('%B %d, %Y')}"
       - @weekdays.each do |day|
         %div{:id => day.strftime("%A")}
           %h3= day.strftime("%A, %B %d, %Y")

@@ -1,18 +1,13 @@
 .module-wrap
   .module-gradient-container
     .module
-      %h2
-        User Show Page
-
-      %h3
-        Name:
+      %h1
         = @user.first_name
         = @user.last_name
-      %h3
-        Email:
+      %h1
         = @user.email
-      %h3
+      = link_to 'Edit', edit_admin_user_path(@user)
+      %h2
         - if @user.locked_at?
           User is locked.
-
-      = link_to 'Edit', edit_admin_user_path(@user)
+      = render :partial => 'shared/calendar', :locals => { :start_date => Date.today.beginning_of_week, :user => current_user }

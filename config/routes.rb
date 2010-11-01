@@ -9,7 +9,7 @@ AssetTrackerTutorial::Application.routes.draw do
 
   namespace :admin do
     resources :invoices, :as => :invoice
-    resources :payrolls, :as => :payroll
+    resources :payroll
     resources :users
     resources :projects
     resources :weekly_time_report

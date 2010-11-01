@@ -2,14 +2,33 @@
   .module-gradient-container
     .module
       #client
-        %h2= @client.to_s
+        = link_to '<< All Clients', clients_path
+        %h1
+          = @client.to_s
+          = button_to 'Edit'
+      %table
+        %thead
+          %tr
+            %th Projects
+            %th Tickets
+            %th Hours
+            %th Budgeted Hours
+        %tbody
+          - @client.projects.each do |project|
+            %tr
+              %td= link_to project, client_project_path(@client, project)
+              %td= link_to project.tickets.count, client_project_path(@client, project)
+              %td= project.tickets.inject(0) {|sum, ticket| sum + ticket.work_units.inject(0) {|sum, work_unit| sum + work_unit.hours}}
+              %td
+        %h2= 'Status: ' << @client.status
+        %table
+          %thead
+            %tr
+              %th Comments
+          %tbody
+            - @client.comments.each do |c|
+              %tr
+                %td= c.comment
+        = render :partial => "clients/comment_form", :locals => { :commentable_id => @client.id, :commentable_field => "client_id", :commentable_type => "Client", :refurl => client_path(@client), :comment_num => @client.id }
 
-        Status:
-        = @client.status
 
-        .links
-          = link_to "Edit", edit_client_path(@client)
-          |
-          = link_to "Projects", client_projects_path(@client)
-          |
-          = link_to "Comments", client_comments_path(@client)
