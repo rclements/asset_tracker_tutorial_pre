@@ -1,8 +1,8 @@
-class Admin::WeeklyTimeReportController < ApplicationController
+class Admin::UnenteredTimeReportController < ApplicationController
 
   def index
     monday = Time.now.beginning_of_week.strftime("%F")
-    redirect_to('/admin/weekly_time_report/' + monday)
+    redirect_to('/admin/unentered_time_report/' + monday)
   end
 
   def show
@@ -10,7 +10,7 @@ class Admin::WeeklyTimeReportController < ApplicationController
 
     if !@day.monday?
       monday = @day.beginning_of_week.strftime("%F")
-      redirect_to('/admin/weekly_time_report/' + monday)
+      redirect_to('/admin/unentered_time_report/' + monday)
     end
 
     @users = User.unlocked
