@@ -1,25 +1,19 @@
-.module-wrap
-  .module-gradient-container
-    .module
-      #calendar
-        %table
-          %thead
-            %tr
-              - (0..6).map{|x| start_date + x.days }.each do |date|
-                %th= "#{date.asctime[0]} - #{date.day}"
-              %th Totals:
-          %tfoot
-            %tr
-              - (0..6).map{|x| start_date + x.days }.each do |date|
-                %td= "Total: #{user.work_units_for_day(date).sum(:hours)}"
-              %td= "Week: #{user.work_units_for_week(start_date).sum(:hours)}"
-          %tbody
-            %tr
-              - (start_date..(start_date + 6.days)).each do |date|
-                %td
-                  - user.clients_for_day(date).each do |client|
-                    .client= "#{client.initials}: #{user.work_units_for_day(date).for_client(client).sum(:hours)}"
-              %td= "Current: #{user.unpaid_work_units.sum(:hours)}"
-        %p
-          = link_to 'Previous', '#'
-          = link_to 'Next', '#'
+#calendar
+  %table
+    %thead
+      %tr
+        - (0..6).map{|x| start_date + x.days }.each do |date|
+          %th= "#{date.asctime[0]} - #{date.day}"
+        %th Totals:
+    %tfoot
+      %tr
+        - (0..6).map{|x| start_date + x.days }.each do |date|
+          %td= "Total: #{user.work_units_for_day(date).sum(:hours)}"
+        %td= "Week: #{user.work_units_for_week(start_date).sum(:hours)}"
+    %tbody
+      %tr
+        - (start_date..(start_date + 6.days)).each do |date|
+          %td
+            - user.clients_for_day(date).each do |client|
+              .client= "#{client.initials}: #{user.work_units_for_day(date).for_client(client).sum(:hours)}"
+        %td= "Current: #{user.unpaid_work_units.sum(:hours)}"
