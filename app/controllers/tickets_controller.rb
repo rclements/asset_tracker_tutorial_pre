@@ -2,6 +2,7 @@ class TicketsController < ApplicationController
   before_filter :load_project
   before_filter :load_new_ticket
   before_filter :load_ticket, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_file_attachments, :only => [:show, :new, :create]
 
   protected
   def load_project
@@ -15,6 +16,10 @@ class TicketsController < ApplicationController
 
   def load_ticket
     @ticket = Ticket.find(params[:id])
+  end
+  
+  def load_file_attachments
+    @file_attachments = @ticket.file_attachments
   end
 
   public

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101026151900) do
+ActiveRecord::Schema.define(:version => 20101029145059) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(:version => 20101026151900) do
     t.string   "email_address"
     t.string   "phone_number"
     t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "file_attachments", :force => true do |t|
+    t.integer  "client_id"
+    t.integer  "ticket_id"
+    t.integer  "project_id"
+    t.string   "attachment_file_file_name"
+    t.string   "attachment_file_file_content_type"
+    t.integer  "attachment_file_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

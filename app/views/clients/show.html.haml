@@ -30,5 +30,10 @@
               %tr
                 %td= c.comment
         = render :partial => "clients/comment_form", :locals => { :commentable_id => @client.id, :commentable_field => "client_id", :commentable_type => "Client", :refurl => client_path(@client), :comment_num => @client.id }
-
+        %br
+        %br
+        %h2 Files
+        - @client.file_attachments.each do |file_attachment|
+          = link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
+        = link_to "Add File Attachment", new_file_attachment_path( :client_id => @client.id )
 
