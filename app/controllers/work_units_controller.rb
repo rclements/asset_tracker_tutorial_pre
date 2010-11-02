@@ -38,6 +38,9 @@ class WorkUnitsController < ApplicationController
   end
 
   def show
+    @client = @work_unit.client
+    @project = @work_unit.project
+    @ticket = @work_unit.ticket
   end
 
   def destroy

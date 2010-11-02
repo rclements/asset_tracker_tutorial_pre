@@ -4,9 +4,9 @@
       #work_unit
         .description= @work_unit.description
     .links
-      = link_to "Edit", edit_client_project_ticket_work_unit_path(@client, @project, @ticket, @work_unit)
+      = link_to "Edit", edit_ticket_work_unit_path(@ticket, @work_unit)
       |
-      = link_to "Back to ticket: #{@ticket}", client_project_ticket_path(@client, @project, @ticket)
+      = link_to "Back to ticket: #{@ticket}", project_ticket_path(@project, @ticket)
       |
       = link_to "Back to project: #{@project}", client_project_path(@client, @project)
       |

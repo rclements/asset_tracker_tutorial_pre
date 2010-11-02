@@ -20,6 +20,10 @@ class WorkUnit < ActiveRecord::Base
     ticket.project.client
   end
 
+  def project
+    ticket.project
+  end
+
   def unpaid?
     paid.blank?
   end
