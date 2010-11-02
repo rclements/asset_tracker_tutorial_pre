@@ -5,7 +5,6 @@ class FileAttachmentsController < ApplicationController
   protected
   def load_new_file_attachment
     @file_attachment = FileAttachment.new(params[:file_attachment])
-    puts params[:ticket_id]
     if params[:ticket_id]
       @file_attachment.ticket_id = params[:ticket_id]
     end
