@@ -97,6 +97,34 @@ footer {
     @include omega(10);
   }
 }
+.module-full-container {
+  @include full;
+  margin:0 0 15px 0;
+  padding:1px 0 1px 0;
+  @include linear-gradient(color-stops(#ccc, #999));
+  .module {
+    margin:5px;
+    padding:5px;
+    background: #e1e1e1;
+    h2 {
+      margin: 0 0 15px 0;
+    }
+    a {
+      color:#45676f;
+      &:hover {
+        text-decoration:none;
+        color:#6f8f98;
+      } 
+    }
+    ul {
+      list-style:none;
+      margin: 5px 0 0 2px;
+      li {
+        padding: 3px 0 5px 0;
+      }
+    }
+  }
+}
 .module-gradient-container {
   @include linear-gradient(color-stops(#ccc, #999));
   .module {
@@ -121,11 +149,14 @@ footer {
       }
     }
   }
-.work-unit-form {
-  p {
+#new_work_unit {
+  padding:10px 0 0 15px;
+  span {
     width:120px;
     float:left;
     color:#373737;
+    font-size:1em;
+    margin: 0 20px 0 0;
   input {
     width:100px;
     float:right;  
@@ -136,17 +167,16 @@ footer {
   }
   }
 }
-.module-calendar {
+.module {
   @include full (10);
   background:#fff;
   margin: 5px 0 0 0;
-  .calendar {
+  #calendar {
     height:auto;
     p {
       margin: 0 0 6px 0;
     }
     table {
-      background:#fff;
       tr.date {
         @include linear-gradient(color-stops(#9da6a8, #acbabd));
         td {
@@ -196,9 +226,71 @@ footer {
   }   
 }
 
-table {
-  border: 1px solid #000;
-  td, th {
-    border: 1px solid #000;
+#calendar table {
+  border: 1px solid #ccc;
+  td {
+    border: 1px solid #ccc;
+    padding: 5px 5px 5px 10px;
+  }
+  th {
+    border: 1px solid #ccc; 
+    padding: 5px 5px 5px 10px;
+    font-weight:normal;
+    font-size:1.1em;
+    color:#f2f1f1;
+    @include linear-gradient(color-stops(#9fa8aa, #acbabd));
+  }
+  tbody {
+    @include linear-gradient(color-stops(#fff, #f7f7f7));
+  }
+  .calendar_body {
+    @include linear-gradient(color-stops(#fff, #f7f7f7));
+  }
+  a {
+    color:#45676f;
+    &:hover {
+      text-decoration:none;
+      color:#6f8f98;
+    } 
   }
 }
+.calendar_pagination {
+  background:#c4ced2;
+  margin:0;
+  padding:0;
+  .next {
+    float:right;
+    margin: 0 10px 0 0;
+    a {
+      color:#fff;
+    }
+  }
+  .previous {
+    float:left;
+    margin: 0 0 0 10px;
+    a {
+      color:#fff;
+    }
+  }
+}
+.module a.add_new_button {
+  background:#72939c;
+  padding: 3px 5px 3px 5px;
+  color:#fff;
+  border:1px solid #9eabb2;
+  text-decoration:none;
+  &:hover {
+    background:#5b686f;
+    color:#ccc;
+  }
+}
+table {
+  border:1px solid #ccc;
+  thead th {
+    border:1px solid #ccc;
+  }
+  td {
+    border:1px solid #ccc;
+    } 
+  }
+

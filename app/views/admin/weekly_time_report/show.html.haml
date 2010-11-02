@@ -1,32 +1,17 @@
 .module-wrap
-  .module-gradient-container
+  .module-full-container
     .module
-      = link_to "&larr; Previous Week".html_safe, admin_weekly_time_report_path(@previous_week)
-      - if @beg_date < Time.zone.now
-        = link_to "Next Week &rarr;".html_safe, admin_weekly_time_report_path(@next_week)
-
-      - @users.each do |user|
-        %table.calendar
-          %thead
-            %tr
-              %td{:colspan => "100%"}= user.to_s
-            %tr
-              - (0..6).map{|x| @beg_date + x.days }.each do |date|
-                %th= "#{date.asctime[0]} - #{date.day}"
-              %th Totals:
-            %tfoot
-              %tr
-                - (0..6).map{|x| @beg_date + x.days }.each do |date|
-                  %td= "Total: #{user.work_units_for_day(date).sum(:hours)}"
-                %td= "Week: #{user.work_units_for_week(@beg_date).sum(:hours)}"
-            %tbody
-              %tr
-                - @weekdays.each do |date|
-                  %td
-                    - user.clients_for_day(date).each do |client|
-                      .client= "#{client.initials}: #{user.work_units_for_day(date).for_client(client).sum(:hours)}"
-                %td= "Current: #{user.unpaid_work_units.sum(:hours)}"
-
-      = link_to "&larr; Previous Week".html_safe, admin_weekly_time_report_path(@previous_week)
-      - if @beg_date < Time.zone.now
-        = link_to "Next Week &rarr;".html_safe, admin_weekly_time_report_path(@next_week)
+      %h2 Users with no time entered:
+      - @weekdays.each do |day|
+        %div{:id => day.strftime("%A")}
+          %h3= day.strftime("%A, %B %d, %Y")
+          - if day.future?
+            %p (This day is in the future.)
+          - else
+            %ul
+              - @users.each do |user|
+                - if user.work_units_for_day(day).empty? # && user.not_on_vacation?
+                  %li= link_to "#{user.last_name}, #{user.first_name}", admin_user_path(user)
+      
+      %h3= link_to "Previous", admin_weekly_time_report_path(@previous_week)
+      %h3= link_to "Next", admin_weekly_time_report_path(@next_week)
