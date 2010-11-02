@@ -1,25 +1,24 @@
-.module-wrap
-  .module-full-container
-    .module
-      %h1 All Clients
-      = button_to "New Client", new_client_path, :method => :get
-      %table.clients
-        %thead
+.gradient_border_wrap
+  .gradient_border_content
+    %h2 All Clients
+    = button_to "New Client", new_client_path, :method => :get
+    %table.clients
+      %thead
+        %tr
+          %th Name
+          %th Initials
+          %th Projects
+          %th Tickets
+          %th Status
+          %th Edit
+      %tbody
+        - @clients.each do |client|
           %tr
-            %th Name
-            %th Initials
-            %th Projects
-            %th Tickets
-            %th Status
-            %th{:colspan => 2}
-        %tbody
-          - @clients.each do |client|
-            %tr
-              %td= link_to client, client
-              %td= client.initials
-              %td= link_to client.projects.count, client_projects_path(client)
-              %td= link_to client.tickets.count, '#'
-              %td= client.status
-              %td= link_to 'Edit', edit_client_path(client)
-              %td= button_to 'Destroy', { :action => 'destroy', :id => client.id, }, :confirm => 'Are you sure?', :method => :delete
+            %td= link_to client, client
+            %td= client.initials
+            %td= link_to client.projects.count, client_projects_path(client)
+            %td= client.tickets.count
+            %td= client.status
+            %td= link_to 'Edit', edit_client_path(client)
+            
 
