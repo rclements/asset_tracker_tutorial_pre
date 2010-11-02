@@ -43,3 +43,16 @@ Feature: Manage Work Units
     Then I should see a link with text "Back to ticket: test ticket" within "#work_unit .links"
     Then I should see a link with text "Back to project: test project" within "#work_unit .links"
     Then I should see a link with text "Back to client: test client" within "#work_unit .links"
+
+  Scenario: Edit a work unit
+    Given a client "test client" exists with name: "test client"
+    And a project "test project" exists with name: "test project", client: client "test client"
+    And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
+    And a work_unit exists with ticket: ticket "test ticket", description: "test work_unit", hours: 2, scheduled_at: "2010-01-14 00:01:00"
+    When I am on the client's project's ticket's work_unit's edit page
+    Then I should see "Edit Work Unit"
+    And I press "Update"
+    Then I should see a link with text "Back to ticket: test ticket" within "#work_unit .links"
+    Then I should see a link with text "Back to project: test project" within "#work_unit .links"
+    Then I should see a link with text "Back to client: test client" within "#work_unit .links"
+
