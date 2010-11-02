@@ -22,9 +22,9 @@
                 - if user.locked_at?
                   Locked
               %td
-                - user.roles.each do |role|
-                  = role.name
-                  %br
+                %ul
+                  - user.roles.each do |role|
+                    %li= role.name
               %td= link_to 'Edit', edit_admin_user_path(user)
               %td= button_to 'Destroy', { :action => 'destroy', :id => user.id, }, :confirm => 'Are you sure?', :method => :delete
 
