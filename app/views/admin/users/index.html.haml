@@ -12,7 +12,6 @@
             %th Email
             %th Locked?
             %th Roles
-            %th{:colspan => 2}
         %tbody
           - @users.each do |user|
             %tr
@@ -25,7 +24,5 @@
                 %ul
                   - user.roles.each do |role|
                     %li= role.name
-              %td= link_to 'Edit', edit_admin_user_path(user)
-              %td= button_to 'Destroy', { :action => 'destroy', :id => user.id, }, :confirm => 'Are you sure?', :method => :delete
 
       = link_to "New User", new_admin_user_path, :class => "add_new_button"
