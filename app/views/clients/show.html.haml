@@ -1,37 +1,31 @@
-.module-wrap
-  .module-full-container
-    .module
-      #client
-        = link_to '<< All Clients', clients_path
-        %h1
-          = @client.to_s
-          = link_to 'Edit', edit_client_path(@client)
+.gradient_border_wrap
+  .gradient_border_content
+    #client
+      %h2= @client.to_s
+      %ul
+        %li= link_to 'View All Clients', clients_path
+        %li= link_to "Edit #{@client}", edit_client_path(@client)
+        %li= 'Status: ' << @client.status      
       %table
         %thead
           %tr
             %th Projects
             %th Tickets
             %th Hours
-            %th Budgeted Hours
         %tbody
           - @client.projects.each do |project|
             %tr
               %td= link_to project, client_project_path(@client, project)
               %td= link_to project.tickets.count, client_project_path(@client, project)
               %td= project.tickets.inject(0) {|sum, ticket| sum + ticket.work_units.inject(0) {|sum, work_unit| sum + work_unit.hours}}
-              %td
-        %h2= 'Status: ' << @client.status
-        %table
-          %thead
-            %tr
-              %th Comments
-          %tbody
-            - @client.comments.each do |c|
-              %tr
-                %td= c.comment
-        = render :partial => "clients/comment_form", :locals => { :commentable_id => @client.id, :commentable_field => "client_id", :commentable_type => "Client", :refurl => client_path(@client), :comment_num => @client.id }
-        %h2 Files
-        - @client.file_attachments.each do |file_attachment|
-          = link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
-        = link_to "Add File Attachment", new_file_attachment_path( :client_id => @client.id )
+      %h3 Comments
+      %ul
+        - @client.comments.each do |c|
+          %li= c.comment
+      = render :partial => "clients/comment_form", :locals => { :commentable_id => @client.id, :commentable_field => "client_id", :commentable_type => "Client", :refurl => client_path(@client), :comment_num => @client.id }
 
+      %h3 Files
+      %ul
+        - @client.file_attachments.each do |file_attachment|
+          %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
+      = link_to "Add File Attachment", new_file_attachment_path( :client_id => @client.id )
