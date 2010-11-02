@@ -10,8 +10,8 @@ Feature: Manage tickets
     And a ticket exists with project: project "test project", name: "test ticket"
     When I am on the project's tickets page
     Then I should see the following tickets:
-      |Name|
-      |test ticket|
+      |Name       |Work Units|Hours|
+      |test ticket|0         |0    |
 
   Scenario: View a ticket
     Given I am an authenticated user
