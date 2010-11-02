@@ -1,39 +1,11 @@
 .module-wrap
-  .module-full-container
-    .module
-      - content_for :javascripts do
-        :javascript
-          $(document).ready(function() {
-
-            $(".datepicker").datepicker();
-
-            $("#global_invoiced").keyup(function() {
-              value = $("#global_invoiced").val();
-              $(".global").each(function() {
-                this.value = value;
-              });
-            });
-
-            $(".ticket_invoiced").keyup(function() {
-              value = this.value
-              $("." + this.id).each(function() {
-                this.value = value;
-              });
-            });
-
-          });
-      %h2
-        = @client.name
-
-.module-wrap
   .module-gradient-container
     .module
       %h2
         = @client.name
       %div
         %input{:type => "text", :id => "global_invoiced"}
-
-      %div{:style => "clear: both;"}
+      %div
         -form_tag(admin_invoice_path, :method => 'put', :multipart => true) do
           = submit_tag 'Submit'
           - @tickets.each do |ticket|
@@ -65,13 +37,10 @@
                         = text_field_tag "work_units[#{wu.id}][invoiced_at]", Time.now.strftime("%F"), :class => "datepicker"
               %tfoot
                 %tr
-                  %td Totals
-                  %td
-                  %td
-                  %td= ticket.sum_of_hours_not_invoiced
-                  %td
+                  %td{:colspan => "3"} Totals
+                  %td{:colspan => "3"}= ticket.sum_of_hours_not_invoiced
                 %tr
-                  %td{:colspan => "5"}
+                  %td{:colspan => "6"}
                     - find_and_preserve do
                       %textarea{:rows => "10"}
                         = "#{ticket.long_name}"
@@ -83,4 +52,6 @@
                             - if ticket.work_units.last == wu
                               = "=========================="
                               = "Total Hours: #{ticket.sum_of_hours_not_invoiced}"
-        = submit_tag 'Submit'
+
+- content_for :javascripts do
+  = javascript_include_tag "admin_invoices"

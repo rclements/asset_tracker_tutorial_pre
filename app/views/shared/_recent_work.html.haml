@@ -1,30 +1,20 @@
 #recent-work
   %h2= "#{@range}"
-
   %div.accordion
     - @days.each do |header_date|
       - details = work_unit_sum_and_count_for(header_date)
-      %h4{:style => "padding-left: 30px"}
-        = "#{header_date} (<abbr title='# Work units'>#{details[0]}</abbr>, <abbr title='Sum of hours'>#{details[1]}</abbr>)".html_safe
+      %h4= header_date
       %ul.work_units
         - @work_units.group_by{|wu| wu.scheduled_at.utc.to_date}.each do |date, units|
           - if date == header_date
             - units.each do |wu|
-              %li{:style => "font-size: 12px"}= "- [#{wu.client.initials}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"
+              %li= link_to ("- [#{wu.client.initials}] - #{wu.hours} hours - #{truncate(wu.description, :length => 30)}"), "/tickets/#{wu.ticket.id}/work_units/#{wu.id}"
   %div
-    %span{:style => "float: left;"}
+    %span
       = link_to "&larr;".html_safe, dashboard_path(:date => @prev_date), :class => "prev-week recent-work", :date => @prev_date
     - if @beg_date < Time.zone.now
-      %span{:style => "float: right;"}
+      %span
         = link_to "&rarr;".html_safe, dashboard_path(:date => @next_date), :class => "next_week recent-work", :date => @next_date
 
-  %div{:style => "clear: both;"}
-  :javascript
-    jQuery(function(){
-      jQuery(".accordion").accordion({ header: 'h4', clearStyle: true, fillSpace: true });
-      jQuery(".recent-work").click(function()
-      {
-        bind_recent_work_navigation(this)
-        return false;
-      });
-    });
+- content_for :javascripts do
+  = javascript_include_tag "recent_work"
