@@ -15,6 +15,7 @@
                   %td{:colspan => "3"}= ticket.long_name
                   %td
                   %td
+                  %td
                     %input{:type => "text", :id => "ticket_invoiced_#{ticket.id}", :class => "ticket_invoiced"}
                 %tr
                   %th Description
@@ -56,7 +57,8 @@
                             - if ticket.work_units.last == wu
                               = "=========================="
                               = "Total Hours: #{ticket.sum_of_hours_not_invoiced}"
-          = submit_tag 'Submit'
 
 - content_for :javascripts do
   = javascript_include_tag "admin_invoices"
+
+
