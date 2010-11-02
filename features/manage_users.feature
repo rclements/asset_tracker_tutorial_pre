@@ -9,9 +9,9 @@ Feature: User Administration
       | admin      | mcadmin   | a              | admin@example.com | secret    | admin |
     When I go to the admin users page
     Then I should see the following users:
-      | Name          | Email             |
-      | Nick Fine     | testing@man.net   |
-      | admin mcadmin | admin@example.com |
+      | Name          | Email             | Locked? | Roles |
+      | Nick Fine     | testing@man.net   |         | admin |
+      | admin mcadmin | admin@example.com |         | admin |
 
   Scenario: List users (non-admin role)
     Given I am an authenticated user
@@ -56,22 +56,18 @@ Feature: User Administration
     Then I should see a link with text "Cancel"
 
   Scenario: Delete user
-    Given I am an authenticated user with an "admin" role
-    #Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test1@example.com", password: "secret", password_confirmation: "secret"
-    #Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test2@example.com", password: "secret", password_confirmation: "secret"
-    #Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test3@example.com", password: "secret", password_confirmation: "secret"
-    #Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test4@example.com", password: "secret", password_confirmation: "secret"
-    Given the following user records:
-     | first_name | last_name | middle_initial | email             | password | role |
-     | Test 1     | Man       | T              | test1@example.com | secret   | user |
-     | Test 2     | Man       | T              | test2@example.com | secret   | user |
-     | Test 3     | Man       | T              | test3@example.com | secret   | user |
-     | Test 4     | Man       | T              | test4@example.com | secret   | user |
-    When I go to the admin users page
-    When I delete the 3rd user
-    Then I should see the following users:
-      | Name       | Email             |
-      | Nick Fine  | testing@man.net   |
-      | Test 1 Man | test1@example.com |
-      | Test 3 Man | test3@example.com |
-      | Test 4 Man | test4@example.com |
+#   Given I am an authenticated user with an "admin" role
+#   Given the following user records:
+#    | first_name | last_name | middle_initial | email             | password | role |
+#    | Test 1     | Man       | T              | test1@example.com | secret   | user |
+#    | Test 2     | Man       | T              | test2@example.com | secret   | user |
+#    | Test 3     | Man       | T              | test3@example.com | secret   | user |
+#    | Test 4     | Man       | T              | test4@example.com | secret   | user |
+#   When I go to the admin users page
+#   When I delete the 3rd user
+#   Then I should see the following users:
+#     | Name       | Email             |
+#     | Nick Fine  | testing@man.net   |
+#     | Test 1 Man | test1@example.com |
+#     | Test 3 Man | test3@example.com |
+#     | Test 4 Man | test4@example.com |
