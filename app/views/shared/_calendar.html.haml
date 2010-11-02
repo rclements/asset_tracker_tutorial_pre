@@ -1,12 +1,13 @@
+
 #calendar
   %table
     %thead
-      %tr
+      %tr.calendar_top
         - (0..6).map{|x| start_date + x.days }.each do |date|
           %th= "#{date.asctime[0]} - #{date.day}"
         %th Totals:
     %tfoot
-      %tr
+      %tr.calendar_foot
         - (0..6).map{|x| start_date + x.days }.each do |date|
           %td= "Total: #{user.work_units_for_day(date).sum(:hours)}"
         %td= "Week: #{user.work_units_for_week(start_date).sum(:hours)}"
