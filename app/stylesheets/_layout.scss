@@ -1,21 +1,35 @@
+/* --- Global Styles ---*/
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased; 
+}
+
+.caps {
+  letter-spacing: 0.1em;
+}
+
+.allcaps {
+  @extend .caps;
+  text-transform: uppercase;
+}
+
+.smallcaps {
+  @extend .caps;
+  font-variant: small-caps;
+}
+
 html {
   height:100%;
-  @include sans-family;
   @include linear-gradient(color-stops(#3f5365, #1a3247));
 }
 body {
   height:100%;
   background:none;
   article {
-    @include columns(10);
-    @include alpha;
   }
   aside {
-    @include columns(2);
-    @include omega;
     .module-gradient-container {
       @include linear-gradient(color-stops(#ccc, #999));
-      @include columns (12);
       margin:5px 0 0 0;
       p {
         font-size:.9em;
@@ -86,19 +100,13 @@ footer {
   }
 }
 .module-wrap.half {
-  @include full(10);
   .module-gradient-container {
-    @include columns(5, 10);
     p {
       font-size:.9em; 
     }
   }
-  .omega {
-    @include omega(10);
-  }
 }
 .module-full-container {
-  @include full;
   margin:0 0 15px 0;
   padding:1px 0 1px 0;
   @include linear-gradient(color-stops(#ccc, #999));
@@ -168,7 +176,6 @@ footer {
   }
 }
 .module {
-  @include full (10);
   background:#fff;
   margin: 5px 0 0 0;
   #calendar {
