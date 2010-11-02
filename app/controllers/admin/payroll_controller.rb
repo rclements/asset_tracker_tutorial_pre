@@ -1,4 +1,4 @@
-class Admin::PayrollsController < ApplicationController
+class Admin::PayrollController < ApplicationController
 
   def index
     @users = User.with_unpaid_work_units

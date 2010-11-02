@@ -1,19 +1,25 @@
 .module-wrap
   .module-gradient-container
     .module
+      = link_to '<< Back to Ticket ' << @ticket.name, project_ticket_path(@ticket.project, @ticket)
+      %h1= @ticket.client.name
+      %h2= @ticket.name
+      %h3 Work Units
+      = button_to "New Work Unit", new_work_unit_path(@ticket), :method => :get
       %table.work_units
         %thead
           %tr
+            %th #
             %th Description
             %th Hours
-            %th
-            %th
+            %th{:colspan => 2}
         %tbody
           - @work_units.each do |work_unit|
             %tr
+              %td= work_unit.id
               %td= link_to work_unit.description, ticket_work_unit_path(@ticket, work_unit)
               %td= work_unit.hours
               %td= link_to 'Edit', edit_ticket_work_unit_path(@ticket, work_unit)
-              %td= link_to 'Destroy', ticket_work_unit_path(@ticket, work_unit), :method => :delete
+              %td= button_to 'Destroy', { :action => 'destroy', :id => work_unit.id, }, :confirm => 'Are you sure?', :method => :delete
 
       = link_to "New Work Unit", new_ticket_work_unit_path(@ticket)

@@ -27,7 +27,7 @@ Feature: Manage work units in the dashboard
     And I should see a link with text "[test client] - 2.0 hours - test work_unit" within "#recent_work ul.work_units"
     And I should not see a link with text "[test client] - 2.0 hours - test work_unit earlier" within "#recent_work ul.work_units"
 
-  Scenario: Create work unit
+ Scenario: Create work unit
     Given I am an authenticated user
     Given a client "test client" exists
     And a project "test project" exists with name: "test project", client: client "test client"
@@ -37,7 +37,36 @@ Feature: Manage work units in the dashboard
     And I fill in "Hours" with "2"
     And I select "test ticket" from "Ticket"
     And I press "Create"
-    Then I should see "test description" within "#recent_work ul.work_units"
+    Then I should see "test description" within "#recent-work ul.work_units"
+
+  @javascript
+  Scenario: Create work unit via dashboard successfully
+    Given I am an authenticated user
+    Given a client "test client" exists
+    Given the following clients, projects and tickets exist
+      | client name | project name | ticket name |
+      | Bobby       | Website      | Work        |
+    When I am on the home page
+    And I select "Bobby" from "Client" within "#add-work-unit"
+    And I select "Website" from "Project" within "#add-work-unit"
+    And I select "Work" from "Ticket" within "#add-work-unit"
+    And I fill in "Description" with "test description" within "#add-work-unit"
+    And I fill in "Hours" with "2" within "#add-work-unit"
+    And I press "Add New"
+    Then I should not see "Error" within "#work-unit-errors"
+
+  @javascript
+  Scenario: Create work unit via dashboard with errors
+    Given I am an authenticated user
+    Given a client "test client" exists
+    Given the following clients, projects and tickets exist
+      | client name | project name | ticket name |
+      | Timmy       | Website      | Work        |
+    When I am on the home page
+    And I select "Timmy" from "Client" within "#add-work-unit"
+    And I select "Website" from "Project" within "#add-work-unit"
+    And I press "Add New"
+    Then I should see "Ticket can't be blank" within "#work-unit-errors"
 
   Scenario: Failed creation of work unit
     Given I am an authenticated user
