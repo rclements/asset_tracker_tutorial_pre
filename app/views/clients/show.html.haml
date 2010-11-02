@@ -2,7 +2,10 @@
   .module-full-container
     .module
       #client
-        %h2= @client.to_s
+        = link_to '<< All Clients', clients_path
+        %h1
+          = @client.to_s
+          = link_to 'Edit', edit_client_path(@client)
       %table
         %thead
           %tr
@@ -17,16 +20,7 @@
               %td= link_to project.tickets.count, client_project_path(@client, project)
               %td= project.tickets.inject(0) {|sum, ticket| sum + ticket.work_units.inject(0) {|sum, work_unit| sum + work_unit.hours}}
               %td
-
-        Status:
-        = @client.status
-
-        .links
-          = link_to "Edit", edit_client_path(@client)
-          |
-          = link_to "Projects", client_projects_path(@client)
-        %br
-
+        %h2= 'Status: ' << @client.status
         %table
           %thead
             %tr

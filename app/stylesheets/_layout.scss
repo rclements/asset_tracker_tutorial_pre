@@ -243,8 +243,8 @@ footer {
   tbody {
     @include linear-gradient(color-stops(#fff, #f7f7f7));
   }
-  .calendar_body {
-    @include linear-gradient(color-stops(#fff, #f7f7f7));
+  .calendar_foot {
+    @include linear-gradient(color-stops(#f7f7f7, #acbabd));
   }
   a {
     color:#45676f;

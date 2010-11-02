@@ -23,6 +23,8 @@
     .container
       - if flash[:error]
         %p#flash_error= flash[:error]
+      - if flash[:notice]
+        %p#flash_notice= flash[:notice]
       %section
         %article= yield
       = (content_column_right = yield :content_column_right).empty? ? render(:partial => 'shared/sidebar') : content_column_right

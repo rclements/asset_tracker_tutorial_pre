@@ -1,28 +1,13 @@
 class Admin::WeeklyTimeReportController < ApplicationController
-
+  
   def index
-    monday = Time.now.beginning_of_week.strftime("%F")
-    redirect_to('/admin/weekly_time_report/' + monday)
+    redirect_to('/admin/weekly_time_report/' + Date.today.beginning_of_week.strftime("%F"))
   end
 
   def show
-    @day = Time.parse(params[:id])
-
-    if !@day.monday?
-      monday = @day.beginning_of_week.strftime("%F")
-      redirect_to('/admin/weekly_time_report/' + monday)
-    end
-
+    redirect_unless_monday('/admin/weekly_time_report/', params[:id])
+    # FIXME: users should have role 'developer', we don't want to show non-entered time for non developers
     @users = User.unlocked
-    # users should have role 'developer': we don't want to show non-entered time for 'admin' or 'client user accounts'
-
-    @weekdays = []
-    (0..4).each do |day|
-      @weekdays << @day.beginning_of_week + day.days
-    end
-
-    @previous_week = (@day.beginning_of_week - 1.week).strftime("%F")
-    @next_week = (@day.next_week).strftime("%F")
   end
 
 end
