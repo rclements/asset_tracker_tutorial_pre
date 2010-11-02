@@ -1,21 +1,15 @@
 .module-wrap
   .module-full-container
     .module
-      .date_pagination
-        = link_to "&larr; Previous Week".html_safe,
-            admin_weekly_time_report_path((@start_date - 1.week).beginning_of_week)
-        - if @start_date < Date.today
-          = link_to "Next Week &rarr;".html_safe, 
-            admin_weekly_time_report_path(@start_date.next_week)
+      = render :partial => 'week_pagination', :locals => { :start_date => @start_date }
 
-      %h2 Users with no time entered:
+      %h2
+        Weekly Time Report for
+        = @start_date
+        through
+        = @start_date + 1.week
       - @users.each do |user|
         %h3= user.to_s
         = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => user }
 
-      .date_pagination
-        = link_to "&larr; Previous Week".html_safe,
-            admin_weekly_time_report_path((@start_date - 1.week).beginning_of_week)
-        - if @start_date < Date.today
-          = link_to "Next Week &rarr;".html_safe,
-            admin_weekly_time_report_path(@start_date.next_week)
+      = render :partial => 'week_pagination', :locals => { :start_date => @start_date }
