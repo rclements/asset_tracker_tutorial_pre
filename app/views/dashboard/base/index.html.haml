@@ -2,8 +2,12 @@
   %aside
     .module-gradient-container
       .module
+        %p ASIDE 
+        .clear
 .module-wrap
-  = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => current_user }
+  .module-gradient-container
+    .module
+      = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => current_user }
 .module-wrap.half
   .module-gradient-container
     .module
@@ -15,10 +19,6 @@
 - if @show_message == "true"
   #message{:title => @title, :style => "display: none;"}
     %p= @message
-  - content_for :javascripts do
-    :javascript
-      $(document).ready(function(){
-        $("#message").dialog({modal: true});
-        return false;
-      });
-  
+
+- content_for :javascripts do
+  = javascript_include_tag "dashboard"

@@ -4,8 +4,9 @@
       #project
         = link_to "<< Back to client: #{@client}", client_path(@client)
         %h1= @client.to_s
-        %h2= @project.to_s
-        = link_to "Edit", edit_client_project_path(@client, @project)
+        %h2
+          = @project.to_s
+          = link_to "Edit", edit_client_project_path(@client, @project)
       %table.tickets
         %thead
           %tr
@@ -32,10 +33,8 @@
               %tr
                 %td= c.comment
         = render :partial => "projects/comment_form", :locals => { :commentable_id => @project.id, :commentable_field => "project_id", :commentable_type => "Project", :refurl => client_project_path(@project), :comment_num => @project.id }
-        %br
-        %br
         %h2 Files
         - @project.file_attachments.each do |file_attachment|
           = link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
-        = link_to "Add File Attachment", new_file_attachment_path( :client_id => @client.id )
+        = link_to "Add File Attachment", new_file_attachment_path( :project_id => @project.id )
 

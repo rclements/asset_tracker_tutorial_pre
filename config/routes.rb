@@ -12,6 +12,7 @@ AssetTrackerTutorial::Application.routes.draw do
     resources :payroll
     resources :users
     resources :projects
+    resources :unentered_time_report
     resources :weekly_time_report
   end
   get '/admin', :controller => "admin/base", :action => "index"
@@ -35,6 +36,12 @@ AssetTrackerTutorial::Application.routes.draw do
     resources :comments
   end
 
+  resources :users do
+    member do
+      put :change_password
+    end
+  end
+
   resources :comments
 
   resources :file_attachments
@@ -50,6 +57,7 @@ AssetTrackerTutorial::Application.routes.draw do
   get '/dashboard', :controller => "dashboard/base", :action => "index"
   get '/dashboard/client', :controller => "dashboard/base", :action => "client"
   get '/dashboard/project', :controller => "dashboard/base", :action => "project"
+  get '/dashboard/recent_work', :controller => "dashboard/base", :action => "recent_work"
 
   namespace :api do
     namespace :v1 do

@@ -1,4 +1,4 @@
-Feature: Weekly Time Report
+Feature: Unentered Time Report
   As an admin user
   I should be able to list users who didn't enter time
 
@@ -9,7 +9,7 @@ Feature: Weekly Time Report
     And a project "Test Project" exist with name: "Test Project", client: client "Test Client"
     And a ticket "Test Ticket" exist with name: "Test Ticket", project: project "Test Project"
     And a work_unit exist with description: "Test Work Unit", ticket: ticket "Test Ticket", hours: 1, scheduled_at: "2010-10-01 00:00:00", created_at: "2010-10-01 00:00:00"
-    When I go to path "/admin/weekly_time_report/2001-10-01"
+    When I go to path "/admin/unentered_time_report/2001-10-01"
     Then I should see a link with text "Lee, Stan"
 
   Scenario: Do not list user with unpaid work unit
@@ -19,5 +19,5 @@ Feature: Weekly Time Report
     And a project "Test Project" exists with name: "Test Project", client: client "Test Client"
     And a ticket "Test Ticket" exists with name: "Test Ticket", project: project "Test Project"
     And a work_unit exists with description: "Test Work Unit", ticket: ticket "Test Ticket", hours: 1, scheduled_at: "2010-10-01 12:00:00", created_at: "2010-10-01 12:00:00", user: "Stan"
-    When I go to path "/admin/weekly_time_report/2010-10-01"
+    When I go to path "/admin/unentered_time_report/2010-10-01"
     Then I should not see a link with text "Lee, Stan" within "Friday, October 01, 2010"

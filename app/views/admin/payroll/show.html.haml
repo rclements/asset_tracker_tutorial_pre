@@ -1,7 +1,7 @@
 .module-wrap
-  .module-gradient-container
+  .module-full-container
     .module
-      %h3= @user.to_s
+      %h2= @user.to_s
       %p= text_field_tag "autofill_all"
       - form_tag(admin_payroll_path, :method => 'put', :multipart => true) do
         = submit_tag 'Submit'

@@ -4,4 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
   helper_method :redirect_to_ref_url
+  
+  private
+  
+  def redirect_unless_monday(path_prefix, date)
+    @start_date = date ? Date.parse(date) : Date.today
+    unless @start_date.monday?
+      redirect_to(path_prefix + @start_date.beginning_of_week.strftime("%F"))
+    end
+  end
+  
 end

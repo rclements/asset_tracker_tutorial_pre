@@ -1,11 +1,11 @@
 .module-wrap
-  .module-gradient-container
+  .module-full-container
     .module
       #client
         = link_to '<< All Clients', clients_path
         %h1
           = @client.to_s
-          = button_to 'Edit'
+          = link_to 'Edit', edit_client_path(@client)
       %table
         %thead
           %tr
@@ -30,8 +30,6 @@
               %tr
                 %td= c.comment
         = render :partial => "clients/comment_form", :locals => { :commentable_id => @client.id, :commentable_field => "client_id", :commentable_type => "Client", :refurl => client_path(@client), :comment_num => @client.id }
-        %br
-        %br
         %h2 Files
         - @client.file_attachments.each do |file_attachment|
           = link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
