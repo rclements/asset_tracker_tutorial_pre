@@ -1,5 +1,5 @@
-!!! 5
-%html
+!!! Strict
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %title= 'Isotope11 Asset Tracker:' + yield(:title)
     %meta{"content" => "text/html;charset=UTF-8", "http-equiv" => "content-type"}
@@ -10,25 +10,24 @@
       = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     = csrf_meta_tag
     = yield :head
-
   %body
-    %header
-      .container
-        %h1{:role => "banner"}
+    #header
+      .wrapper
+        %h1
           %a{:href => "/"}
             %span Isotope Eleven
-      %nav
-        .container
-          = render :partial => "shared/menu"
-    .container
-      - if flash[:error]
-        %p#flash_error= flash[:error]
-      - if flash[:notice]
-        %p#flash_notice= flash[:notice]
-      %section
-        %article= yield
-      = (content_column_right = yield :content_column_right).empty? ? render(:partial => 'shared/sidebar') : content_column_right
-    %footer
-      .container
+      #nav
+        .wrapper= render :partial => "shared/menu"
+    #content
+      .wrapper
+        = render :partial => "shared/flashes"
+        .yui3-g
+          - if (content_column_right = yield :content_column_right).empty?
+            .yui3-u-1= yield
+          - else
+            .yui3-u-4-5= yield
+            .yui3-u-1-5= yield :content_column_right
+    #footer
+      .wrapper
         %p &copy; Isotope11 2010
-    .container= render :partial => "shared/javascripts"
+    = render :partial => "shared/javascripts"

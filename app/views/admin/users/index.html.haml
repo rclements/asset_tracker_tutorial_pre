@@ -1,28 +1,24 @@
-.module-wrap
-  .module-full-container
-    .module
-      %h1
-        All Users
-
-      = button_to "New User", new_admin_user_path, :method => :get
-      %table.users
-        %thead
+.gradient_border_wrap
+  .gradient_border_content
+    %h2 All Users
+    %table.users
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th Locked?
+          %th Roles
+          %th Edit
+      %tbody
+        - @users.each do |user|
           %tr
-            %th Name
-            %th Email
-            %th Locked?
-            %th Roles
-        %tbody
-          - @users.each do |user|
-            %tr
-              %td= link_to (user.first_name+ " " + user.last_name), admin_user_path(user)
-              %td= user.email
-              %td
-                - if user.locked_at?
-                  Locked
-              %td
+            %td= link_to user.to_s, admin_user_path(user)
+            %td= user.email
+            %td= user.locked_at? ? 'X' : '&nbsp;'.html_safe
+            %td
+              - unless user.roles.empty?
                 %ul
                   - user.roles.each do |role|
                     %li= role.name
-
-      = link_to "New User", new_admin_user_path, :class => "add_new_button"
+            %td= link_to 'Edit', edit_admin_user_path(user)
+    = button_to "New User", new_admin_user_path, :method => :get
