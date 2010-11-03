@@ -76,7 +76,12 @@ h2 {
   margin: 0 0 8px 5px;
   letter-spacing:.06em;
 }
-
+h3 {
+  margin: 5px 0 7px 0;
+  font-size:1.4em;
+  color:#384f62;
+  text-decoration:underline;
+}
 
 #header {
   @include linear-gradient(color-stops(#d5d5d5, #e4e4e4 90%, #d7d7d7 100%));
