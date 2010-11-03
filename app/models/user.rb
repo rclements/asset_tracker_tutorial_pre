@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :rememberable, :trackable, :validatable, :lockable
-
+  include Gravtastic
+  gravtastic
+  is_gravtastic!
   acts_as_authorization_subject :association_name => :roles
 
   # Setup accessible (or protected) attributes for your model
