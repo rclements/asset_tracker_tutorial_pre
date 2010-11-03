@@ -20,6 +20,10 @@ class WorkUnit < ActiveRecord::Base
     ticket.project.client
   end
 
+  def project
+    ticket.project
+  end
+
   def unpaid?
     paid.blank?
   end
@@ -34,6 +38,10 @@ class WorkUnit < ActiveRecord::Base
 
   def not_invoiced?
     invoiced.empty?
+  end
+
+  def to_s
+    description
   end
 
 end

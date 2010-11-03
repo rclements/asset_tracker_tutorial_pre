@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101029145059) do
+ActiveRecord::Schema.define(:version => 20101102145137) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20101029145059) do
     t.string   "paid"
     t.string   "invoiced"
     t.datetime "invoiced_at"
+    t.datetime "paid_at"
   end
 
 end

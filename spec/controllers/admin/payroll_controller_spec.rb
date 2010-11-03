@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Admin::PayrollsController do
+describe Admin::PayrollController do
 
 end

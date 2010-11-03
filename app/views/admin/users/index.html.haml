@@ -1,6 +1,6 @@
+%h2 All Users
 .gradient_border_wrap
   .gradient_border_content
-    %h2 All Users
     %table.users
       %thead
         %tr
@@ -21,4 +21,4 @@
                   - user.roles.each do |role|
                     %li= role.name
             %td= link_to 'Edit', edit_admin_user_path(user)
-    = button_to "New User", new_admin_user_path, :method => :get
+    = button_to "New User", new_admin_user_path, :class => "add_new_button", :method => :get

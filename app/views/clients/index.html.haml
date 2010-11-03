@@ -1,7 +1,6 @@
+%h2 All Clients
 .gradient_border_wrap
   .gradient_border_content
-    %h2 All Clients
-    = button_to "New Client", new_client_path, :method => :get
     %table.clients
       %thead
         %tr
@@ -20,5 +19,5 @@
             %td= client.tickets.count
             %td= client.status
             %td= link_to 'Edit', edit_client_path(client)
-            
+    = button_to "New Client", new_client_path, :method => :get, :class => "add_new_button"
 

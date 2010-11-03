@@ -1,14 +1,13 @@
-.module-wrap
-  .module-gradient-container
-    .module
-      #work_unit
-        .description= @work_unit.description
+.gradient_border_wrap
+  .gradient_border_content
+    #work_unit
+      .description= @work_unit.description
 
-        .links
-          = link_to "Back to ticket: #{@ticket}", project_ticket_path(@ticket.project, @ticket)
-          |
-          = link_to "Back to project: #{@ticket.project}", client_project_path(@ticket.project.client, @ticket.project)
-          |
-          = link_to "Back to client: #{@ticket.project.client}", client_path(@ticket.project.client)
+      .links
+        = link_to "Back to ticket: #{@ticket}", project_ticket_path(@ticket.project, @ticket)
+        |
+        = link_to "Back to project: #{@ticket.project}", client_project_path(@ticket.project.client, @ticket.project)
+        |
+        = link_to "Back to client: #{@ticket.project.client}", client_path(@ticket.project.client)
 
-    
+  

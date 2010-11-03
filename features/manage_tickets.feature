@@ -9,9 +9,7 @@ Feature: Manage tickets
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket exists with project: project "test project", name: "test ticket"
     When I am on the project's tickets page
-    Then I should see the following tickets:
-      |Name|
-      |test ticket|
+    Then I should see "test ticket"
 
   Scenario: View a ticket
     Given I am an authenticated user
