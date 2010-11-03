@@ -8,10 +8,7 @@ Feature: User Administration
       | first_name | last_name | middle_initial | email             | password  | role  |
       | admin      | mcadmin   | a              | admin@example.com | secret    | admin |
     When I go to the admin users page
-    Then I should see the following users:
-      | Name          | Email             | Locked? | Roles |
-      | Nick Fine     | testing@man.net   |         | admin |
-      | admin mcadmin | admin@example.com |         | admin |
+    Then I should see "admin a mcadmin"
 
   Scenario: List users (non-admin role)
     Given I am an authenticated user
