@@ -28,9 +28,7 @@
                 - @work_units.each do |wu|
                   - if wu.ticket == ticket
                     %tr
-                      %td
-                        %pre
-                          = wu.description
+                      %td= wu.description.gsub(/\n/,"<br>&nbsp;&nbsp;").html_safe
                       %td= wu.user.first_name
                       %td= wu.scheduled_at.strftime("%F")
                       %td= wu.hours
