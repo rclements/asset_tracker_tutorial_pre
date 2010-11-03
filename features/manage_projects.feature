@@ -8,9 +8,7 @@ Feature: Manage projects
     Given a client "test client" exists
     And a project exists with name: "test project", client: client "test client"
     When I am on the client's projects page
-    Then I should see the following projects:
-      |Name|
-      |test project|
+    Then I should see "test project"
 
   Scenario: View a project
     Given I am an authenticated user
@@ -43,16 +41,3 @@ Feature: Manage projects
     Given I am on the client's new project page
     Then I should see a link with text "Cancel" within ".actions"
 
-#  Scenario: Delete project
-#    Given the following projects:
-#      |name|
-#      |name 1|
-#      |name 2|
-#      |name 3|
-#      |name 4|
-#    When I delete the 3rd project
-#    Then I should see the following projects:
-#      |Name|
-#      |name 1|
-#      |name 2|
-#      |name 4|
