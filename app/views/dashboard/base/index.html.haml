@@ -1,24 +1,19 @@
-- content_for :content_column_right do
-  %aside
-    .module-gradient-container
-      .module
-        %p ASIDE 
-        .clear
-.module-wrap
-  .module-full-container
-    .module
-      = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => current_user }
-.module-wrap.half
-  .module-gradient-container
-    .module
-      = render :partial => 'shared/recent_work'
-  .module-gradient-container.omega
-    .module
-      = render :partial => 'shared/add_work_unit'
-
+/ this is for the modal message
 - if @show_message == "true"
   #message{:title => @title, :style => "display: none;"}
     %p= @message
 
-- content_for :javascripts do
-  = javascript_include_tag "dashboard"
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => current_user }
+.yui3-g
+  .yui3-u-1-2
+    .gradient_border_wrap
+      .gradient_border_content
+        = render :partial => 'shared/recent_work'
+  .yui3-u-1-2
+    .gradient_border_wrap
+      .gradient_border_content
+        = render :partial => 'shared/add_work_unit'
