@@ -1,4 +1,4 @@
-= form_for(@client) do |f|
+= form_for(@client) do |f| 
   - if @client.errors.any?
     #error_explanation
       %h2
@@ -11,17 +11,14 @@
 
   .field
     = f.label :name
-    %br
     = f.text_field :name
   .field
     = f.label :initials
-    %br
     = f.text_field :initials
   .field
     = f.label :status
-    %br
     = f.select :status, client_status_select(@client.status)
   .actions
-    = f.submit
-    or
-    = link_to "Cancel", clients_path
+    = f.submit :class => "add_new_button"
+    = link_to "Cancel", clients_path, :class => "cancel_button"
+  .clear  

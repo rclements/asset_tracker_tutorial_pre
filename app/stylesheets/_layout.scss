@@ -50,8 +50,18 @@ body {
     background:#eee;
     margin: 5px;
     padding: 10px 5px 10px 5px;
+    p {
+      font-size:1.1em;
+      }
+    ul {
+      font-size:1.1em;
+      li {
+        padding: 0 0 8px 0;  
+        }
+      }
+    }
   }
-}
+
 
 a {
   color:#45676f;
@@ -117,14 +127,15 @@ h2 {
 
 
 #footer {
-  margin-top: 10px;
+  margin-top: 15px;
   .wrapper {
     border-top: 1px solid #4b6378;
-    width:974px;
+    width:966px;
     p {
      color:#4b6378;
      float:right;
-     font-size:1em;
+     font-size:1.2em;
+     padding: 6px 0 0 0;
     }
   }
 }
@@ -179,16 +190,88 @@ h2 {
     } 
   }
 }
-
-a.add_new_button {
+.new_user .add_new_button {
+  float:right;
+  margin: 5px 10px 0 10px;   
+}
+.add_new_button {
   background:#72939c;
   padding: 3px 5px 3px 5px;
   color:#fff;
   border:1px solid #9eabb2;
   text-decoration:none;
+  font-size:1.1em;
   &:hover {
     background:#5b686f;
     color:#ccc;
+  }
+}
+.cancel_button {
+  background:#694e4e;
+  padding: 4px 5px 4px 5px;
+  color:#fff;
+  border:1px solid #9eabb2;
+  text-decoration:none;
+  font-size:1.1em;
+  float:right;
+  margin: 5px 0 0 0;
+  &:hover {
+    background:#462626;
+    color:#ccc;
+  }
+}
+.new_user {
+  width:400px;
+  label {
+    float:left;
+    width:150px;
+    margin: 0 20px 7px 0;
+    font-size:1.1em;  
+    text-align:right;
+  }
+  input {
+    margin: 0 0 7px 0;
+  } 
+}
+
+.edit_user {
+  width:400px;
+  label {
+    float:left;
+    width:150px;
+    margin: 0 20px 7px 0;
+    font-size:1.1em;  
+    text-align:right;
+  }
+  .add_new_button {
+    float:right; 
+    margin: 5px 10px 0 10px;
+  }
+  input {
+    margin: 0 0 7px 0;
+  } 
+}
+
+
+
+#new_client {
+  width:350px;
+  label {
+    width:100px;
+    float:left;
+    margin: 0 20px 7px 0;
+    font-size:1.1em;
+    text-align:right;    
+  }
+  input {
+    margin: 0 0 7px 0;
+  }
+  .add_new_button {
+    float:right;
+    margin: 5px 10px 0 10px;
+  }
+  .actions {
+    margin: 10px 0 0 0;
   }
 }
 

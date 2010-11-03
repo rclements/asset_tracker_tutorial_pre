@@ -1,7 +1,7 @@
 %h2 Edit Page for User
 .gradient_border_wrap
   .gradient_border_content
-    = form_for @user, :url => admin_user_path(@user) do |f|
+    = form_for @user, :class => "new_user", :url => admin_user_path(@user) do |f|
       = f.label :first_name
       = f.text_field :first_name
       %br/
@@ -23,4 +23,7 @@
       = f.label :locked
       = f.check_box :locked
       %br/
-      = f.submit 'Update'
+      = f.submit 'Update', :class => 'add_new_button'
+      = link_to 'Cancel', admin_users_path, :class => 'cancel_button' 
+
+    .clear  
