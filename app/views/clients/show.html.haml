@@ -18,11 +18,9 @@
               %td= link_to project, client_project_path(@client, project)
               %td= link_to project.tickets.count, client_project_path(@client, project)
               %td= project.tickets.inject(0) {|sum, ticket| sum + ticket.work_units.inject(0) {|sum, work_unit| sum + work_unit.hours}}
-      %h3 Comments
-      %ul
-        - @client.comments.each do |c|
-          %li= c.comment
-      = render :partial => "clients/comment_form", :locals => { :commentable_id => @client.id, :commentable_field => "client_id", :commentable_type => "Client", :refurl => client_path(@client), :comment_num => @client.id }
+
+      = render :partial => "comments/comments", :locals => {:comments => @client.comments}
+      = render :partial => "comments/comment_form", :locals => { :commentable_id => @client.id, :commentable_field => "client_id", :commentable_type => "Client", :refurl => client_path(@client), :comment_num => @client.id }
 
       %h3 Files
       %ul

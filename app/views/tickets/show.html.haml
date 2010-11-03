@@ -14,18 +14,13 @@
           = link_to "Back to client: #{@project.client}", client_path(@project.client)
         %br
 
-        %table
-          %thead
-            %tr
-              %th Comments
-          %tbody
-            - @ticket.comments.each do |c|
-              %tr
-                %td= c.comment
-        = render :partial => "tickets/comment_form", :locals => { :commentable_id => @ticket.id, :commentable_field => "ticket_id", :commentable_type => "Ticket", :refurl => project_ticket_path(@ticket), :comment_num => @ticket.id }
-        %h2 Files
-        - @ticket.file_attachments.each do |file_attachment|
-          = link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
+        = render :partial => "comments/comments", :locals => {:comments => @ticket.comments}
+        = render :partial => "comments/comment_form", :locals => { :commentable_id => @ticket.id, :commentable_field => "ticket_id", :commentable_type => "Ticket", :refurl => project_ticket_path(@ticket), :comment_num => @ticket.id }
+
+        %h3 Files
+        %ul
+          - @ticket.file_attachments.each do |file_attachment|
+            %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
         = link_to "Add File Attachment", new_file_attachment_path( :ticket_id => @ticket.id )
 
 
