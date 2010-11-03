@@ -16,28 +16,15 @@ class Dashboard::BaseController < ApplicationController
   def load_work_units
     load_work_unit_bucket
     @clients = Client.all
-
     @projects ||= []
     @tickets ||= []
-    zone = Time.zone
-    now  = zone.now
-
     if params[:date].present?
-      @beg_date =  zone.parse( params[:date] ).at_beginning_of_week
-      @end_date =  [ Time.zone.now, zone.parse( params[:date] ).at_end_of_week ].min
+      @start_date = Date.parse(params[:date]).beginning_of_week
     else
-      @beg_date = now.beginning_of_week
-      @end_date = [ Time.zone.now, now.end_of_day].min
+      @start_date = Date.today.beginning_of_week
     end
-
-    @work_units = @work_unit_bucket.scheduled_between(@beg_date.beginning_of_day, @end_date.end_of_day).order('scheduled_at DESC')
-    @days       = @beg_date.to_date..@end_date.to_date
-
-    #TODO Helper(s)
-    @range      = "#{@beg_date.strftime("%m/%d/%Y")} to #{@end_date.strftime("%m/%d/%Y")} (#{@work_units.count}, #{@work_units.sum(:hours)})"
-
-    @prev_date = (@beg_date.beginning_of_week - 1.week).strftime("%F")
-    @next_date = (@end_date.beginning_of_week + 1.week).strftime("%F")
+    @work_units = @work_unit_bucket.scheduled_between(@start_date.beginning_of_day, 
+                          (@start_date + 6.days).end_of_day).order('scheduled_at DESC')
   end
 
   public
@@ -48,7 +35,6 @@ class Dashboard::BaseController < ApplicationController
 
     @projects ||= []
     @tickets  ||= []
-    @start_date = Date.today.beginning_of_week
   end
 
   def client
