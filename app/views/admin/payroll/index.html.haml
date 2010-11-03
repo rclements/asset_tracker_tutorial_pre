@@ -1,7 +1,6 @@
-.module-wrap
-  .module-full-container
-    .module
-      %h2 Users with unpayed work units:
-      %ul
-        - @users.each do |user|
-          %li= link_to "#{user.last_name}, #{user.first_name}", admin_payroll_path(user)
+%h2 Users with unpayed work units:
+.gradient_border_wrap
+  .gradient_border_content
+    %ul
+      - @users.each do |user|
+        %li= link_to "#{user.last_name}, #{user.first_name}", admin_payroll_path(user)
