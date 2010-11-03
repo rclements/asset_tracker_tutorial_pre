@@ -18,13 +18,23 @@
   clear:both;
 }
 
-/* --- Site Styles ---*/
-
 html {
   height:100%;
+  background: #1a3247;
+  //-webkit-font-smoothing: antialiased;
+}
+
+body {
+  height:100%;
+  background: #1a3247 no-repeat;
   @include linear-gradient(color-stops(#3f5365, #1a3247));
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+}
+
+/*--- Site Styles ---*/
+
+
+.yui3-u-1-2 {
+  float:left;
 }
 
 .wrapper {
@@ -39,7 +49,7 @@ html {
   .gradient_border_content {
     background:#eee;
     margin: 5px;
-    padding: 5px;
+    padding: 10px 5px 10px 5px;
   }
 }
 
@@ -50,6 +60,13 @@ a {
     color:#6f8f98;
   }
 }
+h2 {
+  font-size:2.2em;
+  color:#97afb5;
+  margin: 0 0 8px 5px;
+  letter-spacing:.06em;
+}
+
 
 #header {
   @include linear-gradient(color-stops(#d5d5d5, #e4e4e4 90%, #d7d7d7 100%));
@@ -72,18 +89,21 @@ a {
     height:54px;
     border-bottom:1px solid #839ca2;
     ul {
+      margin:0;
       li {
         list-style-type: none;
         display: inline;
+        font-size:1.1em;
+        padding: 0 10px 0 10px;
         a {
           color:#fff;
           text-decoration: none;
           text-align: center;
           display: inline-block;
           letter-spacing:.1em; 
-          height:35px;
+          height:32px;
           width:100px;
-          padding:16px 0 0 0;
+          padding:19px 0 0 0;
           &:hover {
             color:#37526b;
             border-bottom:4px solid #34545c;
@@ -95,11 +115,12 @@ a {
   }
 }
 
+
 #footer {
   margin-top: 10px;
   .wrapper {
     border-top: 1px solid #4b6378;
-    width:59em;
+    width:974px;
     p {
      color:#4b6378;
      float:right;
@@ -123,56 +144,18 @@ a {
   textarea {
     width:180px;
     float:right;
-  }
-}
-
-#calendar {
-  height:auto;
-  p {
-    margin: 0 0 6px 0;
-  }
-  table {
-    tr.date {
-      @include linear-gradient(color-stops(#9da6a8, #acbabd));
-      td {
-        border-right:1px solid #e2e2e2;
-        color:#f2f1f1;
-        padding:5px 0 3px 10px;
-      }
-    }
-    tr.client-list { 
-      @include linear-gradient(color-stops(#fff, #f7f7f7));
-      td.outstanding {
-        font-size:.9em;
-      }
-      td {
-        border-right:1px solid #e2e2e2;
-        border-bottom:1px solid #e2e2e2;
-        color:#707070;
-        padding: 5px 5px 5px 10px;
-          ul {
-            list-style:none;
-        }
-      }
-    }
-    tr.total {
-      color:#707070;
-      padding: 0 0 0 10px;
-      font-size:.9em;
-      td {
-        border-right:1px solid #e2e2e2;
-        border-bottom:1px solid #e2e2e2;
-        }
-      }
     }
   }
 }
 
 #calendar table {
   border: 1px solid #ccc;
+  width:100%;
+  font-size:1.1em;
+  margin: 0;
   td {
     border: 1px solid #ccc;
-    padding: 5px 5px 5px 10px;
+    padding: 9px 5px 9px 10px;
   }
   th {
     border: 1px solid #ccc; 
@@ -183,10 +166,10 @@ a {
     @include linear-gradient(color-stops(#9fa8aa, #acbabd));
   }
   tbody {
-    @include linear-gradient(color-stops(#fff, #f7f7f7));
+    @include linear-gradient(color-stops(#fff, #ececec));
   }
   .calendar_foot {
-    @include linear-gradient(color-stops(#f7f7f7, #acbabd));
+    @include linear-gradient(color-stops(#f7f7f7, #fff));
   }
   a {
     color:#45676f;
@@ -210,13 +193,27 @@ a.add_new_button {
 }
 
 table {
+  font-size:1.1em;
   border:1px solid #ccc;
+  margin: 10px 0 10px 0;
+  pre {
+    width:100px;
+    
+  }
   thead th {
     border:1px solid #ccc;
+    padding: 9px 5px 9px 10px;
   }
   td {
     border:1px solid #ccc;
-  } 
+    padding: 9px 10px 9px 10px;
+    ul {
+      margin:0; 
+      li {
+        list-style:none;
+      }
+    }
+  }
 }
 
 ul {
@@ -224,4 +221,8 @@ ul {
   li {
     list-style: disc;
   }
+}
+
+.clear {
+  clear:both;
 }

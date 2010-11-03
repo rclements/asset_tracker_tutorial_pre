@@ -1,7 +1,6 @@
-.module-wrap
-  .module-full-container
-    .module
-      %h2 Users with uninvoiced work units:
-      %ul
-        - @clients.each do |client|
-          %li= link_to client.name, admin_invoice_path(client)
+%h2 Users with uninvoiced work units:
+.gradient_border_wrap
+  .gradient_border_content
+    %ul
+      - @clients.each do |client|
+        %li= link_to client.name, admin_invoice_path(client)
