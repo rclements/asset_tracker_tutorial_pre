@@ -17,9 +17,8 @@ Feature: Manage projects
     Given a client "test client" exists with name: "test client"
     And a project exists with name: "test project", client: client "test client"
     When I am on the client's project's page
-    Then I should see a link with text "Tickets" within "#project .links"
-    Then I should see a link with text "Back to client: test client" within "#project .links"
-    Then I should see a link with text "Edit" within "#project .links"
+    Then I should see a link with text "Back to client: test client"
+    Then I should see a link with text "Edit"
 
   Scenario: Edit a project
     Given I am an authenticated user
