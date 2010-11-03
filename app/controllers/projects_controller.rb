@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :load_client
   before_filter :load_new_project, :only => [:new, :create]
   before_filter :load_project, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_file_attachments, :only => [:show, :new, :create]
 
   protected
   def load_client
@@ -17,6 +18,10 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+  def load_file_attachments
+    @file_attachments = @project.file_attachments
+  end
+  
   public
   def index
     @projects = @client.projects

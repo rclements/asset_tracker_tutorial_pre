@@ -2,7 +2,8 @@ class WorkUnitsController < ApplicationController
   before_filter :load_ticket
   before_filter :load_new_work_unit, :only => [:new, :create]
   before_filter :load_work_unit, :only => [:show, :edit, :update, :destroy]
-
+  before_filter :load_file_attachments, :only => [:show, :new, :create]
+  
   protected
   def load_ticket
     @ticket = Ticket.find(params[:ticket_id])
@@ -19,6 +20,10 @@ class WorkUnitsController < ApplicationController
     @work_unit = WorkUnit.find(params[:id])
   end
 
+  def load_file_attachments
+    @file_attachments = @work_unit.file_attachments
+  end
+  
   public
   def index
     @work_units = @ticket.work_units
