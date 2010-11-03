@@ -26,4 +26,9 @@ class UsersController < ApplicationController
       render :action => "edit"
     end
   end
+
+  def historical_time
+    @user = User.find(params[:id])
+  end
+
 end
