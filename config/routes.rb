@@ -39,6 +39,7 @@ AssetTrackerTutorial::Application.routes.draw do
   resources :users do
     member do
       put :change_password
+      get :historical_time
     end
   end
 

@@ -1,6 +1,7 @@
 class ClientsController < ApplicationController
   before_filter :load_new_client, :only => [:new, :create]
   before_filter :load_client, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_file_attachments, :only => [:show, :new, :create]
 
   protected
   def load_new_client
@@ -9,6 +10,10 @@ class ClientsController < ApplicationController
 
   def load_client
     @client = Client.find(params[:id])
+  end
+  
+  def load_file_attachments
+    @file_attachments = @client.file_attachments
   end
 
   public
