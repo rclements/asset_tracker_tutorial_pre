@@ -1,0 +1,12 @@
+.gradient_border_wrap
+  .gradient_border_content
+    %h1
+      = @user.first_name
+      = @user.last_name
+    %h1
+      = @user.email
+    = link_to 'Edit', edit_user_path(@user)
+    %h2
+      - if @user.locked_at?
+        User is locked.
+    = render :partial => 'shared/calendar', :locals => { :start_date => Date.today.beginning_of_week, :user => current_user }

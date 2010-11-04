@@ -1,16 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :load_user
+  before_filter :load_user, :only => [:show, :edit, :historical_time]
 
-  protected
-  def load_user
-    if current_user.has_role?("Admin")
-      @user = User.find params[:id]
-    else
-      @user = current_user
-    end
+  def index
+    @users = User.unlocked
   end
 
-  public
+  def show
+  end
+
   def edit
   end
 
@@ -30,5 +27,15 @@ class UsersController < ApplicationController
   def historical_time
     @user = User.find(params[:id])
   end
+
+  protected
+
+    def load_user
+      if current_user.has_role?("Admin")
+        @user = User.find params[:id]
+      else
+        @user = current_user
+      end
+    end
 
 end
