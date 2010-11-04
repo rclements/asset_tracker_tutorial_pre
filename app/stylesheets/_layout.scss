@@ -171,7 +171,16 @@ h4.dashboard_title {
     }
   }
 }
-
+.new_work_unit .add_new_button{
+  margin: 0 0 0 150px;
+}
+.work_unit_field label {
+  width:100px;
+  float:left;
+}
+.work_unit_field {
+  margin: 0 0 10px 0;
+}
 #calendar table {
   border: 1px solid #ccc;
   width:100%;
