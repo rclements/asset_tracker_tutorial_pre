@@ -9,8 +9,9 @@ class Dashboard::BaseController < ApplicationController
       @start_date = Date.today.beginning_of_week
     end
 
-    if current_user.work_units_for_day(Date.today.prev_working_day).empty?
-      show_message("Management", "You have not entered any time for yesterday. Please Enter it immediatly!")
+    if current_user.work_units_for_day(Date.today.prev_working_day).empty? && !Rails.env.test?
+      @message = {:title =>"Management", 
+        :body => "You have not entered any time for the previous working day. Please Enter it immediatly!"}
     end
 
     @clients = Client.all
@@ -27,13 +28,6 @@ class Dashboard::BaseController < ApplicationController
   def project
     @tickets = Ticket.find(:all, :conditions => ['project_id = ?', params[:id]])
     respond_with @tickets
-  end
-
-  protected
-  def show_message(title, message)
-    @show_message = "true" unless Rails.env.test?
-    @title = title
-    @message = message
   end
 
 end
