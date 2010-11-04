@@ -2,17 +2,23 @@ class WorkUnitsController < ApplicationController
   before_filter :load_ticket
   before_filter :load_new_work_unit, :only => [:new, :create]
   before_filter :load_work_unit, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_file_attachments, :only => [:show, :new, :create]
   
   protected
   def load_ticket
-    @ticket = Ticket.find(params[:ticket_id])
+    if params[:ticket_id]
+      @ticket = Ticket.find(params[:ticket_id])
+    elsif
+      @ticket = Ticket.find(params[:work_unit][:ticket_id])
+    end
   end
 
   def load_new_work_unit
-    @work_unit = WorkUnit.new(params[:work_unit])
-    @work_unit.ticket = @ticket
+    _params = (params[:work_unit] || {}).dup
+    _params.delete :client_id
+    _params.delete :project_id
+    @work_unit = WorkUnit.new(_params)
     @work_unit.user = current_user
+    @work_unit.ticket = @ticket
     @work_unit.scheduled_at ||= Time.zone.now
   end
 
@@ -20,10 +26,6 @@ class WorkUnitsController < ApplicationController
     @work_unit = WorkUnit.find(params[:id])
   end
 
-  def load_file_attachments
-    @file_attachments = @work_unit.file_attachments
-  end
-  
   public
   def index
     @work_units = @ticket.work_units
@@ -34,11 +36,17 @@ class WorkUnitsController < ApplicationController
 
   def create
     if @work_unit.save
-      flash[:notice] = "WorkUnit created successfully."
-      redirect_to ticket_work_unit_path(@ticket, @work_unit)
+      if request.xhr?
+        render :json => "{\"success\": true}", :layout => false, :status => 200 and return
+      end
+      flash[:notice] = "Work Unit was created successfully."
+      redirect_to dashboard_path and return
     else
-      flash.now[:error] = "There was a problem saving the work_unit."
-      render :action => 'new'
+      if request.xhr?
+        render :json => @work_unit.errors.full_messages.to_json, :layout => false, :status => 406 and return
+      end
+      flash.now[:error] = "There was a problem creating the work unit"
+      render :action => :index and return
     end
   end
 
