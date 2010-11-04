@@ -19,7 +19,7 @@
           %tbody
             - @work_units.each do |wu|
               - if wu.ticket.project.client == client
-                %tr
+                %tr{ :class => cycle("odd", "even") }
                   %td= wu.description
                   %td= wu.created_at.strftime("%Y/%m/%d")
                   %td= wu.hours
