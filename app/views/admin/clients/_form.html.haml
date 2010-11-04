@@ -4,11 +4,9 @@
       %h2
         = pluralize(@client.errors.count, "error")
         prohibited this client from being saved:
-
       %ul
       - @client.errors.full_messages.each do |msg|
         %li= msg
-
   .field
     = f.label :name
     = f.text_field :name
@@ -21,4 +19,4 @@
   .actions
     = f.submit :class => "add_new_button"
     = link_to "Cancel", clients_path, :class => "cancel_button"
-  .clear  
+  .clear
