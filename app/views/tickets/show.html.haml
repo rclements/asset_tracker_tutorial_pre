@@ -1,26 +1,23 @@
-.module-wrap
-  .module-gradient-container
-    .module
-      #ticket
-        %h2= @ticket.to_s
+%h2= @ticket.to_s
+.gradient_border_wrap
+  .gradient_border_content
+    .links
+      = link_to "Edit", edit_project_ticket_path(@project, @ticket)
+      |
+      = link_to "Work Units", ticket_work_units_path(@ticket)
+      |
+      = link_to "Back to project: #{@project}", client_project_path(@project.client, @project)
+      |
+      = link_to "Back to client: #{@project.client}", client_path(@project.client)
+    %br
 
-        .links
-          = link_to "Edit", edit_project_ticket_path(@project, @ticket)
-          |
-          = link_to "Work Units", ticket_work_units_path(@ticket)
-          |
-          = link_to "Back to project: #{@project}", client_project_path(@project.client, @project)
-          |
-          = link_to "Back to client: #{@project.client}", client_path(@project.client)
-        %br
+    = render :partial => "comments/comments", :locals => {:comments => @ticket.comments}
+    = render :partial => "comments/comment_form", :locals => { :commentable_id => @ticket.id, :commentable_field => "ticket_id", :commentable_type => "Ticket", :refurl => project_ticket_path(@ticket), :comment_num => @ticket.id }
 
-        = render :partial => "comments/comments", :locals => {:comments => @ticket.comments}
-        = render :partial => "comments/comment_form", :locals => { :commentable_id => @ticket.id, :commentable_field => "ticket_id", :commentable_type => "Ticket", :refurl => project_ticket_path(@ticket), :comment_num => @ticket.id }
-
-        %h3 Files
-        %ul
-          - @ticket.file_attachments.each do |file_attachment|
-            %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
-        = link_to "Add File Attachment", new_file_attachment_path( :ticket_id => @ticket.id )
+    %h3 Files
+    %ul
+      - @ticket.file_attachments.each do |file_attachment|
+        %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
+    = link_to "Add File Attachment", new_file_attachment_path( :ticket_id => @ticket.id )
 
 
