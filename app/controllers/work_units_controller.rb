@@ -1,9 +1,9 @@
 class WorkUnitsController < ApplicationController
   before_filter :load_ticket
   before_filter :load_new_work_unit, :only => [:new, :create]
-  before_filter :load_work_unit, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_work_unit, :only => [:show, :edit, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
-  
+
   protected
   def load_ticket
     @ticket = Ticket.find(params[:ticket_id])
@@ -23,7 +23,7 @@ class WorkUnitsController < ApplicationController
   def load_file_attachments
     @file_attachments = @work_unit.file_attachments
   end
-  
+
   public
   def index
     @work_units = @ticket.work_units
@@ -46,16 +46,6 @@ class WorkUnitsController < ApplicationController
     @client = @work_unit.client
     @project = @work_unit.project
     @ticket = @work_unit.ticket
-  end
-
-  def destroy
-    if @work_unit.destroy
-      flash[:notice] = "WorkUnit destroyed successfully."
-      redirect_to ticket_work_units_path(@ticket)
-    else
-      flash.now[:error] = "There was a problem destroying the work_unit."
-      redirect_to ticket_work_unit_path(@work_unit, @ticket)
-    end
   end
 
   def edit
