@@ -1,7 +1,8 @@
 - content_for :javascripts do
   = javascript_include_tag "recent_work"
 #recent-work
-  %h3= "#{@start_date} to #{@start_date + 6.days}"
+  %h4.dashboard_title
+    = "#{@start_date} to #{@start_date + 6.days}"
   .accordion
     - (0..[6, (Date.today - @start_date).to_i].min).map{ |x| @start_date + x.days }.reverse.each do |header_date|
       %h4= link_to header_date.strftime("%A, %B %d, %Y"), '#'

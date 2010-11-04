@@ -1,5 +1,5 @@
 #add-work-unit
-  %h2 Add Work Unit
+  %h4.dashboard_title Add Work Unit
 
   = form_for [:dashboard, WorkUnit.new(params[:work_unit])] do |f|
 
@@ -8,36 +8,37 @@
 
     #schedule_modal
       %p It is best to enter work units on days you completed the work, please use this wisely.
-      %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
+      %span 
+        Scheduled On:
       = text_field_tag :scheduled_at, Time.current.strftime("%m/%d/%Y")
       %br
       = link_to "Set Date", '#', :class => 'close_schedule_modal'
 
     %br
 
-    %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_client_id"} Client:
+    %label{:for => "work_unit_client_id"} Client:
     = collection_select("work_unit", "client_id", @clients, "id", "name", { :prompt => "Select a client" })
     %br
 
     - if @projects
-      %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_project_id"} Project:
+      %label{:for => "work_unit_project_id"} Project:
       = collection_select("work_unit", "project_id", @projects, "id", "name", { :prompt => "Select a project" })
       %br
 
     - if @tickets
-      %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_ticket_id"} Ticket:
+      %label{:for => "work_unit_ticket_id"} Ticket:
       = collection_select("work_unit", "ticket_id", @tickets, "id", "name", { :prompt => "Select a ticket" })
       %br
 
-    %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_hours"} Hours:
+    %label{:for => "work_unit_hours"} Hours:
     = f.text_field :hours, { :size => 10 }
     %br
 
-    %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_description"} Description:
+    %label{:for => "work_unit_description"} Description:
     = f.text_area :description, { :rows => 10, :style => "resize: none;"}
     %br
 
-    %span{:style => "display: inline-block; width: 110px;"}
+    %span
     = f.check_box "overtime"
     = f.label "overtime"
     = f.hidden_field :scheduled_at

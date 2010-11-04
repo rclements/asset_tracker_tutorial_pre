@@ -6,9 +6,10 @@
       %input{:type => "text", :id => "global_invoiced"}
     %div
       -form_tag(admin_invoice_path, :method => 'put', :multipart => true) do
-        = submit_tag 'Submit'
+        = submit_tag 'Submit', :class => 'invoice_submit'
+        .clear
         - @tickets.each do |ticket|
-          %table
+          %table.invoice
             %thead
               %tr
                 %td{:colspan => "3"}= ticket.long_name
@@ -18,11 +19,11 @@
                   %input{:type => "text", :id => "ticket_invoiced_#{ticket.id}", :class => "ticket_invoiced"}
               %tr
                 %th Description
-                %th Assigned To
-                %th Scheduled On
-                %th Hours
-                %th Overtime?
-                %th Invoice
+                %th.assigned_to Assigned To
+                %th.scheduled_on Scheduled On
+                %th.hours Hours
+                %th.overtime O/T
+                %th.invoice_th Invoice
             %tbody
               - @work_units.each do |wu|
                 - if wu.ticket == ticket
@@ -39,8 +40,8 @@
                       = text_field_tag "work_units[#{wu.id}][invoiced_at]", Time.now.strftime("%F"), :class => "datepicker"
             %tfoot
               %tr
-                %td{:colspan => "3"} Totals
-                %td{:colspan => "3"}= ticket.sum_of_hours_not_invoiced
+                %td.totals{:colspan => "3"} Totals
+                %td.totals{:colspan => "3"}= ticket.sum_of_hours_not_invoiced
               %tr
                 %td{:colspan => "6"}
                   - find_and_preserve do

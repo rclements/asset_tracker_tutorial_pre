@@ -75,13 +75,13 @@ a {
   }
 }
 h2 {
-  font-size:2.2em;
+  font-size:2em;
   color:#97afb5;
-  margin: 0 0 8px 5px;
+  margin: 0 0 10px 7px;
   letter-spacing:.06em;
 }
 h3 {
-  margin: 5px 0 7px 0;
+  margin: 5px 0 9px 0;
   font-size:1.5em;
   color:#384f62;
   text-decoration:underline;
@@ -148,9 +148,17 @@ h3 {
     }
   }
 }
+h4.dashboard_title {
+  font-size:1.4em;
+  margin: 0 0 10px 10px;
+}
 
+#work_unit_description {
+  width:200px;
+  height:100px;
+}
 #new_work_unit {
-  padding:10px 0 0 15px;
+  padding:0 0 0 10px;
   span {
     width:120px;
     float:left;
@@ -160,10 +168,6 @@ h3 {
   input {
     width:100px;
     float:right;  
-  }
-  textarea {
-    width:180px;
-    float:right;
     }
   }
 }
@@ -281,8 +285,84 @@ h3 {
     margin: 10px 0 0 0;
   }
 }
+table.invoice {
+  width:100%;
+  th {
+    font-weight:bold;
+  }
+  th.invoice_th {
+    width:170px;
+  }
+  th.overtime {
+    width:35px;
+  }
+  th.hours {
+    width:40px;
+  }
+  th.scheduled_on {
+    width:100px;
+  }
+  th.assigned_to {
+    width:100px;
+  }
+  .payroll_check {
+    width:105px;
+  }
+  td.totals {
+    padding: 10px 0 10px 10px;
+    font-weight:bold;
+    background:#a4abae;
+  }
+}
+div.autofill input{
+  width:60px;
+  float:right;
+  margin: 0 15px 0 0;
+}
+.invoice_submit {
+  float:right;
+  background:#72939c;
+  padding: 0px 5px 0px 5px;
+  color:#fff;
+  border:1px solid #9eabb2;
+  text-decoration:none;
+  font-size:1.1em;
+  margin: 0 10px 0 0;
+  &:hover {
+    background:#5b686f;
+    color:#ccc;
+  } 
+}
+#global_invoiced {
+  float:right;
+  width:60px;
+  margin: 0 10px 0 0;
+}
+#autofill_client_1 {
+  float:right;
+  width:60px;
+  margin: 0 10px 0 0;
+}
+.autofill_client_1 {
+  float:right;
+  width:60px;
+  margin: 0 10px 0 0;
+}
+.ticket_invoiced {
+  width:60px;
+  float:right;
+}
+.ticket_invoiced_1 {
+  width:60px;
+  float:right;
+}
+.hasDatepicker {
+  width:85px;
+  float:left;
+}
 
 table {
+  
   font-size:1.1em;
   border:1px solid #ccc;
   margin: 10px 0 10px 0;
