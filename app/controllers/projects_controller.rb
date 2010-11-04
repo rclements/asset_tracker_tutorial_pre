@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :load_client
   before_filter :load_new_project, :only => [:new, :create]
-  before_filter :load_project, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_project, :only => [:show, :edit, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
 
   protected
@@ -21,7 +21,7 @@ class ProjectsController < ApplicationController
   def load_file_attachments
     @file_attachments = @project.file_attachments
   end
-  
+
   public
   def index
     @projects = @client.projects
@@ -56,12 +56,4 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def destroy
-    if @project.destroy
-      flash[:notice] = "Project was destroyed"
-    else
-      flash[:error] = "There was a problem destroying that project."
-    end
-    redirect_to client_projects_path(@client)
-  end
 end
