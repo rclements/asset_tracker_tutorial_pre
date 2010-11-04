@@ -1,7 +1,6 @@
 %ul
   %li= link_to "Home", root_path
   %li= link_to "Clients", clients_path
-  %li= link_to "Work Units", dashboard_work_units_path
   - if user_signed_in?
     - if current_user.has_role?("admin")
       %li= link_to "Users", admin_users_path
