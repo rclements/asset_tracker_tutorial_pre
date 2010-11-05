@@ -1,8 +1,10 @@
-.module-wrap
-  .module-gradient-container
-    .module
-      %h1= "Edit Work Unit ##{@work_unit.id}"
+.yui3-g
+  .yui3-u-1
+    %h2= "#{@work_unit.ticket.project.client}: #{@work_unit.ticket.project} - #{@work_unit.ticket}"
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        %h3= "Work Unit #{@work_unit.id}"
+        = render 'form'
 
-      = render 'form'
-
-      = link_to 'Back', ticket_work_units_path(@ticket)

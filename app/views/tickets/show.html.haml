@@ -1,16 +1,14 @@
 .yui3-g
   .yui3-u-1
-    %h2= @ticket.to_s
+    %h2= "#{@ticket.project.client}: #{@ticket.project} - #{@ticket}"
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
       .gradient_border_content
-        .links
-          %ul
-            %li= link_to "Edit", edit_project_ticket_path(@project, @ticket)
-            %li= link_to "Work Units", ticket_work_units_path(@ticket)
-            %li= link_to "Back to project: #{@project}", client_project_path(@project.client, @project)
-            %li= link_to "Back to client: #{@project.client}", client_path(@project.client)
+        %ul.subnav
+          %li= link_to "Edit", edit_project_ticket_path(@project, @ticket)
+          %li= link_to "Back to project: #{@project}", client_project_path(@project.client, @project)
+          %li= link_to "Back to client: #{@project.client}", client_path(@project.client)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
