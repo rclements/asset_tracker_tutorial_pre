@@ -1,7 +1,10 @@
+- content_for :javascripts do
+  = javascript_include_tag "add_work_unit"
+
 #add-work-unit
   %h2 Add Work Unit
 
-  = form_for [:dashboard, WorkUnit.new(params[:work_unit])] do |f|
+  = form_for WorkUnit.new(params[:work_unit]) do |f|
 
     %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
     = link_to Time.current.strftime("%m/%d/%Y"), "#", :id => "schedule_modal_link"
@@ -45,6 +48,3 @@
 
     = f.submit "Add New"
     #work-unit-errors
-
-- content_for :javascripts do
-  = javascript_include_tag "add_work_unit"
