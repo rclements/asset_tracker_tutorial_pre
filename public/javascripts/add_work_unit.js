@@ -10,15 +10,11 @@ $('#schedule_modal_link').click(function() {
   return false;
 });
 
-$('.close_schedule_modal').click(function() {
-  $("#schedule_modal").dialog('close');
-  $('#schedule_modal_link').text($('#work_unit_scheduled_at').val());
-  return false;
-});
-
 $("#scheduled_at").datepicker( {
   onSelect: function(dateText, inst) {
-    jQuery("#work_unit_scheduled_at").val(dateText);
+    $("#work_unit_scheduled_at").val(dateText);
+    $("#schedule_modal").dialog('close');
+    $('#schedule_modal_link').text($('#work_unit_scheduled_at').val());
   },
   dateFormat: 'yy-mm-dd'
 });
