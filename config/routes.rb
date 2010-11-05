@@ -49,11 +49,8 @@ AssetTrackerTutorial::Application.routes.draw do
 
   namespace :dashboard do
     resources :base do
-      collection do
-        get :recent_work
-      end
-    end
-    resources :work_units
+  end
+
   end
   get '/dashboard', :controller => "dashboard/base", :action => "index"
   get '/dashboard/client', :controller => "dashboard/base", :action => "client"
