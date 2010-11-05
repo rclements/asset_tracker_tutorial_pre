@@ -9,6 +9,6 @@
       %tbody
         - @users.each do |user|
           %tr
-            %td= link_to user.to_s, admin_user_path(user)
+            %td= link_to user.to_s, user_path(user)
             %td= user.email
     = button_to "New User", new_admin_user_path, :class => "add_new_button", :method => :get
