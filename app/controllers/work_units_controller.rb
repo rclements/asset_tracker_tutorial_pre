@@ -1,5 +1,5 @@
 class WorkUnitsController < ApplicationController
-  before_filter :load_ticket
+  before_filter :load_ticket, :except => [:create]
   before_filter :load_new_work_unit, :only => [:new, :create]
   before_filter :load_work_unit, :only => [:show, :edit, :update, :destroy]
   
@@ -18,7 +18,6 @@ class WorkUnitsController < ApplicationController
     _params.delete :project_id
     @work_unit = WorkUnit.new(_params)
     @work_unit.user = current_user
-    @work_unit.ticket = @ticket
     @work_unit.scheduled_at ||= Time.zone.now
   end
 
