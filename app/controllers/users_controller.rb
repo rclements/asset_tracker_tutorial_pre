@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :load_user, :only => [:show, :edit, :historical_time]
+
+  before_filter :load_user, :only => [:show, :edit, :change_password, :historical_time]
+  before_filter :require_current_user, :only => [:edit, :change_password]
 
   def index
     @users = User.unlocked
@@ -9,33 +11,38 @@ class UsersController < ApplicationController
   end
 
   def edit
+    unless @user == current_user
+      flash[:error] = "You cannot change another user's password"
+      redirect_to dashboard_path
+    end
   end
 
   def change_password
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
-    @user.save
-    if @user.valid?
+    if @user.save
       flash[:notice] = "Successfully updated password"
-      redirect_to :action => "edit"
+      redirect_to :action => :show
     else
+      params[:user][:password] = params[:user][:password_confirmation] = ''
       flash.now[:error] = "Error changing password"
-      render :action => "edit"
+      render :action => :edit
     end
   end
 
   def historical_time
-    @user = User.find(params[:id])
   end
 
   protected
 
     def load_user
-      if current_user.has_role?("Admin")
-        @user = User.find params[:id]
-      else
-        @user = current_user
-      end
+      @user = User.find(params[:id])
     end
 
+    def require_current_user
+      unless @user == current_user
+        flash[:error] = "You cannot make changes to another user."
+        redirect_to dashboard_path
+      end
+    end
 end
