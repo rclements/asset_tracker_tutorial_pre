@@ -6,45 +6,41 @@
 
   = form_for WorkUnit.new(params[:work_unit]) do |f|
 
-    %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
-    = link_to Time.current.strftime("%m/%d/%Y"), "#", :id => "schedule_modal_link"
+    #work-unit-errors
+
+    %p
+      %span Scheduled On:
+      = link_to Time.current.strftime("%m/%d/%Y"), "#", :id => "schedule_modal_link"
 
     #schedule_modal
       %p It is best to enter work units on days you completed the work, please use this wisely.
-      %span{:style => "display: inline-block; width: 120px;"} Scheduled On:
+      %span Scheduled On:
       = text_field_tag :scheduled_at, Time.current.strftime("%m/%d/%Y")
-      %br
-      = link_to "Set Date", '#', :class => 'close_schedule_modal'
 
-    %br
+    %p
+      %label{:for => "work_unit_client_id"} Client:
+      = collection_select("work_unit", "client_id", @clients, "id", "name", { :prompt => "Select a client" })
 
-    %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_client_id"} Client:
-    = collection_select("work_unit", "client_id", @clients, "id", "name", { :prompt => "Select a client" })
-    %br
-
-    - if @projects
-      %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_project_id"} Project:
+    %p
+      %label{:for => "work_unit_project_id"} Project:
       = collection_select("work_unit", "project_id", @projects, "id", "name", { :prompt => "Select a project" })
-      %br
 
-    - if @tickets
-      %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_ticket_id"} Ticket:
+    %p
+      %label{:for => "work_unit_ticket_id"} Ticket:
       = collection_select("work_unit", "ticket_id", @tickets, "id", "name", { :prompt => "Select a ticket" })
-      %br
 
-    %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_hours"} Hours:
-    = f.text_field :hours, { :size => 10 }
-    %br
+    %p
+      %label{:for => "work_unit_hours"} Hours:
+      = f.text_field :hours, { :size => 10 }
 
-    %label{:style => "display: inline-block; width: 120px;", :for => "work_unit_description"} Description:
-    = f.text_area :description, { :rows => 10, :style => "resize: none;"}
-    %br
+    %p
+      %label{:for => "work_unit_description"} Description:
+      = f.text_area :description, { :rows => 10, :style => "resize: none;"}
 
-    %span{:style => "display: inline-block; width: 110px;"}
-    = f.check_box "overtime"
-    = f.label "overtime"
-    = f.hidden_field :scheduled_at
-    %br
+    %p
+      = f.check_box "overtime"
+      = f.label "overtime"
+      = f.hidden_field :scheduled_at
 
-    = f.submit "Add New"
-    #work-unit-errors
+    %p
+      = f.submit "Add New"
