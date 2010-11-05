@@ -5,5 +5,5 @@
     - if current_user.has_role?("admin")
       %li= link_to "Users", admin_users_path
     - else
-      %li= link_to "Users", edit_user_path(current_user)
+      %li= link_to "Users", current_user
   %li= link_to "Admin", admin_path
