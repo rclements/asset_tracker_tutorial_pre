@@ -9,6 +9,8 @@
       %tbody
         - @users.each do |user|
           %tr
-            %td= link_to user.to_s, user_path(user)
+            %td.user_img
+              = link_to "#{show_gravatar_for(user)}<span>#{user}</span>".html_safe,
+                user
             %td= user.email
     = button_to "New User", new_admin_user_path, :class => "add_new_button", :method => :get

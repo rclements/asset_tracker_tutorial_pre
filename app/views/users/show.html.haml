@@ -5,7 +5,8 @@
       = @user.last_name
     %h1
       = @user.email
-    = link_to 'Change Password', edit_user_path(@user)
+    - if @user == current_user
+      = link_to 'Change Password', edit_user_path(@user)
     %h2
       - if @user.locked_at?
         User is locked.
