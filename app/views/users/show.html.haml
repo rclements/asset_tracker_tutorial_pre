@@ -10,3 +10,4 @@
       - if @user.locked_at?
         User is locked.
     = render :partial => 'shared/calendar', :locals => { :start_date => Date.today.beginning_of_week, :user => current_user }
+    = render :partial => 'shared/calendar', :locals => { :start_date => Date.today.beginning_of_week - 1.week, :user => current_user }
