@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_filter :load_new_client, :only => [:new, :create]
-  before_filter :load_client, :only => [:show, :edit, :update]
+  before_filter :load_client, :only => [:show, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
 
   protected
@@ -22,9 +22,6 @@ class ClientsController < ApplicationController
   end
 
   def show
-  end
-
-  def edit
   end
 
   def new
