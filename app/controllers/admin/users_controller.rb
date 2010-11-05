@@ -44,16 +44,6 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  def destroy
-    if @user.destroy
-      flash[:notice] = "User deleted."
-      redirect_to admin_users_path
-    else
-      flash[:error] = "Couldn't delete the user"
-      redirect_to admin_user_path(@user)
-    end
-  end
-
 private
 
   def load_user_account

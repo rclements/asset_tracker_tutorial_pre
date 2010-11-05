@@ -9,7 +9,8 @@
           %th Projects
           %th Tickets
           %th Status
-          %th Edit
+          - if current_user.has_role?(:admin)
+            %th Edit
       %tbody
         - @clients.each do |client|
           %tr
@@ -18,6 +19,7 @@
             %td= link_to client.projects.count, client_projects_path(client)
             %td= client.tickets.count
             %td= client.status
-            %td= link_to 'Edit', edit_client_path(client)
+            - if current_user.has_role?(:admin)
+              %td= link_to 'Edit', edit_admin_client_path(client)
     = button_to "New Client", new_client_path, :method => :get, :class => "add_new_button"
 

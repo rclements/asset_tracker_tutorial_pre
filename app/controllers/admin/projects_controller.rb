@@ -7,7 +7,4 @@ class Admin::ProjectsController < Admin::BaseController
 
   def create
   end
-
-  def destroy
-  end
 end

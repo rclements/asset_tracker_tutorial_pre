@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_filter :load_new_client, :only => [:new, :create]
-  before_filter :load_client, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_client, :only => [:show, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
 
   protected
@@ -11,7 +11,7 @@ class ClientsController < ApplicationController
   def load_client
     @client = Client.find(params[:id])
   end
-  
+
   def load_file_attachments
     @file_attachments = @client.file_attachments
   end
@@ -22,9 +22,6 @@ class ClientsController < ApplicationController
   end
 
   def show
-  end
-
-  def edit
   end
 
   def new
@@ -50,12 +47,4 @@ class ClientsController < ApplicationController
     end
   end
 
-  def destroy
-    if @client.destroy
-      flash[:notice] = "Client was destroyed"
-    else
-      flash[:error] = "There was a problem destroying that client."
-    end
-    redirect_to clients_path
-  end
 end

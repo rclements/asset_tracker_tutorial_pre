@@ -6,14 +6,18 @@
         %tr
           %th Name
           %th Email
+          %th Current
           %th Locked?
           %th Roles
           %th Edit
       %tbody
         - @users.each do |user|
           %tr
-            %td= link_to user.to_s, admin_user_path(user)
+            %td.user_img
+              = link_to "#{show_gravatar_for(user)}<span>#{user}</span>".html_safe,
+                admin_user_path(user)
             %td= user.email
+            %td= user.unpaid_work_units.sum(:hours)
             %td= user.locked_at? ? 'X' : '&nbsp;'.html_safe
             %td
               - unless user.roles.empty?

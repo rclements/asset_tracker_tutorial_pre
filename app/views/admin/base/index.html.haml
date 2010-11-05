@@ -1,8 +1,13 @@
-%h2 Admin
-.gradient_border_wrap
-  .gradient_border_content
-    %ul
-      %li= link_to 'Invoice', admin_invoice_index_path
-      %li= link_to 'Payroll', admin_payroll_index_path
-      %li= link_to 'Unentered Time Report', admin_unentered_time_report_index_path
-      %li= link_to 'Weekly Time Report', admin_weekly_time_report_index_path
+.yui3-g
+  .yui3-u-1
+    %h2 Admin
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        %ul.subnav
+          %li= link_to 'Invoice', admin_invoice_index_path
+          %li= link_to 'Payroll', admin_payroll_index_path
+          %li= link_to 'Unentered Time Report', admin_unentered_time_report_index_path
+          %li= link_to 'Weekly Time Report', admin_weekly_time_report_index_path
+          %li= link_to 'Users', admin_users_path

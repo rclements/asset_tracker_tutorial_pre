@@ -59,6 +59,10 @@ body {
         padding: 0 0 8px 0;  
         }
       }
+    textarea {
+      width:100%;
+      height:250px;
+      }
     }
   }
 
@@ -78,7 +82,7 @@ h2 {
 }
 h3 {
   margin: 5px 0 7px 0;
-  font-size:1.4em;
+  font-size:1.5em;
   color:#384f62;
   text-decoration:underline;
 }
@@ -257,8 +261,6 @@ h3 {
   } 
 }
 
-
-
 #new_client {
   width:350px;
   label {
@@ -291,6 +293,12 @@ table {
   thead th {
     border:1px solid #ccc;
     padding: 9px 5px 9px 10px;
+  }
+  tr.odd {
+    background:#e1e7ea;
+  }
+  tr.even {
+    background:#fff;
   }
   td {
     border:1px solid #ccc;

@@ -1,9 +1,6 @@
 %ul
   %li= link_to "Home", root_path
   %li= link_to "Clients", clients_path
-  - if user_signed_in?
-    - if current_user.has_role?("admin")
-      %li= link_to "Users", admin_users_path
-    - else
-      %li= link_to "Users", edit_user_path(current_user)
-  %li= link_to "Admin", admin_path
+  %li= link_to "Users", users_path
+  - if current_user.admin?
+    %li= link_to "Admin", admin_path
