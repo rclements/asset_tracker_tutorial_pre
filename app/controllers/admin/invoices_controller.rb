@@ -2,7 +2,6 @@ class Admin::InvoicesController < ApplicationController
   before_filter :load_unpaid_work_units, :only => [:index]
   before_filter :load_unpaid_work_units_for_client, :only => [:show]
   before_filter :load_client, :only => [:show]
-  #before_filter :load_clients, :only => [:index]
 
   def index
     # TODO: Make this cleaner
@@ -36,10 +35,6 @@ class Admin::InvoicesController < ApplicationController
 
   def load_unpaid_work_units_for_client
     @work_units = WorkUnit.for_client( Client.find(params[:id])).not_invoiced
-  end
-
-  def load_clients
-    @clients = Client.all
   end
 
   def load_client

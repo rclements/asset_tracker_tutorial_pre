@@ -1,12 +1,9 @@
 class Admin::UsersController < Admin::BaseController
-  before_filter :load_user_account, :only => [:show, :update, :edit, :destroy]
+  before_filter :load_user_account, :only => [:update, :edit, :destroy]
   before_filter :load_new_user_account, :only => [:new, :create]
 
   def index
     @users = User.all
-  end
-
-  def show
   end
 
   def new

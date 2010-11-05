@@ -26,9 +26,6 @@ class WorkUnitsController < ApplicationController
   end
 
   public
-  def index
-    @work_units = @ticket.work_units
-  end
 
   def new
   end
