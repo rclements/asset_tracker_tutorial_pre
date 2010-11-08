@@ -8,6 +8,7 @@
         %ul.subnav
           %li= link_to 'Edit', edit_client_project_path
           %li= link_to "Back to client: #{@project.client}", @project.client
+          %li= link_to 'New Ticket', new_project_ticket_path(@project)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
@@ -29,7 +30,11 @@
                 %td= link_to 'Edit', edit_project_ticket_path(@project, ticket)
 
         = render :partial => "comments/comments", :locals => {:comments => @project.comments}
-        = render :partial => "comments/comment_form", :locals => { :commentable_id => @project.id, :commentable_field => "project_id", :commentable_type => "Project", :refurl => client_project_path(@project), :comment_num => @project.id }
+        = render :partial => "comments/comment_form", :locals => { :commentable_id => @project.id,
+          :commentable_field => "project_id",
+          :commentable_type => "Project",
+          :refurl => client_project_path(@project),
+          :comment_num => @project.id }
         %h2 Files
         %ul
           - @project.file_attachments.each do |file_attachment|
