@@ -1,11 +1,13 @@
 %h2= "Payroll: #{@user}"
 .gradient_border_wrap
   .gradient_border_content
-    %p= text_field_tag "autofill_all"
+    %div.autofill
+      = text_field_tag "autofill_all"
     - form_tag(admin_payroll_path, :method => 'put', :multipart => true) do
-      = submit_tag 'Submit'
+      = submit_tag 'Submit', :class => 'invoice_submit'
+      .clear
       - @clients.each do |client|
-        %table
+        %table.invoice
           %thead
             %tr
               %th{:colspan => 4}= 'Company: ' + client.to_s
@@ -13,9 +15,9 @@
             %tr
               %th Description
               %th Work Date
-              %th Hours
-              %th Overtime?
-              %th Check Number
+              %th.hours Hours
+              %th.overtime O/T
+              %th.payroll_check Check Number
           %tbody
             - @work_units.each do |wu|
               - if wu.ticket.project.client == client
@@ -29,8 +31,8 @@
                   %td= text_field_tag "work_unit[#{wu.id}]", nil, :class => "global autofill_client_#{client.id}"
           %tfoot
             %tr
-              %td{:colspan => 4} Total
-              %td= @work_units.select { |x| x.client == client }.sum(&:hours)
+              %td.totals{:colspan => 4} Total
+              %td.totals= @work_units.select { |x| x.client == client }.sum(&:hours)
       = submit_tag 'Submit'
     %h4= 'Total For Pay Period: ' + @work_units.sum(:hours).to_s + ' hours'
 
