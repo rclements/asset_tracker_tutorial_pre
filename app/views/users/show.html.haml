@@ -1,6 +1,13 @@
 .yui3-g
   .yui3-u-1
     %h2= @user
+- if current_user.has_role?(:admin)
+  .yui3-g
+    .yui3-u-1
+      .gradient_border_wrap
+        .gradient_border_content
+          %ul.subnav
+            %li= link_to 'Historical Time Report', historical_time_user_path
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
