@@ -20,7 +20,7 @@
               %tr
                 %td= link_to client, client
                 %td= client.initials
-                %td= link_to client.projects.count, client_projects_path(client)
+                %td= client.projects.count
                 %td= client.tickets.count
                 %td= client.status
                 - if current_user.has_role?(:admin)
