@@ -17,4 +17,4 @@
                   = link_to "#{show_gravatar_for(user)}<span>#{user}</span>".html_safe,
                     user
                 %td= user.email
-        = button_to "New User", new_admin_user_path, :class => "add_new_button", :method => :get
+        = link_to "New User", new_admin_user_path, :class => "add_new_button"
