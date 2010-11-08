@@ -1,8 +1,9 @@
-.module-wrap
-  .module-gradient-container
-    .module
-      %h1 New ticket
+.yui3-g
+  .yui3-u-1
+    %h2 New ticket
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        = render 'form'
 
-      = render 'form'
-
-      = link_to 'Back', project_tickets_path(@project)
