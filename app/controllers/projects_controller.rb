@@ -23,9 +23,6 @@ class ProjectsController < ApplicationController
   end
 
   public
-  def index
-    @projects = @client.projects
-  end
 
   def show
   end

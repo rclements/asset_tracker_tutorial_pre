@@ -23,9 +23,6 @@ class TicketsController < ApplicationController
   end
 
   public
-  def index
-    @tickets = @project.tickets
-  end
 
   def new
   end

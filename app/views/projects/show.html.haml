@@ -1,26 +1,37 @@
-%h2= @project.to_s
-.gradient_border_wrap
-  .gradient_border_content
-    %h3= 'Status: ' << @client.status
-    %table.tickets
-      %thead
-        %tr
-          %th Tickets
-          %th Work Units
-          %th Hours
-          %th Edit
-      %tbody
-        - @project.tickets.each do |ticket|
-          %tr
-            %td= link_to ticket, project_ticket_path(@project, ticket)
-            %td= link_to ticket.work_units.count, ticket_work_units_path(ticket)
-            %td= ticket.work_units.inject(0) {|hours, work_unit| hours + work_unit.hours }
-            %td= link_to 'Edit', edit_project_ticket_path(@project, ticket)
+.yui3-g
+  .yui3-u-1
+    %h2= "#{@project.client}: #{@project}"
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        %ul.subnav
+          %li= link_to 'Edit', edit_client_project_path
+          %li= link_to "Back to client: #{@project.client}", @project.client
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        %h3= "Status: #{@client.status}"
+        %table.tickets
+          %thead
+            %tr
+              %th Tickets
+              %th Work Units
+              %th Hours
+              %th Edit
+          %tbody
+            - @project.tickets.each do |ticket|
+              %tr
+                %td= link_to ticket, project_ticket_path(@project, ticket)
+                %td= link_to ticket.work_units.count, ticket_work_units_path(ticket)
+                %td= ticket.work_units.inject(0) {|hours, work_unit| hours + work_unit.hours }
+                %td= link_to 'Edit', edit_project_ticket_path(@project, ticket)
 
-    = render :partial => "comments/comments", :locals => {:comments => @project.comments}
-    = render :partial => "comments/comment_form", :locals => { :commentable_id => @project.id, :commentable_field => "project_id", :commentable_type => "Project", :refurl => client_project_path(@project), :comment_num => @project.id }
-    %h2 Files
-    %ul
-      - @project.file_attachments.each do |file_attachment|
-        %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
-    = link_to "Add File Attachment", new_file_attachment_path( :project_id => @project.id )
+        = render :partial => "comments/comments", :locals => {:comments => @project.comments}
+        = render :partial => "comments/comment_form", :locals => { :commentable_id => @project.id, :commentable_field => "project_id", :commentable_type => "Project", :refurl => client_project_path(@project), :comment_num => @project.id }
+        %h2 Files
+        %ul
+          - @project.file_attachments.each do |file_attachment|
+            %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
+        = link_to "Add File Attachment", new_file_attachment_path( :project_id => @project.id )
