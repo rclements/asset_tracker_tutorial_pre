@@ -19,14 +19,12 @@
               %th #
               %th Work Units
               %th Hours
-              %th Edit
           %tbody
             - @ticket.work_units.each do |work_unit|
               %tr
                 %td= work_unit.id
                 %td= link_to work_unit.description, ticket_work_unit_path(@ticket, work_unit)
                 %td= work_unit.hours
-                %td= link_to 'Edit', edit_ticket_work_unit_path(@ticket, work_unit)
 
         = render :partial => "comments/comments", :locals => {:comments => @ticket.comments}
         = render :partial => "comments/comment_form", :locals => { :commentable_id => @ticket.id, :commentable_field => "ticket_id", :commentable_type => "Ticket", :refurl => project_ticket_path(@ticket), :comment_num => @ticket.id }
