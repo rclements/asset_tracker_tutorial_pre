@@ -1,16 +1,8 @@
 class WorkUnitsController < ApplicationController
-  before_filter :load_ticket, :except => [:create]
   before_filter :load_new_work_unit, :only => [:new, :create]
   before_filter :load_work_unit, :only => [:show, :edit, :update]
 
   protected
-  def load_ticket
-    if params[:ticket_id]
-      @ticket = Ticket.find(params[:ticket_id])
-    elsif
-      @ticket = Ticket.find(params[:work_unit][:ticket_id])
-    end
-  end
 
   def load_new_work_unit
     _params = (params[:work_unit] || {}).dup
@@ -47,9 +39,6 @@ class WorkUnitsController < ApplicationController
   end
 
   def show
-    @client = @work_unit.client
-    @project = @work_unit.project
-    @ticket = @work_unit.ticket
   end
 
   def edit
@@ -58,10 +47,10 @@ class WorkUnitsController < ApplicationController
   def update
     if @work_unit.update_attributes(params[:work_unit])
       flash[:notice] = "WorkUnit updated."
-      redirect_to ticket_work_unit_path(@ticket, @work_unit)
+      redirect_to @work_unit
     else
       flash.now[:error] = "There was a problem updating the work_unit."
-      redirect_to edit_ticket_work_unit_path(@ticket, @work_unit)
+      redirect_to edit_work_unit_path
     end
   end
 end
