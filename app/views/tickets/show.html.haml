@@ -6,9 +6,9 @@
     .gradient_border_wrap
       .gradient_border_content
         %ul.subnav
-          %li= link_to "Edit", edit_project_ticket_path(@project, @ticket)
-          %li= link_to "Back to project: #{@project}", client_project_path(@project.client, @project)
-          %li= link_to "Back to client: #{@project.client}", client_path(@project.client)
+          %li= link_to "Edit", edit_ticket_path
+          %li= link_to "Back to project: #{@ticket.project}", project_path(@ticket.project)
+          %li= link_to "Back to client: #{@ticket.project.client}", client_path(@ticket.project.client)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
@@ -23,11 +23,11 @@
             - @ticket.work_units.each do |work_unit|
               %tr
                 %td= work_unit.id
-                %td= link_to work_unit.description, ticket_work_unit_path(@ticket, work_unit)
+                %td= link_to work_unit.description, work_unit_path(work_unit)
                 %td= work_unit.hours
 
         = render :partial => "comments/comments", :locals => {:comments => @ticket.comments}
-        = render :partial => "comments/comment_form", :locals => { :commentable_id => @ticket.id, :commentable_field => "ticket_id", :commentable_type => "Ticket", :refurl => project_ticket_path(@ticket), :comment_num => @ticket.id }
+        = render :partial => "comments/comment_form", :locals => { :commentable_id => @ticket.id, :commentable_field => "ticket_id", :commentable_type => "Ticket", :refurl => ticket_path(@ticket), :comment_num => @ticket.id }
 
         %h3 Files
         %ul

@@ -1,4 +1,4 @@
-= form_for([@client, @project]) do |f|
+= form_for(@project) do |f|
   - if @project.errors.any?
     #error_explanation
       %h2
@@ -11,8 +11,8 @@
 
   .field
     = f.label :name
-    %br
     = f.text_field :name
+    = hidden_field_tag :client, @project.client.id
   .actions
     = f.submit
 

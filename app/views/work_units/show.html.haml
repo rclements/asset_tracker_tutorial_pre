@@ -7,9 +7,9 @@
       .gradient_border_content
         %ul.subnav
           - if @work_unit.user == current_user
-            %li= link_to 'Edit', edit_ticket_work_unit_path
-          %li= link_to "Back to ticket: #{@work_unit.ticket}", project_ticket_path(@work_unit.ticket.project, @work_unit.ticket)
-          %li= link_to "Back to project: #{@work_unit.ticket.project}", client_project_path(@work_unit.ticket.project.client, @work_unit.ticket.project)
+            %li= link_to 'Edit', edit_work_unit_path
+          %li= link_to "Back to ticket: #{@work_unit.ticket}", ticket_path(@work_unit.ticket)
+          %li= link_to "Back to project: #{@work_unit.ticket.project}", project_path(@work_unit.ticket.project)
           %li= link_to "Back to client: #{@work_unit.ticket.project.client}", client_path(@work_unit.ticket.project.client)
 .yui3-g
   .yui3-u-1
