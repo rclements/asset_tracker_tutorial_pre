@@ -13,7 +13,8 @@
             - else
               %ul
                 - @users.each do |user|
-                  - if user.work_units_for_day(day).empty? # && user.not_on_vacation?
-                    %li= link_to "#{user.last_name}, #{user.first_name}", admin_user_path(user)
-        %h3= link_to "Previous", admin_unentered_time_report_path(@previous_week)
-        %h3= link_to "Next", admin_unentered_time_report_path(@next_week)
+                  - if user.work_units_for_day(day).empty?
+                    %li= link_to "#{user.last_name}, #{user.first_name}", user_path(user)
+        %h4= link_to "Previous", admin_unentered_time_report_path(@previous_week)
+        %h4= link_to "Next", admin_unentered_time_report_path(@next_week)
+
