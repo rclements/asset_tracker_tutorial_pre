@@ -29,6 +29,6 @@ group :test do
   gem 'spork', '~> 0.8.4'
   gem 'yajl-ruby', '~> 0.7.8'
   # Note: this is to stay commented out until debug19 gets stable
-  # gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19', :require => 'ruby-debug'
   # gem 'webrat' # Note: why is webrat in here?
 end
