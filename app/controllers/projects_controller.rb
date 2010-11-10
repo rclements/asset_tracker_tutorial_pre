@@ -1,17 +1,12 @@
 class ProjectsController < ApplicationController
-  before_filter :load_client
   before_filter :load_new_project, :only => [:new, :create]
   before_filter :load_project, :only => [:show, :edit, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
 
   protected
-  def load_client
-    @client = Client.find(params[:client_id])
-  end
-
   def load_new_project
     @project = Project.new(params[:project])
-    @project.client = @client
+    @project.client = Client.find(params[:client])
   end
 
   def load_project
@@ -36,7 +31,7 @@ class ProjectsController < ApplicationController
   def update
     if @project.update_attributes(params[:project])
       flash[:notice] = "Project updated successfully."
-      redirect_to [@client, @project]
+      redirect_to [@project]
     else
       flash.now[:error] = "There was a problem saving the project."
       render :action => 'edit'
@@ -46,7 +41,7 @@ class ProjectsController < ApplicationController
   def create
     if @project.save
       flash[:notice] = "Project created successfully."
-      redirect_to [@client, @project]
+      redirect_to @project
     else
       flash.now[:error] = "There was a problem saving the new project."
       render :action => 'new'

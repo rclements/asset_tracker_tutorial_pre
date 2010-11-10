@@ -1,7 +1,11 @@
-%h2 Invoice Report
-.gradient_border_wrap
-  .gradient_border_content
-    %h3 Clients with uninvoiced work units:
-    %ul
-      - @clients.each do |client|
-        %li= link_to client.name, admin_invoice_path(client)
+.yui3-g
+  .yui3-u-1
+    %h2 Invoice Report
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        %h3 Clients with uninvoiced work units:
+        %ul
+          - @clients.each do |client|
+            %li= link_to client.name, admin_invoice_path(client)

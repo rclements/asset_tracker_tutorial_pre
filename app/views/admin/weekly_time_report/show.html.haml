@@ -1,20 +1,14 @@
-%h2 Weekly Time Report
-.gradient_border_wrap
-  .gradient_border_content
-    .date_pagination
-      = link_to "&larr; Previous Week".html_safe,
-          admin_weekly_time_report_path((@start_date - 1.week).beginning_of_week)
-      - if @start_date < Date.today
-        = link_to "Next Week &rarr;".html_safe, 
-          admin_weekly_time_report_path(@start_date.next_week)
+.yui3-g
+  .yui3-u-1
+    %h2 Weekly Time Report
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        = render :partial => 'week_pagination', :locals => { :start_date => @start_date }
 
-    - @users.each do |user|
-      %h3= user.to_s
-      = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => user }
+        - @users.each do |user|
+          %h3= user
+          = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => user }
 
-    .date_pagination
-      = link_to "&larr; Previous Week".html_safe,
-          admin_weekly_time_report_path((@start_date - 1.week).beginning_of_week)
-      - if @start_date < Date.today
-        = link_to "Next Week &rarr;".html_safe,
-          admin_weekly_time_report_path(@start_date.next_week)
+        = render :partial => 'week_pagination', :locals => { :start_date => @start_date }

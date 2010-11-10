@@ -1,15 +1,20 @@
-%h2= "Users with no time entered"
-.gradient_border_wrap
-  .gradient_border_content
-    - @weekdays.each do |day|
-      %div{:id => day.strftime("%A")}
-        %h3= day.strftime("%A, %B %d, %Y")
-        - if day.future?
-          %p (This day is in the future.)
-        - else
-          %ul
-            - @users.each do |user|
-              - if user.work_units_for_day(day).empty? # && user.not_on_vacation?
-                %li= link_to "#{user.last_name}, #{user.first_name}", admin_user_path(user)
-    %h4= link_to "Previous", admin_unentered_time_report_path(@previous_week)
-    %h4= link_to "Next", admin_unentered_time_report_path(@next_week)
+.yui3-g
+  .yui3-u-1
+    %h2= "Users with no time entered"
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        - @weekdays.each do |day|
+          %div{:id => day.strftime("%A")}
+            %h3= day.strftime("%A, %B %d, %Y")
+            - if day.future?
+              %p (This day is in the future.)
+            - else
+              %ul
+                - @users.each do |user|
+                  - if user.work_units_for_day(day).empty?
+                    %li= link_to "#{user.last_name}, #{user.first_name}", user_path(user)
+        %h4= link_to "Previous", admin_unentered_time_report_path(@previous_week)
+        %h4= link_to "Next", admin_unentered_time_report_path(@next_week)
+
