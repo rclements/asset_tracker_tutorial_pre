@@ -14,9 +14,9 @@
 
     #schedule_modal
       %p It is best to enter work units on days you completed the work, please use this wisely.
-      %label Scheduled On:
-      = text_field_tag :scheduled_at, Time.current.strftime("%m/%d/%Y")
-      = f.hidden_field :scheduled_at
+      .work_unit_field
+        %label Scheduled On:
+        = text_field_tag :scheduled_at, Time.current.strftime("%m/%d/%Y")
 
     .work_unit_field
       %label{:for => "work_unit_client_id"} Client:
@@ -41,4 +41,5 @@
     .work_unit_field
       %label{:for => "work_unit_ovetime"} Overtime:
       = f.check_box "overtime"
+      = f.hidden_field :scheduled_at
       = f.submit "Add New", :class => 'add_new_button'
