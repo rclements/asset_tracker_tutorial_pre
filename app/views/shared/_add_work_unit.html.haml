@@ -31,6 +31,10 @@
       = collection_select("work_unit", "ticket_id", @tickets, "id", "name", { :prompt => "Select a ticket" })
 
     .work_unit_field
+      %label{:for => "hours_type"} Type:
+      = select_tag('hours_type', options_for_select(['Normal', 'Overtime']))
+
+    .work_unit_field
       %label{:for => "work_unit_hours"} Hours:
       = f.text_field :hours, { :size => 10 }
 

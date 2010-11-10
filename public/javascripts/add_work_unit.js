@@ -34,7 +34,8 @@ $("#new_work_unit").submit(function() {
       "work_unit[project_id]": me.find("#work_unit_project_id").val(),
       "work_unit[ticket_id]": me.find("#work_unit_ticket_id").val(),
       "work_unit[hours]": me.find("#work_unit_hours").val(),
-      "work_unit[overtime]": me.find("#work_unit_overtime").val()
+      "work_unit[overtime]": me.find("#work_unit_overtime").val(),
+      "hours_type": me.find("#hours_type").val()
        },
     success: function(result)
     {

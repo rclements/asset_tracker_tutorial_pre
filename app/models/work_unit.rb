@@ -45,7 +45,11 @@ class WorkUnit < ActiveRecord::Base
   end
 
   def hours
-    overtime ? (read_attribute(:hours) * 1.5) : read_attribute(:hours)
+    if read_attribute(:hours)
+      overtime ? (read_attribute(:hours) * 1.5) : read_attribute(:hours)
+    else
+      read_attribute(:hours)
+    end
   end
 
 end

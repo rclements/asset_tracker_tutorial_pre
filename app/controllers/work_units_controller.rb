@@ -1,8 +1,14 @@
 class WorkUnitsController < ApplicationController
+  before_filter :handle_overtime_hours_type, :only => [:create]
   before_filter :load_new_work_unit, :only => [:new, :create]
   before_filter :load_work_unit, :only => [:show, :edit, :update]
 
   protected
+
+  def handle_overtime_hours_type
+    # We send this in as a silly select field instead of a checkbox.
+    params[:work_unit][:overtime] = params[:hours_type] == 'Overtime'
+  end
 
   def load_new_work_unit
     _params = (params[:work_unit] || {}).dup

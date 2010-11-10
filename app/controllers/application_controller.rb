@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   protect_from_forgery
   layout 'application'
-  helper_method :redirect_to_ref_url
+  helper_method :redirect_to_ref_url, :admin?
   
   private
   
@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     unless @start_date.monday?
       redirect_to(path_prefix + @start_date.beginning_of_week.strftime("%F"))
     end
+  end
+
+  def admin?
+    current_user && current_user.admin?
   end
   
 end
