@@ -8,7 +8,7 @@ Feature: User Administration
       | first_name | last_name | middle_initial | email             | password  | role  |
       | admin      | mcadmin   | a              | admin@example.com | secret    | admin |
     When I go to the admin users page
-    Then I should see "admin a mcadmin"
+    Then I should see "Admin A Mcadmin"
 
   Scenario: List users (non-admin role)
     Given I am an authenticated user
@@ -44,7 +44,7 @@ Feature: User Administration
     And I fill in "Password" with "secretpass"
     And I fill in "Password confirmation" with "secretpass"
     And I press "Create"
-    Then I should see "name 1"
+    Then I should see "Name 1 M Man"
 
   Scenario: Register new user - the form
     Given I am an authenticated user with an "admin" role
