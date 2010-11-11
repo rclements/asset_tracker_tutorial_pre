@@ -25,5 +25,5 @@
                 %td= client.status
                 - if current_user.admin?
                   %td= link_to 'Edit', edit_admin_client_path(client)
-        = button_to "New Client", new_client_path, :method => :get, :class => "add_new_button"
+        = link_to "New Client", new_client_path, :class => "add_new_button"
 
