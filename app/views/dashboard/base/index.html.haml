@@ -1,5 +1,6 @@
 - content_for :javascripts do
   = javascript_include_tag "dashboard"
+  = javascript_include_tag "add_taxonomy"
 
 - if @message
   #message{:title => @message[:title], :style => "display: none;"}
