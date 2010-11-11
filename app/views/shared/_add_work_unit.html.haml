@@ -42,8 +42,5 @@
       %label{:for => "work_unit_description"} Description:
       = f.text_area :description, { :rows => 10, :style => "resize: none;"}
 
-    .work_unit_field
-      %label{:for => "work_unit_ovetime"} Overtime:
-      = f.check_box "overtime"
       = f.hidden_field :scheduled_at
       = f.submit "Add New", :class => 'add_new_button'

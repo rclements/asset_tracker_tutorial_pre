@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :first_name, :last_name, :middle_initial
 
-  validates_presence_of :first_name, :last_name, :middle_initial
+  validates_presence_of :first_name, :last_name
   validates_length_of :middle_initial, :is => 1
 
   has_many :work_units
