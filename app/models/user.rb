@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def to_s
-    "#{first_name} #{middle_initial} #{last_name}"
+    "#{first_name.capitalize} #{middle_initial.capitalize} #{last_name.capitalize}"
   end
 
   def admin?
