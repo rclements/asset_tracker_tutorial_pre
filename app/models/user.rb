@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def unpaid_work_units
-    WorkUnit.for_user(self).unpaid
+    work_units.unpaid
   end
 
   def to_s

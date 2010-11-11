@@ -51,6 +51,13 @@ describe WorkUnit do
     end
   end
 
+  describe '.project' do
+    it 'returns the parent project of that work unit' do
+      workunit = WorkUnit.make
+      workunit.project.should == workunit.ticket.project
+    end
+  end
+
   describe '.paid?' do
     it 'returns true if the work unit has been paid' do
       workunit = WorkUnit.new
@@ -80,6 +87,14 @@ describe WorkUnit do
       workunit = WorkUnit.new
       workunit.invoiced = ''
       workunit.not_invoiced?.should == true
+    end
+  end
+
+  describe '.to_s' do
+    it 'returns the description' do
+      workunit = WorkUnit.new
+      workunit.description = 'testing'
+      workunit.to_s.should == 'testing'
     end
   end
 end
