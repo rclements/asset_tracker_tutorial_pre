@@ -26,12 +26,17 @@
                   %td= link_to project, project
                   %td= project.tickets.count
                   %td= project.tickets.inject(0) {|sum, ticket| sum + ticket.work_units.inject(0) {|sum, work_unit| sum + work_unit.hours}}
-
-          = render :partial => "comments/comments", :locals => {:comments => @client.comments}
-          = render :partial => "comments/comment_form", :locals => { :commentable_id => @client.id, :commentable_field => "client_id", :commentable_type => "Client", :refurl => client_path(@client), :comment_num => @client.id }
-
-          %h3 Files
-          %ul
-            - @client.file_attachments.each do |file_attachment|
-              %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
-          = link_to "Add File Attachment", new_file_attachment_path( :client_id => @client.id )
+.yui3-g
+  .yui3-u-1-2
+    .gradient_border_wrap
+      .gradient_border_content
+        = render :partial => "comments/comments", :locals => {:comments => @client.comments}
+        = render :partial => "comments/comment_form", :locals => { :commentable_id => @client.id, :commentable_field => "client_id", :commentable_type => "Client", :refurl => client_path(@client), :comment_num => @client.id }
+  .yui3-u-1-2
+    .gradient_border_wrap
+      .gradient_border_content
+        %h3 Files
+        %ul
+          - @client.file_attachments.each do |file_attachment|
+            %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
+        = link_to "Add File Attachment", new_file_attachment_path( :client_id => @client.id )
