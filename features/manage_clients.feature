@@ -3,7 +3,7 @@ Feature: Client Management
   I should be able to manage clients
 
   Scenario: List clients
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
     Given the following clients:
       |name|status|
       |name 1|Good|
@@ -19,16 +19,16 @@ Feature: Client Management
       |name 4||0|0|ANGRY|Edit|
 
   Scenario: View a client
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
     And a client "test client" exists
     When I am on the client's page
     Then I should see "Projects"
-    And I should see a link with text "Edit"
 
+  @atm
   Scenario: Edit a client
     Given I am an authenticated user with an "admin" role
     And a client "test client2" exists with name: "test client2", initials: "TC2", status: "Good"
-    When I am on the client's edit page
+    When I am on the admin client's edit page
     Then the "client_name" field within "body" should contain "test client2"
     And the "client_initials" field within "body" should contain "TC2"
     And the "client_status" field within "body" should contain "Good"
