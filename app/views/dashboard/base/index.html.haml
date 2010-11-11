@@ -11,12 +11,12 @@
       .gradient_border_content
         = render :partial => 'shared/calendar', :locals => { :start_date => @start_date, :user => current_user }
         = render :partial => 'dashboard/base/week_pagination', :locals => { :start_date => @start_date }
-  .yui3-u-1-2
-    .gradient_border_wrap
-      .gradient_border_content
-        = render :partial => 'shared/add_work_unit'
   .yui3-g
     .yui3-u-1-2
       .gradient_border_wrap
         .gradient_border_content
-          %h2 Temporary Placeholder
+          = render :partial => 'tickets/add_ticket'
+    .yui3-u-1-2
+      .gradient_border_wrap
+        .gradient_border_content
+          = render :partial => 'work_units/add_work_unit'
