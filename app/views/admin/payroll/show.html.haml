@@ -7,7 +7,7 @@
       .gradient_border_content
         %div.autofill
           = text_field_tag "autofill_all"
-        - form_tag(admin_payroll_path, :method => 'put', :multipart => true) do
+        = form_tag(admin_payroll_path, :method => 'put', :multipart => true) do
           = submit_tag 'Submit', :class => 'invoice_submit'
           .clear
           - @clients.each do |client|
