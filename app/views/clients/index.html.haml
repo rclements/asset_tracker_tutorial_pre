@@ -1,16 +1,29 @@
-%table.clients
-  %thead
-    %tr
-      %th Name
-      %th Status
-      %th
-      %th
-  %tbody
-    - @clients.each do |client|
-      %tr
-        %td= link_to client, client
-        %td= client.status
-        %td= link_to 'Edit', edit_client_path(client)
-        %td= link_to 'Destroy', client_path(client), :method => :delete
+.yui3-g
+  .yui3-u-1
+    %h2 All Clients
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        %table.clients
+          %thead
+            %tr
+              %th Name
+              %th Initials
+              %th Projects
+              %th Tickets
+              %th Status
+              - if current_user.admin?
+                %th Edit
+          %tbody
+            - @clients.each do |client|
+              %tr
+                %td= link_to client, client
+                %td= client.initials
+                %td= client.projects.count
+                %td= client.tickets.count
+                %td= client.status
+                - if current_user.admin?
+                  %td= link_to 'Edit', edit_admin_client_path(client)
+        = button_to "New Client", new_client_path, :method => :get, :class => "add_new_button"
 
-= link_to "New Client", new_client_path

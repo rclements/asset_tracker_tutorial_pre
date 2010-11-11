@@ -1,7 +1,20 @@
-#work_unit
-  .description= @work_unit.description
+.yui3-g
+  .yui3-u-1
+    %h2= "#{@work_unit.ticket.project.client}: #{@work_unit.ticket.project} - #{@work_unit.ticket}"
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        %ul.subnav
+          - if @work_unit.user == current_user
+            %li= link_to 'Edit', edit_work_unit_path
+          %li= link_to "Back to ticket: #{@work_unit.ticket}", ticket_path(@work_unit.ticket)
+          %li= link_to "Back to project: #{@work_unit.ticket.project}", project_path(@work_unit.ticket.project)
+          %li= link_to "Back to client: #{@work_unit.ticket.project.client}", client_path(@work_unit.ticket.project.client)
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        #work_unit
+          .description= @work_unit.description
 
-  .links
-    = link_to "Back to ticket: #{@ticket}", client_project_ticket_path(@client, @project, @ticket)
-    = link_to "Back to project: #{@project}", client_project_path(@client, @project)
-    = link_to "Back to client: #{@client}", client_path(@client)

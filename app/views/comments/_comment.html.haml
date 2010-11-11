@@ -1,0 +1,8 @@
+.comment_wrap
+  .comment_details
+    = show_gravatar_for(comment.user)
+    = comment.user
+    = "Posted: #{comment.created_at}"
+  .comment_body
+    = comment.comment
+

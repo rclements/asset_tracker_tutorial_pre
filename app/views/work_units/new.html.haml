@@ -1,5 +1,10 @@
-%h1 New work_unit
+.yui3-g
+  .yui3-u-1
+    %h2 New Work Unit
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+      = render 'form'
+      = link_to 'Back', ticket_path(@work_unit.ticket)
 
-= render 'form'
-
-= link_to 'Back', client_project_ticket_work_units_path(@client, @project, @ticket)

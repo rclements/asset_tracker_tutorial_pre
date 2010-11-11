@@ -1,0 +1,21 @@
+.yui3-g
+  .yui3-u-1
+    %h2 All Users
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        %table.users
+          %thead
+            %tr
+              %th Name
+              %th Email
+          %tbody
+            - @users.each do |user|
+              %tr
+                %td.user_img
+                  = link_to "#{show_gravatar_for(user)}<span>#{user}</span>".html_safe,
+                    user
+                %td= user.email
+        - if current_user.admin?
+          = link_to "New User", new_admin_user_path, :class => "add_new_button"

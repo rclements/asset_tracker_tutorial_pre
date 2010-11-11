@@ -1,0 +1,21 @@
+.yui3-g
+  .yui3-u-1
+    %h2= @user
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        %ul.subnav
+          %li= link_to 'Historical Time Report', historical_time_user_path
+          - if @user == current_user
+            %li= link_to 'Change Password', edit_user_path(@user)
+.yui3-g
+  .yui3-u-1
+    .gradient_border_wrap
+      .gradient_border_content
+        %h3= @user.email
+        %h3
+          - if @user.locked_at?
+            User is locked.
+        = render :partial => 'shared/calendar', :locals => { :start_date => Date.current.beginning_of_week, :user => @user }
+        = render :partial => 'shared/calendar', :locals => { :start_date => Date.current.advance({:weeks => -1}).beginning_of_week, :user => @user }
