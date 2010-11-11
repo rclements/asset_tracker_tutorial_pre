@@ -19,7 +19,6 @@ Feature: Client Management
       |name 4||0|0|ANGRY|
     And I should not see a link with text "New Client"
 
-    @test
   Scenario: List clients as non admin
     Given I am an authenticated user with an "Admin" role
     Given the following clients:
@@ -54,7 +53,7 @@ Feature: Client Management
   Scenario: Edit a client
     Given I am an authenticated user with an "Admin" role
     And a client "test client2" exists with name: "test client2", initials: "TC2", status: "Good"
-    When I am on the client's edit page
+    When I am on the admin client's edit page
     Then the "client_name" field within "body" should contain "test client2"
     And the "client_initials" field within "body" should contain "TC2"
     And the "client_status" field within "body" should contain "Good"
@@ -68,7 +67,6 @@ Feature: Client Management
     And I am on the new client page
     Then I should see "You must be an admin to do that."
 
-    @test
   Scenario: Register new client as an admin
     Given I am an authenticated user with an "Admin" role
     And I am on the new client page
@@ -78,7 +76,6 @@ Feature: Client Management
     Then I should see "name 1"
     And I should see "Good"
     
-    @test
   Scenario: Register new client - the form
     Given I am an authenticated user with an "Admin" role
     When I go to the new client page

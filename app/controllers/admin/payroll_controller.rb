@@ -24,5 +24,4 @@ class Admin::PayrollController < ApplicationController
 
     redirect_to admin_payroll_path
   end
-
 end

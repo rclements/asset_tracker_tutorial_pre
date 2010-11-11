@@ -212,6 +212,11 @@ h4.dashboard_title {
       color:#6f8f98;
     } 
   }
+  .work_unit{
+    &.overtime a{
+      color: red;
+    }
+  }
 }
 .new_user .add_new_button {
   float:right;

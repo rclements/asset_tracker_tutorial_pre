@@ -40,8 +40,11 @@ $("#new_work_unit").submit(function() {
     success: function(result)
     {
       var json = jQuery.parseJSON( result.responseText )
+      // Reset the form to its default state and highlight it
       me.trigger("reset");
       me.effect("highlight");
+      // Ask the calendar to update itself
+      update_calendar_block();
     },
     error: function(result)
     {
@@ -52,6 +55,15 @@ $("#new_work_unit").submit(function() {
   });
   return false;
 });
+
+function update_calendar_block(){
+  jQuery.ajax({
+    async: true,
+    url: '/dashboard/calendar',
+    type: 'GET',
+    dataType: 'script'
+  });
+}
 
 $("#work-unit-errors").dialog( {
   autoOpen: false,

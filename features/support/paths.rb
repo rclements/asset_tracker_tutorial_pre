@@ -24,6 +24,10 @@ module NavigationHelpers
     when /^the admin #{capture_model}(?:'s)? (.+?) page$/
       path_to_pickle 'admin', $1, :extra => $2
 
+    when /^the admin payroll show page for #{capture_model}$/
+      user = model!($1)
+      "/admin/payroll/#{user.id}"
+
     when /^the dashboard #{capture_model}(?:'s)? page$/                           # eg. the forum's page
       path_to_pickle 'dashboard', $1
 
