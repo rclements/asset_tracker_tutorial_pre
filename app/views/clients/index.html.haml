@@ -13,7 +13,7 @@
               %th Projects
               %th Tickets
               %th Status
-              - if current_user.admin?
+              -if admin?
                 %th Edit
           %tbody
             - @clients.each do |client|
@@ -23,7 +23,7 @@
                 %td= client.projects.count
                 %td= client.tickets.count
                 %td= client.status
-                - if current_user.admin?
-                  %td= link_to 'Edit', edit_admin_client_path(client)
-        = link_to "New Client", new_client_path, :class => "add_new_button"
+                -if admin?
+                  %td= link_to 'Edit', edit_client_path(client)
+        = link_to "New Client", new_client_path, :class => "add_new_button" if admin?
 

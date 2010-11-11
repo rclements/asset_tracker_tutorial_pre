@@ -14,7 +14,6 @@ AssetTrackerTutorial::Application.routes.draw do
     resources :projects
     resources :unentered_time_report
     resources :weekly_time_report
-    resources :clients
   end
   get '/admin', :controller => "admin/base", :action => "index"
 

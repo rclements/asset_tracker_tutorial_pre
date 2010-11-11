@@ -2,8 +2,26 @@ Feature: Client Management
   As a user
   I should be able to manage clients
 
-  Scenario: List clients
+  Scenario: List clients as non admin
     Given I am an authenticated user
+    Given the following clients:
+      |name|status|
+      |name 1|Good|
+      |name 2|Bad|
+      |name 3|Ugly|
+      |name 4|ANGRY|
+    When I visit the clients index page
+    Then I should see the following clients:
+      |Name|Initials|Projects|Tickets|Status|
+      |name 1||0|0|Good|
+      |name 2||0|0|Bad|
+      |name 3||0|0|Ugly|
+      |name 4||0|0|ANGRY|
+    And I should not see a link with text "New Client"
+
+    @test
+  Scenario: List clients as non admin
+    Given I am an authenticated user with an "Admin" role
     Given the following clients:
       |name|status|
       |name 1|Good|
@@ -17,6 +35,7 @@ Feature: Client Management
       |name 2||0|0|Bad|Edit|
       |name 3||0|0|Ugly|Edit|
       |name 4||0|0|ANGRY|Edit|
+    And I should see a link with text "New Client"
 
   Scenario: View a client
     Given I am an authenticated user
