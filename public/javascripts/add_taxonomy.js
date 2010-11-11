@@ -20,8 +20,8 @@ $("#scheduled_at").datepicker( {
 });
 
 $("#new_work_unit").submit(function() {
-  var me = jQuery(this);
-  jQuery.ajax(
+  var me = $(this);
+  $.ajax(
   {
     async: true,
     global: false,
@@ -39,35 +39,35 @@ $("#new_work_unit").submit(function() {
        },
     success: function(result)
     {
-      var json = jQuery.parseJSON( result.responseText )
+      var json = $.parseJSON( result.responseText )
       me.trigger("reset");
       me.effect("highlight");
     },
     error: function(result)
     {
-      var json = jQuery.parseJSON( result.responseText )
-      jQuery("#work-unit-errors").data('errors', json);
-      jQuery("#work-unit-errors").dialog('open');
+      var json = $.parseJSON( result.responseText )
+      $("#work_unit_errors").data('errors', json);
+      $("#work_unit_errors").dialog('open');
     }
   });
   return false;
 });
 
-$("#work-unit-errors").dialog( {
+$("#work_unit_errors").dialog( {
   autoOpen: false,
   hide: true,
   title: "Error",
   modal: true,
   draggable: false,
   open: function() {
-    var dialog = jQuery("#work-unit-errors")
+    var dialog = $("#work_unit_errors")
     dialog.html("")
-    jQuery.each( dialog.data('errors'), function() {
+    $.each( dialog.data('errors'), function() {
       dialog.append("<p>" + this + "</p>")
     });
   },
   close: function() {
-    var dialog = jQuery("#work-unit-errors")
+    var dialog = $("#work_unit_errors")
     dialog.html("");
   }
 });
