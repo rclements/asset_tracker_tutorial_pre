@@ -30,7 +30,7 @@
       = select_tag('hours_type', options_for_select(['Normal', 'Overtime']))
 
     .work_unit_field
-      %label{:for => "work_unit_hours"}= "#{t(:hours)}:"
+      %label{:for => "work_unit_hours"}= "#{t(:hours).capitalize}:"
       = f.text_field :hours, { :size => 10 }
 
     .work_unit_field

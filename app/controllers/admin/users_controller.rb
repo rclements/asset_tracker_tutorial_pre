@@ -12,10 +12,10 @@ class Admin::UsersController < Admin::BaseController
   def create
     @user.update_attributes(params[:user])
     if @user.save
-      flash[:notice] = "Created successfully"
+      flash[:notice] = t(:user_created_successfully)
       redirect_to admin_users_path
     else
-      flash[:error] = "Didn't create."
+      flash[:error] = t(:user_created_unsuccessfully)
       redirect_to new_admin_user_path
     end
   end
@@ -33,10 +33,10 @@ class Admin::UsersController < Admin::BaseController
 
     @user.update_attributes(params[:user])
     if @user.save
-      flash[:notice] = "Updated successfully"
+      flash[:notice] = t(:user_updated_successfully)
       redirect_to admin_user_path(@user)
     else
-      flash[:error] = "Didn't update."
+      flash[:error] = t(:user_updated_unsuccessfully)
       redirect_to edit_admin_user_path(@user)
     end
   end
