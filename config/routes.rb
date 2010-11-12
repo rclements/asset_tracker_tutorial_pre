@@ -8,7 +8,7 @@ AssetTrackerTutorial::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :invoices, :as => :invoice
+    resources :invoices
     resources :payroll
     resources :users
     resources :projects

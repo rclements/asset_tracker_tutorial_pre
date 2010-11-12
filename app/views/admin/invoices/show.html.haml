@@ -8,7 +8,7 @@
         %div
           %input{:type => "text", :id => "global_invoiced"}
         %div
-          -form_tag(admin_invoice_path, :method => 'put', :multipart => true) do
+          = form_tag(admin_invoice_path, :method => 'put', :multipart => true) do
             = submit_tag 'Submit', :class => 'invoice_submit'
             .clear
             - @tickets.each do |ticket|
@@ -45,7 +45,7 @@
                     %td.totals{:colspan => "3"}= ticket.sum_of_hours_not_invoiced
                   %tr
                     %td{:colspan => "6"}
-                      - find_and_preserve do
+                      = find_and_preserve do
                         %textarea{:cols => "100%", :rows => "10"}
                           = "#{ticket.long_name}"
                           = "=========================="
