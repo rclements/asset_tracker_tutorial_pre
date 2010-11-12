@@ -21,6 +21,9 @@ module NavigationHelpers
     when /^the admin #{capture_model}(?:'s)? page$/
       path_to_pickle 'admin', $1
 
+    when /^the admin invoices page$/
+      '/admin/invoices'
+
     when /^the admin #{capture_model}(?:'s)? (.+?) page$/
       path_to_pickle 'admin', $1, :extra => $2
 
