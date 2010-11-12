@@ -2,7 +2,7 @@
 - comment_num = comment_num.to_s
 .comment-section
 
-= form_for :comment, Comment.new, :url => comments_path do |f|
+= form_for Comment.new, :as => :comment, :url => comments_path do |f|
   %div{ :id => "comment-form-#{comment_num}", :class => "comment-form hidden", :style => "display: none" }
     = f.text_area :comment
     = hidden_field_tag commentable_field, commentable_id

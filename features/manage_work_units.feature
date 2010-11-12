@@ -16,5 +16,5 @@ Feature: Manage Work Units
     And I select "Overtime" from "hours_type"
     And I fill in "Hours" with "2"
     And I fill in "Description" with "test description"
-    And I press "Add New"
+    And I press "Create Work Unit"
     Then I should see "TTC: 3.0" within ".overtime"

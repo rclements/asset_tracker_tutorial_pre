@@ -7,7 +7,7 @@ class TicketsController < ApplicationController
 
   def load_new_ticket
     @ticket = Ticket.new(params[:ticket])
-    # @ticket.project = Project.find(params[:ticket][:project_id])
+    @ticket.project = Project.find(params[:project_id])
     # debugger
   end
 

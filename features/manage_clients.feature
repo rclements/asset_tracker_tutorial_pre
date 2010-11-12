@@ -2,7 +2,6 @@ Feature: Client Management
   As a user
   I should be able to manage clients
 
-  @test
   Scenario: List clients as non admin
     Given I am an authenticated user
     Given the following clients:
@@ -11,7 +10,7 @@ Feature: Client Management
       |name 2|Bad|
       |name 3|Ugly|
       |name 4|ANGRY|
-    When I visit the clients page
+    When I go to the clients page
     Then I should see the following clients:
       |Name|Initials|Projects|Tickets|Status|
       |name 1||0|0|Good|
@@ -28,7 +27,7 @@ Feature: Client Management
       |name 2|Bad|
       |name 3|Ugly|
       |name 4|ANGRY|
-    When I visit the clients index page
+    When I go to the clients page
     Then I should see the following clients:
       |Name|Initials|Projects|Tickets|Status|Edit|
       |name 1||0|0|Good|Edit|

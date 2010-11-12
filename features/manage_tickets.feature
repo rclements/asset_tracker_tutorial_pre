@@ -31,22 +31,22 @@ Feature: Manage tickets
     And I press "Update"
     Then I should see "test ticket2"
 
-    @test
   Scenario: Register new ticket
     Given I am an authenticated user
     Given a client "test client" exists
     And a project exists with name: "test project", client: client "test client"
-    Given I am on the project's new ticket page
+    And I am on the project's page
+    And I follow "New Ticket"
     When I fill in "Name" with "name 1"
     And I press "Create"
     Then I should see "name 1"
 
-    @test
   Scenario: Register new ticket - the form
     Given I am an authenticated user
     Given a client "test client" exists
     And a project exists with name: "test project", client: client "test client"
-    Given I am on the project's new ticket page
+    And I am on the project's page
+    And I follow "New Ticket"
     Then I should see a link with text "Cancel" within ".actions"
 
 #  Scenario: Delete ticket

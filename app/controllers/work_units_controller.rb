@@ -39,8 +39,8 @@ class WorkUnitsController < ApplicationController
       if request.xhr?
         render :json => @work_unit.errors.full_messages.to_json, :layout => false, :status => 406 and return
       end
-      flash.now[:error] = "There was a problem creating the work unit"
-      render :action => :index and return
+      flash[:error] = "There was a problem creating the work unit"
+      redirect_to dashboard_path and return
     end
   end
 

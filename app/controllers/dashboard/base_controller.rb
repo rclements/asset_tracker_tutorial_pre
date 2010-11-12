@@ -1,6 +1,17 @@
 class Dashboard::BaseController < ApplicationController
   before_filter :get_calendar_details, :only => [:index, :calendar]
+  before_filter :load_all_projects, :only => [:index]
+  before_filter :load_all_tickets, :only => [:index]
   respond_to :html, :json, :js
+
+  def load_all_projects
+    @projects = Project.all
+  end
+
+  def load_all_tickets
+    @tickets = Ticket.all
+  end
+  public
 
   def index
     if current_user.work_units_for_day(Date.today.prev_working_day).empty? && !Rails.env.test?
@@ -9,7 +20,6 @@ class Dashboard::BaseController < ApplicationController
     end
 
     @clients = Client.all
-    @projects ||= []
     @tickets  ||= []
   end
 
