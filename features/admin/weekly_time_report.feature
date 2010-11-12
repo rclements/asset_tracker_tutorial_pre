@@ -11,4 +11,3 @@ Feature: Weekly Time Report
     And a work_unit exists with description: "Test Work Unit", ticket: ticket "Test Ticket", hours: 1, scheduled_at: "2010-10-01 00:00:00", created_at: "2010-10-01 00:00:00"
     When I go to path "/admin/weekly_time_report/2001-10-01"
     Then I should see "Stan M Lee"
-    Then show me the page

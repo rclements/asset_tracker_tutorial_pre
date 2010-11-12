@@ -14,7 +14,6 @@ Feature: Invoices
     And I follow "test client"
     And I fill in "global_invoiced" with "123"
     And I press "Submit"
-    Then show me the page
     Given I am on the admin invoices page
     Then I should not see "test client"
 
