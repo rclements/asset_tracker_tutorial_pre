@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
   helper_method :redirect_to_ref_url, :admin?
-  
+
   private
-  
+
   def redirect_unless_monday(path_prefix, date)
     @start_date = date ? Date.parse(date) : Date.today
     unless @start_date.monday?
@@ -14,8 +14,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin
+    unless current_user && current_user.admin?
+      flash[:error] = 'You must be an admin to do that.'
+      redirect_to root_path
+    end
+  end
+
   def admin?
     current_user && current_user.admin?
   end
-  
 end

@@ -19,10 +19,9 @@ Feature: User Administration
   Scenario: View a user
     Given I am an authenticated user with an "admin" role
     Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test@example.com", password: "secret", password_confirmation: "secret"
-    When I go to the admin user's page
-    Then I should see "Test Man"
+    When I go to the user's page
+    Then I should see "Test T Man"
     And I should see "test@example.com"
-    And I should see a link with text "Edit"
 
   Scenario: Edit a user
     Given I am an authenticated user with an "admin" role

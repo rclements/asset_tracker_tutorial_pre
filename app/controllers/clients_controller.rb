@@ -1,7 +1,8 @@
 class ClientsController < ApplicationController
   before_filter :load_new_client, :only => [:new, :create]
-  before_filter :load_client, :only => [:show, :update]
+  before_filter :load_client, :only => [:edit, :show, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
+  before_filter :require_admin, :only => [:edit, :new, :create]
 
   protected
   def load_new_client
@@ -45,6 +46,9 @@ class ClientsController < ApplicationController
       flash.now[:error] = "There was a problem saving the client."
       render :action => 'edit'
     end
+  end
+
+  def edit
   end
 
 end
