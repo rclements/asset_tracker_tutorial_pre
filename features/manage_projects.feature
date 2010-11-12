@@ -56,7 +56,7 @@ Feature: Manage projects
     Given a client "test client" exists
     Given I am on the client's page
     And I follow "New Project"
-    When I fill in "Name" with "name 1"
+    When I fill in "Name" with ""
     Then I should see a link with text "Cancel" within ".actions"
     And I press "Create"
     Then I should see "There was a problem saving the new project."
