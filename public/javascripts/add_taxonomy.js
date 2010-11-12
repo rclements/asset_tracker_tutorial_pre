@@ -85,6 +85,9 @@ $("#new_work_unit").submit(function() {
       var json = $.parseJSON( result.responseText )
       me.trigger("reset");
       me.effect("highlight");
+      // Ask the calendar to update itself
+      update_calendar_block();
+      
     },
     error: function(result)
     {
@@ -200,3 +203,15 @@ $("#ticket_errors").dialog( {
     dialog.html("");
   }
 });
+
+
+// ---------- Schedule Modal
+function update_calendar_block(){
+  $.ajax( {
+    async: true,
+    url: '/dashboard/calendar',
+    type: 'GET',
+    dataType: 'script'
+  });
+}
+
