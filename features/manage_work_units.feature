@@ -15,6 +15,6 @@ Feature: Manage Work Units
     And I select "test ticket" from "work_unit_ticket_id"
     And I select "Overtime" from "hours_type"
     And I fill in "Hours" with "2"
-    And I fill in "Description" with "test description"
+    And I fill in "work_unit_description" with "test description"
     And I press "Create Work Unit"
     Then I should see "TTC: 3.0" within ".overtime"
