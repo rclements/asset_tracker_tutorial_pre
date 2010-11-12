@@ -1,11 +1,6 @@
 %p.week_pagination
-  = link_to "Previous Week".html_safe, 
-    dashboard_path(:date => (@start_date - 1.week).strftime("%F")), 
-    :class => "previous_week recent_work"
+  = link_to t(:previous_week).html_safe, dashboard_path(:date => (@start_date - 1.week).strftime("%F")), :class => "previous_week recent_work"
   - unless (start_date..(start_date + 6.days)).include?(Date.today)
-    = link_to "Today", dashboard_path, 
-      :class => "today recent_work"
+    = link_to t(:today), dashboard_path, :class => "today recent_work"
   - if (start_date + 6.days) < Date.today
-    = link_to "Next Week".html_safe, 
-      dashboard_path(:date => (@start_date + 1.week)),
-      :class => "next_week recent_work"
+    = link_to t(:next_week).html_safe, dashboard_path(:date => (@start_date + 1.week)), :class => "next_week recent_work"

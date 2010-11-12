@@ -3,7 +3,7 @@
     #error_explanation
       %h2
         = pluralize(@project.errors.count, "error")
-        prohibited this project from being saved:
+        = "#{t(:prohibited_this_project_from_being_saved)}:"
 
       %ul
       - @project.errors.full_messages.each do |msg|
@@ -15,4 +15,4 @@
     = hidden_field_tag :client, @project.client.id
   .actions
     = f.submit :class => "add_new_button"
-    = link_to 'Cancel', client_path(@project.client)
+    = link_to t(:cancel), client_path(@project.client)

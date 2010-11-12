@@ -1,6 +1,6 @@
 .yui3-g
   .yui3-u-1
-    %h2= "Users with no time entered"
+    %h2= t(:users_with_no_time_entered)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
@@ -9,12 +9,12 @@
           %div{:id => day.strftime("%A")}
             %h3= day.strftime("%A, %B %d, %Y")
             - if day.future?
-              %p (This day is in the future.)
+              %p= "(#{t(:this_day_is_in_the_future)})"
             - else
               %ul
                 - @users.each do |user|
                   - if user.work_units_for_day(day).empty?
                     %li= link_to "#{user.last_name}, #{user.first_name}", user_path(user)
-        %h4= link_to "Previous", admin_unentered_time_report_path(@previous_week)
-        %h4= link_to "Next", admin_unentered_time_report_path(@next_week)
+        %h4= link_to t(:previous), admin_unentered_time_report_path(@previous_week)
+        %h4= link_to t(:next), admin_unentered_time_report_path(@next_week)
 
