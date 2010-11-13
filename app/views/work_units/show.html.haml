@@ -7,10 +7,10 @@
       .gradient_border_content
         %ul.subnav
           - if @work_unit.user == current_user
-            %li= link_to 'Edit', edit_work_unit_path
-          %li= link_to "Back to ticket: #{@work_unit.ticket}", ticket_path(@work_unit.ticket)
-          %li= link_to "Back to project: #{@work_unit.ticket.project}", project_path(@work_unit.ticket.project)
-          %li= link_to "Back to client: #{@work_unit.ticket.project.client}", client_path(@work_unit.ticket.project.client)
+            %li= link_to t(:edit), edit_work_unit_path
+          %li= link_to "#{t(:back_to_ticket)}: #{@work_unit.ticket}", ticket_path(@work_unit.ticket)
+          %li= link_to "#{t(:back_to_project)}: #{@work_unit.ticket.project}", project_path(@work_unit.ticket.project)
+          %li= link_to "#{t(:back_to_client)}: #{@work_unit.ticket.project.client}", client_path(@work_unit.ticket.project.client)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap

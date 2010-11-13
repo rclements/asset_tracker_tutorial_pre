@@ -1,7 +1,7 @@
 !!! Strict
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
-    %title= 'Isotope11 Asset Tracker:' + yield(:title)
+    %title= t(:app_name) + ':' + yield(:title)
     %meta{"content" => "text/html;charset=UTF-8", "http-equiv" => "content-type"}
     = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
     = stylesheet_link_tag 'compiled/print.css', :media => 'print'
@@ -14,7 +14,7 @@
       .wrapper
         %h1
           %a{:href => "/"}
-            %span Isotope Eleven
+            %span= t(:company_name)
       #nav
         .wrapper= render :partial => "shared/menu"
     #content
@@ -29,5 +29,8 @@
     .clear
     #footer
       .wrapper
-        %p &copy; Isotope11 2010
+        %p
+          &copy; 
+          = t(:company_name)
+          2010
     = render :partial => "shared/javascripts"

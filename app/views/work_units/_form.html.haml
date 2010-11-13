@@ -3,7 +3,7 @@
     #error_explanation
       %h2
         = pluralize(@work_unit.errors.count, "error")
-        prohibited this work_unit from being saved:
+        = "#{t(:prohibited_this_work_unit_from_being_saved)}:"
 
       %ul
       - @work_unit.errors.full_messages.each do |msg|
@@ -24,4 +24,4 @@
   .actions
     = f.submit
     or
-    = link_to 'Cancel', work_unit_path
+    = link_to t(:cancel), work_unit_path
