@@ -21,7 +21,7 @@ $("#scheduled_at").datepicker( {
     $("#schedule_modal").dialog('close');
     $('#schedule_modal_link').text($('#work_unit_scheduled_at').val());
   },
-  dateFormat: 'yy-mm-dd'
+  dateFormat: 'mm/dd/yy'
 });
 
 
