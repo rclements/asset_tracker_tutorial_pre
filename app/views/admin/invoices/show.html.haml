@@ -1,6 +1,6 @@
 .yui3-g
   .yui3-u-1
-    %h2= "Invoicing: #{@client}"
+    %h2= "#{t(:invoicing)}: #{@client}"
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
@@ -9,7 +9,7 @@
           %input{:type => "text", :id => "global_invoiced"}
         %div
           = form_tag(admin_invoice_path, :method => 'put', :multipart => true) do
-            = submit_tag 'Submit', :class => 'invoice_submit'
+            = submit_tag t(:submit), :class => 'invoice_submit'
             .clear
             - @tickets.each do |ticket|
               %table.invoice
@@ -21,17 +21,17 @@
                     %td
                       %input{:type => "text", :id => "ticket_invoiced_#{ticket.id}", :class => "ticket_invoiced"}
                   %tr
-                    %th Description
-                    %th.assigned_to Assigned To
-                    %th.scheduled_on Scheduled On
-                    %th.hours Hours
-                    %th.overtime O/T
-                    %th.invoice_th Invoice
+                    %th= t(:description)
+                    %th.assigned_to= t(:assigned_to)
+                    %th.scheduled_on= t(:scheduled_on)
+                    %th.hours= t(:hours).capitalize
+                    %th.overtime= t(:overtime_abbrev)
+                    %th.invoice_th= t(:invoice)
                 %tbody
                   - @work_units.each do |wu|
                     - if wu.ticket == ticket
                       %tr{ :class => cycle("odd", "even") }
-                        %td= wu.description.gsub(/\n/,"<br>&nbsp;&nbsp;").html_safe
+                        %td= wu.description.gsub(/\n/,"<br />&nbsp;&nbsp;").html_safe
                         %td= wu.user.first_name
                         %td= wu.scheduled_at.strftime("%F")
                         %td= wu.hours
@@ -41,7 +41,7 @@
                           = text_field_tag "work_units[#{wu.id}][invoiced_at]", Time.now.strftime("%F"), :class => "datepicker"
                 %tfoot
                   %tr
-                    %td.totals{:colspan => "3"} Totals
+                    %td.totals{:colspan => "3"}= t(:totals)
                     %td.totals{:colspan => "3"}= ticket.sum_of_hours_not_invoiced
                   %tr
                     %td{:colspan => "6"}
@@ -55,8 +55,7 @@
                               = ""
                               - if ticket.work_units.last == wu
                                 = "=========================="
-                                = "Total Hours: #{ticket.sum_of_hours_not_invoiced}"
+                                = "#{t(:total_hours)}: #{ticket.sum_of_hours_not_invoiced}"
 
         - content_for :javascripts do
           = javascript_include_tag "admin_invoices"
-

@@ -6,28 +6,28 @@
     .gradient_border_wrap
       .gradient_border_content
         %ul.subnav
-          %li= link_to 'Edit', edit_project_path
-          %li= link_to "Back to client: #{@project.client}" , @project.client
-          %li= link_to 'New Ticket', new_ticket_path(:project_id => @project)
+          %li= link_to t(:edit), edit_project_path
+          %li= link_to "#{t(:back_to_client)}: #{@project.client}" , @project.client
+          %li= link_to t(:new_ticket), new_ticket_path(:project_id => @project)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
       .gradient_border_content
-        %h3= "Status: #{@project.client.status}"
+        %h3= "#{t(:status)}: #{@project.client.status}"
         %table.tickets
           %thead
             %tr
-              %th Tickets
-              %th Work Units
-              %th Hours
-              %th Edit
+              %th= t(:tickets)
+              %th= t(:work_units)
+              %th= t(:hours)
+              %th= t(:edit)
           %tbody
             - @project.tickets.each do |ticket|
               %tr
                 %td= link_to ticket, ticket
                 %td= ticket.work_units.count
                 %td= ticket.work_units.inject(0) {|hours, work_unit| hours + work_unit.hours }
-                %td= link_to 'Edit', edit_ticket_path(ticket)
+                %td= link_to t(:edit), edit_ticket_path(ticket)
 .yui3-g
   .yui3-u-1-2
     .gradient_border_wrap
@@ -41,8 +41,8 @@
   .yui3-u-1-2
     .gradient_border_wrap
       .gradient_border_content
-        %h2 Files
+        %h2= t(:files)
         %ul
           - @project.file_attachments.each do |file_attachment|
             %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
-        = link_to "Add File Attachment", new_file_attachment_path( :project_id => @project.id )
+        = link_to t(:add_file_attachment), new_file_attachment_path( :project_id => @project.id )

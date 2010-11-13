@@ -30,20 +30,20 @@ class ClientsController < ApplicationController
 
   def create
     if @client.save
-      flash[:notice] = "Client created successfully."
+      flash[:notice] = t(:client_created_successfully)
       redirect_to @client
     else
-      flash.now[:error] = "There was a problem saving the new client."
+      flash.now[:error] = t(:client_created_unsuccessfully)
       render :action => 'new'
     end
   end
 
   def update
     if @client.update_attributes(params[:client])
-      flash[:notice] = "Client updated successfully."
+      flash[:notice] = t(:client_updated_successfully)
       redirect_to @client
     else
-      flash.now[:error] = "There was a problem saving the client."
+      flash.now[:error] = t(:client_updated_unsuccessfully)
       render :action => 'edit'
     end
   end
