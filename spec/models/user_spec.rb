@@ -46,7 +46,7 @@ describe User do
         @work_unit = WorkUnit.make(:user => @user)
       end
 
-      it "should have a prev_working_day method" do
+      it "should have a with_unpaid_work_units method" do
         User.respond_to?(:with_unpaid_work_units).should be true
       end
 
@@ -111,6 +111,36 @@ describe User do
       work_unit_2 = WorkUnit.make(:user => user)
       work_unit_3 = WorkUnit.make(:user => user, :scheduled_at => 3.days.ago)
       user.work_units_for_day(Time.zone.now).should == [work_unit_1, work_unit_2]
+    end
+  end
+
+  describe '.work_units_for_week' do
+    it 'lists work units that are scheduled for a specified day' do
+      user = User.make
+      work_unit_1 = WorkUnit.make(:user => user)
+      work_unit_2 = WorkUnit.make(:user => user)
+      work_unit_3 = WorkUnit.make(:user => user, :scheduled_at => 9.days.ago)
+      user.work_units_for_week(Time.zone.now).should == [work_unit_1, work_unit_2]
+    end
+  end
+
+  describe '.clients_for_day' do
+    it 'lists clients for work units that are scheduled for a specified day' do
+      user = User.make
+      work_unit_1 = WorkUnit.make(:user => user)
+      work_unit_2 = WorkUnit.make(:user => user)
+      work_unit_3 = WorkUnit.make(:user => user, :scheduled_at => 3.days.ago)
+      user.clients_for_day(Time.zone.now).should == [work_unit_1, work_unit_2].map(&:client)
+    end
+  end
+
+  describe '.unpaid_work_units' do
+    it 'lists work units for this user that have not been paid' do
+      user = User.make
+      work_unit_1 = WorkUnit.make(:user => user)
+      work_unit_2 = WorkUnit.make(:user => user)
+      work_unit_3 = WorkUnit.make(:user => user, :paid => '111')
+      user.unpaid_work_units.should == [work_unit_1, work_unit_2]
     end
   end
 

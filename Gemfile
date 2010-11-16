@@ -10,6 +10,10 @@ gem 'lemonade', '~> 0.3.4'
 gem 'mysql', '~> 2.8.1'
 gem 'rails', '3.0.0'
 gem 'uuid', '~> 2.3.1'
+gem 'ruby-debug19'
+gem 'jquery-rails'
+gem 'capistrano', '~> 2.5.19'
+
 
 group :test do
   gem 'capybara', '~> 0.3.9'

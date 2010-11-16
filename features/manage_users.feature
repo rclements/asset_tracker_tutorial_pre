@@ -8,7 +8,7 @@ Feature: User Administration
       | first_name | last_name | middle_initial | email             | password  | role  |
       | admin      | mcadmin   | a              | admin@example.com | secret    | admin |
     When I go to the admin users page
-    Then I should see "admin a mcadmin"
+    Then I should see "Admin A Mcadmin"
 
   Scenario: List users (non-admin role)
     Given I am an authenticated user
@@ -19,10 +19,9 @@ Feature: User Administration
   Scenario: View a user
     Given I am an authenticated user with an "admin" role
     Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test@example.com", password: "secret", password_confirmation: "secret"
-    When I go to the admin user's page
-    Then I should see "Test Man"
+    When I go to the user's page
+    Then I should see "Test T Man"
     And I should see "test@example.com"
-    And I should see a link with text "Edit"
 
   Scenario: Edit a user
     Given I am an authenticated user with an "admin" role
@@ -45,7 +44,7 @@ Feature: User Administration
     And I fill in "Password" with "secretpass"
     And I fill in "Password confirmation" with "secretpass"
     And I press "Create"
-    Then I should see "name 1"
+    Then I should see "Name 1 M Man"
 
   Scenario: Register new user - the form
     Given I am an authenticated user with an "admin" role

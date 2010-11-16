@@ -24,7 +24,7 @@ class Admin::InvoicesController < ApplicationController
       end
     end
 
-    redirect_to admin_invoice_path
+    redirect_to admin_invoices_path
   end
 
   private

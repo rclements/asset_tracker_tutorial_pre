@@ -14,9 +14,9 @@
       %tr
         - (start_date..(start_date + 6.days)).each do |date|
           %td
-            %ul
-              - user.work_units_for_day(date).each do |work_unit|
-                %li{:class => "#{work_unit.overtime? ? 'work_unit overtime' : 'work_unit'}"}
-                  = link_to "#{work_unit.client.initials}: #{work_unit.hours}", 
-                    work_unit_path(work_unit) 
+            - unless user.work_units_for_day(date).empty?
+              %ul
+                - user.work_units_for_day(date).each do |work_unit|
+                  %li{:class => "#{work_unit.overtime? ? 'work_unit overtime' : 'work_unit'}"}
+                    = link_to "#{work_unit.client.initials}: #{work_unit.hours}", work_unit_path(work_unit), { :title => work_unit.description }
         %td= "Current: #{user.unpaid_work_units.sum(:hours)}"

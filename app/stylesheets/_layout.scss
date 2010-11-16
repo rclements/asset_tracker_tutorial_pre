@@ -81,10 +81,9 @@ h2 {
   letter-spacing:.06em;
 }
 h3 {
-  margin: 5px 0 9px 0;
+  margin: 5px 0 9px 0px;
   font-size:1.5em;
   color:#384f62;
-  text-decoration:underline;
 }
 
 #header {
@@ -153,11 +152,7 @@ h4.dashboard_title {
   margin: 0 0 10px 10px;
 }
 
-#work_unit_description {
-  width:200px;
-  height:100px;
-}
-#new_work_unit {
+#new_ticket, #new_work_unit {
   padding:0 0 0 10px;
   span {
     width:120px;
@@ -167,21 +162,25 @@ h4.dashboard_title {
     margin: 0 20px 0 0;
   input {
     width:100px;
-    float:right;  
+    float:right;
     }
   }
-}
-
-.work_unit_field {
-  margin: 0 0 10px 0;
+  .ticket_field, .work_unit_field {
+    margin: 0 0 10px 0;
+  }
   label {
     width:100px;
     float:left;
   }
   .add_new_button {
-    margin: 0 0 0 117px;
+    margin: 0 0 0 100px;
+  }
+  textarea {
+    width:200px;
+    height:100px;
   }
 }
+
 #calendar table {
   border: 1px solid #ccc;
   width:100%;
@@ -211,6 +210,11 @@ h4.dashboard_title {
       text-decoration:none;
       color:#6f8f98;
     } 
+  }
+  .work_unit{
+    &.overtime a{
+      color: red;
+    }
   }
 }
 .new_user .add_new_button {

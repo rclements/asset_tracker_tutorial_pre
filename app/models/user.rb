@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :first_name, :last_name, :middle_initial
 
-  validates_presence_of :first_name, :last_name, :middle_initial
+  validates_presence_of :first_name, :last_name
   validates_length_of :middle_initial, :is => 1
 
   has_many :work_units
@@ -38,11 +38,11 @@ class User < ActiveRecord::Base
   end
 
   def unpaid_work_units
-    WorkUnit.for_user(self).unpaid
+    work_units.unpaid
   end
 
   def to_s
-    "#{first_name} #{middle_initial} #{last_name}"
+    "#{first_name.capitalize} #{middle_initial.capitalize} #{last_name.capitalize}"
   end
 
   def admin?

@@ -3,54 +3,18 @@ Feature: Manage Work Units
   Visitor
   wants a nice management interface
 
-  Scenario: List work units
-    Given I am an authenticated user
-    And a client "test client" exists
-    And a project "test project" exists with name: "test project", client: client "test client"
-    And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
-    And a work_unit exists with ticket: ticket "test ticket", description: "test work unit", scheduled_at: "2010-01-14 00:01:00", hours: 2
-    When I am on the ticket's work_units page
-    Then I should see "test work unit"
-
+  @javascript
   Scenario: Register new work unit
     Given I am an authenticated user
-    And a client "test client" exists
+    And a client "test client" exists with name: "test client", initials: "TTC"
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
-    And I am on the ticket's new work_unit page
-    When I fill in "Description" with "test description"
+    And I visit /
+    When I select "test client" from "work_unit_client_id"
+    And I select "test project" from "work_unit_project_id"
+    And I select "test ticket" from "work_unit_ticket_id"
+    And I select "Overtime" from "hours_type"
     And I fill in "Hours" with "2"
-    And I press "Create"
-    Then I should see "test description"
-
-  Scenario: Register new work unit - the form
-    Given I am an authenticated user
-    And a client "test client" exists
-    And a project "test project" exists with name: "test project", client: client "test client"
-    And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
-    And I am on the ticket's new work_unit page
-    Then I should see a link with text "Cancel" within ".actions"
-
-  Scenario: View a work unit
-    Given I am an authenticated user
-    And a client "test client" exists with name: "test client"
-    And a project "test project" exists with name: "test project", client: client "test client"
-    And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
-    And a work_unit exists with ticket: ticket "test ticket", description: "test work_unit", hours: 2, scheduled_at: "2010-01-14 00:01:00"
-    When I am on the ticket's work_unit's page
-    Then I should see a link with text "Back to ticket: test ticket"
-    And I should see a link with text "Back to project: test project"
-    And I should see a link with text "Back to client: test client"
-
-  Scenario: Edit a work unit
-    Given I am an authenticated user
-    And a client "test client" exists with name: "test client"
-    And a project "test project" exists with name: "test project", client: client "test client"
-    And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
-    And a work_unit exists with ticket: ticket "test ticket", description: "test work_unit", hours: 2, scheduled_at: "2010-01-14 00:01:00"
-    When I am on the ticket's work_unit's edit page
-    And I press "Update Work unit"
-    Then I should see a link with text "Back to ticket: test ticket"
-    And I should see a link with text "Back to project: test project"
-    And I should see a link with text "Back to client: test client"
-
+    And I fill in "work_unit_description" with "test description"
+    And I press "Create Work Unit"
+    Then I should see "TTC: 3.0" within ".overtime"

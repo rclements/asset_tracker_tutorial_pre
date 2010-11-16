@@ -14,5 +14,5 @@
     = f.text_field :name
     = hidden_field_tag :client, @project.client.id
   .actions
-    = f.submit
-
+    = f.submit :class => "add_new_button"
+    = link_to 'Cancel', client_path(@project.client)

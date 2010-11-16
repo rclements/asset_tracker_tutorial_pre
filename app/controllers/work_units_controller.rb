@@ -1,8 +1,14 @@
 class WorkUnitsController < ApplicationController
+  before_filter :handle_overtime_hours_type, :only => [:create]
   before_filter :load_new_work_unit, :only => [:new, :create]
   before_filter :load_work_unit, :only => [:show, :edit, :update]
 
   protected
+
+  def handle_overtime_hours_type
+    # We send this in as a silly select field instead of a checkbox.
+    params[:work_unit][:overtime] = params[:hours_type] == 'Overtime'
+  end
 
   def load_new_work_unit
     _params = (params[:work_unit] || {}).dup
@@ -33,8 +39,8 @@ class WorkUnitsController < ApplicationController
       if request.xhr?
         render :json => @work_unit.errors.full_messages.to_json, :layout => false, :status => 406 and return
       end
-      flash.now[:error] = "There was a problem creating the work unit"
-      render :action => :index and return
+      flash[:error] = "There was a problem creating the work unit"
+      redirect_to dashboard_path and return
     end
   end
 

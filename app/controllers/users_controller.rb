@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_filter :load_user, :only => [:show, :edit, :change_password, :historical_time]
   before_filter :require_current_user, :only => [:edit, :change_password]
 
@@ -11,10 +10,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    unless @user == current_user
-      flash[:error] = "You cannot change another user's password"
-      redirect_to dashboard_path
-    end
   end
 
   def change_password

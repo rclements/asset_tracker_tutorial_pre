@@ -8,3 +8,4 @@ capybara*
 .rvmrc
 public/stylesheets/compiled/*
 coverage/
+public/system

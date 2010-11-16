@@ -7,7 +7,8 @@ class TicketsController < ApplicationController
 
   def load_new_ticket
     @ticket = Ticket.new(params[:ticket])
-    @ticket.project = Project.find(params[:project])
+    @ticket.project = Project.find(params[:project_id])
+    # debugger
   end
 
   def load_ticket
@@ -41,11 +42,17 @@ class TicketsController < ApplicationController
 
   def create
     if @ticket.save
+      if request.xhr?
+        render :json => "{\"success\": true}", :layout => false, :status => 200 and return
+      end
       flash[:notice] = "Ticket created successfully."
-      redirect_to ticket_path(@ticket)
+      redirect_to ticket_path(@ticket) and return
     else
-      flash.now[:error] = "There was a problem saving the ticket."
-      render :action => 'new'
+      if request.xhr?
+        render :json => @ticket.errors.full_messages.to_json, :layout => false, :status => 406 and return
+      end
+      flash.now[:error] = "There was a problem creating the ticket"
+      render :action => :new and return
     end
   end
 
