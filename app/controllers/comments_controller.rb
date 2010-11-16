@@ -33,10 +33,8 @@ class CommentsController < ApplicationController
   def new
   end
 
-  def deactivate
-    if @comment.deactivate
-      @comment = Comment.find(params[:id])
-      @comment.update_attributes(:active => false)
+  def update
+    if @comment.update_attributes(:active => false)
       flash[:notice] = "The comment has been hidden"
       redirect_to(:back)
     else
