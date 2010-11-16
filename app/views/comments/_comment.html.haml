@@ -1,8 +1,10 @@
 .comment_wrap
+- if comment.active?
   .comment_details
     = show_gravatar_for(comment.user)
     = comment.user
     = "Posted: #{comment.created_at}"
   .comment_body
     = comment.comment
+    = link_to("Hide Comment", {:controller => "comments", :action => "deactivate", :id => comment.id})
 
