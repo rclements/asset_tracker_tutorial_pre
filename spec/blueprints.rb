@@ -14,6 +14,17 @@ Sham.define do
   description(:unique => false)         { Faker::Company.bs }
   hours(:unique => false)               { rand(12) + 1}
   scheduled_at(:unique => false)        { Time.now }
+  # Contact
+  email_address                                 { |index| "#{index}" + Faker::Internet.email }
+  first_name(:unique => false)          { Faker::Name.first_name }
+  last_name(:unique => false)           { Faker::Name.last_name }
+end
+
+Contact.blueprint do
+  first_name
+  last_name
+  email_address
+  client { Client.make }
 end
 
 User.blueprint do
@@ -56,3 +67,4 @@ end
 WorkUnit.blueprint(:invoiced) do
   invoiced { 'Invoice Number 1000' }
 end
+
