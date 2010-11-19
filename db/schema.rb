@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101112151337) do
+ActiveRecord::Schema.define(:version => 20101119172727) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20101112151337) do
     t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "recieves_email", :default => false
   end
 
   create_table "file_attachments", :force => true do |t|
