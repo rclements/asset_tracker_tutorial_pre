@@ -16,4 +16,14 @@ describe Contact do
   it 'fails validation with no email_address' do
     should have(1).errors_on(:email_address)
   end
+  
+  describe 'for_client' do
+    it 'should return the proper list of contacts for the client' do
+      contact_1 = Contact.make
+      client = contact_1.client
+      contact_2 = Contact.make
+      Contact.for_client(client).include?(contact_1).should be_true
+      Contact.for_client(client).include?(contact_2).should be_false
+    end
+  end
 end
