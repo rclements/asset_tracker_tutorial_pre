@@ -13,7 +13,7 @@ gem 'uuid', '~> 2.3.1'
 gem 'ruby-debug19'
 gem 'jquery-rails'
 gem 'capistrano', '~> 2.5.19'
-
+gem 'thin', '~> 1.2.7'
 
 group :test do
   gem 'capybara', '~> 0.3.9'
