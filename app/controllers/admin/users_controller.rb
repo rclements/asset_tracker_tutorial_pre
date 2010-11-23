@@ -34,7 +34,7 @@ class Admin::UsersController < Admin::BaseController
     @user.update_attributes(params[:user])
     if @user.save
       flash[:notice] = "Updated successfully"
-      redirect_to admin_user_path(@user)
+      redirect_to user_path(@user)
     else
       flash[:error] = "Didn't update."
       redirect_to edit_admin_user_path(@user)
