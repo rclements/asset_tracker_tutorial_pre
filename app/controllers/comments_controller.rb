@@ -18,10 +18,10 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save
       @comment.update_attributes(params[:comment])
-      flash[:notice] = "Comment created successfully."
+      flash[:notice] = t(:comment_created_successfully)
       redirect_to_ref_url
     else
-      flash.now[:error] = "There was a problem creating the comment."
+      flash.now[:error] = t(:comment_created_unsuccessfully)
       render :action => :new
     end
   end

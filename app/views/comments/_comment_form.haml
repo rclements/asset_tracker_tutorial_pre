@@ -9,9 +9,9 @@
     = hidden_field_tag :refurl, refurl
     = hidden_field_tag :commentable_type, commentable_type
     %p
-      = submit_tag "Post Comment"
+      = submit_tag t(:post_comment)
 
-= link_to "Add Comment", "#", :id => "link-to-show-comment-#{comment_num}"
+= link_to t(:add_comment), "#", :id => "link-to-show-comment-#{comment_num}"
 - content_for :javascripts do
   :javascript
     var comment_field = $("#comment-form-#{comment_num}");

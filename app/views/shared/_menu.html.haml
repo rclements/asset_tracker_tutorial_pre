@@ -1,6 +1,6 @@
 %ul
-  %li= link_to "Home", root_path
-  %li= link_to "Clients", clients_path
-  %li= link_to "Users", users_path
+  %li= link_to t(:home), root_path
+  %li= link_to t(:clients), clients_path
+  %li= link_to t(:users), users_path
   - if admin?
-    %li= link_to "Admin", admin_path
+    %li= link_to t(:admin), admin_path

@@ -1,6 +1,6 @@
 .yui3-g
   .yui3-u-1
-    %h2 Edit Page for User
+    %h2= t(:edit_user)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
@@ -27,7 +27,7 @@
           = f.label :locked
           = f.check_box :locked
           %br/
-          = f.submit 'Update', :class => 'add_new_button'
-          = link_to 'Cancel', admin_users_path, :class => 'cancel_button' 
+          = f.submit t(:update), :class => 'add_new_button'
+          = link_to t(:cancel), admin_users_path, :class => 'cancel_button' 
 
         .clear

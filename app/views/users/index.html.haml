@@ -1,6 +1,6 @@
 .yui3-g
   .yui3-u-1
-    %h2 All Users
+    %h2= t(:all_users)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
@@ -8,14 +8,13 @@
         %table.users
           %thead
             %tr
-              %th Name
-              %th Email
+              %th= t(:name)
+              %th= t(:email)
           %tbody
             - @users.each do |user|
               %tr
                 %td.user_img
-                  = link_to "#{show_gravatar_for(user)}<span>#{user}</span>".html_safe,
-                    user
+                  = link_to "#{show_gravatar_for(user)}<span>#{user}</span>".html_safe, user
                 %td= user.email
         - if current_user.admin?
-          = link_to "New User", new_admin_user_path, :class => "add_new_button"
+          = link_to t(:new_user), new_admin_user_path, :class => "add_new_button"
