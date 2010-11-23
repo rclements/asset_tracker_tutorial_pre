@@ -1,6 +1,6 @@
 .yui3-g
   .yui3-u-1
-    %h2= "Payroll: #{@user}"
+    %h2= "#{t(:payroll)}: #{@user}"
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
@@ -8,20 +8,20 @@
         %div.autofill
           = text_field_tag "autofill_all"
         = form_tag(admin_payroll_path, :method => 'put', :multipart => true) do
-          = submit_tag 'Submit', :class => 'invoice_submit'
+          = submit_tag t(:submit), :class => 'invoice_submit'
           .clear
           - @clients.each do |client|
             %table.invoice
               %thead
                 %tr
-                  %th{:colspan => 4}= 'Company: ' + client.to_s
+                  %th{:colspan => 4}= "#{t(:client)}: #{client}"
                   %th= text_field_tag "autofill_client_#{client.id}", nil, :class => "autofill_client"
                 %tr
-                  %th Description
-                  %th Work Date
-                  %th.hours Hours
-                  %th.overtime O/T
-                  %th.payroll_check Check Number
+                  %th= t(:description)
+                  %th= t(:work_date)
+                  %th.hours= t(:hours).capitalize
+                  %th.overtime= t(:overtime_abbrev)
+                  %th.payroll_check= t(:check_number)
               %tbody
                 - @work_units.each do |wu|
                   - if wu.ticket.project.client == client
@@ -31,14 +31,14 @@
                       %td= wu.hours
                       %td
                         - if wu.overtime?
-                          yes
+                          = t(:affirmative)
                       %td= text_field_tag "work_unit[#{wu.id}]", nil, :class => "global autofill_client_#{client.id}"
               %tfoot
                 %tr
-                  %td.totals{:colspan => 4} Total
+                  %td.totals{:colspan => 4}= t(:total)
                   %td.totals= @work_units.select { |x| x.client == client }.sum(&:hours)
-          = submit_tag 'Submit'
-        %h4= 'Total For Pay Period: ' + @work_units.sum(:hours).to_s + ' hours'
+          = submit_tag t(:submit)
+        %h4= "#{t(:total_for_pay_period)}: #{@work_units.sum(:hours)} #{t(:hours)}"
 
         - content_for :javascripts do
           :javascript
@@ -59,5 +59,3 @@
               });
 
             });
-
-

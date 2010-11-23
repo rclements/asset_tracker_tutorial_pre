@@ -30,20 +30,20 @@ class ProjectsController < ApplicationController
 
   def update
     if @project.update_attributes(params[:project])
-      flash[:notice] = "Project updated successfully."
+      flash[:notice] = t(:project_updated_successfully)
       redirect_to [@project]
     else
-      flash.now[:error] = "There was a problem saving the project."
+      flash.now[:error] = t(:project_updated_unsuccessfully)
       render :action => 'edit'
     end
   end
 
   def create
     if @project.save
-      flash[:notice] = "Project created successfully."
+      flash[:notice] = t(:project_created_successfully)
       redirect_to @project
     else
-      flash.now[:error] = "There was a problem saving the new project."
+      flash.now[:error] = t(:project_created_unsuccessfully)
       render :action => 'new'
     end
   end
