@@ -12,6 +12,7 @@ gem 'rails', '3.0.0'
 gem 'uuid', '~> 2.3.1'
 gem 'ruby-debug19'
 gem 'jquery-rails'
+gem 'capistrano', '~> 2.5.19'
 
 
 group :test do

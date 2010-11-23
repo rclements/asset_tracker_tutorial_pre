@@ -16,7 +16,7 @@ class Dashboard::BaseController < ApplicationController
   def index
     if current_user.work_units_for_day(Date.today.prev_working_day).empty? && !Rails.env.test?
       @message = {:title =>"Management", 
-        :body => "You have not entered any time for the previous working day. Please Enter it immediatly!"}
+        :body => "You have not entered any time for the previous working day. Please Enter it immediately!"}
     end
 
     @clients = Client.all

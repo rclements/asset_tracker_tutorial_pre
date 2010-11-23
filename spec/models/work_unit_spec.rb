@@ -36,6 +36,18 @@ describe WorkUnit do
     subject.respond_to?(:comments).should be true
   end
 
+  describe 'for_client' do
+    it 'should return the proper work units for a given client' do
+      work_unit_1 = WorkUnit.make
+      ticket = work_unit_1.ticket
+      client = work_unit_1.client
+      work_unit_2 = WorkUnit.make(:ticket => ticket)
+      work_unit_3 = WorkUnit.make
+      WorkUnit.for_client(client).should == [work_unit_1, work_unit_2]
+      WorkUnit.for_client(client).include?(work_unit_3).should_not == true
+    end
+  end
+
   describe 'while being created' do
     it 'should create a new work unit from the blueprint' do
       lambda do
