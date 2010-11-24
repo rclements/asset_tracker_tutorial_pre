@@ -3,7 +3,7 @@
   .comment_details
     = show_gravatar_for(comment.user)
     = comment.user
-    = "Posted: #{comment.created_at}"
+    = "#{t(:posted)}: #{comment.created_at}"
   .comment_body
     = comment.comment
     = form_for comment, :url => {:controller => 'comments', :action => "update", :id => comment.id} do |c|

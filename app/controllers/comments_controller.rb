@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   def load_comment
     @comment = Comment.find(params[:id])
   end
-  
+
   public
   def create
     @commentable = find_commentable
@@ -19,10 +19,10 @@ class CommentsController < ApplicationController
     if @comment.save
       @comment.update_attributes(params[:comment])
       @comment.update_attributes(:active => true)
-      flash[:notice] = "Comment created successfully."
+      flash[:notice] = t(:comment_created_successfully)
       redirect_to_ref_url
     else
-      flash.now[:error] = "There was a problem creating the comment."
+      flash.now[:error] = t(:comment_created_unsuccessfully)
       render :action => :new
     end
   end

@@ -1,6 +1,6 @@
 .yui3-g
   .yui3-u-1
-    %h2 All Users
+    %h2= t(:all_users)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
@@ -8,12 +8,12 @@
         %table.users
           %thead
             %tr
-              %th Name
-              %th Email
-              %th Current
-              %th Locked?
-              %th Roles
-              %th Edit
+              %th= t(:name)
+              %th= t(:email)
+              %th= t(:current)
+              %th= "#{t(:locked)}?"
+              %th= t(:roles)
+              %th= t(:edit)
           %tbody
             - @users.each do |user|
               %tr
@@ -28,5 +28,5 @@
                     %ul
                       - user.roles.each do |role|
                         %li= role.name
-                %td= link_to 'Edit', edit_admin_user_path(user)
-        = link_to "New User", new_admin_user_path, :class => "add_new_button"
+                %td= link_to t(:edit), edit_admin_user_path(user)
+        = link_to t(:new_user), new_admin_user_path, :class => "add_new_button"

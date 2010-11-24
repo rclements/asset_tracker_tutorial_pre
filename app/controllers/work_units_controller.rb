@@ -33,13 +33,13 @@ class WorkUnitsController < ApplicationController
       if request.xhr?
         render :json => "{\"success\": true}", :layout => false, :status => 200 and return
       end
-      flash[:notice] = "Work Unit was created successfully."
+      flash[:notice] = t(:work_unit_created_successfully)
       redirect_to dashboard_path and return
     else
       if request.xhr?
         render :json => @work_unit.errors.full_messages.to_json, :layout => false, :status => 406 and return
       end
-      flash[:error] = "There was a problem creating the work unit"
+      flash[:error] = t(:work_unit_created_unsuccessfully)
       redirect_to dashboard_path and return
     end
   end
@@ -52,10 +52,10 @@ class WorkUnitsController < ApplicationController
 
   def update
     if @work_unit.update_attributes(params[:work_unit])
-      flash[:notice] = "WorkUnit updated."
+      flash[:notice] = t(:work_unit_updated_successfully)
       redirect_to @work_unit
     else
-      flash.now[:error] = "There was a problem updating the work_unit."
+      flash.now[:error] = t(:work_unit_updated_unsuccessfully)
       redirect_to edit_work_unit_path
     end
   end

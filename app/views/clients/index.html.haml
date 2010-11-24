@@ -1,6 +1,6 @@
 .yui3-g
   .yui3-u-1
-    %h2 All Clients
+    %h2= t(:all_clients)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
@@ -8,13 +8,13 @@
         %table.clients
           %thead
             %tr
-              %th Name
-              %th Initials
-              %th Projects
-              %th Tickets
-              %th Status
+              %th= t(:name)
+              %th= t(:initials)
+              %th= t(:projects)
+              %th= t(:tickets)
+              %th= t(:status)
               -if admin?
-                %th Edit
+                %th= t(:edit)
           %tbody
             - @clients.each do |client|
               %tr
@@ -24,6 +24,6 @@
                 %td= client.tickets.count
                 %td= client.status
                 -if admin?
-                  %td= link_to 'Edit', edit_client_path(client)
-        = link_to "New Client", new_client_path, :class => "add_new_button" if admin?
+                  %td= link_to t(:edit), edit_client_path(client)
+        = link_to t(:new_client), new_client_path, :class => "add_new_button" if admin?
 

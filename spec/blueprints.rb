@@ -10,6 +10,7 @@ Sham.define do
   last_name(:unique => false)           { Faker::Name.last_name }
   # Client, Project, Ticket
   name                                  { Faker::Company.name }
+  initials(:unique => true)             { Array.new(3) { (rand(122-97) + 65).chr}.join }
   # Work Unit
   description(:unique => false)         { Faker::Company.bs }
   hours(:unique => false)               { rand(12) + 1}
@@ -38,6 +39,7 @@ end
 
 Client.blueprint do
   name
+  initials
   status { 'Good' }
 end
 

@@ -30,10 +30,10 @@ class FileAttachmentsController < ApplicationController
 
   def create
     if @file_attachment.save
-      flash[:notice] = "File Attachment created successfully."
+      flash[:notice] = t(:file_attachment_created_successfully)
       redirect_to_ref_url
     else
-      flash.now[:error] = "There was a problem saving the image."
+      flash.now[:error] = t(:file_attachment_created_unsuccessfully)
       render :action => :new
     end
   end

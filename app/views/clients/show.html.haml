@@ -1,12 +1,12 @@
 .yui3-g
   .yui3-u-1
-    %h2= "Client: #{@client}"
+    %h2= "#{t(:client)}: #{@client}"
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
       .gradient_border_content
         %ul.subnav
-          %li= link_to 'All Clients', clients_path
+          %li= link_to t(:all_clients), clients_path
           -if admin?
             %li= link_to 'Edit Client', edit_client_path 
           %li= link_to 'New Project', new_project_path(:client => @client)
@@ -16,13 +16,13 @@
     .gradient_border_wrap
       .gradient_border_content
         #client
-          %h3= "Status: #{@client.status}"
+          %h3= "#{t(:status)}: #{@client.status}"
           %table
             %thead
               %tr
-                %th Projects
-                %th Tickets
-                %th Hours
+                %th= t(:projects)
+                %th= t(:tickets)
+                %th= t(:hours)
             %tbody
               - @client.projects.each do |project|
                 %tr
@@ -38,8 +38,8 @@
   .yui3-u-1-2
     .gradient_border_wrap
       .gradient_border_content
-        %h3 Files
+        %h3= t(:files)
         %ul
           - @client.file_attachments.each do |file_attachment|
             %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
-        = link_to "Add File Attachment", new_file_attachment_path( :client_id => @client.id )
+        = link_to t(:add_file_attachment), new_file_attachment_path( :client_id => @client.id )
