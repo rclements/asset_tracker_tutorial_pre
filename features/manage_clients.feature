@@ -39,6 +39,8 @@ Feature: Client Management
   Scenario: View a client as a non admin
     Given I am an authenticated user
     And a client "test client" exists
+    And a project "test project" exists with client: client "test client", name: "test project"
+    And I am assigned to the project
     When I am on the client's page
     Then I should see "Projects"
     And I should not see a link with text "Edit"

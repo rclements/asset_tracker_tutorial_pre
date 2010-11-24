@@ -1,3 +1,7 @@
+Given /^I am assigned to the project$/ do
+  User.last.projects << Project.last
+end
+
 Given /^the following projects:$/ do |projects|
   client = Client.create(:name => 'test', :status => 'test')
   projects.hashes.each do |hash|
@@ -25,3 +29,4 @@ end
 Then /^I should see the following projects:$/ do |expected_projects_table|
   expected_projects_table.diff!(tableish('table tr', 'td,th'))
 end
+

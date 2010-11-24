@@ -24,10 +24,11 @@
                 %th= t(:hours)
             %tbody
               - @client.projects.each do |project|
-                %tr
-                  %td= link_to project, project
-                  %td= project.tickets.count
-                  %td= project.tickets.inject(0) {|sum, ticket| sum + ticket.work_units.inject(0) {|sum, work_unit| sum + work_unit.hours}}
+                - if current_user.assigned_projects.include? project
+                  %tr
+                    %td= link_to project, project
+                    %td= project.tickets.count
+                    %td= project.tickets.inject(0) {|sum, ticket| sum + ticket.work_units.inject(0) {|sum, work_unit| sum + work_unit.hours}}
 .yui3-g
   .yui3-u-1-2
     .gradient_border_wrap
