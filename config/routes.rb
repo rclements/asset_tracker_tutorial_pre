@@ -19,6 +19,7 @@ AssetTrackerTutorial::Application.routes.draw do
 
   resources :clients do
     resources :comments
+    resources :contacts
   end
 
   resources :projects do
