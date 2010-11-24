@@ -9,6 +9,7 @@ Feature: Manage Work Units
     And a client "test client" exists with name: "test client", initials: "TTC"
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket "test ticket" exists with project: project "test project", name: "test ticket"
+    And I am assigned to the project
     And I visit /
     When I select "test client" from "work_unit_client_id"
     And I select "test project" from "work_unit_project_id"
