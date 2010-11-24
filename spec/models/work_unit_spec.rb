@@ -48,6 +48,21 @@ describe WorkUnit do
     end
   end
 
+  describe 'email_list' do
+    it 'should return the proper list of contacts email_addresses for a given work unit' do
+      work_unit_1 = WorkUnit.make
+      ticket = work_unit_1.ticket
+      work_unit_2 = WorkUnit.make(:ticket => ticket)
+      client = work_unit_1.client
+      contact_1 = Contact.make(:recieves_email => true, :client => client)
+      contact_2 = Contact.make(:recieves_email => true, :client => client)
+      contact_3 = Contact.make(:recieves_email => false, :client => client)
+      work_unit_3 = WorkUnit.make
+      proper_list = [contact_1.email_address, contact_2.email_address]
+      work_unit_1.email_list.should == proper_list
+    end
+  end
+
   describe 'while being created' do
     it 'should create a new work unit from the blueprint' do
       lambda do

@@ -16,6 +16,10 @@ class WorkUnit < ActiveRecord::Base
   scope :for_client, lambda{|client| joins({:ticket => {:project => [:client]}}).where("clients.id = ?", client.id) }
   scope :for_user, lambda{ |user| where('user_id = ?', user.id)}
 
+  def email_list
+    Contact.for_client(self.client).recieves_email.map(&:email_address)
+  end
+
   def client
     ticket.project.client
   end

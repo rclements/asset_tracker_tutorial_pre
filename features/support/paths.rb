@@ -11,11 +11,15 @@ module NavigationHelpers
     when /the home\s?page/
       '/'
 
+    when /^the contacts page$/
+      client_contacts_path
+
     when /^the login page$/
       '/users/sign_in'
 
     when /path "(.+)"/  
       $1  
+
 
     # the following are examples using path_to_pickle
     when /^the admin #{capture_model}(?:'s)? page$/
