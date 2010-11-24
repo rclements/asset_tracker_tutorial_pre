@@ -2,6 +2,7 @@ class WorkUnitsController < ApplicationController
   before_filter :handle_overtime_hours_type, :only => [:create]
   before_filter :load_new_work_unit, :only => [:new, :create]
   before_filter :load_work_unit, :only => [:show, :edit, :update]
+  before_filter :verify_user_authorization
 
   protected
 
@@ -21,6 +22,13 @@ class WorkUnitsController < ApplicationController
 
   def load_work_unit
     @work_unit = WorkUnit.find(params[:id])
+  end
+
+  def verify_user_authorization
+    unless current_user.projects.include?(@work_unit.project) || current_user.admin?
+      flash[:notice] = 'You do not have access to that work unit.'
+      redirect_to root_path
+    end
   end
 
   public

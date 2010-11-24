@@ -5,11 +5,11 @@ class Dashboard::BaseController < ApplicationController
   respond_to :html, :json, :js
 
   def load_all_projects
-    @projects = Project.all
+    @projects = current_user.assigned_projects
   end
 
   def load_all_tickets
-    @tickets = Ticket.all
+    @tickets = current_user.assigned_tickets
   end
   public
 
@@ -19,17 +19,17 @@ class Dashboard::BaseController < ApplicationController
         :body => "You have not entered any time for the previous working day. Please Enter it immediatly!"}
     end
 
-    @clients = Client.all
+    @clients = current_user.admin? ? Client.all : current_user.assigned_clients
     @tickets  ||= []
   end
 
   def client
-    @projects = Project.find(:all, :conditions => ['client_id = ?', params[:id]])
+    @projects = Project.find(:all, :conditions => ['client_id = ?', params[:id]]) & current_user.assigned_projects
     respond_with @projects
   end
 
   def project
-    @tickets = Ticket.find(:all, :conditions => ['project_id = ?', params[:id]])
+    @tickets = Ticket.find(:all, :conditions => ['project_id = ?', params[:id]]) & current_user.assigned_tickets
     respond_with @tickets
   end
 

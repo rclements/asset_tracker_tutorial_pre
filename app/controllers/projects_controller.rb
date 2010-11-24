@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :load_new_project, :only => [:new, :create]
   before_filter :load_project, :only => [:show, :edit, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
+  before_filter :verify_user_authorization, :except => [:new, :create]
 
   protected
   def load_new_project
@@ -15,6 +16,13 @@ class ProjectsController < ApplicationController
 
   def load_file_attachments
     @file_attachments = @project.file_attachments
+  end
+
+  def verify_user_authorization
+    unless current_user.projects.include?(@project) || current_user.admin?
+      flash[:notice] = 'You do not have access to that project.'
+      redirect_to root_path
+    end
   end
 
   public
