@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   acts_as_authorization_subject :association_name => :roles
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :first_name, :last_name, :middle_initial
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+                  :first_name, :last_name, :middle_initial
 
   validates_presence_of :first_name, :last_name
   validates_length_of :middle_initial, :is => 1
@@ -52,18 +52,6 @@ class User < ActiveRecord::Base
 
   def locked
     locked_at?
-  end
-
-  def assigned_clients
-    admin? ? Client.all : projects.collect{|project| project.client}.uniq
-  end
-
-  def assigned_projects
-    admin? ? Project.all : projects
-  end
-
-  def assigned_tickets
-    admin? ? Ticket.all : projects.collect{|project| project.tickets}.flatten
   end
 
 end

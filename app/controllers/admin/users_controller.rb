@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_filter :load_user_account, :only => [:update, :edit, :destroy]
+  before_filter :load_user_account, :only => [:update, :edit, :destroy, :projects]
   before_filter :load_new_user_account, :only => [:new, :create]
 
   def index
@@ -38,6 +38,17 @@ class Admin::UsersController < Admin::BaseController
     else
       flash[:error] = t(:user_updated_unsuccessfully)
       redirect_to edit_admin_user_path(@user)
+    end
+  end
+
+  def projects
+    if request.post?
+      params[:project].each do |key, value|
+        project = Project.find(key.to_i)
+        role = value.to_sym
+        @user.has_no_roles_for!(project)
+        @user.has_role!(role, project) unless role == :no_access
+      end
     end
   end
 

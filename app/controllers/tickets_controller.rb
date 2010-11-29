@@ -2,7 +2,6 @@ class TicketsController < ApplicationController
   before_filter :load_new_ticket, :only => [:new, :create]
   before_filter :load_ticket, :only => [:show, :edit, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
-  before_filter :verify_user_authorization
 
   protected
 
@@ -17,13 +16,6 @@ class TicketsController < ApplicationController
 
   def load_file_attachments
     @file_attachments = @ticket.file_attachments
-  end
-
-  def verify_user_authorization
-    unless current_user.projects.include?(@ticket.project) || current_user.admin?
-      flash[:notice] = 'You do not have access to that ticket.'
-      redirect_to root_path
-    end
   end
 
   public

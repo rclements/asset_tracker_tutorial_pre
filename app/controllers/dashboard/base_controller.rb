@@ -5,11 +5,11 @@ class Dashboard::BaseController < ApplicationController
   respond_to :html, :json, :js
 
   def load_all_projects
-    @projects = current_user.assigned_projects
+    @projects = Project.all
   end
 
   def load_all_tickets
-    @tickets = current_user.assigned_tickets
+    @tickets = Ticket.all
   end
   public
 
@@ -19,17 +19,17 @@ class Dashboard::BaseController < ApplicationController
         :body => t(:enter_time_for_previous_day)}
     end
 
-    @clients = current_user.admin? ? Client.all : current_user.assigned_clients
+    @clients = Client.all
     @tickets  ||= []
   end
 
   def client
-    @projects = Project.find(:all, :conditions => ['client_id = ?', params[:id]]) & current_user.assigned_projects
+    @projects = Project.find(:all, :conditions => ['client_id = ?', params[:id]])
     respond_with @projects
   end
 
   def project
-    @tickets = Ticket.find(:all, :conditions => ['project_id = ?', params[:id]]) & current_user.assigned_tickets
+    @tickets = Ticket.find(:all, :conditions => ['project_id = ?', params[:id]])
     respond_with @tickets
   end
 

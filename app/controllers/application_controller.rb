@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
   helper_method :redirect_to_ref_url, :admin?
+  rescue_from 'Acl9::AccessDenied', :with => :access_denied
 
   private
 
@@ -23,5 +24,10 @@ class ApplicationController < ActionController::Base
 
   def admin?
     current_user && current_user.admin?
+  end
+
+  def access_denied
+    flash[:notice] = 'Access denied.'
+    redirect_to root_path
   end
 end
