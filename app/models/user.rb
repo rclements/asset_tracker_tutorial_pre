@@ -54,4 +54,16 @@ class User < ActiveRecord::Base
     locked_at?
   end
 
+  def assigned_clients
+    admin? ? Client.all : projects.collect{|project| project.client}.uniq
+  end
+
+  def assigned_projects
+    admin? ? Project.all : projects
+  end
+
+  def assigned_tickets
+    admin? ? Ticket.all : projects.collect{|project| project.tickets}.flatten
+  end
+
 end
