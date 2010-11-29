@@ -1,5 +1,5 @@
 Given /^I am assigned to the project$/ do
-  User.last.projects << Project.last
+  User.last.has_role!(:developer, Project.last)
 end
 
 Given /^the following projects:$/ do |projects|

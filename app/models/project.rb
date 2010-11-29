@@ -7,7 +7,6 @@ class Project < ActiveRecord::Base
   has_many :tickets
   has_many :comments, :as => :commentable
   has_many :file_attachments
-  has_and_belongs_to_many :users
 
   validates_presence_of :name
   validates_presence_of :client_id

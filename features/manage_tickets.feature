@@ -8,7 +8,6 @@ Feature: Manage tickets
     Given a client "test client" exists
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket exists with project: project "test project", name: "test ticket"
-    And I am assigned to the project
     When I am on the ticket's page
     Then I should see "test ticket"
 
@@ -17,7 +16,6 @@ Feature: Manage tickets
     Given a client "test client" exists with name: "test client"
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket exists with project: project "test project", name: "test ticket"
-    And I am assigned to the project
     When I am on the ticket's page
     Then I should see a link with text "Back to project: test project" within ".subnav"
     Then I should see a link with text "Back to client: test client" within ".subnav"
@@ -28,7 +26,6 @@ Feature: Manage tickets
     Given a client "test client" exists
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket exists with project: project "test project", name: "test ticket"
-    And I am assigned to the project
     When I am on the ticket's edit page
     When I fill in "Name" with "test ticket2"
     And I press "Update"

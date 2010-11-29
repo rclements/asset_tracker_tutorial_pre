@@ -3,7 +3,6 @@ class ClientsController < ApplicationController
   before_filter :load_client, :only => [:edit, :show, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
   before_filter :require_admin, :only => [:edit, :new, :create]
-  before_filter :verify_user_authorization, :except => [:new, :create, :index]
 
   protected
   def load_new_client
@@ -16,13 +15,6 @@ class ClientsController < ApplicationController
 
   def load_file_attachments
     @file_attachments = @client.file_attachments
-  end
-
-  def verify_user_authorization
-    unless (@client.projects & current_user.projects).any? || current_user.admin?
-      flash[:notice] = 'You do not have access to that client.'
-      redirect_to root_path
-    end
   end
 
   public

@@ -40,7 +40,6 @@ Feature: Client Management
     Given I am an authenticated user
     And a client "test client" exists
     And a project "test project" exists with client: client "test client", name: "test project"
-    And I am assigned to the project
     When I am on the client's page
     Then I should see "Projects"
     And I should not see a link with text "Edit"
@@ -95,7 +94,7 @@ Feature: Client Management
     And I am on the new client page
     And I press "Create"
     Then I should see "There was a problem saving the new client."
-    
+
   Scenario: Register new client - the form
     Given I am an authenticated user with an "Admin" role
     When I go to the new client page

@@ -22,10 +22,9 @@ Feature: Manage projects
     Then I should see a link with text "Edit"
 
   Scenario: Edit a project
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
     Given a client "test client2" exists
     And a project exists with name: "test project", client: client "test client2"
-    And I am assigned to the project
     When I am on the client's page
     And I follow "test project"
     And I follow "Edit"
@@ -34,7 +33,7 @@ Feature: Manage projects
     Then I should see "project 2"
 
   Scenario: Edit a project - invalid
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
     Given a client "test client2" exists
     And a project exists with name: "test project", client: client "test client2"
     And I am assigned to the project
