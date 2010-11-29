@@ -1,6 +1,6 @@
 Feature: Manage Work Units
   In order to manage work units
-  Visitor
+  User
   wants a nice management interface
 
   @javascript
@@ -18,5 +18,4 @@ Feature: Manage Work Units
     And I fill in "Hours" with "2"
     And I fill in "work_unit_description" with "test description"
     And I press "Create Work Unit"
-    Then I should see "Work Unit created successfully."
     Then I should see "TTC: 3.0" within ".overtime"
