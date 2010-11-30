@@ -23,6 +23,10 @@ class Client < ActiveRecord::Base
     write_attribute(:status, Client.statuses.invert[val])
   end
 
+  def allows_access?(user)
+    projects.map{|p| p.accepts_roles_by?(user) }.include?(true)
+  end
+
   class << self
     def statuses
       {

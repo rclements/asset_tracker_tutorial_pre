@@ -3,6 +3,7 @@ class ClientsController < ApplicationController
   before_filter :load_client, :only => [:edit, :show, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
   before_filter :require_admin, :only => [:edit, :new, :create]
+  before_filter :require_access
 
   protected
   def load_new_client
@@ -51,4 +52,12 @@ class ClientsController < ApplicationController
   def edit
   end
 
+  private
+
+  def require_access
+    unless @client.allows_access?(current_user)
+      flash[:notice] = "Access denied."
+      redirect_to root_path
+    end
+  end
 end
