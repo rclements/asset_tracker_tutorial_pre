@@ -13,8 +13,12 @@ gem 'uuid', '~> 2.3.1'
 gem 'ruby-debug19'
 gem 'jquery-rails'
 
+group :development do
+  gem 'awesome_print', :require => 'ap'
+end
 
 group :test do
+  gem 'awesome_print', :require => 'ap'
   gem 'capybara', '~> 0.3.9'
   gem 'cucumber', '~> 0.9.2'
   gem 'cucumber-rails', '~> 0.3.2'
