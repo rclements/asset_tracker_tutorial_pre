@@ -24,7 +24,7 @@
                 %th= t(:tickets)
                 %th= t(:hours)
             %tbody
-              - @client.projects.each do |project|
+              - @projects.each do |project|
                 %tr
                   %td= link_to project, project
                   %td= project.tickets.count
