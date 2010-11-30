@@ -2,6 +2,7 @@ Feature: File Attachment Management
   As a user
   I should be able to view and add file attachments
 
+  @wip
   Scenario: List and add file attachments
     Given I am an authenticated user
     And a client "test client" exists
