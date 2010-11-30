@@ -13,12 +13,6 @@
     = f.label :name
     = f.text_field :name
     = hidden_field_tag :client, @project.client.id
-  .field
-    %h3 Assign Users:
-    - User.unlocked.each do |user|
-      .field
-        = user
-        = f.check_box :users
   .actions
     = f.submit :class => "add_new_button"
     = link_to t(:cancel), client_path(@project.client)
