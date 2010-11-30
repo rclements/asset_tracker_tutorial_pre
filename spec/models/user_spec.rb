@@ -165,33 +165,5 @@ describe User do
 
   end
 
-  describe '.assigned_projects' do
-    it 'returns an array of all projects to which the user is assigned' do
-      user = User.make
-      project = Project.make(:name => 'Testproject')
-      user.projects << project
-      user.assigned_projects.include?(project).should be_true
-    end
-  end
-
-  describe '.assigned_tickets' do
-    it 'returns an array of all tickets to which the user is assigned' do
-      user = User.make
-      project = Project.make(:name => 'Testproject')
-      ticket = Ticket.make(:project => project)
-      user.projects << project
-      user.assigned_tickets.include?(ticket).should be_true
-    end
-  end
-
-  describe '.assigned_clients' do
-    it 'returns an array of all clients to which the user is assigned' do
-      user = User.make
-      project = Project.make(:name => 'Testproject')
-      user.projects << project
-      user.assigned_clients.include?(project.client).should be_true
-    end
-  end
-
   it 'methods should still work with other time zones'
 end
