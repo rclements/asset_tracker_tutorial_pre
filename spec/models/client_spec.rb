@@ -62,4 +62,21 @@ describe Client do
       client.to_s.should == 'Testclient'
     end
   end
+
+  describe '.allows_access?' do
+    before(:each) do
+      @project = Project.make
+      @client = @project.client
+      @user = User.make
+    end
+
+    it 'returns false given a user that has no access to any of its projects' do
+      @client.allows_access?(@user).should be_false
+    end
+
+    it 'returns true given a user has access to one or more of its projects' do
+      @user.has_role!(:developer, @project)
+      @client.allows_access?(@user).should be_true
+    end
+  end
 end
