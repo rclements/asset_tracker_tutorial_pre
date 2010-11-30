@@ -67,6 +67,5 @@ Feature: Contact Management                                                     
     When I follow "View Contacts"
     Then I follow "first1"
     And I press "Delete Contact"
-    Then show me the page
     Then I should see "Contact was successfully deleted" 
     And I should not see "first1"
