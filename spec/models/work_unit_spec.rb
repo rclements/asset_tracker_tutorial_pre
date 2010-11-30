@@ -124,4 +124,21 @@ describe WorkUnit do
       workunit.to_s.should == 'testing'
     end
   end
+
+  describe '.allows_acces?' do
+    before(:each) do
+      @user = User.make
+      @work_unit = WorkUnit.make
+      @project = @work_unit.project
+    end
+
+    it 'returns false if the user does not have access to the parent client' do
+      @work_unit.allows_access?(@user).should be_false
+    end
+
+    it 'returns true if the user has access to the parent client' do
+      @user.has_role!(:developer, @project)
+      @work_unit.allows_access?(@user)
+    end
+  end
 end
