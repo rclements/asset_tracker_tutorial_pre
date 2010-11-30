@@ -27,4 +27,9 @@ class Ticket < ActiveRecord::Base
   def long_name
     "Ticket: [#{id}] - #{project.name} - #{name} ticket for #{client.name}"
   end
+
+  def allows_access?(user)
+    project.accepts_roles_by?(user) || user.has_role?(:admin)
+  end
+
 end

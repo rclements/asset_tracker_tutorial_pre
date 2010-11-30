@@ -2,6 +2,7 @@ class TicketsController < ApplicationController
   before_filter :load_new_ticket, :only => [:new, :create]
   before_filter :load_ticket, :only => [:show, :edit, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
+  before_filter :require_access
 
   protected
 
@@ -57,4 +58,14 @@ class TicketsController < ApplicationController
 
   def edit
   end
+
+  private
+
+  def require_access
+    unless @ticket.allows_access?(current_user)
+      flash[:notice] = "Access denied."
+      redirect_to root_path
+    end
+  end
+
 end
