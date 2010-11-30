@@ -5,11 +5,19 @@ class Dashboard::BaseController < ApplicationController
   respond_to :html, :json, :js
 
   def load_all_projects
-    @projects = Project.all
+    if admin?
+      @projects = Project.all
+    else
+      @projects = Project.all.select {|p| p.allows_access?(current_user) }
+    end
   end
 
   def load_all_tickets
-    @tickets = Ticket.all
+    if admin?
+      @tickets = Ticket.all
+    else
+      @tickets = Ticket.all.select {|t| t.allows_access?(current_user) }
+    end
   end
   public
 
@@ -19,17 +27,29 @@ class Dashboard::BaseController < ApplicationController
         :body => t(:enter_time_for_previous_day)}
     end
 
-    @clients = Client.all
+    if admin?
+      @clients = Client.all
+    else
+      @clients = Client.all.select {|c| c.allows_access?(current_user) }
+    end
     @tickets  ||= []
   end
 
   def client
-    @projects = Project.find(:all, :conditions => ['client_id = ?', params[:id]])
+    if admin?
+      @projects = Project.find(:all, :conditions => ['client_id = ?', params[:id]])
+    else
+      @projects = Project.find(:all, :conditions => ['client_id = ?', params[:id]]).select {|p| p.allows_access?(current_user) }
+    end
     respond_with @projects
   end
 
   def project
-    @tickets = Ticket.find(:all, :conditions => ['project_id = ?', params[:id]])
+    if admin?
+      @tickets = Ticket.find(:all, :conditions => ['project_id = ?', params[:id]])
+    else
+      @tickets = Ticket.find(:all, :conditions => ['project_id = ?', params[:id]]).select {|t| t.allows_access?(current_user) }
+    end
     respond_with @tickets
   end
 

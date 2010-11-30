@@ -3,7 +3,7 @@ class ClientsController < ApplicationController
   before_filter :load_client, :only => [:edit, :show, :update]
   before_filter :load_file_attachments, :only => [:show, :new, :create]
   before_filter :require_admin, :only => [:edit, :new, :create]
-  before_filter :require_access
+  before_filter :require_access, :except => [:index]
 
   protected
   def load_new_client
@@ -24,6 +24,11 @@ class ClientsController < ApplicationController
   end
 
   def show
+    if admin?
+      @projects = @client.projects
+    else
+      @projects = @client.projects.find_all {|p| p.accepts_roles_by?(current_user) }
+    end
   end
 
   def new

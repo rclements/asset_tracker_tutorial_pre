@@ -24,4 +24,8 @@ class Project < ActiveRecord::Base
     name
   end
 
+  def allows_access?(user)
+    accepts_roles_by?(user)
+  end
+
 end
