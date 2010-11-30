@@ -10,7 +10,7 @@
     #schedule_modal
       %p= t(:enter_work_units_on_completion_day)
       .work_unit_field
-        %label= t(:scheduled_on)
+        %label= t(:scheduled_at)
         = text_field_tag :scheduled_at, Time.current.strftime("%m/%d/%Y")
 
     .work_unit_field

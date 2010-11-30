@@ -93,4 +93,21 @@ describe Ticket do
     end
   end
 
+  describe '.allows_access?' do
+    before(:each) do
+      @project = Project.make
+      @ticket = Ticket.make(:project => @project)
+      @user = User.make
+    end
+
+    it 'returns false if the user does not have access to the parent project' do
+      @ticket.allows_access?(@user).should be_false
+    end
+
+    it 'returns true if the user has access to the parent project' do
+      @user.has_role!(:developer, @project)
+      @ticket.allows_access?(@user).should be_true
+    end
+
+  end
 end

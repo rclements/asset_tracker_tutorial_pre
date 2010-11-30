@@ -56,4 +56,7 @@ class WorkUnit < ActiveRecord::Base
     end
   end
 
+  def allows_access?(user)
+    project.accepts_roles_by?(user) || user.has_role?(:admin)
+  end
 end
