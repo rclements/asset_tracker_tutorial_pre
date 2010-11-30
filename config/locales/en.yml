@@ -136,3 +136,4 @@ en:
   developer_role: "Developer Role"
   client_role: "Client Role"
   no_roles: "No Roles"
+  scheduled_at: "Scheduled at"
