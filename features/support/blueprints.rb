@@ -8,6 +8,21 @@ Client.blueprint do
   guid { UUID.generate }
 end
 
+Comment.blueprint do
+  title { Faker::Lorem.words }
+  comment { Faker::Lorem.sentence }
+  user { User.make }
+  commentable_id { Client.make }
+end
+
+Contact.blueprint do
+  client { Client.make }
+  first_name { Faker::Name.first_name }
+  last_name      { Faker::Name.last_name  }
+  email          { Faker::Internet.email  }
+  phone_number { Faker::PhoneNumber.phone_number}
+end
+
 Project.blueprint do
   client { Client.make }
   name   { Faker::Company.name }

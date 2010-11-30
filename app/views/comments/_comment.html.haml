@@ -1,8 +1,12 @@
 .comment_wrap
+- if comment.active?
   .comment_details
     = show_gravatar_for(comment.user)
     = comment.user
     = "#{t(:posted)}: #{comment.created_at}"
   .comment_body
     = comment.comment
+    = form_for comment, :url => {:controller => 'comments', :action => "update", :id => comment.id} do |c|
+      = c.submit "Hide Comment"
+      
 

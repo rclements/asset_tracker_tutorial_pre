@@ -35,6 +35,7 @@ Feature: Manage tickets
     Given I am an authenticated user
     Given a client "test client" exists
     And a project exists with name: "test project", client: client "test client"
+    And I am assigned to the project
     And I am on the project's page
     And I follow "New Ticket"
     When I fill in "Name" with "name 1"
@@ -45,6 +46,7 @@ Feature: Manage tickets
     Given I am an authenticated user
     Given a client "test client" exists
     And a project exists with name: "test project", client: client "test client"
+    And I am assigned to the project
     And I am on the project's page
     And I follow "New Ticket"
     Then I should see a link with text "Cancel" within ".actions"

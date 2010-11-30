@@ -10,7 +10,12 @@ AssetTrackerTutorial::Application.routes.draw do
   namespace :admin do
     resources :invoices
     resources :payroll
-    resources :users
+    resources :users do
+      member do
+        get :projects
+        post :projects
+      end
+    end
     resources :projects
     resources :unentered_time_report
     resources :weekly_time_report
@@ -19,6 +24,7 @@ AssetTrackerTutorial::Application.routes.draw do
 
   resources :clients do
     resources :comments
+    resources :contacts
   end
 
   resources :projects do

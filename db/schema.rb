@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101102145137) do
+ActiveRecord::Schema.define(:version => 20101129214537) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20101102145137) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active"
   end
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20101102145137) do
     t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "recieves_email", :default => false
   end
 
   create_table "file_attachments", :force => true do |t|

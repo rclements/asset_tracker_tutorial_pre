@@ -1,3 +1,9 @@
+production:
+  adapter: mysql
+  database: asset_tracker_tutorial_production
+  login: root
+  password: 
+
 development:
   adapter: mysql
   database: asset_tracker_tutorial_development

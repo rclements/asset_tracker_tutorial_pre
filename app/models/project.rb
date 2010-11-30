@@ -1,6 +1,8 @@
 class Project < ActiveRecord::Base
   include GuidReferenced
   acts_as_commentable
+  acts_as_authorization_object
+
   belongs_to :client
   has_many :tickets
   has_many :comments, :as => :commentable
@@ -21,4 +23,5 @@ class Project < ActiveRecord::Base
   def to_s
     name
   end
+
 end
