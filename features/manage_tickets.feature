@@ -4,7 +4,7 @@ Feature: Manage tickets
   wants a nice management interface
 
   Scenario: List tickets
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
     Given a client "test client" exists
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket exists with project: project "test project", name: "test ticket"
@@ -12,7 +12,7 @@ Feature: Manage tickets
     Then I should see "test ticket"
 
   Scenario: View a ticket
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
     Given a client "test client" exists with name: "test client"
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket exists with project: project "test project", name: "test ticket"
@@ -22,7 +22,7 @@ Feature: Manage tickets
     Then I should see a link with text "Edit" within ".subnav"
 
   Scenario: Edit a ticket
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
     Given a client "test client" exists
     And a project "test project" exists with name: "test project", client: client "test client"
     And a ticket exists with project: project "test project", name: "test ticket"
@@ -32,7 +32,7 @@ Feature: Manage tickets
     Then I should see "test ticket2"
 
   Scenario: Register new ticket
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
     Given a client "test client" exists
     And a project exists with name: "test project", client: client "test client"
     And I am assigned to the project
@@ -43,7 +43,7 @@ Feature: Manage tickets
     Then I should see "name 1"
 
   Scenario: Register new ticket - the form
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
     Given a client "test client" exists
     And a project exists with name: "test project", client: client "test client"
     And I am assigned to the project
