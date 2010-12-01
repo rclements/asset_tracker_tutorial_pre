@@ -25,7 +25,7 @@ set :use_sudo, false
 # repo details
 set :scm, :git
 #set :git_username, "knewter"
-set :repository, "git://github.com/altrux/asset_tracker_tutorial_pre.git"
+set :repository, "git://github.com/rclements/asset_tracker_tutorial_pre.git"
 set :branch, "production"
 set :git_enable_submodules, 1
 
