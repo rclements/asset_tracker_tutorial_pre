@@ -132,3 +132,8 @@ en:
   user_updated_unsuccessfully: "Didn't update."
   enter_time_for_previous_day: "You have not entered any time for the previous working day. Please Enter it immediately!"
   management: "Management"
+  assign_projects: "Assign Projects"
+  developer_role: "Developer Role"
+  client_role: "Client Role"
+  no_roles: "No Roles"
+  scheduled_at: "Scheduled at"

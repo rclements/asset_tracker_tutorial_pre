@@ -18,7 +18,6 @@ Feature: Project Assignment
     When I go to the project's page
     Then I should see "Access denied." within "#flash_notice"
 
-  @wip
   Scenario: User tries to access a project they are assigned to
     Given I am an authenticated user
     And a client "Acme" exists
@@ -27,7 +26,6 @@ Feature: Project Assignment
     When I go to the project's page
     Then I should see "Testproject" within "h2"
 
-  @wip
   Scenario: User tries to access the client of a project they are not assigned to
     Given I am an authenticated user
     And a client "Acme" exists
@@ -35,7 +33,6 @@ Feature: Project Assignment
     When I go to the client's page
     Then I should see "Access denied." within "#flash_notice"
 
-  @wip
   Scenario: User tries to access a ticket of a project they are not assigned to
     Given I am an authenticated user
     And a client "Acme" exists
@@ -44,7 +41,6 @@ Feature: Project Assignment
     When I go to the ticket's page
     Then I should see "Access denied." within "#flash_notice"
 
-  @wip
   Scenario: User tries to access a work unit of a project they are not assigned to
     Given I am an authenticated user
     And a client "Acme" exists
@@ -54,7 +50,6 @@ Feature: Project Assignment
     When I go to the work_unit's page
     Then I should see "Access denied." within "#flash_notice"
 
-  @wip
   Scenario: User tries to select a client they don't have access to on the dashboard
     Given I am an authenticated user
     And a client "test client" exists with name: "test client", initials: "TTC"
@@ -63,7 +58,6 @@ Feature: Project Assignment
     When I visit /
     Then I should not see "test client"
 
-  @wip
   Scenario: User shouldn't see projects they aren't assigned to on the client show page
     Given I am an authenticated user
     And a client "test client" exists with name: "test client", initials: "TTC"

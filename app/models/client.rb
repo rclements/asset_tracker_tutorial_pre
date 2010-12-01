@@ -24,7 +24,7 @@ class Client < ActiveRecord::Base
   end
 
   def allows_access?(user)
-    projects.map{|p| p.accepts_roles_by?(user) }.include?(true)
+    projects.map{|p| p.accepts_roles_by?(user) }.include?(true) || user.has_role?(:admin)
   end
 
   class << self
