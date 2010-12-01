@@ -38,5 +38,5 @@
       = f.text_area :description, { :rows => 10, :style => "resize: none;"}
 
     .work_unit_field
-      = f.hidden_field :scheduled_at
+      = f.hidden_field :scheduled_at, :value => Time.current.strftime("%m/%d/%Y")
       = f.submit t(:create_work_unit), :class => 'add_new_button'
