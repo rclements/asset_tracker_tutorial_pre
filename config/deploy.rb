@@ -1,8 +1,13 @@
+require 'erb'
+
 # RVM bootstrap
 $:.unshift(File.expand_path("~/.rvm/lib"))
 require 'rvm/capistrano'
-set :rvm_ruby_string, '1.9.2-head'
+set :rvm_ruby_string, '1.9.2-head@asset-tracker'
 set :rvm_type, :user
+
+# Bundler bootstrap
+require 'bundler/capistrano'
 
 # main details
 set :application, "asshats.isotope11.com"
@@ -19,7 +24,7 @@ set :use_sudo, false
 
 # repo details
 set :scm, :git
-set :git_username, "knewter"
+#set :git_username, "knewter"
 set :repository, "git://github.com/altrux/asset_tracker_tutorial_pre.git"
 set :branch, "production"
 set :git_enable_submodules, 1
@@ -29,6 +34,8 @@ depend :remote, :gem, "bundler", ">=1.0.0.rc.2"
 
 # tasks
 namespace :deploy do
+  before 'deploy:setup', :db
+
   task :start, :roles => :app do
     run "touch #{current_path}/tmp/restart.txt"
   end
@@ -48,36 +55,21 @@ namespace :deploy do
   end
 end
 
-after 'deploy:update_code', 'deploy:symlink_shared'
+namespace :db do
+  desc "Create database yaml in shared path"
+  task :default do
+    db_config = ERB.new <<-EOF
+production:
+  database: asset_tracker_tutorial_production
+  adapter: mysql
+  username: root
+  password: isotope_bang
+    EOF
 
-namespace :bundler do
-  desc "Symlink bundled gems on each release"
-  task :symlink_bundled_gems, :roles => :app do
-    run "mkdir -p #{shared_path}/bundled_gems"
-    run "ln -nfs #{shared_path}/bundled_gems #{release_path}/vendor/bundle"
-  end
-
-  desc "Install for production"
-  task :install, :roles => :app do
-    run "cd #{release_path} && bundle install"
-  end
-
+    run "mkdir -p #{shared_path}/config"
+    put db_config.result, "#{shared_path}/config/database.yml"
+  end 
 end
 
-after 'deploy:update_code', 'bundler:symlink_bundled_gems'
-after 'deploy:update_code', 'bundler:install'
+after 'deploy:update_code', 'deploy:symlink_shared'
 
-
-
-
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
