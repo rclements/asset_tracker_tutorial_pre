@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # TODO do we need both of these methods?
   def require_admin
     unless current_user && current_user.admin?
       flash[:error] = t(:you_must_be_an_admin_to_do_that)

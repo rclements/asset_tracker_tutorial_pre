@@ -8,6 +8,7 @@ class Admin::UnenteredTimeReportController < ApplicationController
   def show
     @day = Time.parse(params[:id])
 
+    # TODO don't we have a helper for this?
     if !@day.monday?
       monday = @day.beginning_of_week.strftime("%F")
       redirect_to('/admin/unentered_time_report/' + monday)
@@ -16,6 +17,7 @@ class Admin::UnenteredTimeReportController < ApplicationController
     @users = User.unlocked
     # users should have role 'developer': we don't want to show non-entered time for 'admin' or 'client user accounts'
 
+    # TODO way too many instance variables
     @weekdays = []
     (0..4).each do |day|
       @weekdays << @day.beginning_of_week + day.days

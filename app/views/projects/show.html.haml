@@ -26,6 +26,7 @@
               %tr
                 %td= link_to ticket, ticket
                 %td= ticket.work_units.count
+                -# TODO make a method for this
                 %td= ticket.work_units.inject(0) {|hours, work_unit| hours + work_unit.hours }
                 %td= link_to t(:edit), edit_ticket_path(ticket)
 .yui3-g

@@ -16,5 +16,6 @@
                 %td.user_img
                   = link_to "#{show_gravatar_for(user)}<span>#{user}</span>".html_safe, user
                 %td= user.email
+        -# TODO
         - if current_user.admin?
           = link_to t(:new_user), new_admin_user_path, :class => "add_new_button"

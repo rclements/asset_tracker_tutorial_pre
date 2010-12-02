@@ -5,6 +5,7 @@ class Dashboard::BaseController < ApplicationController
   respond_to :html, :json, :js
 
   def load_all_projects
+    # TODO need a better/cleaner way to do the following conditional for all the methods in this controller
     if admin?
       @projects = Project.all
     else

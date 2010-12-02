@@ -28,6 +28,7 @@
                 %tr
                   %td= link_to project, project
                   %td= project.tickets.count
+                  -# TODO
                   %td= project.tickets.inject(0) {|sum, ticket| sum + ticket.work_units.inject(0) {|sum, work_unit| sum + work_unit.hours}}
 .yui3-g
   .yui3-u-1-2

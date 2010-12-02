@@ -17,5 +17,6 @@
         %h3
           - if @user.locked_at?
             = t(:user_is_locked)
+        -# TODO
         = render :partial => 'shared/calendar', :locals => { :start_date => Date.current.beginning_of_week, :user => @user }
         = render :partial => 'shared/calendar', :locals => { :start_date => Date.current.advance({:weeks => -1}).beginning_of_week, :user => @user }

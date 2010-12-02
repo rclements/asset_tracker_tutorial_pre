@@ -24,6 +24,7 @@ class ClientsController < ApplicationController
   end
 
   def show
+    # TODO better way to do this?
     if admin?
       @projects = @client.projects
     else
