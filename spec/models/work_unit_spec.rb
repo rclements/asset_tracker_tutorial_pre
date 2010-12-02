@@ -125,7 +125,7 @@ describe WorkUnit do
     end
   end
 
-  describe '.allows_acces?' do
+  describe '.allows_access?' do
     before(:each) do
       @user = User.make
       @work_unit = WorkUnit.make
@@ -138,7 +138,7 @@ describe WorkUnit do
 
     it 'returns true if the user has access to the parent client' do
       @user.has_role!(:developer, @project)
-      @work_unit.allows_access?(@user)
+      @work_unit.allows_access?(@user).should be_true
     end
   end
 end
