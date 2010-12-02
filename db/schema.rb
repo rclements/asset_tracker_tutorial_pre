@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20101129214537) do
     t.string   "last_name"
     t.string   "middle_initial"
     t.datetime "locked_at"
+    t.string   "guid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
