@@ -10,19 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101202203051) do
-
-  create_table "addresses", :force => true do |t|
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "state",            :limit => 2
-    t.string   "zipcode"
-    t.integer  "addressable_id"
-    t.string   "addressable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20101202214746) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
