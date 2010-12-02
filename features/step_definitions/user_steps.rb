@@ -7,6 +7,10 @@ Given /^the following user records:$/ do |users|
   end
 end
 
+Given /^the user has (?:a|an) "([^"]*)" role$/ do |role|
+  User.last.has_role!(role.to_sym)
+end
+
 When /^I delete the (\d+)(?:st|nd|rd|th) user$/ do |pos|
   visit admin_users_path
   within("table tbody tr:nth-child(#{pos.to_i})") do
