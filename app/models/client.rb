@@ -36,5 +36,10 @@ class Client < ActiveRecord::Base
         "4" => "ANGRY"
       }
     end
+
+    def for(projects_or_tickets_or_work_units)
+      projects_or_tickets_or_work_units.collect{ |resource| resource.client }.uniq
+    end
   end
+
 end
