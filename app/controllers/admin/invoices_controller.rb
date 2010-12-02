@@ -4,8 +4,7 @@ class Admin::InvoicesController < ApplicationController
   before_filter :load_client, :only => [:show]
 
   def index
-    # TODO: Make this cleaner
-    @clients = @work_units.collect{ |wu| wu.client }.uniq
+    @clients = Client.for(@work_units)
   end
 
   def show
