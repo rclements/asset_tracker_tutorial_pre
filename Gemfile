@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'acl9', '~> 0.12.0'
+gem 'capistrano', '~> 2.5.19'
 gem 'compass', '~> 0.10.4'
 gem 'compass-susy-plugin', '~> 0.8.1'
 gem 'devise', '~> 1.1.3'
@@ -9,13 +10,17 @@ gem 'haml', '~> 3.0.18', :require => 'haml'
 gem 'lemonade', '~> 0.3.4'
 gem 'mysql', '~> 2.8.1'
 gem 'rails', '3.0.0'
+gem 'thin', '~> 1.2.7'
 gem 'uuid', '~> 2.3.1'
 gem 'ruby-debug19'
 gem 'jquery-rails'
-gem 'capistrano', '~> 2.5.19'
-gem 'thin', '~> 1.2.7'
+
+group :development do
+  gem 'awesome_print', :require => 'ap'
+end
 
 group :test do
+  gem 'awesome_print', :require => 'ap'
   gem 'capybara', '~> 0.3.9'
   gem 'cucumber', '~> 0.9.2'
   gem 'cucumber-rails', '~> 0.3.2'
