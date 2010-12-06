@@ -32,4 +32,8 @@ class Ticket < ActiveRecord::Base
     project.accepts_roles_by?(user) || user.has_role?(:admin)
   end
 
+  def hours
+    work_units.sum(:hours)
+  end
+
 end

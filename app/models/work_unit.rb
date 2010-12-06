@@ -14,6 +14,7 @@ class WorkUnit < ActiveRecord::Base
   scope :unpaid, lambda{ where('paid IS NULL or paid = ""') }
   scope :not_invoiced, lambda{ where('invoiced IS NULL OR invoiced = ""') }
   scope :for_client, lambda{|client| joins({:ticket => {:project => [:client]}}).where("clients.id = ?", client.id) }
+  scope :for_project, lambda{|project| debugger; joins({:ticket => [:project]}).where("projects.id = ?", project.id)}
   scope :for_user, lambda{ |user| where('user_id = ?', user.id)}
 
   def email_list
@@ -50,7 +51,7 @@ class WorkUnit < ActiveRecord::Base
 
   def hours
     if read_attribute(:hours)
-      overtime ? (read_attribute(:hours) * 1.5) : read_attribute(:hours)
+      overtime ? (read_attribute(:hours) * BigDecimal.new("1.5")) : read_attribute(:hours)
     else
       read_attribute(:hours)
     end
