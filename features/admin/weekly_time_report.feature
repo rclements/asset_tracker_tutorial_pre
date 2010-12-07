@@ -5,7 +5,7 @@ Feature: Weekly Time Report
   Scenario: List users with time
     Given I am an authenticated user with an "admin" role
     And a user exists with first_name: "Stan", last_name: "Lee", middle_initial: "M", email: "stanlee@example.com", password: "123456", password_confirmation: "123456"
-    And the user has a "developer" role
+    And the user "stanlee@example.com" has a "developer" role
     And a client "Test Client" exists with name: "Test Client"
     And a project "Test Project" exists with name: "Test Project", client: client "Test Client"
     And a ticket "Test Ticket" exists with name: "Test Ticket", project: project "Test Project"
