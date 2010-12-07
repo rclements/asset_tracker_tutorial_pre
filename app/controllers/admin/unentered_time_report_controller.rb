@@ -1,7 +1,7 @@
 class Admin::UnenteredTimeReportController < ApplicationController
 
   def index
-    redirect_unless_monday('/admin/unentered_time_report/', params[:id])
+    redirect_to("/admin/unentered_time_report/#{Date.current.beginning_of_week.to_s}")
   end
 
   def show
