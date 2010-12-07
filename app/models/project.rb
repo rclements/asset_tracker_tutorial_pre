@@ -12,8 +12,12 @@ class Project < ActiveRecord::Base
   validates_presence_of :client_id
   validates_uniqueness_of :name, :scope => :client_id
 
+  def self.for_user(user)
+    select {|p| p.allows_access?(user) }
+  end
+
   def hours
-    WorkUnit.for_project(self)
+    tickets.inject(0) {|sum, t| sum + t.hours}
   end
 
   def to_s
@@ -21,7 +25,7 @@ class Project < ActiveRecord::Base
   end
 
   def allows_access?(user)
-    accepts_roles_by?(user)
+    accepts_roles_by?(user) || user.admin?
   end
 
 end

@@ -24,7 +24,7 @@ class Client < ActiveRecord::Base
   end
 
   def allows_access?(user)
-    projects.map{|p| p.accepts_roles_by?(user) }.include?(true) || user.has_role?(:admin)
+    projects.any? {|p| p.accepts_roles_by?(user)} || user.admin?
   end
 
   class << self
@@ -39,6 +39,10 @@ class Client < ActiveRecord::Base
 
     def for(projects_or_tickets_or_work_units)
       projects_or_tickets_or_work_units.collect{ |resource| resource.client }.uniq
+    end
+
+    def for_user(user)
+      select {|c| c.allows_access?(user) }
     end
   end
 
