@@ -23,7 +23,9 @@
                 %td= contact.phone_number
                 -if contact.recieves_email == true
                   %td= t(:affirmative)
-                - else 
+                -if contact.receives_email == true
+                  %td= "Yes"
+                - else
                   %td= t(:negative)
                 %td= link_to t(:edit), edit_client_contact_path(contact.client, contact)
         = link_to t(:new_contact), new_client_contact_path, :class => "add_new_button"

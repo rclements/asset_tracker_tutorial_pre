@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20101202214746) do
     t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "recieves_email", :default => false
+    t.boolean  "receives_email", :default => false
     t.string   "street"
     t.string   "city"
     t.string   "state"

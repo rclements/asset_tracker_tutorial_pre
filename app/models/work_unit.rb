@@ -18,7 +18,7 @@ class WorkUnit < ActiveRecord::Base
   scope :for_user, lambda{ |user| where('user_id = ?', user.id)}
 
   def email_list
-    Contact.for_client(self.client).recieves_email.map(&:email_address)
+    Contact.for_client(self.client).receives_email.map(&:email_address)
   end
 
   def client
