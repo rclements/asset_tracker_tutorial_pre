@@ -21,10 +21,8 @@
                 %td= contact.last_name
                 %td= contact.email_address
                 %td= contact.phone_number
-                -if contact.recieves_email == true
-                  %td= t(:affirmative)
                 -if contact.receives_email == true
-                  %td= "Yes"
+                  %td= t(:affirmative)
                 - else
                   %td= t(:negative)
                 %td= link_to t(:edit), edit_client_contact_path(contact.client, contact)

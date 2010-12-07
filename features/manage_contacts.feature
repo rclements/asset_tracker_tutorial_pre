@@ -38,7 +38,7 @@ Feature: Contact Management                                                     
     And I follow "View Contacts"
     And I follow "first1"
     And I follow "Edit Contact"
-    And I check "contact_recieves_email"
+    And I check "contact_receives_email"
     And press "Update Contact"
     Then I should see "Contact updated successfully"
     And I should see "Yes"

@@ -54,9 +54,9 @@ describe WorkUnit do
       ticket = work_unit_1.ticket
       work_unit_2 = WorkUnit.make(:ticket => ticket)
       client = work_unit_1.client
-      contact_1 = Contact.make(:recieves_email => true, :client => client)
-      contact_2 = Contact.make(:recieves_email => true, :client => client)
-      contact_3 = Contact.make(:recieves_email => false, :client => client)
+      contact_1 = Contact.make(:receives_email => true, :client => client)
+      contact_2 = Contact.make(:receives_email => true, :client => client)
+      contact_3 = Contact.make(:receives_email => false, :client => client)
       work_unit_3 = WorkUnit.make
       proper_list = [contact_1.email_address, contact_2.email_address]
       work_unit_1.email_list.should == proper_list

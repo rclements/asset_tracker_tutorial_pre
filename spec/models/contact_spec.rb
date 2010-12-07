@@ -27,13 +27,13 @@ describe Contact do
     end
   end
 
-  describe 'recieves_email' do
-    it 'should return the proper list of contacts that can recieve email' do
-      contact_1 = Contact.make(:recieves_email => true)
+  describe 'receives_email' do
+    it 'should return the proper list of contacts that can receive email' do
+      contact_1 = Contact.make(:receives_email => true)
       client = contact_1.client
       contact_2 = Contact.make
-      Contact.for_client(client).recieves_email.include?(contact_1).should be_true
-      Contact.for_client(client).recieves_email.include?(contact_2).should_not be_true
+      Contact.for_client(client).receives_email.include?(contact_1).should be_true
+      Contact.for_client(client).receives_email.include?(contact_2).should_not be_true
     end
   end
 end
