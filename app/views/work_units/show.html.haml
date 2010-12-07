@@ -6,8 +6,7 @@
     .gradient_border_wrap
       .gradient_border_content
         %ul.subnav
-          -# TODO is the logic here correct?
-          - if @work_unit.user == current_user
+          - if (@work_unit.user == current_user) || admin?
             %li= link_to t(:edit), edit_work_unit_path
           %li= link_to "#{t(:back_to_ticket)}: #{@work_unit.ticket}", ticket_path(@work_unit.ticket)
           %li= link_to "#{t(:back_to_project)}: #{@work_unit.ticket.project}", project_path(@work_unit.ticket.project)
