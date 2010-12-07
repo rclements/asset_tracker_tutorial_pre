@@ -2,7 +2,6 @@
   %table
     %thead
       %tr.calendar_top
-        -# TODO for all the logic in this view
         - (0..6).map{|x| start_date + x.days }.each do |date|
           %th= "#{date.asctime[0]} - #{date.day}"
         %th= "#{t(:totals)}:"
