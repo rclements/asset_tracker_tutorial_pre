@@ -42,7 +42,7 @@
                 %tfoot
                   %tr
                     %td.totals{:colspan => "3"}= t(:totals)
-                    %td.totals{:colspan => "3"}= ticket.sum_of_hours_not_invoiced
+                    %td.totals{:colspan => "3"}= ticket.uninvoiced_hours
                   %tr
                     %td{:colspan => "6"}
                       = find_and_preserve do
@@ -55,7 +55,7 @@
                               = ""
                               - if ticket.work_units.last == wu
                                 = "=========================="
-                                = "#{t(:total_hours)}: #{ticket.sum_of_hours_not_invoiced}"
+                                = "#{t(:total_hours)}: #{ticket.uninvoiced_hours}"
 
         - content_for :javascripts do
           = javascript_include_tag "admin_invoices"
