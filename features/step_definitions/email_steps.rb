@@ -33,6 +33,10 @@ When(/^(?:I|they) click the first link in #{capture_email}$/) do |email_ref|
   click_first_link_in_email(email(email_ref))
 end
 
+Then(/^(\d)+ emails? should be delivered bcc to (.*)$/) do |count, to|
+  emails("bcc: \"#{email_for(to)}\"").size.should == count.to_i
+end
+
 Then(/^(\d)+ emails? should be delivered to (.*)$/) do |count, to|
   emails("to: \"#{email_for(to)}\"").size.should == count.to_i
 end
