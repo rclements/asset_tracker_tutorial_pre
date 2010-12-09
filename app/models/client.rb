@@ -11,6 +11,18 @@ class Client < ActiveRecord::Base
   validates_presence_of :status
   validates_uniqueness_of :name, :allow_nil => false
 
+  def total_tickets
+    projects.inject(0) {|sum, p| sum + p.tickets.count }
+  end
+
+  def total_hours
+    projects.inject(0){|sum, p| sum + p.hours}
+  end
+
+  def uninvoiced_hours
+    WorkUnit.for_client(self).not_invoiced.inject(0) {|sum, w| sum + w.hours}
+  end
+
   def to_s
     name
   end

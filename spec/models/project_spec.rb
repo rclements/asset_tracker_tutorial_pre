@@ -60,4 +60,16 @@ describe Project do
       project.hours.should == ticket_1.work_units.first.hours + ticket_2.work_units.first.hours
     end
   end
+
+  describe '.uninvoiced_hours' do
+    it "returns the sum of hours on all the client's work units" do
+      work_unit_1 = WorkUnit.make
+      ticket = work_unit_1.ticket
+      project = work_unit_1.project
+      work_unit_2 = WorkUnit.make(:ticket => ticket)
+      work_unit_3 = WorkUnit.make(:ticket => ticket, :invoiced => 'Invoiced', :invoiced_at => Time.current)
+      total_hours = work_unit_1.hours + work_unit_2.hours
+      project.uninvoiced_hours.should == total_hours
+    end
+  end
 end

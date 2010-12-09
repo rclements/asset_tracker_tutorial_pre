@@ -20,11 +20,11 @@ class Ticket < ActiveRecord::Base
     name
   end
 
-  def sum_of_hours_unpaid
+  def unpaid_hours
     work_units.unpaid.inject(0) { |sum, n| sum + n.hours }
   end
 
-  def sum_of_hours_not_invoiced
+  def uninvoiced_hours
     work_units.not_invoiced.inject(0) { |sum, n| sum + n.hours }
   end
 
