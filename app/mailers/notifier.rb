@@ -9,4 +9,9 @@ class Notifier < ActionMailer::Base
          :bcc => ["bcc@isotope11.com"],
          :subject => 'Daily Hours Summary') {|f| f.text}
   end
+
+  def work_unit_notification(work_unit, addresses)
+    @work_unit = work_unit
+    mail(:bcc => addresses, :subject => "[Isotope11] Work Unit: #{@work_unit.guid}") {|f| f.text}
+  end
 end
