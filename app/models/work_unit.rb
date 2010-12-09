@@ -17,6 +17,12 @@ class WorkUnit < ActiveRecord::Base
   scope :for_project, lambda{|project| joins({:ticket => [:project]}).where("projects.id = ?", project.id)}
   scope :for_user, lambda{ |user| where('user_id = ?', user.id)}
 
+  after_save :send_email!
+
+  def send_email!
+    Notifier.work_unit_notification(self, email_list).deliver if email_list.length > 0
+  end
+
   def email_list
     Contact.for_client(self.client).receives_email.map(&:email_address)
   end
