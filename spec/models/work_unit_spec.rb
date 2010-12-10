@@ -141,4 +141,14 @@ describe WorkUnit do
       @work_unit.allows_access?(@user).should be_true
     end
   end
+
+  describe '.validate_client_status' do
+    it 'checks to see if the client is not inactive' do
+      work_unit = WorkUnit.make_unsaved
+      client = work_unit.client
+      client.update_attribute(:status, "Inactive")
+      work_unit.save.should be_false
+      work_unit.should have(1).errors_on(:base)
+    end
+  end
 end

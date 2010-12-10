@@ -40,7 +40,7 @@ end
 Client.blueprint do
   name
   initials
-  status { 'Good' }
+  status { 'Active' }
 end
 
 Project.blueprint do

@@ -42,10 +42,9 @@ class Client < ActiveRecord::Base
   class << self
     def statuses
       {
-        "1" => "Good",
-        "2" => "Bad",
-        "3" => "Ugly",
-        "4" => "ANGRY"
+        "10" => "Active",
+        "20" => "Suspended",
+        "30" => "Inactive",
       }
     end
 

@@ -87,7 +87,6 @@ $("#new_work_unit").submit(function() {
       me.effect("highlight");
       // Ask the calendar to update itself
       update_calendar_block();
-      
     },
     error: function(result)
     {

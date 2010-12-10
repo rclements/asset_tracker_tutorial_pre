@@ -17,7 +17,14 @@ class WorkUnit < ActiveRecord::Base
   scope :for_project, lambda{|project| joins({:ticket => [:project]}).where("projects.id = ?", project.id)}
   scope :for_user, lambda{ |user| where('user_id = ?', user.id)}
 
+  after_validation :validate_client_status
   after_save :send_email!
+
+  def validate_client_status
+    if client && client.status == "Inactive"
+      self.errors.add(:base, "Cannot create work units on inactive clients.")
+    end
+  end
 
   def send_email!
     Notifier.work_unit_notification(self, email_list).deliver if email_list.length > 0
@@ -28,7 +35,7 @@ class WorkUnit < ActiveRecord::Base
   end
 
   def client
-    ticket.project.client
+    (ticket && ticket.client) ? ticket.project.client : nil
   end
 
   def project
