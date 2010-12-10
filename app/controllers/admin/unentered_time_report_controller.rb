@@ -1,30 +1,13 @@
 class Admin::UnenteredTimeReportController < ApplicationController
 
   def index
-    monday = Time.now.beginning_of_week.strftime("%F")
-    redirect_to('/admin/unentered_time_report/' + monday)
+    redirect_to("/admin/unentered_time_report/#{Date.current.beginning_of_week.to_s}")
   end
 
   def show
-    @day = Time.parse(params[:id])
-
-    if !@day.monday?
-      monday = @day.beginning_of_week.strftime("%F")
-      redirect_to('/admin/unentered_time_report/' + monday)
-    end
-
-    @users = User.unlocked
-    # users should have role 'developer': we don't want to show non-entered time for 'admin' or 'client user accounts'
-
-    @weekdays = []
-    (0..4).each do |day|
-      @weekdays << @day.beginning_of_week + day.days
-    end
-
-    @previous_week = (@day.beginning_of_week - 1.week).strftime("%F")
-    @beginning_of_week = @day.beginning_of_week
-    @end_of_week = @day.end_of_week
-    @next_week = (@day.next_week).strftime("%F")
+    redirect_unless_monday('/admin/unentered_time_report/', params[:id])
+    @week_dates = build_week_hash_for(Date.parse(params[:id]))
+    @users = User.select{|u| u.has_role?(:developer) && !u.locked }
   end
 
 end

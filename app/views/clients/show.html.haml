@@ -22,13 +22,21 @@
               %tr
                 %th= t(:projects)
                 %th= t(:tickets)
-                %th= t(:hours)
+                %th= t(:uninvoiced_hours)
+                %th= t(:total_hours)
+            %tfoot
+              %tr
+                %th= t(:all_projects)
+                %th= @client.total_tickets
+                %th= @client.uninvoiced_hours
+                %th= @client.total_hours
             %tbody
               - @projects.each do |project|
                 %tr
                   %td= link_to project, project
                   %td= project.tickets.count
-                  %td= project.tickets.inject(0) {|sum, ticket| sum + ticket.work_units.inject(0) {|sum, work_unit| sum + work_unit.hours}}
+                  %td= project.uninvoiced_hours
+                  %td= project.hours
 .yui3-g
   .yui3-u-1-2
     .gradient_border_wrap

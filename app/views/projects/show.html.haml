@@ -19,14 +19,23 @@
             %tr
               %th= t(:tickets)
               %th= t(:work_units)
-              %th= t(:hours)
+              %th= t(:uninvoiced_hours)
+              %th= t(:total_hours)
               %th= t(:edit)
+          %tfoot
+            %tr
+              %th= t(:all_tickets)
+              %th= @project.total_work_units
+              %th= @project.uninvoiced_hours
+              %th= @project.total_hours
+              %th &nbsp;
           %tbody
             - @project.tickets.each do |ticket|
               %tr
                 %td= link_to ticket, ticket
                 %td= ticket.work_units.count
-                %td= ticket.work_units.inject(0) {|hours, work_unit| hours + work_unit.hours }
+                %td= ticket.uninvoiced_hours
+                %td= ticket.hours
                 %td= link_to t(:edit), edit_ticket_path(ticket)
 .yui3-g
   .yui3-u-1-2

@@ -12,11 +12,11 @@ gem 'mysql', '~> 2.8.1'
 gem 'rails', '3.0.0'
 gem 'thin', '~> 1.2.7'
 gem 'uuid', '~> 2.3.1'
-gem 'ruby-debug19'
 gem 'jquery-rails'
 
 group :development do
   gem 'awesome_print', :require => 'ap'
+  gem 'ruby-debug19'
 end
 
 group :test do
@@ -31,13 +31,11 @@ group :test do
   gem 'launchy', '~> 0.3.7'
   gem 'machinist', '~> 1.0.6'
   gem 'pickle', '~> 0.4.2'
+  gem 'ruby-debug19'
   gem 'rspec', '= 2.0.0'
   gem 'rspec-rails', '= 2.0.1'
   gem 'shoulda', '~> 2.11.3'
   gem 'simplecov', '~> 0.3.6'
   gem 'spork', '~> 0.8.4'
   gem 'yajl-ruby', '~> 0.7.8'
-  # Note: this is to stay commented out until debug19 gets stable
-  gem 'ruby-debug19', :require => 'ruby-debug'
-  # gem 'webrat' # Note: why is webrat in here?
 end

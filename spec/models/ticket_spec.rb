@@ -45,7 +45,7 @@ describe Ticket do
     end
   end
 
-  describe '.sum_of_hours_unpaid' do
+  describe '.unpaid_hours' do
     context 'when there are unpaid work units on a ticket' do
       it 'totals the unpaid hours for that ticket' do
         ticket = Ticket.make
@@ -55,12 +55,12 @@ describe Ticket do
           :ticket => ticket,
           :paid => 'paid on 2010-10-25')
         unpaid_hours = work_unit_1.hours + work_unit_2.hours
-        ticket.sum_of_hours_unpaid.should == unpaid_hours
+        ticket.unpaid_hours.should == unpaid_hours
       end
     end
   end
 
-  describe '.sum_of_hours_not_invoiced' do
+  describe '.uninvoiced_hours' do
     context 'when there are uninvoiced work units on a ticket' do
       it 'returns the total number of uninvoiced work units for that ticket' do
         ticket = Ticket.make
@@ -70,7 +70,7 @@ describe Ticket do
           :ticket => ticket,
           :invoiced => 'invoiced on 2010-10-25' )
         uninvoiced_hours = work_unit_1.hours + work_unit_2.hours
-        ticket.sum_of_hours_not_invoiced.should == uninvoiced_hours
+        ticket.uninvoiced_hours.should == uninvoiced_hours
       end
     end
   end

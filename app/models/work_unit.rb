@@ -14,14 +14,28 @@ class WorkUnit < ActiveRecord::Base
   scope :unpaid, lambda{ where('paid IS NULL or paid = ""') }
   scope :not_invoiced, lambda{ where('invoiced IS NULL OR invoiced = ""') }
   scope :for_client, lambda{|client| joins({:ticket => {:project => [:client]}}).where("clients.id = ?", client.id) }
+  scope :for_project, lambda{|project| joins({:ticket => [:project]}).where("projects.id = ?", project.id)}
   scope :for_user, lambda{ |user| where('user_id = ?', user.id)}
 
+  after_validation :validate_client_status
+  after_save :send_email!
+
+  def validate_client_status
+    if client && client.status == "Inactive"
+      self.errors.add(:base, "Cannot create work units on inactive clients.")
+    end
+  end
+
+  def send_email!
+    Notifier.work_unit_notification(self, email_list).deliver if email_list.length > 0
+  end
+
   def email_list
-    Contact.for_client(self.client).recieves_email.map(&:email_address)
+    Contact.for_client(self.client).receives_email.map(&:email_address)
   end
 
   def client
-    ticket.project.client
+    (ticket && ticket.client) ? ticket.project.client : nil
   end
 
   def project
@@ -50,7 +64,7 @@ class WorkUnit < ActiveRecord::Base
 
   def hours
     if read_attribute(:hours)
-      overtime ? (read_attribute(:hours) * 1.5) : read_attribute(:hours)
+      overtime ? (read_attribute(:hours) * BigDecimal.new("1.5")) : read_attribute(:hours)
     else
       read_attribute(:hours)
     end

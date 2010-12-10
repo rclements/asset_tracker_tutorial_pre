@@ -24,11 +24,7 @@ class ClientsController < ApplicationController
   end
 
   def show
-    if admin?
-      @projects = @client.projects
-    else
-      @projects = @client.projects.find_all {|p| p.accepts_roles_by?(current_user) }
-    end
+    @projects = Project.for_user(current_user).select{|p| p.client == @client}
   end
 
   def new

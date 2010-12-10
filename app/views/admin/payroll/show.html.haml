@@ -38,7 +38,7 @@
                   %td.totals{:colspan => 4}= t(:total)
                   %td.totals= @work_units.select { |x| x.client == client }.sum(&:hours)
           = submit_tag t(:submit)
-        %h4= "#{t(:total_for_pay_period)}: #{@work_units.sum(:hours)} #{t(:hours)}"
+        %h4= "#{t(:total_for_pay_period)}: #{@work_units.inject(0){|sum, w| sum + w.hours}} #{t(:hours)}"
 
         - content_for :javascripts do
           :javascript

@@ -5,13 +5,13 @@
     #work_unit_errors
     .work_unit_field
       %label= "#{t(:scheduled_on)}:"
-      = link_to Time.current.strftime("%m/%d/%Y"), "#", :id => "schedule_modal_link"
+      = link_to Date.current, "#", :id => "schedule_modal_link"
 
     #schedule_modal
       %p= t(:enter_work_units_on_completion_day)
       .work_unit_field
         %label= t(:scheduled_at)
-        = text_field_tag :scheduled_at, Time.current.strftime("%m/%d/%Y")
+        = text_field_tag :scheduled_at, Date.current
 
     .work_unit_field
       %label{:for => "work_unit_client_id"}= "#{t(:client)}:"
@@ -38,5 +38,5 @@
       = f.text_area :description, { :rows => 10, :style => "resize: none;"}
 
     .work_unit_field
-      = f.hidden_field :scheduled_at, :value => Time.current.strftime("%m/%d/%Y")
+      = f.hidden_field :scheduled_at, :value => Date.current
       = f.submit t(:create_work_unit), :class => 'add_new_button'

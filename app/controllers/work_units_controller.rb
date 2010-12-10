@@ -17,7 +17,7 @@ class WorkUnitsController < ApplicationController
     _params.delete :project_id
     @work_unit = WorkUnit.new(_params)
     @work_unit.user = current_user
-    @work_unit.scheduled_at = DateTime.strptime(_params[:scheduled_at], "%m/%d/%Y")
+    @work_unit.scheduled_at = Time.parse(_params[:scheduled_at])
   end
 
   def load_work_unit
@@ -31,8 +31,15 @@ class WorkUnitsController < ApplicationController
 
   def create
     if @work_unit.save
+      suspended = @work_unit.client.status == "Suspended"
       if request.xhr?
-        render :json => "{\"success\": true}", :layout => false, :status => 200 and return
+        if suspended
+          render :json => "{\"success\": true, \"notice\": \"This client is suspended. Please contact an Administrator.\"}",
+                 :layout => false,
+                 :status => 200 and return
+        else
+          render :json => "{\"success\": true}", :layout => false, :status => 200 and return
+        end
       end
       flash[:notice] = t(:work_unit_created_successfully)
       redirect_to dashboard_path and return

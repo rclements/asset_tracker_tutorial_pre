@@ -1,14 +1,14 @@
 .yui3-g
   .yui3-u-1
-    %h2= "#{@ticket.project.client}: #{@ticket.project} - #{@ticket}"
+    %h2= "#{@ticket.client}: #{@ticket.project} - #{@ticket}"
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
       .gradient_border_content
         %ul.subnav
-          %li= link_to "Edit", edit_ticket_path
-          %li= link_to "Back to project: #{@ticket.project}", project_path(@ticket.project)
-          %li= link_to "Back to client: #{@ticket.project.client}", client_path(@ticket.project.client)
+          %li= link_to t(:edit), edit_ticket_path
+          %li= link_to "#{t(:back_to_project)}: #{@ticket.project}", project_path(@ticket.project)
+          %li= link_to "#{t(:back_to_client)}: #{@ticket.client}", client_path(@ticket.project.client)
 .yui3-g
   .yui3-u-1
     .gradient_border_wrap
@@ -17,8 +17,8 @@
           %thead
             %tr
               %th #
-              %th Work Units
-              %th Hours
+              %th= t(:work_units)
+              %th= t(:hours)
           %tbody
             - @ticket.work_units.each do |work_unit|
               %tr
@@ -34,9 +34,9 @@
   .yui3-u-1-2
     .gradient_border_wrap
       .gradient_border_content
-        %h3 Files
+        %h3= t(:files)
         %ul
           - @ticket.file_attachments.each do |file_attachment|
             %li= link_to file_attachment.attachment_file_file_name, file_attachment_path(file_attachment.id)
-        = link_to "Add File Attachment", new_file_attachment_path( :ticket_id => @ticket.id )
+        = link_to t(:add_file_attachment), new_file_attachment_path(:ticket_id => @ticket.id)
 

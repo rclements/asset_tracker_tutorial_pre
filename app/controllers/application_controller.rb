@@ -6,6 +6,15 @@ class ApplicationController < ActionController::Base
   helper_method :redirect_to_ref_url, :admin?
   rescue_from 'Acl9::AccessDenied', :with => :access_denied
 
+  def build_week_hash_for(date, hash={})
+    until date.saturday?
+      day = date.strftime("%A")
+      hash[day] = date
+      date = date.tomorrow
+    end
+    return hash
+  end
+
   private
 
   def redirect_unless_monday(path_prefix, date)
@@ -30,4 +39,5 @@ class ApplicationController < ActionController::Base
     flash[:notice] = 'Access denied.'
     redirect_to root_path
   end
+
 end

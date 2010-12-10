@@ -21,7 +21,7 @@ $("#scheduled_at").datepicker( {
     $("#schedule_modal").dialog('close');
     $('#schedule_modal_link').text($('#work_unit_scheduled_at').val());
   },
-  dateFormat: 'mm/dd/yy'
+  dateFormat: 'yy-mm-dd'
 });
 
 
@@ -87,7 +87,6 @@ $("#new_work_unit").submit(function() {
       me.effect("highlight");
       // Ask the calendar to update itself
       update_calendar_block();
-      
     },
     error: function(result)
     {
