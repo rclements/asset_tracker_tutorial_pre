@@ -20,7 +20,7 @@
               %th= t(:work_units)
               %th= t(:hours)
           %tbody
-            - @ticket.work_units.each do |work_unit|
+            - @work_units.each do |work_unit|
               %tr
                 %td= work_unit.id
                 %td= link_to work_unit.description, work_unit_path(work_unit)
