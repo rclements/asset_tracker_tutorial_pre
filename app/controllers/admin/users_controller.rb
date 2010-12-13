@@ -24,16 +24,19 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-
     if params[:user]["locked"] == "1" && !@user.locked_at?
       @user.lock_access!
     elsif params[:user]["locked"] == "0" && @user.locked_at?
       @user.unlock_access!
     end
 
+    if params[:user]["password"] == "" && params[:user]["password_confirmation"] == ""
+      params[:user].delete(:password) && params[:user].delete(:password_confirmation)
+    end
+
     @user.update_attributes(params[:user])
     if @user.save
-      flash[:notice] = "Updated successfully"
+      flash[:notice] = t(:user_updated_successfully)
       redirect_to user_path(@user)
     else
       flash[:error] = t(:user_updated_unsuccessfully)
