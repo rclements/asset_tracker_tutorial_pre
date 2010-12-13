@@ -21,7 +21,7 @@ describe Project do
   end
 
   context "with an existing project with the same name on a given client" do
-    let(:client)          { Client.create( :name => 'testee', :status => 'Good')}
+    let(:client)          { Client.create( :name => 'testee', :status => 'Active')}
 
     before(:each) do
       Project.create(:name => 'test',   :client => client)

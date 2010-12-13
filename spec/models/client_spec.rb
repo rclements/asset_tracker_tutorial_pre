@@ -37,10 +37,10 @@ describe Client do
 
   context 'with an existing client with the same name' do
     before(:each) do
-      Client.create(:name => "test", :status => "Good")
+      Client.create(:name => "test", :status => "Active")
     end
 
-    let(:client_dup) { Client.create(:name => "test", :status => "Good") }
+    let(:client_dup) { Client.create(:name => "test", :status => "Active") }
 
     subject{ client_dup }
     it "fails validation with error on name" do
