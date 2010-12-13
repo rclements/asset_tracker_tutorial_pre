@@ -30,7 +30,7 @@
               %th= @project.total_hours
               %th &nbsp;
           %tbody
-            - @project.tickets.each do |ticket|
+            - @tickets.each do |ticket|
               %tr
                 %td= link_to ticket, ticket
                 %td= ticket.work_units.count
