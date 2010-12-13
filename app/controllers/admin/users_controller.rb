@@ -30,7 +30,8 @@ class Admin::UsersController < Admin::BaseController
     elsif params[:user]["locked"] == "0" && @user.locked_at?
       @user.unlock_access!
     end
-
+    params[:user].delete "locked"
+    
     @user.update_attributes(params[:user])
     if @user.save
       flash[:notice] = "Updated successfully"
