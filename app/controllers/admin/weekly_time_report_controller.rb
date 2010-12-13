@@ -6,7 +6,7 @@ class Admin::WeeklyTimeReportController < ApplicationController
 
   def show
     redirect_unless_monday('/admin/weekly_time_report/', params[:id])
-    @users = User.select{|u| u.has_role?(:developer) && !u.locked }
+    @users = User.select{|u| u.has_role?(:developer) && !u.locked }.sort_by{|u| u.first_name.downcase}
   end
 
 end
