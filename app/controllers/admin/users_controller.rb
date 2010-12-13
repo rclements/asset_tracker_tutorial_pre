@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::BaseController
   before_filter :load_new_user_account, :only => [:new, :create]
 
   def index
-    @users = User.all.sort_by {|user| user.first_name}
+    @users = User.all.sort_by {|user| user.first_name.downcase}
   end
 
   def new
