@@ -35,14 +35,15 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update_attributes(:active => false)
-      flash[:notice] = "The comment has been hidden"
+      flash[:notice] = "The comment has been hidden."
       redirect_to(:back)
     else
-      flash.now[:error] = "There was a problem hiding the comming"
+      flash.now[:error] = "There was a problem hiding the comment."
     end
   end
 
   private
+
   def find_commentable
     params.each do |name, value|
       if name =~ /(.+)_id$/
