@@ -51,19 +51,8 @@ Feature: User Administration
     When I am on the admin user's new page
     Then I should see a link with text "Cancel"
 
-  Scenario: Delete user
-#   Given I am an authenticated user with an "admin" role
-#   Given the following user records:
-#    | first_name | last_name | middle_initial | email             | password | role |
-#    | Test 1     | Man       | T              | test1@example.com | secret   | user |
-#    | Test 2     | Man       | T              | test2@example.com | secret   | user |
-#    | Test 3     | Man       | T              | test3@example.com | secret   | user |
-#    | Test 4     | Man       | T              | test4@example.com | secret   | user |
-#   When I go to the admin users page
-#   When I delete the 3rd user
-#   Then I should see the following users:
-#     | Name       | Email             |
-#     | Nick Fine  | testing@man.net   |
-#     | Test 1 Man | test1@example.com |
-#     | Test 3 Man | test3@example.com |
-#     | Test 4 Man | test4@example.com |
+  Scenario: Try to make changes to another user
+    Given I am an authenticated user
+    Given a user exists with first_name: "Test", last_name: "Man", middle_initial: "T", email: "test@example.com", password: "secret", password_confirmation: "secret"
+    When I go to the user's edit page
+    Then I should see "You cannot make changes to another user."
