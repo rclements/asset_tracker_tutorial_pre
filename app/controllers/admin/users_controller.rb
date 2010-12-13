@@ -52,6 +52,8 @@ class Admin::UsersController < Admin::BaseController
         @user.has_no_roles_for!(project)
         @user.has_role!(role, project) unless role == :no_access
       end
+      flash[:notice] = t(:roles_updated_successfully)
+      redirect_to admin_users_path
     end
   end
 
