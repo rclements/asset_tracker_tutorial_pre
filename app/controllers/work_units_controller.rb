@@ -17,7 +17,7 @@ class WorkUnitsController < ApplicationController
     _params.delete :project_id
     @work_unit = WorkUnit.new(_params)
     @work_unit.user = current_user
-    @work_unit.scheduled_at = Time.parse(_params[:scheduled_at])
+    @work_unit.scheduled_at = Time.zone.parse(_params[:scheduled_at])
   end
 
   def load_work_unit
