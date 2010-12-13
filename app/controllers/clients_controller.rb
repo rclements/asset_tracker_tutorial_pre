@@ -20,7 +20,7 @@ class ClientsController < ApplicationController
 
   public
   def index
-    @clients = Client.all
+    @clients = Client.all.sort_by {|client| client.name}
   end
 
   def show
