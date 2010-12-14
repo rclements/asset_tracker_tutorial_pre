@@ -56,6 +56,9 @@
                               - if ticket.work_units.last == wu
                                 = "=========================="
                                 = "#{t(:total_hours)}: #{ticket.uninvoiced_hours}"
+            = form_tag(admin_invoice_path, :method => 'put', :multipart => true) do
+              = submit_tag t(:submit), :class => 'invoice_submit'
+            = t(:grand_total_for_client).capitalize << ':' << @client.total_hours.to_s << ' ' << t(:hours)
 
         - content_for :javascripts do
           = javascript_include_tag "admin_invoices"
