@@ -17,7 +17,7 @@ class WorkUnitsController < ApplicationController
     _params.delete :project_id
     @work_unit = WorkUnit.new(_params)
     @work_unit.user = current_user
-    @work_unit.scheduled_at = Time.parse(_params[:scheduled_at])
+    @work_unit.scheduled_at = Time.zone.parse(_params[:scheduled_at])
   end
 
   def load_work_unit
@@ -72,7 +72,7 @@ class WorkUnitsController < ApplicationController
 
   def require_access
     unless @work_unit.allows_access?(current_user)
-      flash[:notice] = "Access denied."
+      flash[:notice] = t(:access_denied)
       redirect_to root_path
     end
   end
