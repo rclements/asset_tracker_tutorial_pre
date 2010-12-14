@@ -8,6 +8,10 @@ class Ticket < ActiveRecord::Base
   validates_presence_of :project_id
   validates_presence_of :name
 
+  def self.for_user(user)
+    select {|t| t.allows_access?(user) }
+  end
+
   def client
     project.client
   end
@@ -16,11 +20,11 @@ class Ticket < ActiveRecord::Base
     name
   end
 
-  def sum_of_hours_unpaid
+  def unpaid_hours
     work_units.unpaid.inject(0) { |sum, n| sum + n.hours }
   end
 
-  def sum_of_hours_not_invoiced
+  def uninvoiced_hours
     work_units.not_invoiced.inject(0) { |sum, n| sum + n.hours }
   end
 
@@ -29,7 +33,11 @@ class Ticket < ActiveRecord::Base
   end
 
   def allows_access?(user)
-    project.accepts_roles_by?(user) || user.has_role?(:admin)
+    project.accepts_roles_by?(user) || user.admin?
+  end
+
+  def hours
+    work_units.inject(0) {|sum, w| sum + w.hours}
   end
 
 end

@@ -8,7 +8,7 @@ class TicketsController < ApplicationController
 
   def load_new_ticket
     @ticket = Ticket.new(params[:ticket])
-    @ticket.project = Project.find(params[:ticket][:project_id])
+    @ticket.project = Project.find(params[:project_id]) if params[:project_id]
   end
 
   def load_ticket
@@ -25,6 +25,7 @@ class TicketsController < ApplicationController
   end
 
   def show
+    @work_units = @ticket.work_units.sort_by{|w| w.scheduled_at}.reverse
   end
 
   def edit

@@ -2,6 +2,7 @@ class Admin::PayrollController < ApplicationController
 
   def index
     @users = User.with_unpaid_work_units
+    @work_units = WorkUnit.unpaid
   end
 
   def show

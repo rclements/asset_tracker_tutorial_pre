@@ -21,7 +21,7 @@ describe Project do
   end
 
   context "with an existing project with the same name on a given client" do
-    let(:client)          { Client.create( :name => 'testee', :status => 'Good')}
+    let(:client)          { Client.create( :name => 'testee', :status => 'Active')}
 
     before(:each) do
       Project.create(:name => 'test',   :client => client)
@@ -58,6 +58,18 @@ describe Project do
       WorkUnit.make(:ticket => ticket_1)
       WorkUnit.make(:ticket => ticket_2)
       project.hours.should == ticket_1.work_units.first.hours + ticket_2.work_units.first.hours
+    end
+  end
+
+  describe '.uninvoiced_hours' do
+    it "returns the sum of hours on all the client's work units" do
+      work_unit_1 = WorkUnit.make
+      ticket = work_unit_1.ticket
+      project = work_unit_1.project
+      work_unit_2 = WorkUnit.make(:ticket => ticket)
+      work_unit_3 = WorkUnit.make(:ticket => ticket, :invoiced => 'Invoiced', :invoiced_at => Time.current)
+      total_hours = work_unit_1.hours + work_unit_2.hours
+      project.uninvoiced_hours.should == total_hours
     end
   end
 end

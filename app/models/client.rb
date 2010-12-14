@@ -11,6 +11,18 @@ class Client < ActiveRecord::Base
   validates_presence_of :status
   validates_uniqueness_of :name, :allow_nil => false
 
+  def total_tickets
+    projects.inject(0) {|sum, p| sum + p.tickets.count }
+  end
+
+  def total_hours
+    projects.inject(0){|sum, p| sum + p.hours}
+  end
+
+  def uninvoiced_hours
+    WorkUnit.for_client(self).not_invoiced.inject(0) {|sum, w| sum + w.hours}
+  end
+
   def to_s
     name
   end
@@ -24,17 +36,25 @@ class Client < ActiveRecord::Base
   end
 
   def allows_access?(user)
-    projects.map{|p| p.accepts_roles_by?(user) }.include?(true) || user.has_role?(:admin)
+    projects.any? {|p| p.accepts_roles_by?(user)} || user.admin?
   end
 
   class << self
     def statuses
       {
-        "1" => "Good",
-        "2" => "Bad",
-        "3" => "Ugly",
-        "4" => "ANGRY"
+        "10" => "Active",
+        "20" => "Suspended",
+        "30" => "Inactive",
       }
     end
+
+    def for(projects_or_tickets_or_work_units)
+      projects_or_tickets_or_work_units.collect{ |resource| resource.client }.uniq
+    end
+
+    def for_user(user)
+      select {|c| c.allows_access?(user) }
+    end
   end
+
 end

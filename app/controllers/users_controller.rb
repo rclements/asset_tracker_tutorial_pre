@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_current_user, :only => [:edit, :change_password]
 
   def index
-    @users = User.unlocked
+    @users = User.unlocked.sort_by {|user| user.first_name.downcase}
   end
 
   def show

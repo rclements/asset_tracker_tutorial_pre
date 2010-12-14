@@ -17,4 +17,10 @@ AssetTrackerTutorial::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
+
+  # Action mailer settings
+  config.action_mailer.default_url_options = {
+    :host => '127.0.0.1',
+    :port => 3000
+  }
 end

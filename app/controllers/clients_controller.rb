@@ -20,15 +20,11 @@ class ClientsController < ApplicationController
 
   public
   def index
-    @clients = Client.all
+    @clients = Client.all.sort_by {|client| client.name.downcase}
   end
 
   def show
-    if admin?
-      @projects = @client.projects
-    else
-      @projects = @client.projects.find_all {|p| p.accepts_roles_by?(current_user) }
-    end
+    @projects = Project.for_user(current_user).select{|p| p.client == @client}.sort_by{|project| project.name.downcase}
   end
 
   def new

@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::BaseController
   before_filter :load_new_user_account, :only => [:new, :create]
 
   def index
-    @users = User.all
+    @users = User.all.sort_by {|user| user.first_name.downcase}
   end
 
   def new
@@ -24,16 +24,19 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-
     if params[:user]["locked"] == "1" && !@user.locked_at?
       @user.lock_access!
     elsif params[:user]["locked"] == "0" && @user.locked_at?
       @user.unlock_access!
     end
 
+    if params[:user]["password"] == "" && params[:user]["password_confirmation"] == ""
+      params[:user].delete(:password) && params[:user].delete(:password_confirmation)
+    end
+
     @user.update_attributes(params[:user])
     if @user.save
-      flash[:notice] = "Updated successfully"
+      flash[:notice] = t(:user_updated_successfully)
       redirect_to user_path(@user)
     else
       flash[:error] = t(:user_updated_unsuccessfully)
@@ -49,6 +52,8 @@ class Admin::UsersController < Admin::BaseController
         @user.has_no_roles_for!(project)
         @user.has_role!(role, project) unless role == :no_access
       end
+      flash[:notice] = t(:roles_updated_successfully)
+      redirect_to admin_users_path
     end
   end
 

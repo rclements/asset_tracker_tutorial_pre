@@ -37,10 +37,10 @@ describe Client do
 
   context 'with an existing client with the same name' do
     before(:each) do
-      Client.create(:name => "test", :status => "Good")
+      Client.create(:name => "test", :status => "Active")
     end
 
-    let(:client_dup) { Client.create(:name => "test", :status => "Good") }
+    let(:client_dup) { Client.create(:name => "test", :status => "Active") }
 
     subject{ client_dup }
     it "fails validation with error on name" do
@@ -77,6 +77,18 @@ describe Client do
     it 'returns true given a user has access to one or more of its projects' do
       @user.has_role!(:developer, @project)
       @client.allows_access?(@user).should be_true
+    end
+  end
+
+  describe '.uninvoiced_hours' do
+    it "returns the sum of hours on all the client's work units" do
+      work_unit_1 = WorkUnit.make
+      ticket = work_unit_1.ticket
+      client = work_unit_1.client
+      work_unit_2 = WorkUnit.make(:ticket => ticket)
+      work_unit_3 = WorkUnit.make(:ticket => ticket, :invoiced => 'Invoiced', :invoiced_at => Time.current)
+      total_hours = work_unit_1.hours + work_unit_2.hours
+      client.uninvoiced_hours.should == total_hours
     end
   end
 end

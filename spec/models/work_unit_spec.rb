@@ -54,9 +54,9 @@ describe WorkUnit do
       ticket = work_unit_1.ticket
       work_unit_2 = WorkUnit.make(:ticket => ticket)
       client = work_unit_1.client
-      contact_1 = Contact.make(:recieves_email => true, :client => client)
-      contact_2 = Contact.make(:recieves_email => true, :client => client)
-      contact_3 = Contact.make(:recieves_email => false, :client => client)
+      contact_1 = Contact.make(:receives_email => true, :client => client)
+      contact_2 = Contact.make(:receives_email => true, :client => client)
+      contact_3 = Contact.make(:receives_email => false, :client => client)
       work_unit_3 = WorkUnit.make
       proper_list = [contact_1.email_address, contact_2.email_address]
       work_unit_1.email_list.should == proper_list
@@ -125,7 +125,7 @@ describe WorkUnit do
     end
   end
 
-  describe '.allows_acces?' do
+  describe '.allows_access?' do
     before(:each) do
       @user = User.make
       @work_unit = WorkUnit.make
@@ -138,7 +138,17 @@ describe WorkUnit do
 
     it 'returns true if the user has access to the parent client' do
       @user.has_role!(:developer, @project)
-      @work_unit.allows_access?(@user)
+      @work_unit.allows_access?(@user).should be_true
+    end
+  end
+
+  describe '.validate_client_status' do
+    it 'checks to see if the client is not inactive' do
+      work_unit = WorkUnit.make_unsaved
+      client = work_unit.client
+      client.update_attribute(:status, "Inactive")
+      work_unit.save.should be_false
+      work_unit.should have(1).errors_on(:base)
     end
   end
 end

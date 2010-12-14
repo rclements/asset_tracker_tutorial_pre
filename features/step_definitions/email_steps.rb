@@ -18,12 +18,23 @@ Given(/^(\d)+ emails? should be delivered$/) do |count|
   emails.size.should == count.to_i
 end
 
+# not auto-generated
+
+When(/^the daily email goes out to #{capture_model}$/) do |name|
+  client = find_model!(name)
+  Notifier.daily(client).deliver
+end
+
 When(/^(?:I|they) follow "([^"]*?)" in #{capture_email}$/) do |link, email_ref|
   visit_in_email(email(email_ref), link)
 end
 
 When(/^(?:I|they) click the first link in #{capture_email}$/) do |email_ref|
   click_first_link_in_email(email(email_ref))
+end
+
+Then(/^(\d)+ emails? should be delivered bcc to (.*)$/) do |count, to|
+  emails("bcc: \"#{email_for(to)}\"").size.should == count.to_i
 end
 
 Then(/^(\d)+ emails? should be delivered to (.*)$/) do |count, to|

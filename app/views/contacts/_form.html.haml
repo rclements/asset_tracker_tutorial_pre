@@ -19,8 +19,8 @@
   = f.label :phone_number
   = f.text_field :phone_number
 .field
-  = f.label "Recieves Email"
-  = f.check_box(:recieves_email)
+  = f.label :receives_email
+  = f.check_box(:receives_email)
 .actions
   = f.submit :class => "add_new_button"
   = link_to "Cancel", clients_path, :class => "cancel_button"

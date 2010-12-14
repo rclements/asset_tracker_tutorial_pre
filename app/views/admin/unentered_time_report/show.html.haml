@@ -5,16 +5,15 @@
   .yui3-u-1
     .gradient_border_wrap
       .gradient_border_content
-        - @weekdays.each do |day|
-          %div{:id => day.strftime("%A")}
-            %h3= day.strftime("%A, %B %d, %Y")
-            - if day.future?
-              %p= "(#{t(:this_day_is_in_the_future)})"
-            - else
+        - @week_dates.each do |weekday, date|
+          %div{:id => weekday}
+            %h3= "#{weekday}, #{date.to_formatted_s(:long_ordinal)}"
+            - if date.past?
               %ul
-                - @users.each do |user|
-                  - if user.work_units_for_day(day).empty?
-                    %li= link_to "#{user.last_name}, #{user.first_name}", user_path(user)
-        %h4= link_to t(:previous), admin_unentered_time_report_path(@previous_week)
-        %h4= link_to t(:next), admin_unentered_time_report_path(@next_week)
+                - for user in @users do
+                  - unless user.work_units_for_day(date).any?
+                    %li= link_to user, user_path(user)
+
+        %h4= link_to t(:previous), admin_unentered_time_report_path(@week_dates["Monday"] - 1.week)
+        %h4= link_to t(:next), admin_unentered_time_report_path(@week_dates["Monday"] + 1.week)
 

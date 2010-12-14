@@ -7,6 +7,14 @@ Given /^the following user records:$/ do |users|
   end
 end
 
+Given /^the user "([^"]*)" has (?:a|an) "([^"]*)" role(?: on #{capture_model})?$/ do |email, role, model_name|
+  if model_name
+    User.find_by_email(email).has_role!(role.to_sym, find_model(model_name))
+  else
+    User.find_by_email(email).has_role!(role.to_sym)
+  end
+end
+
 When /^I delete the (\d+)(?:st|nd|rd|th) user$/ do |pos|
   visit admin_users_path
   within("table tbody tr:nth-child(#{pos.to_i})") do

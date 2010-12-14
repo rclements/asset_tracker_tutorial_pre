@@ -2,7 +2,7 @@ Feature: Comment Management                                                     
   I should be able to view and make comments
 
   Scenario: List and add comments
-    Given I am an authenticated user
+    Given I am an authenticated user with an "admin" role
     And a client "test client" exists
     When I am on the client's page
     And I follow "Add Comment"

@@ -12,12 +12,24 @@ class Project < ActiveRecord::Base
   validates_presence_of :client_id
   validates_uniqueness_of :name, :scope => :client_id
 
+  def uninvoiced_hours
+    WorkUnit.for_project(self).not_invoiced.inject(0) {|sum, w| sum + w.hours}
+  end
+
+  def total_hours
+    WorkUnit.for_project(self).inject(0) {|sum, w| sum + w.hours}
+  end
+
+  def total_work_units
+    tickets.inject(0) {|sum, t| sum + t.work_units.count}
+  end
+
+  def self.for_user(user)
+    select {|p| p.allows_access?(user) }
+  end
+
   def hours
-    tickets.inject(0) do |sum, ticket|
-      sum + ticket.work_units.inject(0) do |sum, work_unit|
-        sum + work_unit.hours
-      end
-    end
+    tickets.inject(0) {|sum, t| sum + t.hours}
   end
 
   def to_s
@@ -25,7 +37,7 @@ class Project < ActiveRecord::Base
   end
 
   def allows_access?(user)
-    accepts_roles_by?(user)
+    accepts_roles_by?(user) || user.admin?
   end
 
 end
