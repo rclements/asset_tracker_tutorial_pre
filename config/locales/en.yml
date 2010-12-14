@@ -158,3 +158,6 @@ en:
   there_are_no_users_to_show: "There are no users to show."
   access_denied: "Access denied."
   uninvoiced_work_units: "Uninvoiced work units"
+  user: "user"
+  unpaid_work_units: "unpaid work units"
+  unpaid_hours: "unpaid hours"
