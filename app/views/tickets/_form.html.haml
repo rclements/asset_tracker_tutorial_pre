@@ -11,7 +11,7 @@
 
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_area :name
     = hidden_field_tag :project_id, @ticket.project.id
   .actions
     = f.submit :class => "add_new_button"
