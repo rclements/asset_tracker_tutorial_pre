@@ -11,7 +11,8 @@
             - if date.past?
               %ul
                 - for user in @users do
-                  %li= link_to user, user_path(user)
+                  - unless user.work_units_for_day(date).any?
+                    %li= link_to user, user_path(user)
 
         %h4= link_to t(:previous), admin_unentered_time_report_path(@week_dates["Monday"] - 1.week)
         %h4= link_to t(:next), admin_unentered_time_report_path(@week_dates["Monday"] + 1.week)
